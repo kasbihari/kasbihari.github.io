@@ -36,29 +36,30 @@
                 var(--bg);
     }
 
-            /* THEME: Pine & Beige (aangepast met elegant kleurenpalet) */
-    html[data-theme="pine-beige"]{
-      --bg:#faf7f2; --bg-2:#f1ebe1; --bg-3:#e8dfd1;
-      --ink:#4a3c2a; --ink-2:#6d5c45;
-      --accent:#a47c48; --accent-2:#8a6d3b;
-      --grid:rgba(0,0,0,.03); --stroke:rgba(0,0,0,.08);
-      --success:#8a9a5b; --link:#a47c48; --chip:rgba(164,124,72,.15);
-      --glow-bg: radial-gradient(ellipse 100% 100% at 50% 50%, color-mix(in oklab, var(--accent-2) 15%, transparent), transparent),
-                radial-gradient(ellipse 80% 80% at 20% 20%, color-mix(in oklab, var(--accent) 15%, transparent), transparent),
-                var(--bg);
-    }
+    /* THEME: Elegant Desert (aangepast met elegant kleurenpalet) */
+html[data-theme="elegant-desert"]{
+  --bg:#faf7f2; --bg-2:#f1ebe1; --bg-3:#e8dfd1;
+  --ink:#4a3c2a; --ink-2:#6d5c45;
+  --accent:#a47c48; --accent-2:#8a6d3b;
+  --grid:rgba(0,0,0,.03); --stroke:rgba(0,0,0,.08);
+  --success:#8a9a5b; --link:#a47c48; --chip:rgba(164,124,72,.15);
+  --glow-bg: radial-gradient(ellipse 100% 100% at 50% 50%, color-mix(in oklab, var(--accent-2) 15%, transparent), transparent),
+            radial-gradient(ellipse 80% 80% at 20% 20%, color-mix(in oklab, var(--accent) 15%, transparent), transparent),
+            var(--bg);
+}
 
-    /* Aanpassing voor logo in Pine & Beige thema */
-    html[data-theme="pine-beige"] .logo-orb {
-      background: radial-gradient(circle at 30% 30%, color-mix(in oklab, var(--bg-2) 85%, var(--accent-2)), var(--accent));
-      box-shadow: 0 30px 120px color-mix(in oklab, var(--accent-2) 35%, transparent), 
-                 inset 0 0 40px rgba(255,255,255,.25);
-    }
+/* Aanpassing voor logo in Elegant Desert thema */
+html[data-theme="elegant-desert"] .logo-orb {
+  background: radial-gradient(circle at 30% 30%, color-mix(in oklab, var(--bg-2) 85%, var(--accent-2)), var(--accent));
+  box-shadow: 0 30px 120px color-mix(in oklab, var(--accent-2) 35%, transparent), 
+             inset 0 0 40px rgba(255,255,255,.25);
+}
 
-    html[data-theme="pine-beige"] .logo-k {
-      color: var(--bg);
-      text-shadow: 0 6px 20px rgba(0,0,0,.2);
-    }
+html[data-theme="elegant-desert"] .logo-k {
+  color: var(--bg);
+  text-shadow: 0 6px 20px rgba(0,0,0,.2);
+}
+
 
     /* Base */
     html,body{height:100%}
@@ -671,7 +672,7 @@
     }
     .swatch.duo{display:grid; grid-template-columns:1fr 1fr; overflow:hidden;}
     .swatch.duo span:first-child{background:#f8f4eb}
-    .swatch.duo span:last-child{background:#2c5e3c}
+    .swatch.duo span:last-child{background:#a47c48}
 
     /* Footer */
     footer{
@@ -1105,13 +1106,14 @@
           <small class="text-secondary">dark, rich & cinematic</small>
         </div>
       </div>
-      <div class="theme-item clickable" data-theme="pine-beige">
+      <div class="theme-item clickable" data-theme="elegant-desert">
         <div class="swatch duo"><span></span><span></span></div>
         <div>
-          <div><strong>Pine &amp; Beige</strong></div>
+          <div><strong>Elegant Desert</strong></div>
           <small class="text-secondary">bright, natural & elegant</small>
         </div>
       </div>
+      
     </div>
   </div>
 
@@ -1122,10 +1124,11 @@
     /* =========
        Theme engine
        ========== */
-    const THEMES = {
-      "burgundy-noir": { label: "Burgundy Noir", vars: {} },
-      "pine-beige": { label: "Pine & Beige", vars: {} }
-    };
+       const THEMES = {
+  "burgundy-noir": { label: "Burgundy Noir", vars: {} },
+  "elegant-desert": { label: "Elegant Desert", vars: {} }
+};
+
 
     function applyTheme(key){
       if(!THEMES[key]) return;
