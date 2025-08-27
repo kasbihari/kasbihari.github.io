@@ -1,1257 +1,546 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en" data-theme="burgundy-noir">
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Krishna Bihari | Portfolio</title>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Krishna Bihari | Portfolio</title>
 
-  <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;800;900&family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
-  <!-- Bootstrap 5 + Icons -->
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+    <!-- Google Fonts -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;800;900&family=Inter:wght@300;400;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <!-- Bootstrap 5 + Icons -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css"
+      rel="stylesheet"
+    />
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <link rel="stylesheet" href="css/style.css" />
+    <script defer src="js/main.js"></script>
+  </head>
+  <body>
+    <!-- Animated background -->
+    <div class="animated-bg"></div>
 
-  <style>
-        :root{
-      /* Tokens */
-      --radius:18px; --radius-sm:12px;
-      --shadow-1:0 10px 30px rgba(0,0,0,.25);
-      --shadow-2:0 30px 70px rgba(0,0,0,.35);
-      --noise-opacity:.06; --container-max:1140px;
-      --font-display:"Playfair Display",serif;
-      --font-ui:"Inter",system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;
-      --easing:cubic-bezier(.2,.7,.2,1);
-      --speed-1:300ms; --speed-2:700ms; --speed-3:1200ms;
-    }
+    <!-- Scroll progress bar -->
+    <div class="scroll-progress" aria-hidden="true"></div>
 
-    /* THEME: Burgundy Noir (default) */
-    html[data-theme="burgundy-noir"]{
-      --bg:#0f0b0d; --bg-2:#1a1116; --bg-3:#24161d;
-      --ink:#f2e9ee; --ink-2:#d9c9d0;
-      --accent:#7f1126; --accent-2:#b41c3b;
-      --grid:rgba(255,255,255,.04); --stroke:rgba(255,255,255,.08);
-      --success:#7ddb7c; --link:#ff466d; --chip:rgba(180,28,59,.15);
-      --glow-bg: radial-gradient(ellipse 100% 100% at 50% 50%, color-mix(in oklab, var(--accent-2) 20%, transparent), transparent),
-                radial-gradient(ellipse 80% 80% at 20% 20%, color-mix(in oklab, var(--accent) 20%, transparent), transparent),
-                var(--bg);
-    }
-
-    /* THEME: Elegant Desert (aangepast met elegant kleurenpalet) */
-html[data-theme="elegant-desert"]{
-  --bg:#faf7f2; --bg-2:#f1ebe1; --bg-3:#e8dfd1;
-  --ink:#4a3c2a; --ink-2:#6d5c45;
-  --accent:#a47c48; --accent-2:#8a6d3b;
-  --grid:rgba(0,0,0,.03); --stroke:rgba(0,0,0,.08);
-  --success:#8a9a5b; --link:#a47c48; --chip:rgba(164,124,72,.15);
-  --glow-bg: radial-gradient(ellipse 100% 100% at 50% 50%, color-mix(in oklab, var(--accent-2) 15%, transparent), transparent),
-            radial-gradient(ellipse 80% 80% at 20% 20%, color-mix(in oklab, var(--accent) 15%, transparent), transparent),
-            var(--bg);
-}
-
-/* Aanpassing voor logo in Elegant Desert thema */
-html[data-theme="elegant-desert"] .logo-orb {
-  background: radial-gradient(circle at 30% 30%, color-mix(in oklab, var(--bg-2) 85%, var(--accent-2)), var(--accent));
-  box-shadow: 0 30px 120px color-mix(in oklab, var(--accent-2) 35%, transparent), 
-             inset 0 0 40px rgba(255,255,255,.25);
-}
-
-html[data-theme="elegant-desert"] .logo-k {
-  color: var(--bg);
-  text-shadow: 0 6px 20px rgba(0,0,0,.2);
-}
-
-
-    /* Base */
-    html,body{height:100%}
-    body{
-      background: var(--glow-bg);
-      color:var(--ink); font-family:var(--font-ui);
-      -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale;
-      overflow-x:hidden;
-      transition: background 1.2s var(--easing);
-    }
-    .container{max-width:var(--container-max)}
-
-    /* Consistent spacing for sections and containers */
-    section {
-      padding-left: 1rem;
-      padding-right: 1rem;
-    }
-    
-    .container {
-      padding-left: 1.5rem;
-      padding-right: 1.5rem;
-    }
-
-    /* Animated gradient background */
-    .animated-bg {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      z-index: -1;
-      opacity: 0.7;
-      background: var(--glow-bg);
-      animation: gradientShift 18s ease infinite;
-      pointer-events: none;
-    }
-
-    @keyframes gradientShift {
-      0% { transform: scale(1) rotate(0deg); }
-      33% { transform: scale(1.05) rotate(1deg); }
-      66% { transform: scale(1.03) rotate(-1deg); }
-      100% { transform: scale(1) rotate(0deg); }
-    }
-
-    /* Subtle noise overlay */
-    .noise{
-      position:fixed; 
-      inset:0; 
-      pointer-events:none; 
-      z-index:2;
-      background-image:url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="160" height="160" viewBox="0 0 160 160"><filter id="n"><feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="2" stitchTiles="stitch"/></filter><rect width="100%" height="100%" filter="url(%23n)" opacity="0.18"/></svg>');
-      mix-blend-mode:soft-light; 
-      opacity:var(--noise-opacity);
-    }
-
-    /* NAV */
-    .nav-wrap{
-      position:sticky; top:0; z-index:80; backdrop-filter:blur(14px);
-      background:color-mix(in oklab, var(--bg-2) 72%, transparent);
-      border-bottom:1px solid var(--stroke);
-    }
-
-    /* Centered logo/brand */
-    .navbar{position:relative;}
-    .brand{
-      font-family:var(--font-display);
-      letter-spacing:.6px; font-weight:900;
-      display:inline-flex; align-items:center; gap:.6rem;
-      font-size:1.9rem; color:var(--ink) !important; text-decoration:none;
-    }
-    .brand .dot{width:.7rem; height:.7rem; border-radius:50%;
-      background:radial-gradient(circle at 30% 30%, var(--accent-2), var(--accent));
-      box-shadow:0 0 24px color-mix(in oklab, var(--accent) 55%, transparent), inset 0 0 12px rgba(255,255,255,.15);
-    }
-    
-    /* Mobile navbar layout */
-    @media (max-width: 991px) {
-      .navbar {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        padding-left: 1rem;
-        padding-right: 1rem;
-      }
-      .navbar-brand {
-        position: absolute !important;
-        left: 50% !important;
-        transform: translateX(-50%) !important;
-      }
-      .navbar-toggler {
-        order: 2;
-        margin-left: auto;
-      }
-      .navbar-collapse {
-        order: 3;
-      }
-    }
-    
-    /* absolutely center the brand on large screens */
-    @media (min-width:992px){
-      .navbar .navbar-brand{
-        position:absolute; left:50%; transform:translateX(-50%);
-      }
-    }
-    .nav-link{color:var(--ink-2)!important}
-    .nav-link.active,.nav-link:hover{color:var(--ink)!important}
-
-    /* Custom hamburger menu */
-    .hamburger-menu {
-      display: none;
-      flex-direction: column;
-      justify-content: center;
-      align-items: flex-end;
-      width: 30px;
-      height: 30px;
-      cursor: pointer;
-      position: relative;
-      z-index: 100;
-      margin-left: auto;
-    }
-    
-    .hamburger-menu span {
-      display: block;
-      height: 2px;
-      background-color: var(--ink);
-      margin: 3px 0;
-      transition: all 0.3s ease;
-      border-radius: 2px;
-    }
-    
-    .hamburger-menu span:nth-child(1) { width: 25px; }
-    .hamburger-menu span:nth-child(2) { width: 20px; }
-    .hamburger-menu span:nth-child(3) { width: 25px; }
-    
-    .hamburger-menu.active span:nth-child(1) {
-      transform: translateY(8px) rotate(45deg);
-      width: 25px;
-    }
-    
-    .hamburger-menu.active span:nth-child(2) {
-      opacity: 0;
-    }
-    
-    .hamburger-menu.active span:nth-child(3) {
-      transform: translateY(-8px) rotate(-45deg);
-      width: 25px;
-    }
-    
-    /* Mobile menu styling */
-    @media (max-width: 991px) {
-      .hamburger-menu {
-        display: flex;
-      }
-      
-      .navbar-nav {
-        background: color-mix(in oklab, var(--bg-2) 95%, transparent);
-        border: 1px solid var(--stroke);
-        border-radius: var(--radius-sm);
-        padding: 1rem;
-        backdrop-filter: blur(20px);
-        box-shadow: var(--shadow-2);
-        position: absolute;
-        top: 100%;
-        right: 1.5rem;
-        width: 220px;
-        opacity: 0;
-        visibility: hidden;
-        transform: translateY(-10px);
-        transition: all 0.3s var(--easing);
-      }
-      
-      .navbar-nav.active {
-        opacity: 1;
-        visibility: visible;
-        transform: translateY(0);
-      }
-      
-      .nav-item {
-        margin: 0.5rem 0;
-        text-align: right;
-      }
-      
-      .nav-link {
-        padding: 0.5rem 1rem !important;
-        border-radius: var(--radius-sm);
-        transition: all 0.3s ease;
-      }
-      
-      .nav-link:hover {
-        background: color-mix(in oklab, var(--accent) 15%, transparent);
-      }
-    }
-    
-    /* Desktop nav alignment */
-    @media (min-width: 992px) {
-      .navbar-nav {
-        margin-left: auto;
-        margin-right: 1rem;
-      }
-    }
-
-    /* Scroll progress bar (under nav) */
-    .scroll-progress{
-      position:fixed; top:0; left:0; height:4px; width:0%;
-      background:linear-gradient(90deg,var(--accent),var(--accent-2));
-      z-index:120; transition:width .15s ease-out;
-    }
-
-    /* Intro */
-    .intro{
-      position:fixed; 
-      inset:0; 
-      display:grid; 
-      place-items:center; 
-      z-index:1000;
-      background: var(--glow-bg);
-      transition:opacity var(--speed-2) var(--easing), visibility var(--speed-2) var(--easing);
-    }
-    .intro.hide{opacity:0; visibility:hidden; pointer-events: none;}
-    .logo-orb{
-      width:180px; 
-      aspect-ratio:1; 
-      border-radius:50%;
-      background:radial-gradient(circle at 30% 30%, color-mix(in oklab, var(--ink) 85%, var(--accent-2)), var(--accent));
-      box-shadow:0 30px 120px color-mix(in oklab, var(--accent-2) 55%, transparent), inset 0 0 40px rgba(255,255,255,.18);
-      position:relative; 
-      overflow:hidden; 
-      animation:float 3.6s var(--easing) infinite;
-    }
-    .logo-k{
-      position:absolute; 
-      inset:0; 
-      display:grid; 
-      place-items:center;
-      font-family:var(--font-display); 
-      font-weight:900; 
-      font-size:64px; 
-      letter-spacing:1px;
-      color:var(--ink); 
-      text-shadow:0 10px 40px rgba(0,0,0,.35); 
-      animation:fadeInUp 1.2s var(--easing) both .3s;
-    }
-    .scanline{
-      position:absolute; 
-      inset-inline:0; 
-      height:1px; 
-      background:rgba(0,0,0,.2);
-      box-shadow:0 0 40px rgba(0,0,0,.35); 
-      animation:scan 2.8s var(--easing) infinite;
-    }
-    @keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
-    @keyframes scan{0%{top:-10%}100%{top:110%}}
-    @keyframes fadeInUp{from{opacity:0; transform:translateY(14px)}to{opacity:1; transform:translateY(0)}}
-
-    /* Hero */
-    .hero{
-      position:relative; 
-      padding:9rem 0 6rem; 
-      isolation:isolate;
-    }
-    .hero .title{
-      font-family:var(--font-display); 
-      font-weight:900; 
-      line-height:.95;
-      font-size:clamp(2.4rem,6vw,4.8rem); 
-      letter-spacing:.5px;
-    }
-    .hero .tagline{
-      color:var(--ink-2); 
-      font-size:clamp(1rem,2.4vw,1.2rem)
-    }
-    
-    /* Profile image circle */
-    .profile-circle {
-      width: 220px;
-      height: 220px;
-      border-radius: 50%;
-      margin: 0 auto;
-      position: relative;
-      overflow: hidden;
-      border: 3px solid var(--stroke);
-      box-shadow: 0 0 30px color-mix(in oklab, var(--accent) 40%, transparent);
-      animation: profilePulse 4s ease-in-out infinite;
-    }
-    @keyframes profilePulse {
-      0%, 100% { transform: scale(1); box-shadow: 0 0 30px color-mix(in oklab, var(--accent) 40%, transparent); }
-      50% { transform: scale(1.03); box-shadow: 0 0 50px color-mix(in oklab, var(--accent) 60%, transparent); }
-    }
-    .profile-circle::before {
-      content: '';
-      position: absolute;
-      top: -5px;
-      left: -5px;
-      right: -5px;
-      bottom: -5px;
-      border-radius: 50%;
-      background: linear-gradient(45deg, transparent, transparent, var(--accent), transparent, transparent);
-      animation: rotateBorder 6s linear infinite;
-      z-index: -1;
-    }
-    @keyframes rotateBorder {
-      0% { transform: rotate(0deg); }
-      100% { transform: rotate(360deg); }
-    }
-    .profile-img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      background: linear-gradient(120deg, color-mix(in oklab,var(--accent) 55%, transparent), color-mix(in oklab,var(--bg-3) 60%, transparent));
-    }
-    
-    .badge-chips .chip{
-      background:var(--chip); 
-      border:1px solid var(--stroke); 
-      border-radius:999px; 
-      padding:.35rem .7rem; 
-      font-size:.85rem; 
-      color:var(--ink-2);
-      animation: fadeIn 0.6s ease-out;
-      animation-fill-mode: both;
-    }
-    .badge-chips .chip:nth-child(1) { animation-delay: 0.1s; }
-    .badge-chips .chip:nth-child(2) { animation-delay: 0.2s; }
-    .badge-chips .chip:nth-child(3) { animation-delay: 0.3s; }
-    .badge-chips .chip:nth-child(4) { animation-delay: 0.4s; }
-    .badge-chips .chip:nth-child(5) { animation-delay: 0.5s; }
-    .badge-chips .chip:nth-child(6) { animation-delay: 0.6s; }
-
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(10px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-
-    /* Section headings */
-    .section-title{
-      font-family:var(--font-display); 
-      font-weight:800; 
-      letter-spacing:.4px; 
-      display:inline-flex; 
-      align-items:baseline; 
-      gap:.75rem; 
-      position:relative;
-    }
-    .section-title .accent-underline{
-      height:8px; 
-      border-radius:6px; 
-      width:56px; 
-      background:linear-gradient(90deg,var(--accent),var(--accent-2));
-      box-shadow:0 6px 24px color-mix(in oklab, var(--accent) 50%, transparent); 
-      transform-origin:left; 
-      animation:grow 1.1s var(--easing) both;
-    }
-    @keyframes grow{from{transform:scaleX(.3); opacity:.2}to{transform:scaleX(1); opacity:1}}
-
-    /* Cards */
-    .card-x{
-      background:linear-gradient(180deg, color-mix(in oklab, var(--bg-3) 86%, transparent), var(--bg-2));
-      border:1px solid var(--stroke); 
-      border-radius:var(--radius); 
-      box-shadow:var(--shadow-1); 
-      overflow:hidden;
-      transition: all var(--speed-1) var(--easing);
-    }
-    .card-x:hover{
-      transform:translateY(-4px) scale(1.02); 
-      box-shadow:var(--shadow-2);
-    }
-    .project-media{
-      height:220px; 
-      position:relative; 
-      overflow:hidden; 
-      border-bottom:1px solid var(--stroke);
-      background:linear-gradient(120deg, color-mix(in oklab,var(--accent) 55%, transparent), color-mix(in oklab,var(--bg-3) 60%, transparent));
-    }
-    .project-media img{
-      width:100%; 
-      height:100%; 
-      object-fit:cover; 
-      filter:contrast(1.05) saturate(1.1); 
-      transform:scale(1.03); 
-      transition:transform .8s var(--easing);
-    }
-    .card-x:hover .project-media img{
-      transform:scale(1.06);
-    }
-    
-    /* Project status badge */
-    .status-badge {
-      position: absolute;
-      top: 12px;
-      right: 12px;
-      padding: 0.35rem 0.7rem;
-      border-radius: 999px;
-      font-size: 0.75rem;
-      font-weight: 600;
-      z-index: 10;
-    }
-    .status-done {
-      background: color-mix(in oklab, var(--success) 20%, transparent);
-      color: var(--success);
-      border: 1px solid color-mix(in oklab, var(--success) 40%, transparent);
-    }
-    .status-progress {
-      background: color-mix(in oklab, var(--accent) 20%, transparent);
-      color: var(--accent-2);
-      border: 1px solid color-mix(in oklab, var(--accent) 40%, transparent);
-    }
-
-    /* Icon */
-    .icon-wrap{
-      width:42px; 
-      height:42px; 
-      border-radius:10px; 
-      display:grid; 
-      place-items:center;
-      background:radial-gradient(circle at 30% 30%, color-mix(in oklab,var(--accent-2) 45%, transparent), color-mix(in oklab,var(--bg-3) 60%, transparent));
-      border:1px solid var(--stroke);
-      transition: all var(--speed-1) var(--easing);
-    }
-    .icon-wrap:hover {
-      transform: scale(1.1);
-    }
-
-    /* Scroll reveal + slide-in */
-    .reveal{
-      opacity:0; 
-      transform:translateY(14px); 
-      transition:opacity var(--speed-2) var(--easing), transform var(--speed-2) var(--easing);
-    }
-    .reveal.show{
-      opacity:1; 
-      transform:translateY(0);
-    }
-    .slide-left{
-      opacity:0; 
-      transform:translateX(-18px); 
-      transition:opacity var(--speed-2) var(--easing), transform var(--speed-2) var(--easing);
-    }
-    .slide-left.show{
-      opacity:1; 
-      transform:translateX(0);
-    }
-    .slide-right{
-      opacity:0; 
-      transform:translateX(18px); 
-      transition:opacity var(--speed-2) var(--easing), transform var(--speed-2) var(--easing);
-    }
-    .slide-right.show{
-      opacity:1; 
-      transform:translateX(0);
-    }
-
-    /* Buttons */
-    .btn-x{
-      background:linear-gradient(180deg, var(--accent-2), var(--accent)); 
-      border:1px solid color-mix(in oklab, var(--accent) 85%, black 15%);
-      color:#fff; 
-      border-radius:999px; 
-      padding:.7rem 1.1rem; 
-      font-weight:600; 
-      letter-spacing:.3px; 
-      box-shadow:0 10px 30px color-mix(in oklab, var(--accent) 35%, transparent);
-      transition: all var(--speed-1) var(--easing);
-    }
-    .btn-x:hover, .btn-x:focus{
-      transform:translateY(-2px) scale(1.05); 
-      filter:brightness(1.05); 
-      box-shadow:0 18px 44px color-mix(in oklab, var(--accent-2) 45%, transparent);
-    }
-    .btn-x:active {
-      transform: translateY(0) scale(0.98);
-    }
-    .btn-ghost{
-      background:transparent; 
-      color:var(--ink); 
-      border:1px solid var(--stroke); 
-      border-radius:999px; 
-      padding:.7rem 1.1rem;
-      transition: all var(--speed-1) var(--easing);
-    }
-    .btn-ghost:hover, .btn-ghost:focus {
-      background: color-mix(in oklab, var(--bg-3) 60%, transparent);
-      transform: translateY(-2px) scale(1.05);
-    }
-    .btn-ghost:active {
-      transform: translateY(0) scale(0.98);
-    }
-    a{color:var(--link); text-decoration:none} 
-    a:hover{text-decoration:underline}
-
-    /* Contact section */
-    .contact-card {
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      text-align: center;
-      padding: 2.5rem;
-      height: 100%;
-    }
-    .contact-icon {
-      width: 80px;
-      height: 80px;
-      border-radius: 50%;
-      display: grid;
-      place-items: center;
-      font-size: 2rem;
-      margin-bottom: 1.5rem;
-      background: radial-gradient(circle at 30% 30%, color-mix(in oklab, var(--accent-2) 45%, transparent), color-mix(in oklab, var(--bg-3) 60%, transparent));
-      border: 1px solid var(--stroke);
-      animation: pulse 2s infinite;
-    }
-    @keyframes pulse {
-      0% { transform: scale(1); }
-      50% { transform: scale(1.05); }
-      100% { transform: scale(1); }
-    }
-
-    /* Skills section */
-    .skills-category {
-      margin-bottom: 2rem;
-    }
-    .skills-category h3 {
-      font-family: var(--font-display);
-      margin-bottom: 1rem;
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-    }
-    .skill-item {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 0.8rem;
-    }
-    .skill-name {
-      font-weight: 500;
-    }
-    .skill-bar {
-      height: 6px;
-      background: color-mix(in oklab, var(--bg-3) 70%, transparent);
-      border-radius: 3px;
-      overflow: hidden;
-      width: 65%;
-    }
-    .skill-progress {
-      height: 100%;
-      background: linear-gradient(90deg, var(--accent), var(--accent-2));
-      border-radius: 3px;
-      animation: fillBar 1.5s ease-out forwards;
-    }
-    @keyframes fillBar {
-      from { width: 0; }
-    }
-
-    /* Floating Theme Switch (sticky bottom-right) */
-    .theme-fab{
-      position:fixed; 
-      right:22px; 
-      bottom:22px; 
-      z-index:200; 
-      display:flex; 
-      flex-direction:column; 
-      align-items:end; 
-      gap:.6rem;
-    }
-    .theme-panel{
-      min-width:240px; 
-      background:color-mix(in oklab, var(--bg-2) 92%, transparent); 
-      border:1px solid var(--stroke); 
-      border-radius:14px; 
-      box-shadow:var(--shadow-2); 
-      padding:.6rem; 
-      display:none;
-    }
-    .theme-panel.open{
-      display:block;
-      animation: fadeInUp 0.4s var(--easing);
-    }
-    .theme-cat{
-      font-size:.8rem; 
-      letter-spacing:.08em; 
-      text-transform:uppercase; 
-      color:var(--ink-2); 
-      margin:.25rem .35rem;
-    }
-    .theme-item{
-      display:flex; 
-      align-items:center; 
-      gap:.6rem; 
-      padding:.45rem .6rem; 
-      border-radius:10px; 
-      cursor:pointer; 
-      border:1px solid transparent;
-      transition: all var(--speed-1) var(--easing);
-    }
-    .theme-item:hover{
-      background:color-mix(in oklab, var(--bg-3) 85%, transparent); 
-      border-color:var(--stroke);
-      transform: translateX(-4px) scale(1.02);
-    }
-    .theme-item:active {
-      transform: translateX(-4px) scale(0.98);
-    }
-    .swatch{
-      width:22px; 
-      height:22px; 
-      border-radius:6px; 
-      box-shadow:inset 0 0 0 1px rgba(0,0,0,.25)
-    }
-    .swatch.duo{display:grid; grid-template-columns:1fr 1fr; overflow:hidden;}
-    .swatch.duo span:first-child{background:#f8f4eb}
-    .swatch.duo span:last-child{background:#a47c48}
-
-    /* Footer */
-    footer{
-      border-top:1px solid var(--stroke); 
-      background:color-mix(in oklab, var(--bg-2) 86%, transparent);
-      padding: 3rem 0 1.5rem;
-    }
-    .footer-content {
-      display: flex;
-      flex-direction: column;
-      gap: 2rem;
-    }
-    .footer-links {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 1.5rem;
-      justify-content: center;
-    }
-    .footer-links a {
-      color: var(--ink-2);
-      text-decoration: none;
-      transition: all var(--speed-1) var(--easing);
-    }
-    .footer-links a:hover {
-      color: var(--ink);
-      text-decoration: none;
-      transform: translateY(-2px);
-    }
-    .social-links {
-      display: flex;
-      gap: 1rem;
-      justify-content: center;
-    }
-    .social-links a {
-      display: grid;
-      place-items: center;
-      width: 40px;
-      height: 40px;
-      border-radius: 50%;
-      background: color-mix(in oklab, var(--bg-3) 70%, transparent);
-      color: var(--ink);
-      transition: all var(--speed-1) var(--easing);
-    }
-    .social-links a:hover {
-      background: var(--accent);
-      transform: translateY(-3px) scale(1.1);
-    }
-    .social-links a:active {
-      transform: translateY(-3px) scale(0.95);
-    }
-
-    /* Click animation for all interactive elements */
-    .clickable {
-      transition: transform var(--speed-1) var(--easing);
-    }
-    .clickable:active {
-      transform: scale(0.97);
-    }
-
-    /* Medium devices (tablets, 768px and up) */
-    @media (min-width: 768px) {
-      section {
-        padding-left: 1.5rem;
-        padding-right: 1.5rem;
-      }
-      
-      .container {
-        padding-left: 2rem;
-        padding-right: 2rem;
-      }
-    }
-
-    /* Large devices (desktops, 992px and up) */
-    @media (min-width: 992px) {
-      section {
-        padding-left: 2rem;
-        padding-right: 2rem;
-      }
-      
-      .container {
-        padding-left: 2.5rem;
-        padding-right: 2.5rem;
-      }
-      
-      /* Meer ruimte voor desktop navigatie */
-      .navbar-nav {
-        margin-right: 1rem;
-      }
-    }
-
-    @media (prefers-reduced-motion: reduce){
-      *{animation:none !important; transition:none !important}
-    }
-  </style>
-</head>
-<body>
-  <!-- Animated background -->
-  <div class="animated-bg"></div>
-
-  <!-- Scroll progress bar -->
-  <div class="scroll-progress" aria-hidden="true"></div>
-
-  <!-- Start Screen -->
-  <div class="intro" id="intro">
-    <div class="logo-orb" aria-hidden="true">
-      <div class="scanline"></div>
-      <div class="logo-k">KB</div>
+    <!-- Start Screen -->
+    <div class="intro" id="intro">
+      <div class="logo-orb" aria-hidden="true">
+        <div class="scanline"></div>
+        <div class="logo-k">KB</div>
+      </div>
+      <p class="mt-4 text-center text-secondary small">
+        Blending Code, Art & Culture
+      </p>
     </div>
-    <p class="mt-4 text-center text-secondary small">Blending Code, Art & Culture</p>
-  </div>
 
-  <!-- Noise -->
-  <div class="noise"></div>
+    <!-- Noise -->
+    <div class="noise"></div>
 
-  <!-- NAV -->
-  <div class="nav-wrap">
-    <nav class="navbar navbar-expand-lg container py-2">
-      <!-- Centered brand -->
-      <a class="navbar-brand brand" href="#top" aria-label="Home">
-        <span class="dot"></span> Krishna Bihari
-      </a>
+    <!-- NAV -->
+    <div class="nav-wrap">
+      <nav class="navbar navbar-expand-lg container py-2">
+        <!-- Centered brand -->
+        <a class="navbar-brand brand" href="#top" aria-label="Home">
+          <span class="dot"></span> Krishna Bihari
+        </a>
 
-      <!-- Custom hamburger menu -->
-      <div class="hamburger-menu" id="hamburgerMenu">
-        <span></span>
-        <span></span>
-        <span></span>
-      </div>
+        <!-- Custom hamburger menu -->
+        <div class="hamburger-menu" id="hamburgerMenu">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
 
-      <!-- Links -->
-      <div class="navbar-nav" id="navLinks">
-        <li class="nav-item"><a class="nav-link clickable" href="#about">About</a></li>
-        <li class="nav-item"><a class="nav-link clickable" href="#projects">Projects</a></li>
-        <li class="nav-item"><a class="nav-link clickable" href="#contact">Contact</a></li>
-      </div>
-    </nav>
-  </div>
+        <!-- Links -->
+        <div class="navbar-nav" id="navLinks">
+          <li class="nav-item">
+            <a class="nav-link clickable" href="#about">About</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link clickable" href="#projects">Projects</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link clickable" href="#contact">Contact</a>
+          </li>
+        </div>
+      </nav>
+    </div>
 
-  <!-- HERO -->
-  <header class="hero" id="top" role="banner">
-    <div class="container">
-      <div class="row g-4 align-items-center">
-        <div class="col-lg-7">
-          <h1 class="title reveal">Blending <span style="background:linear-gradient(90deg,var(--accent),var(--accent-2));-webkit-background-clip:text;background-clip:text;color:transparent;">Code</span>, Art & Culture</h1>
-          <p class="mt-3 tagline reveal" style="max-width: 52ch;">
-            Front-end developer & visual creator — I build stylish, performance-focused experiences with a cultural signature.
-          </p>
-          <div class="d-flex gap-3 mt-4 reveal">
-            <a href="#projects" class="btn-x clickable"><i class="bi bi-lightning-charge-fill me-1"></i> View Projects</a>
-            <a href="#contact" class="btn-ghost clickable"><i class="bi bi-envelope-at me-1"></i> Contact</a>
+    <!-- HERO -->
+    <header class="hero" id="top" role="banner">
+      <div class="container">
+        <div class="row g-4 align-items-center">
+          <div class="col-lg-7">
+            <h1 class="title reveal">
+              Blending
+              <span
+                style="
+                  background: linear-gradient(
+                    90deg,
+                    var(--accent),
+                    var(--accent-2)
+                  );
+                  -webkit-background-clip: text;
+                  background-clip: text;
+                  color: transparent;
+                "
+                >Code</span
+              >, Art & Culture
+            </h1>
+            <p class="mt-3 tagline reveal" style="max-width: 52ch">
+              Front-end developer & visual creator — I build stylish,
+              performance-focused experiences with a cultural signature.
+            </p>
+            <div class="d-flex gap-3 mt-4 reveal">
+              <a href="#projects" class="btn-x clickable"
+                ><i class="bi bi-lightning-charge-fill me-1"></i> View
+                Projects</a
+              >
+              <a href="#contact" class="btn-ghost clickable"
+                ><i class="bi bi-envelope-at me-1"></i> Contact</a
+              >
+            </div>
+            <div class="badge-chips d-flex flex-wrap gap-2 mt-4 reveal">
+              <span class="chip">HTML</span><span class="chip">CSS</span
+              ><span class="chip">JavaScript</span
+              ><span class="chip">Bootstrap</span
+              ><span class="chip">Unity/C#</span
+              ><span class="chip">Photoshop/Illustrator</span>
+            </div>
           </div>
-          <div class="badge-chips d-flex flex-wrap gap-2 mt-4 reveal">
-            <span class="chip">HTML</span><span class="chip">CSS</span><span class="chip">JavaScript</span><span class="chip">Bootstrap</span><span class="chip">Unity/C#</span><span class="chip">Photoshop/Illustrator</span>
+          <div class="col-lg-5 slide-right">
+            <div class="profile-circle">
+              <div class="profile-img"></div>
+            </div>
           </div>
         </div>
-        <div class="col-lg-5 slide-right">
-          <div class="profile-circle">
-            <div class="profile-img"></div>
+      </div>
+    </header>
+
+    <!-- ABOUT -->
+    <section id="about" class="py-5">
+      <div class="container">
+        <h2 class="section-title reveal">
+          About Me <span class="accent-underline"></span>
+        </h2>
+        <div class="row g-4 mt-1">
+          <div class="col-lg-6 slide-left">
+            <div class="card-x p-4 h-100 clickable">
+              <p class="mb-0">
+                I'm Krishna — a developer & designer who blends <em>code</em>,
+                <em>art</em>, and <em>culture</em>. I create digital experiences
+                that are both functional and visually refined, driven by a love
+                for design, detail, and storytelling. Beyond the screen, I’m
+                sharpening my strategy in chess ♟️, staying disciplined through
+                sports 🏀🥋, or exploring anime, gaming, and history 🎮.
+                Inspired by Japanese, Arabic, and Indian cultures, my style
+                mixes bold streetwear energy with timeless elegance. Fluent in
+                Dutch, English, and Spanish, I enjoy connecting people and ideas
+                across borders. <br />
+                <strong>“Balance the board. Design the future.”</strong>
+              </p>
+              <ul class="mt-3 text-secondary mb-0">
+                <li>Languages: Dutch, English, (almost) Spanish</li>
+                <li>Hobbies: chess, basketball, martial arts</li>
+                <li>Toolset: HTML/CSS/JS, Bootstrap, Unity/C#, PS/AI</li>
+              </ul>
+              <div class="mt-4">
+                <a href="#" class="btn-ghost clickable"
+                  ><i class="bi bi-person-lines-fill me-1"></i> More About Me</a
+                >
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-6 slide-right">
+            <div class="card-x p-4 h-100 clickable">
+              <h3 class="mb-4" style="font-family: var(--font-display)">
+                Skills & Expertise
+              </h3>
+
+              <div class="skills-category">
+                <h3><i class="bi bi-code-slash"></i> Software Development</h3>
+                <div class="skill-item">
+                  <span class="skill-name">HTML/CSS</span>
+                  <div class="skill-bar">
+                    <div class="skill-progress" style="width: 90%"></div>
+                  </div>
+                </div>
+                <div class="skill-item">
+                  <span class="skill-name">JavaScript</span>
+                  <div class="skill-bar">
+                    <div class="skill-progress" style="width: 85%"></div>
+                  </div>
+                </div>
+                <div class="skill-item">
+                  <span class="skill-name">Bootstrap</span>
+                  <div class="skill-bar">
+                    <div class="skill-progress" style="width: 88%"></div>
+                  </div>
+                </div>
+                <div class="skill-item">
+                  <span class="skill-name">Unity/C#</span>
+                  <div class="skill-bar">
+                    <div class="skill-progress" style="width: 75%"></div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="skills-category">
+                <h3><i class="bi bi-brush"></i> Graphic Design</h3>
+                <div class="skill-item">
+                  <span class="skill-name">UI/UX Design</span>
+                  <div class="skill-bar">
+                    <div class="skill-progress" style="width: 82%"></div>
+                  </div>
+                </div>
+                <div class="skill-item">
+                  <span class="skill-name">Photoshop</span>
+                  <div class="skill-bar">
+                    <div class="skill-progress" style="width: 80%"></div>
+                  </div>
+                </div>
+                <div class="skill-item">
+                  <span class="skill-name">Illustrator</span>
+                  <div class="skill-bar">
+                    <div class="skill-progress" style="width: 78%"></div>
+                  </div>
+                </div>
+                <div class="skill-item">
+                  <span class="skill-name">Typography</span>
+                  <div class="skill-bar">
+                    <div class="skill-progress" style="width: 85%"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PROJECTS -->
+    <section id="projects" class="py-5">
+      <div class="container">
+        <h2 class="section-title reveal">
+          Projects <span class="accent-underline"></span>
+        </h2>
+
+        <div class="row g-4 mt-1">
+          <!-- Project 1 -->
+          <div class="col-md-6 col-lg-4 reveal">
+            <article class="card-x h-100 clickable">
+              <div class="project-media">
+                <span class="status-badge status-done">Done</span>
+                <img
+                  alt="Kazora Luxury Watches preview"
+                  src="assets/img/Kazora.jpg"
+                />
+              </div>
+              <div class="p-4">
+                <div class="d-flex align-items-center justify-content-between">
+                  <h3
+                    style="
+                      font-family: var(--font-display);
+                      font-size: 1.4rem;
+                      margin: 0;
+                    "
+                  >
+                    Kazora — Luxury Watches
+                  </h3>
+                  <div class="icon-wrap"><i class="bi bi-gem"></i></div>
+                </div>
+                <p class="text-secondary mt-2">
+                  E-commerce design & build (PHP/MySQL + custom UI). Premium
+                  look with focus on product photography.
+                </p>
+                <div class="d-flex flex-wrap gap-2">
+                  <span class="chip">PHP</span><span class="chip">MySQL</span
+                  ><span class="chip">Bootstrap</span>
+                </div>
+                <div class="mt-3 d-flex gap-2">
+                  <a
+                    class="btn-x clickable"
+                    href="#"
+                    onclick="alert('Demo/Repo link here'); return false;"
+                    >Live Demo</a
+                  >
+                  <a
+                    class="btn-ghost clickable"
+                    href="#"
+                    onclick="alert('GitHub link here'); return false;"
+                    ><i class="bi bi-github me-1"></i> Code</a
+                  >
+                </div>
+              </div>
+            </article>
+          </div>
+          <!-- Project 2 -->
+          <div class="col-md-6 col-lg-4 reveal">
+            <article class="card-x h-100 clickable">
+              <div class="project-media">
+                <span class="status-badge status-done">Done</span>
+                <img
+                  alt="Super Mario Clone preview"
+                  src="assets/img/mario.png"
+                />
+              </div>
+              <div class="p-4">
+                <div class="d-flex align-items-center justify-content-between">
+                  <h3
+                    style="
+                      font-family: var(--font-display);
+                      font-size: 1.4rem;
+                      margin: 0;
+                    "
+                  >
+                    Mario-like Platformer
+                  </h3>
+                  <div class="icon-wrap"><i class="bi bi-controller"></i></div>
+                </div>
+                <p class="text-secondary mt-2">
+                  Unity/C# arcade platformer with smooth physics & pixel-art
+                  VFX. Focus on game-feel and juice.
+                </p>
+                <div class="d-flex flex-wrap gap-2">
+                  <span class="chip">Unity</span><span class="chip">C#</span
+                  ><span class="chip">Pixel Art</span>
+                </div>
+                <div class="mt-3 d-flex gap-2">
+                  <a
+                    class="btn-x clickable"
+                    href="#"
+                    onclick="alert('Gameplay video here'); return false;"
+                    >Gameplay</a
+                  >
+                  <a
+                    class="btn-ghost clickable"
+                    href="#"
+                    onclick="alert('GitHub link here'); return false;"
+                    ><i class="bi bi-github me-1"></i> Code</a
+                  >
+                </div>
+              </div>
+            </article>
+          </div>
+          <!-- Project 3 -->
+          <div class="col-md-6 col-lg-4 reveal">
+            <article class="card-x h-100 clickable">
+              <div class="project-media">
+                <span class="status-badge status-done">Done</span>
+                <img
+                  alt="CodeLibrary preview"
+                  src="assets/img/codelibrary.png"
+                />
+              </div>
+              <div class="p-4">
+                <div class="d-flex align-items-center justify-content-between">
+                  <h3
+                    style="
+                      font-family: var(--font-display);
+                      font-size: 1.4rem;
+                      margin: 0;
+                    "
+                  >
+                    CodeLibrary
+                  </h3>
+                  <div class="icon-wrap"><i class="bi bi-archive"></i></div>
+                </div>
+                <p class="text-secondary mt-2">
+                  Snippets, patterns and micro-components that I use daily. With
+                  search and tags functionality.
+                </p>
+                <div class="d-flex flex-wrap gap-2">
+                  <span class="chip">JS</span><span class="chip">Patterns</span
+                  ><span class="chip">Design</span>
+                </div>
+                <div class="mt-3 d-flex gap-2">
+                  <a
+                    class="btn-x clickable"
+                    href="#"
+                    onclick="alert('Live link here'); return false;"
+                    >Live</a
+                  >
+                  <a
+                    class="btn-ghost clickable"
+                    href="#"
+                    onclick="alert('GitHub link here'); return false;"
+                    ><i class="bi bi-github me-1"></i> Code</a
+                  >
+                </div>
+              </div>
+            </article>
+          </div>
+        </div>
+
+        <!-- View more button -->
+        <div class="text-center mt-5 reveal">
+          <a href="#" class="btn-x clickable"
+            ><i class="bi bi-grid-3x3-gap me-1"></i> More Projects</a
+          >
+        </div>
+
+        <!-- Highlight -->
+        <div class="card-x p-4 mt-5 reveal clickable">
+          <div class="row align-items-center g-3">
+            <div class="col-md-auto">
+              <div class="icon-wrap"><i class="bi bi-lightbulb-fill"></i></div>
+            </div>
+            <div class="col">
+              <strong
+                style="font-family: var(--font-display); font-size: 1.2rem"
+                >New project in the works</strong
+              >
+              <p class="text-secondary mb-0">
+                A data-driven visual story about language & culture. Coming
+                soon.
+              </p>
+            </div>
+            <div class="col-md-auto">
+              <a href="#contact" class="btn-x clickable">Collaborate?</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact" class="py-5">
+      <div class="container">
+        <h2 class="section-title reveal">
+          Contact <span class="accent-underline"></span>
+        </h2>
+        <div class="row g-4 mt-1">
+          <div class="col-lg-7 slide-left">
+            <div class="card-x p-4 h-100 contact-card clickable">
+              <div class="contact-icon">
+                <i class="bi bi-envelope-paper"></i>
+              </div>
+              <h3 style="font-family: var(--font-display)">Send me an email</h3>
+              <p class="text-secondary">
+                I'm always open for new projects and collaborations.
+              </p>
+              <a
+                href="mailto:kas.bihari@gmail.com"
+                class="btn-x mt-3 clickable"
+              >
+                <i class="bi bi-envelope-arrow-up me-2"></i>Send Email
+              </a>
+            </div>
+          </div>
+          <div class="col-lg-5 slide-right">
+            <div class="card-x p-4 h-100 clickable">
+              <div class="d-flex align-items-center gap-3">
+                <div class="icon-wrap"><i class="bi bi-chat-dots"></i></div>
+                <div>
+                  <strong>Let's build</strong>
+                  <p class="text-secondary small mb-0">
+                    Open for freelance & collaborations.
+                  </p>
+                </div>
+              </div>
+              <hr class="my-3" style="border-color: var(--stroke)" />
+              <ul class="list-unstyled small mb-0">
+                <li class="mb-2">
+                  <i class="bi bi-envelope me-2"></i
+                  ><a href="mailto:kas.bihari@gmail.com" class="clickable"
+                    >kas.bihari@gmail.com</a
+                  >
+                </li>
+                <li class="mb-2">
+                  <i class="bi bi-github me-2"></i
+                  ><a
+                    href="https://github.com/KrishnaBihari04"
+                    class="clickable"
+                    >github.com/KrishnaBihari04</a
+                  >
+                </li>
+                <li>
+                  <i class="bi bi-linkedin me-2"></i
+                  ><a
+                    href="https://www.linkedin.com/in/krishna-b-098124339/"
+                    class="clickable"
+                    >LinkedIn</a
+                  >
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer class="py-4">
+      <div class="container">
+        <div class="footer-content">
+          <div class="footer-links">
+            <a href="#top" class="clickable">Home</a>
+            <a href="#about" class="clickable">About</a>
+            <a href="#projects" class="clickable">Projects</a>
+            <a href="#contact" class="clickable">Contact</a>
+          </div>
+
+          <div class="social-links">
+            <a href="https://github.com/KrishnaBihari04" aria-label="GitHub" class="clickable"
+              ><i class="bi bi-github"></i
+            ></a>
+            <a href="https://www.linkedin.com/in/krishna-b-098124339/" aria-label="LinkedIn" class="clickable"
+              ><i class="bi bi-linkedin"></i
+            ></a>
+            <a href="https://www.instagram.com/_kr.shna_/" aria-label="Instagram" class="clickable"
+              ><i class="bi bi-instagram"></i
+            ></a>
+            <a href="https://x.com/_krshna_04" aria-label="Twitter" class="clickable"
+              ><i class="bi bi-twitter"></i
+            ></a>
+          </div>
+
+          <div class="text-center">
+            <div class="small text-secondary">
+              © <span id="year"></span> Krishna Bihari. All rights reserved.
+            </div>
+            <div class="small text-secondary">
+              Theme: <strong id="themeName">Burgundy Noir</strong> ·
+              <span class="text-secondary">ready for more</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Floating Theme Switch -->
+    <div class="theme-fab">
+      <button id="themeToggle" class="btn-x clickable">
+        <i class="bi bi-palette2 me-1"></i> Theme
+      </button>
+      <div id="themePanel" class="theme-panel">
+        <div class="theme-cat">Signature Style</div>
+        <div class="theme-item clickable" data-theme="burgundy-noir">
+          <div
+            class="swatch"
+            style="background: linear-gradient(135deg, #b41c3b, #7f1126)"
+          ></div>
+          <div>
+            <div><strong>Burgundy Noir</strong></div>
+            <small class="text-secondary">dark, rich & cinematic</small>
+          </div>
+        </div>
+        <div class="theme-item clickable" data-theme="elegant-desert">
+          <div class="swatch duo"><span></span><span></span></div>
+          <div>
+            <div><strong>Elegant Desert</strong></div>
+            <small class="text-secondary">bright, natural & elegant</small>
           </div>
         </div>
       </div>
     </div>
-  </header>
-
-  <!-- ABOUT -->
-  <section id="about" class="py-5">
-    <div class="container">
-      <h2 class="section-title reveal">About Me <span class="accent-underline"></span></h2>
-      <div class="row g-4 mt-1">
-        <div class="col-lg-6 slide-left">
-          <div class="card-x p-4 h-100 clickable">
-          <p class="mb-0">
-  I'm Krishna — a developer & designer who blends <em>code</em>, <em>art</em>, and <em>culture</em>.  
-  I create digital experiences that are both functional and visually refined, driven by a love for design, detail, and storytelling.  
-
-  Beyond the screen, I’m sharpening my strategy in chess ♟️, staying disciplined through sports 🏀🥋, or exploring anime, gaming, and history 🎮.  
-  Inspired by Japanese, Arabic, and Indian cultures, my style mixes bold streetwear energy with timeless elegance.  
-
-  Fluent in Dutch, English, and Spanish, I enjoy connecting people and ideas across borders.  <br>
-  <strong>“Balance the board. Design the future.”</strong>
-</p>
-            <ul class="mt-3 text-secondary mb-0">
-              <li>Languages: Dutch, English, Spanish</li>
-              <li>Hobbies: chess, basketball, martial arts</li>
-              <li>Toolset: HTML/CSS/JS, Bootstrap, Unity/C#, PS/AI</li>
-            </ul>
-            <div class="mt-4">
-              <a href="#" class="btn-ghost clickable"><i class="bi bi-person-lines-fill me-1"></i> More About Me</a>
-            </div>
-          </div>
-        </div>
-        <div class="col-lg-6 slide-right">
-          <div class="card-x p-4 h-100 clickable">
-            <h3 class="mb-4" style="font-family:var(--font-display);">Skills & Expertise</h3>
-            
-            <div class="skills-category">
-              <h3><i class="bi bi-code-slash"></i> Software Development</h3>
-              <div class="skill-item">
-                <span class="skill-name">HTML/CSS</span>
-                <div class="skill-bar">
-                  <div class="skill-progress" style="width: 90%"></div>
-                </div>
-              </div>
-              <div class="skill-item">
-                <span class="skill-name">JavaScript</span>
-                <div class="skill-bar">
-                  <div class="skill-progress" style="width: 85%"></div>
-                </div>
-              </div>
-              <div class="skill-item">
-                <span class="skill-name">Bootstrap</span>
-                <div class="skill-bar">
-                  <div class="skill-progress" style="width: 88%"></div>
-                </div>
-              </div>
-              <div class="skill-item">
-                <span class="skill-name">Unity/C#</span>
-                <div class="skill-bar">
-                  <div class="skill-progress" style="width: 75%"></div>
-                </div>
-              </div>
-            </div>
-            
-            <div class="skills-category">
-              <h3><i class="bi bi-brush"></i> Graphic Design</h3>
-              <div class="skill-item">
-                <span class="skill-name">UI/UX Design</span>
-                <div class="skill-bar">
-                  <div class="skill-progress" style="width: 82%"></div>
-                </div>
-              </div>
-              <div class="skill-item">
-                <span class="skill-name">Photoshop</span>
-                <div class="skill-bar">
-                  <div class="skill-progress" style="width: 80%"></div>
-                </div>
-              </div>
-              <div class="skill-item">
-                <span class="skill-name">Illustrator</span>
-                <div class="skill-bar">
-                  <div class="skill-progress" style="width: 78%"></div>
-                </div>
-              </div>
-              <div class="skill-item">
-                <span class="skill-name">Typography</span>
-                <div class="skill-bar">
-                  <div class="skill-progress" style="width: 85%"></div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>      
-    </div>
-  </section>
-
-  <!-- PROJECTS -->
-  <section id="projects" class="py-5">
-    <div class="container">
-      <h2 class="section-title reveal">
-        Projects <span class="accent-underline"></span>
-      </h2>
-
-      <div class="row g-4 mt-1">
-        <!-- Project 1 -->
-        <div class="col-md-6 col-lg-4 reveal">
-          <article class="card-x h-100 clickable">
-            <div class="project-media">
-              <span class="status-badge status-done">Done</span>
-              <img alt="Kazora Luxury Watches preview" src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?q=80&w=1200&auto=format&fit=crop">
-            </div>
-            <div class="p-4">
-              <div class="d-flex align-items-center justify-content-between">
-                <h3 style="font-family:var(--font-display); font-size:1.4rem; margin:0;">Kazora — Luxury Watches</h3>
-                <div class="icon-wrap"><i class="bi bi-gem"></i></div>
-              </div>
-              <p class="text-secondary mt-2">E-commerce design & build (PHP/MySQL + custom UI). Premium look with focus on product photography.</p>
-              <div class="d-flex flex-wrap gap-2">
-                <span class="chip">PHP</span><span class="chip">MySQL</span><span class="chip">Bootstrap</span>
-              </div>
-              <div class="mt-3 d-flex gap-2">
-                <a class="btn-x clickable" href="#" onclick="alert('Demo/Repo link here'); return false;">Live Demo</a>
-                <a class="btn-ghost clickable" href="#" onclick="alert('GitHub link here'); return false;"><i class="bi bi-github me-1"></i> Code</a>
-              </div>
-            </div>
-          </article>
-        </div>
-        <!-- Project 2 -->
-        <div class="col-md-6 col-lg-4 reveal">
-          <article class="card-x h-100 clickable">
-            <div class="project-media">
-              <span class="status-badge status-done">Done</span>
-              <img alt="Super Mario Clone preview" src="https://images.unsplash.com/photo-1605901309584-818e25960a8b?q=80&w=1200&auto=format&fit=crop">
-            </div>
-            <div class="p-4">
-              <div class="d-flex align-items-center justify-content-between">
-                <h3 style="font-family:var(--font-display); font-size:1.4rem; margin:0;">Mario-like Platformer</h3>
-                <div class="icon-wrap"><i class="bi bi-controller"></i></div>
-              </div>
-              <p class="text-secondary mt-2">Unity/C# arcade platformer with smooth physics & pixel-art VFX. Focus on game-feel and juice.</p>
-              <div class="d-flex flex-wrap gap-2">
-                <span class="chip">Unity</span><span class="chip">C#</span><span class="chip">Pixel Art</span>
-              </div>
-              <div class="mt-3 d-flex gap-2">
-                <a class="btn-x clickable" href="#" onclick="alert('Gameplay video here'); return false;">Gameplay</a>
-                <a class="btn-ghost clickable" href="#" onclick="alert('GitHub link here'); return false;"><i class="bi bi-github me-1"></i> Code</a>
-              </div>
-            </div>
-          </article>
-        </div>
-        <!-- Project 3 -->
-        <div class="col-md-6 col-lg-4 reveal">
-          <article class="card-x h-100 clickable">
-            <div class="project-media">
-              <span class="status-badge status-done">Done</span>
-              <img alt="CodeLibrary preview" src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?q=80&w=1200&auto=format&fit=crop">
-            </div>
-            <div class="p-4">
-              <div class="d-flex align-items-center justify-content-between">
-                <h3 style="font-family:var(--font-display); font-size:1.4rem; margin:0;">CodeLibrary</h3>
-                <div class="icon-wrap"><i class="bi bi-archive"></i></div>
-              </div>
-              <p class="text-secondary mt-2">Snippets, patterns and micro-components that I use daily. With search and tags functionality.</p>
-              <div class="d-flex flex-wrap gap-2">
-                <span class="chip">JS</span><span class="chip">Patterns</span><span class="chip">Design</span>
-              </div>
-              <div class="mt-3 d-flex gap-2">
-                <a class="btn-x clickable" href="#" onclick="alert('Live link here'); return false;">Live</a>
-                <a class="btn-ghost clickable" href="#" onclick="alert('GitHub link here'); return false;"><i class="bi bi-github me-1"></i> Code</a>
-              </div>
-            </div>
-          </article>
-        </div>
-      </div>
-
-      <!-- View more button -->
-      <div class="text-center mt-5 reveal">
-        <a href="#" class="btn-x clickable"><i class="bi bi-grid-3x3-gap me-1"></i> More Projects</a>
-      </div>
-
-      <!-- Highlight -->
-      <div class="card-x p-4 mt-5 reveal clickable">
-        <div class="row align-items-center g-3">
-          <div class="col-md-auto">
-            <div class="icon-wrap"><i class="bi bi-lightbulb-fill"></i></div>
-          </div>
-          <div class="col">
-            <strong style="font-family:var(--font-display); font-size:1.2rem;">New project in the works</strong>
-            <p class="text-secondary mb-0">A data-driven visual story about language & culture. Coming soon.</p>
-          </div>
-          <div class="col-md-auto">
-            <a href="#contact" class="btn-x clickable">Collaborate?</a>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- CONTACT -->
-  <section id="contact" class="py-5">
-    <div class="container">
-      <h2 class="section-title reveal">Contact <span class="accent-underline"></span></h2>
-      <div class="row g-4 mt-1">
-        <div class="col-lg-7 slide-left">
-          <div class="card-x p-4 h-100 contact-card clickable">
-            <div class="contact-icon">
-              <i class="bi bi-envelope-paper"></i>
-            </div>
-            <h3 style="font-family:var(--font-display);">Send me an email</h3>
-            <p class="text-secondary">I'm always open for new projects and collaborations.</p>
-            <a href="mailto:kas.bihari@gmail.com" class="btn-x mt-3 clickable">
-              <i class="bi bi-envelope-arrow-up me-2"></i>Send Email
-            </a>
-          </div>
-        </div>
-        <div class="col-lg-5 slide-right">
-          <div class="card-x p-4 h-100 clickable">
-            <div class="d-flex align-items-center gap-3">
-              <div class="icon-wrap"><i class="bi bi-chat-dots"></i></div>
-              <div>
-                <strong>Let's build</strong>
-                <p class="text-secondary small mb-0">Open for freelance & collaborations.</p>
-              </div>
-            </div>
-            <hr class="my-3" style="border-color:var(--stroke)">
-            <ul class="list-unstyled small mb-0">
-              <li class="mb-2"><i class="bi bi-envelope me-2"></i><a href="mailto:kas.bihari@gmail.com" class="clickable">kas.bihari@gmail.com</a></li>
-              <li class="mb-2"><i class="bi bi-github me-2"></i><a href="#" class="clickable" onclick="alert('GitHub link here'); return false;">github.com/krishnabihari</a></li>
-              <li><i class="bi bi-linkedin me-2"></i><a href="#" class="clickable" onclick="alert('LinkedIn link here'); return false;">LinkedIn</a></li>
-            </ul>
-          </div>
-        </div>
-      </div>      
-    </div>
-  </section>
-
-  <footer class="py-4">
-    <div class="container">
-      <div class="footer-content">
-        <div class="footer-links">
-          <a href="#top" class="clickable">Home</a>
-          <a href="#about" class="clickable">About</a>
-          <a href="#projects" class="clickable">Projects</a>
-          <a href="#contact" class="clickable">Contact</a>
-        </div>
-        
-        <div class="social-links">
-          <a href="#" aria-label="GitHub" class="clickable"><i class="bi bi-github"></i></a>
-          <a href="#" aria-label="LinkedIn" class="clickable"><i class="bi bi-linkedin"></i></a>
-          <a href="#" aria-label="Instagram" class="clickable"><i class="bi bi-instagram"></i></a>
-          <a href="#" aria-label="Twitter" class="clickable"><i class="bi bi-twitter"></i></a>
-        </div>
-        
-        <div class="text-center">
-          <div class="small text-secondary">© <span id="year"></span> Krishna Bihari. All rights reserved.</div>
-          <div class="small text-secondary">Theme: <strong id="themeName">Burgundy Noir</strong> · <span class="text-secondary">ready for more</span></div>
-        </div>
-      </div>
-    </div>
-  </footer>
-
-  <!-- Floating Theme Switch -->
-  <div class="theme-fab">
-    <button id="themeToggle" class="btn-x clickable"><i class="bi bi-palette2 me-1"></i> Theme</button>
-    <div id="themePanel" class="theme-panel">
-      <div class="theme-cat">Signature Style</div>
-      <div class="theme-item clickable" data-theme="burgundy-noir">
-        <div class="swatch" style="background:linear-gradient(135deg,#b41c3b,#7f1126)"></div>
-        <div>
-          <div><strong>Burgundy Noir</strong></div>
-          <small class="text-secondary">dark, rich & cinematic</small>
-        </div>
-      </div>
-      <div class="theme-item clickable" data-theme="elegant-desert">
-        <div class="swatch duo"><span></span><span></span></div>
-        <div>
-          <div><strong>Elegant Desert</strong></div>
-          <small class="text-secondary">bright, natural & elegant</small>
-        </div>
-      </div>
-      
-    </div>
-  </div>
-
-  <!-- Bootstrap JS -->
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-
-  <script>
-    /* =========
-       Theme engine
-       ========== */
-       const THEMES = {
-  "burgundy-noir": { label: "Burgundy Noir", vars: {} },
-  "elegant-desert": { label: "Elegant Desert", vars: {} }
-};
-
-
-    function applyTheme(key){
-      if(!THEMES[key]) return;
-      document.documentElement.setAttribute("data-theme", key);
-      const map = THEMES[key].vars || {};
-      for(const k in map) document.documentElement.style.setProperty(k, map[k]);
-      localStorage.setItem("theme", key);
-      document.getElementById('themeName').textContent = THEMES[key].label;
-      
-      // Update animated background
-      document.querySelector('.animated-bg').style.background = getComputedStyle(document.documentElement).getPropertyValue('--glow-bg');
-    }
-
-    // Load saved theme
-    const saved = localStorage.getItem("theme");
-    applyTheme(saved && THEMES[saved] ? saved : "burgundy-noir");
-
-    // Floating panel toggle
-    const themeBtn = document.getElementById('themeToggle');
-    const themePanel = document.getElementById('themePanel');
-    themeBtn.addEventListener('click', (e) => {
-      e.stopPropagation();
-      themePanel.classList.toggle('open');
-    });
-    themePanel.querySelectorAll('.theme-item').forEach(item => {
-      item.addEventListener('click', () => { 
-        applyTheme(item.dataset.theme); 
-        themePanel.classList.remove('open'); 
-      });
-    });
-    // Close panel when clicking outside
-    document.addEventListener('click', (e) => {
-      if(!themePanel.contains(e.target) && !themeBtn.contains(e.target)) {
-        themePanel.classList.remove('open');
-      }
-    });
-
-    // Year
-    document.getElementById('year').textContent = new Date().getFullYear();
-
-    // Intro screen hide (2 seconds longer)
-    window.addEventListener('load', () => {
-      setTimeout(() => document.getElementById('intro').classList.add('hide'), 2900);
-    });
-
-    // Scroll reveal / slide
-    const io = new IntersectionObserver(entries => {
-      entries.forEach(e => { 
-        if(e.isIntersecting) {
-          e.target.classList.add('show');
-          // Add staggered animation for chips
-          if(e.target.classList.contains('badge-chips')) {
-            const chips = e.target.querySelectorAll('.chip');
-            chips.forEach((chip, index) => {
-              chip.style.animationDelay = `${index * 0.1}s`;
-            });
-          }
-          // Animate skill bars
-          if(e.target.querySelector('.skill-progress')) {
-            const skills = e.target.querySelectorAll('.skill-progress');
-            skills.forEach((skill, index) => {
-              setTimeout(() => {
-                skill.style.width = skill.style.width;
-              }, index * 200);
-            });
-          }
-        }
-      });
-    }, { threshold: 0.15 });
-    document.querySelectorAll('.reveal, .slide-left, .slide-right').forEach(el => io.observe(el));
-
-    // Smooth scrolling for anchor links
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-      anchor.addEventListener('click', function (e) {
-        e.preventDefault();
-        const target = document.querySelector(this.getAttribute('href'));
-        if (target) {
-          target.scrollIntoView({
-            behavior: 'smooth',
-            block: 'start'
-          });
-        }
-      });
-    });
-
-    // Scroll progress
-    const progress = document.querySelector('.scroll-progress');
-    const setProgress = () => {
-      const h = document.documentElement.scrollHeight - innerHeight;
-      const pct = Math.min(100, Math.max(0, (scrollY / h) * 100));
-      progress.style.width = pct + '%';
-    };
-    setProgress();
-    window.addEventListener('scroll', setProgress, { passive:true });
-    window.addEventListener('resize', setProgress);
-
-    // Keyboard focus visible tweak
-    document.addEventListener('keyup', (e) => { if(e.key === 'Tab') document.body.classList.add('using-kb'); });
-
-    // Hamburger menu functionality
-    const hamburgerMenu = document.getElementById('hamburgerMenu');
-    const navLinks = document.getElementById('navLinks');
-    
-    hamburgerMenu.addEventListener('click', function() {
-      this.classList.toggle('active');
-      navLinks.classList.toggle('active');
-    });
-    
-    // Close menu when clicking on a link
-    document.querySelectorAll('.nav-link').forEach(link => {
-      link.addEventListener('click', () => {
-        hamburgerMenu.classList.remove('active');
-        navLinks.classList.remove('active');
-      });
-    });
-    
-    // Close menu when clicking outside
-    document.addEventListener('click', (e) => {
-      if (!hamburgerMenu.contains(e.target) && !navLinks.contains(e.target) && navLinks.classList.contains('active')) {
-        hamburgerMenu.classList.remove('active');
-        navLinks.classList.remove('active');
-      }
-    });
-  </script>
-</body>
+  </body>
 </html>
