@@ -454,57 +454,34 @@
     border: 3px solid var(--stroke);
     box-shadow: 0 0 30px color-mix(in oklab, var(--accent) 40%, transparent);
     animation: profilePulse 4s ease-in-out infinite;
-  }
-  @keyframes profilePulse {
-    0%,
-    100% {
-      transform: scale(1);
-      box-shadow: 0 0 30px
-        color-mix(in oklab, var(--accent) 40%, transparent);
-    }
-    50% {
-      transform: scale(1.03);
-      box-shadow: 0 0 50px
-        color-mix(in oklab, var(--accent) 60%, transparent);
-    }
-  }
-  .profile-circle::before {
-    content: "";
-    position: absolute;
-    top: -5px;
-    left: -5px;
-    right: -5px;
-    bottom: -5px;
-    border-radius: 50%;
-    background: linear-gradient(
-      45deg,
-      transparent,
-      transparent,
-      var(--accent),
-      transparent,
-      transparent
-    );
-    animation: rotateBorder 6s linear infinite;
-    z-index: -1;
-  }
-  @keyframes rotateBorder {
-    0% {
-      transform: rotate(0deg);
-    }
-    100% {
-      transform: rotate(360deg);
-    }
-  }
-  .profile-img {
+}
+
+.profile-img {
     width: 100%;
     height: 100%;
     object-fit: cover;
+    border-radius: 50%;
+    position: relative;
+    z-index: 1;
+}
+
+/* Optioneel: gradient overlay */
+.profile-img::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
     background: linear-gradient(
-      120deg,
-      color-mix(in oklab, var(--accent) 55%, transparent),
-      color-mix(in oklab, var(--bg-3) 60%, transparent)
+        120deg,
+        color-mix(in oklab, var(--accent) 15%, transparent),
+        color-mix(in oklab, var(--bg-3) 20%, transparent)
     );
-  }
+    border-radius: 50%;
+    z-index: 2;
+    pointer-events: none;
+}
 
   .badge-chips .chip {
     background: var(--chip);
