@@ -425,6 +425,14 @@
     }
   }
 
+  /* Verberg pfp onder lg (tablet/mobiel) */
+@media (max-width: 991.98px) {
+  .profile-circle {
+    display: none;
+  }
+}
+
+
   /* Hero */
   .hero {
     position: relative;
