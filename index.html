@@ -106,23 +106,27 @@
                 Projects</a
               >
               <a href="#contact" class="btn-ghost clickable"
-                ><i class="bi bi-envelope-at me-1"></i> Want to build something cool?</a
+                ><i class="bi bi-envelope-at me-1"></i> Want to build something
+                cool?</a
               >
             </div>
             <div class="badge-chips d-flex flex-wrap gap-2 mt-4 reveal">
               <span class="chip">HTML/CSS</span>
               <span class="chip">JavaScript/Next & Node</span
               ><span class="chip">Bootstrap/Tailwind</span
-              ><span class="chip">PHP/Symfony</span
-                ><span class="chip">SQL</span
+              ><span class="chip">PHP/Symfony</span><span class="chip">SQL</span
               ><span class="chip">Unity/C#</span
               ><span class="chip">Adobe/Canva</span>
             </div>
           </div>
           <div class="col-lg-5 slide-right">
             <div class="profile-circle d-none d-lg-block">
-              <img src="assets/img/pfpa.jpeg" alt="Krishna Bihari" class="profile-img">
-            </div>            
+              <img
+                src="assets/img/pfpa.jpeg"
+                alt="Krishna Bihari"
+                class="profile-img"
+              />
+            </div>
           </div>
         </div>
       </div>
@@ -150,7 +154,8 @@
                 Inspired by Japanese, Arabic, and Indian cultures, my style
                 mixes bold streetwear energy with timeless elegance. Fluent in
                 Dutch, English, and Spanish, I enjoy connecting people and ideas
-                across borders. <br /> <br>
+                across borders. <br />
+                <br />
                 <strong>“Balance the board. Design the future.”</strong>
               </p>
               <ul class="mt-3 text-secondary mb-0">
@@ -258,143 +263,243 @@
     <!-- PROJECTS SECTION -->
     <section id="projects" class="py-5">
       <div class="container">
-          <h2 class="section-title">
-              Projects <span class="accent-underline"></span>
-          </h2>
+        <h2 class="section-title">
+          Projects <span class="accent-underline"></span>
+        </h2>
 
-          <!-- Project Slider -->
-          <div class="project-slider">
-              <div class="slider-item" style="background-image: url('https://placehold.co/1000x500/8a6d3b/ffffff?text=Kazora+Luxury+Watches');">
-                  <div class="slider-content">
-                      <h3 class="slider-title">Kazora — Luxury Watches</h3>
-                      <p>E-commerce design & build (PHP/MySQL + custom UI). Premium look with focus on product photography.</p>
-                  </div>
-              </div>
-              <div class="slider-controls">
-                  <button class="slider-btn" id="prev-slide"><i class="bi bi-chevron-left"></i></button>
-                  <button class="slider-btn" id="next-slide"><i class="bi bi-chevron-right"></i></button>
-              </div>
+        <!-- Project Slider -->
+        <div
+          class="project-slider"
+          aria-roledescription="carousel"
+          aria-label="Project slider"
+        >
+          <div
+            class="slider-item is-active"
+            style="background-image: url('assets/slider/kazora-1.jpg')"
+            role="group"
+            aria-roledescription="slide"
+            aria-label="1 van 3"
+          ></div>
+          <div
+            class="slider-item"
+            style="background-image: url('assets/slider/kazora-2.jpg')"
+            role="group"
+            aria-roledescription="slide"
+            aria-label="2 van 3"
+          ></div>
+          <div
+            class="slider-item"
+            style="background-image: url('assets/slider/kazora-3.jpg')"
+            role="group"
+            aria-roledescription="slide"
+            aria-label="3 van 3"
+          ></div>
+
+          <div class="slider-content">
+            <h3 class="slider-title" id="sliderTitle">
+              Kazora — Luxury Watches
+            </h3>
+            <p id="sliderDesc">
+              E-commerce design & build (PHP/MySQL + custom UI). Premium look
+              with focus on product photography.
+            </p>
           </div>
 
-          <!-- Filter Buttons -->
-          <div class="project-filters">
-              <button class="filter-btn active" data-filter="all">All Projects</button>
-              <button class="filter-btn" data-filter="pet">Pet Projects</button>
-              <button class="filter-btn" data-filter="assignment">Assignments</button>
+          <div class="slider-controls">
+            <button
+              class="slider-btn"
+              id="prev-slide"
+              aria-label="Vorige slide"
+            >
+              <i class="bi bi-chevron-left"></i>
+            </button>
+            <button
+              class="slider-btn"
+              id="next-slide"
+              aria-label="Volgende slide"
+            >
+              <i class="bi bi-chevron-right"></i>
+            </button>
           </div>
 
-          <!-- Project Cards Grid -->
-          <div class="row g-4">
-              <!-- Project 1 -->
-              <div class="col-md-6 col-lg-3" data-category="pet">
-                  <div class="project-card">
-                      <div class="project-card-header">
-                          <h3 class="project-card-title">Kazora Watches</h3>
-                          <span class="project-type">Pet Project</span>
-                      </div>
-                      <div class="project-card-body">
-                          <p class="project-card-description">E-commerce design & build with PHP/MySQL. Premium look with focus on product photography.</p>
-                          <div class="project-card-tech">
-                              <span class="tech-item"><i class="bi bi-filetype-php"></i> PHP</span>
-                              <span class="tech-item"><i class="bi bi-database"></i> MySQL</span>
-                              <span class="tech-item"><i class="bi bi-bootstrap"></i> Bootstrap</span>
-                          </div>
-                      </div>
-                      <div class="project-card-footer">
-                          <div class="project-status">
-                              <span class="status-badge status-done">Done</span>
-                          </div>
-                          <div class="project-actions">
-                              <a href="#" class="btn-project btn-primary-project"><i class="bi bi-eye"></i> Live</a>
-                              <a href="#" class="btn-project btn-outline-project"><i class="bi bi-github"></i> Code</a>
-                          </div>
-                      </div>
-                  </div>
-              </div>
+          <div class="slider-dots" id="sliderDots" aria-hidden="true"></div>
+        </div>
 
-              <!-- Project 2 -->
-              <div class="col-md-6 col-lg-3" data-category="pet">
-                  <div class="project-card">
-                      <div class="project-card-header">
-                          <h3 class="project-card-title">Mario Platformer</h3>
-                          <span class="project-type">Pet Project</span>
-                      </div>
-                      <div class="project-card-body">
-                          <p class="project-card-description">Unity/C# arcade platformer with smooth physics & pixel-art VFX. Focus on game-feel and juice.</p>
-                          <div class="project-card-tech">
-                              <span class="tech-item"><i class="bi bi-unity"></i> Unity</span>
-                              <span class="tech-item"><i class="bi bi-code-slash"></i> C#</span>
-                              <span class="tech-item"><i class="bi bi-palette"></i> Pixel Art</span>
-                          </div>
-                      </div>
-                      <div class="project-card-footer">
-                          <div class="project-status">
-                              <span class="status-badge status-done">Done</span>
-                          </div>
-                          <div class="project-actions">
-                              <a href="#" class="btn-project btn-primary-project"><i class="bi bi-play-circle"></i> Demo</a>
-                              <a href="#" class="btn-project btn-outline-project"><i class="bi bi-github"></i> Code</a>
-                          </div>
-                      </div>
-                  </div>
-              </div>
+        <!-- Filter Buttons -->
+        <div class="project-filters">
+          <button class="filter-btn active" data-filter="all">
+            All Projects
+          </button>
+          <button class="filter-btn" data-filter="pet">Pet Projects</button>
+          <button class="filter-btn" data-filter="assignment">
+            Assignments
+          </button>
+        </div>
 
-              <!-- Project 3 -->
-              <div class="col-md-6 col-lg-3" data-category="assignment">
-                  <div class="project-card">
-                      <div class="project-card-header">
-                          <h3 class="project-card-title">CodeLibrary</h3>
-                          <span class="project-type">Assignment</span>
-                      </div>
-                      <div class="project-card-body">
-                          <p class="project-card-description">Snippets, patterns and micro-components that I use daily. With search and tags functionality.</p>
-                          <div class="project-card-tech">
-                              <span class="tech-item"><i class="bi bi-filetype-js"></i> JavaScript</span>
-                              <span class="tech-item"><i class="bi bi-diagram-3"></i> Patterns</span>
-                              <span class="tech-item"><i class="bi bi-pencil"></i> Design</span>
-                          </div>
-                      </div>
-                      <div class="project-card-footer">
-                          <div class="project-status">
-                              <span class="status-badge status-done">Done</span>
-                          </div>
-                          <div class="project-actions">
-                              <a href="#" class="btn-project btn-primary-project"><i class="bi bi-link"></i> Live</a>
-                              <a href="#" class="btn-project btn-outline-project"><i class="bi bi-github"></i> Code</a>
-                          </div>
-                      </div>
-                  </div>
+        <!-- Project Cards Grid -->
+        <div class="row g-4">
+          <!-- Project 1 -->
+          <div class="col-md-6 col-lg-3" data-category="pet">
+            <div class="project-card">
+              <div class="project-card-header">
+                <h3 class="project-card-title">Kazora Watches</h3> <br><br>
+                <span class="project-type">Pet Project</span>
               </div>
-
-              <!-- Project 4 -->
-              <div class="col-md-6 col-lg-3" data-category="assignment">
-                  <div class="project-card">
-                      <div class="project-card-header">
-                          <h3 class="project-card-title">Data Visualizer</h3>
-                          <span class="project-type">Assignment</span>
-                      </div>
-                      <div class="project-card-body">
-                          <p class="project-card-description">A data-driven visual story about language & culture. Interactive charts and maps.</p>
-                          <div class="project-card-tech">
-                              <span class="tech-item"><i class="bi bi-bar-chart"></i> D3.js</span>
-                              <span class="tech-item"><i class="bi bi-filetype-js"></i> JavaScript</span>
-                              <span class="tech-item"><i class="bi bi-bootstrap"></i> Bootstrap</span>
-                          </div>
-                      </div>
-                      <div class="project-card-footer">
-                          <div class="project-status">
-                              <span class="status-badge status-progress">In Progress</span>
-                          </div>
-                          <div class="project-actions">
-                              <a href="#" class="btn-project btn-primary-project"><i class="bi bi-eye"></i> Preview</a>
-                              <a href="#" class="btn-project btn-outline-project"><i class="bi bi-github"></i> Code</a>
-                          </div>
-                      </div>
-                  </div>
+              <div class="project-card-body">
+                <p class="project-card-description">
+                  E-commerce design & build with PHP/MySQL. Premium look with
+                  focus on product photography.
+                </p>
+                <div class="project-card-tech">
+                  <span class="tech-item"
+                    ><i class="bi bi-filetype-php"></i> PHP</span
+                  >
+                  <span class="tech-item"
+                    ><i class="bi bi-database"></i> MySQL</span
+                  >
+                  <span class="tech-item"
+                    ><i class="bi bi-bootstrap"></i> Bootstrap</span
+                  >
+                </div>
               </div>
+              <div class="project-card-footer">
+                <div class="project-status">
+                  <span class="status-badge status-done">Done</span>
+                </div>
+                <div class="project-actions">
+                  <a href="#" class="btn-project btn-primary-project"
+                    ><i class="bi bi-eye"></i> Live</a
+                  >
+                  <a href="#" class="btn-project btn-outline-project"
+                    ><i class="bi bi-github"></i> Code</a
+                  >
+                </div>
+              </div>
+            </div>
           </div>
+
+          <!-- Project 2 -->
+          <div class="col-md-6 col-lg-3" data-category="pet">
+            <div class="project-card">
+              <div class="project-card-header">
+                <h3 class="project-card-title">Mario Platformer</h3> <br><br>
+                <span class="project-type">Pet Project</span>
+              </div>
+              <div class="project-card-body">
+                <p class="project-card-description">
+                  Unity/C# arcade platformer with smooth physics & pixel-art
+                  VFX. Focus on game-feel and juice.
+                </p>
+                <div class="project-card-tech">
+                  <span class="tech-item"
+                    ><i class="bi bi-unity"></i> Unity</span
+                  >
+                  <span class="tech-item"
+                    ><i class="bi bi-code-slash"></i> C#</span
+                  >
+                  <span class="tech-item"
+                    ><i class="bi bi-palette"></i> Pixel Art</span
+                  >
+                </div>
+              </div>
+              <div class="project-card-footer">
+                <div class="project-status">
+                  <span class="status-badge status-done">Done</span>
+                </div>
+                <div class="project-actions">
+                  <a href="#" class="btn-project btn-primary-project"
+                    ><i class="bi bi-play-circle"></i> Demo</a
+                  >
+                  <a href="#" class="btn-project btn-outline-project"
+                    ><i class="bi bi-github"></i> Code</a
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Project 3 -->
+          <div class="col-md-6 col-lg-3" data-category="assignment">
+            <div class="project-card">
+              <div class="project-card-header">
+                <h3 class="project-card-title">CodeLibrary</h3> <br><br>
+                <span class="project-type">Assignment</span>
+              </div>
+              <div class="project-card-body">
+                <p class="project-card-description">
+                  Snippets, patterns and micro-components that I use daily. With
+                  search and tags functionality.
+                </p>
+                <div class="project-card-tech">
+                  <span class="tech-item"
+                    ><i class="bi bi-filetype-js"></i> JavaScript</span
+                  >
+                  <span class="tech-item"
+                    ><i class="bi bi-diagram-3"></i> Patterns</span
+                  >
+                  <span class="tech-item"
+                    ><i class="bi bi-pencil"></i> Design</span
+                  >
+                </div>
+              </div>
+              <div class="project-card-footer">
+                <div class="project-status">
+                  <span class="status-badge status-done">Done</span>
+                </div>
+                <div class="project-actions">
+                  <a href="#" class="btn-project btn-primary-project"
+                    ><i class="bi bi-link"></i> Live</a
+                  >
+                  <a href="#" class="btn-project btn-outline-project"
+                    ><i class="bi bi-github"></i> Code</a
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Project 4 -->
+          <div class="col-md-6 col-lg-3" data-category="assignment">
+            <div class="project-card">
+              <div class="project-card-header">
+                <h3 class="project-card-title">Data Visualizer</h3> <br><br>
+                <span class="project-type">Assignment</span>
+              </div>
+              <div class="project-card-body">
+                <p class="project-card-description">
+                  A data-driven visual story about language & culture.
+                  Interactive charts and maps.
+                </p>
+                <div class="project-card-tech">
+                  <span class="tech-item"
+                    ><i class="bi bi-bar-chart"></i> D3.js</span
+                  >
+                  <span class="tech-item"
+                    ><i class="bi bi-filetype-js"></i> JavaScript</span
+                  >
+                  <span class="tech-item"
+                    ><i class="bi bi-bootstrap"></i> Bootstrap</span
+                  >
+                </div>
+              </div>
+              <div class="project-card-footer">
+                <div class="project-status">
+                  <span class="status-badge status-progress">In Progress</span>
+                </div>
+                <div class="project-actions">
+                  <a href="#" class="btn-project btn-primary-project"
+                    ><i class="bi bi-eye"></i> Preview</a
+                  >
+                  <a href="#" class="btn-project btn-outline-project"
+                    ><i class="bi bi-github"></i> Code</a
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
-  </section>
+    </section>
 
     <!-- CONTACT -->
     <section id="contact" class="py-5">
@@ -473,16 +578,28 @@
           </div>
 
           <div class="social-links">
-            <a href="https://github.com/KrishnaBihari04" aria-label="GitHub" class="clickable"
+            <a
+              href="https://github.com/KrishnaBihari04"
+              aria-label="GitHub"
+              class="clickable"
               ><i class="bi bi-github"></i
             ></a>
-            <a href="https://www.linkedin.com/in/krishna-b-098124339/" aria-label="LinkedIn" class="clickable"
+            <a
+              href="https://www.linkedin.com/in/krishna-b-098124339/"
+              aria-label="LinkedIn"
+              class="clickable"
               ><i class="bi bi-linkedin"></i
             ></a>
-            <a href="https://www.instagram.com/_kr.shna_/" aria-label="Instagram" class="clickable"
+            <a
+              href="https://www.instagram.com/_kr.shna_/"
+              aria-label="Instagram"
+              class="clickable"
               ><i class="bi bi-instagram"></i
             ></a>
-            <a href="https://x.com/_krshna_04" aria-label="Twitter" class="clickable"
+            <a
+              href="https://x.com/_krshna_04"
+              aria-label="Twitter"
+              class="clickable"
               ><i class="bi bi-twitter"></i
             ></a>
           </div>
