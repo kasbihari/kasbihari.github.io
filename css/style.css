@@ -1144,6 +1144,7 @@ footer {
 /* JS toggles this */
 
 .project-card {
+  position: relative; /* ← toevoegen */
   background: linear-gradient(180deg, color-mix(in oklab, var(--bg-3) 86%, transparent), var(--bg-2));
   border: 1px solid var(--stroke);
   border-radius: var(--radius);
