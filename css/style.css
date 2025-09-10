@@ -155,7 +155,7 @@ section {
 .nav-wrap {
   position: sticky;
   top: 0;
-  z-index: 80;
+  z-index: 100;
   backdrop-filter: blur(14px);
   background: color-mix(in oklab, var(--bg-2) 72%, transparent);
   border-bottom: 1px solid var(--stroke);
