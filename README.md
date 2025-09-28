@@ -1,7 +1,8 @@
 # KrishnaBihari
-🌍 Hey, I’m Krishna Bihari  
-💡 Passionate about coding, design & building ideas into reality  
-📚 Learning: Symfony • Node/Next.js • Python  
-🤝 Open to collaborate on projects that challenge creativity & tech  
-🔗 More about me: [krishnaabihari.github.io](https://krishnaabihari.github.io)  
-✨ Fun fact: I mix culture, art & code into everything I create  
+👾 Yo, I’m Krishna  
+🚀 Currently learning & building with Symfony, Node/Next.js & Python  
+🎨 I love mixing design, coding & creativity into unique projects  
+🧠 Always exploring new tech, from web apps to automation  
+🤝 Open to collabs, especially on projects that make an impact  
+🌐 Check out more about me here: [krishnaabihari.github.io](https://krishnaabihari.github.io)  
+🔥 Fun fact: I never stop experimenting with new ideas, both in code & life  
