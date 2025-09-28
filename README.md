@@ -1,5 +1,5 @@
 # KrishnaBihari
-👾 Yo, I’m Krishna  
+👾 Hey, I’m Krishna  
 🚀 Currently learning & building with Symfony, Node/Next.js & Python  
 🎨 I love mixing design, coding & creativity into unique projects  
 🧠 Always exploring new tech, from web apps to automation  
