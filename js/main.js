@@ -223,11 +223,11 @@ document.addEventListener("DOMContentLoaded", function () {
     },
     {
       title: "Mario Platformer",
-      desc: "Unity/C# arcade platformer met smooth physics & pixel-art VFX.",
+      desc: "Coming soon...",
     },
     {
-      title: "Data Visualizer",
-      desc: "Interactive data story over language & culture (D3.js).",
+      title: "Finance/Banking Application",
+      desc: "Coming soon...",
     },
   ];
 
