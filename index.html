@@ -4,7 +4,11 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Krishna</title>
-    <link rel="shortcut icon" href="assets/img/k-logo.png" type="image/x-icon">
+    <link
+      rel="shortcut icon"
+      href="assets/img/k-logo.png"
+      type="image/x-icon"
+    />
 
     <!-- Google Fonts -->
     <link
@@ -107,12 +111,14 @@
                 Projects</a
               >
               <a href="#contact" class="btn-ghost clickable"
-                ><i class="bi bi-envelope-at me-1"></i> Let's build something amazing! </a
-              >
+                ><i class="bi bi-envelope-at me-1"></i> Let's build something
+                amazing!
+              </a>
             </div>
             <div class="badge-chips d-flex flex-wrap gap-2 mt-4 reveal">
               <span class="chip">HTML/CSS</span>
-              <span class="chip">JavaScript/Next & Node</span
+              <span class="chip">JavaScript/Typescript</span
+              ><span class="chip">Next/Node/React</span
               ><span class="chip">Bootstrap/Tailwind</span
               ><span class="chip">PHP/Symfony</span><span class="chip">SQL</span
               ><span class="chip">Unity/C#</span
@@ -163,12 +169,17 @@
                 <li>Hobbies: anime, cars, chess, basketball, martial arts</li>
               </ul>
               <div class="mt-4">
-                <a href="#" class="btn-ghost clickable"
-                  ><i class="bi bi-person-lines-fill me-1"></i> More About Me</a
+                <a href="#" class="btn-ghost clickable">
+                  <i class="bi bi-person-lines-fill me-1"></i>
+                  About Me <span class="arrow ms-1">⭢</span>
+                </a>
+                <a
+                  href="https://kasbihari.github.io/Creative-Portfolio/"
+                  class="btn-ghost clickable"
                 >
-                <a href="https://kasbihari.github.io/Creative-Portfolio/" class="btn-ghost clickable"
-                  ><i class="bi bi-file-image me-1"></i> ⭢ See creative porfolio</a
-                >
+                  <i class="bi bi-file-image me-1"></i>
+                  Portfolio <span class="arrow ms-1">⭢</span>
+                </a>
               </div>
             </div>
           </div>
@@ -245,7 +256,7 @@
                   </div>
                 </div>
                 <div class="skill-item">
-                  <span class="skill-name">Canva</span>
+                  <span class="skill-name">Canva/Affinity</span>
                   <div class="skill-bar">
                     <div class="skill-progress" style="width: 100%"></div>
                   </div>
@@ -264,14 +275,14 @@
     </section>
 
     <!-- PROJECTS SECTION -->
-<section id="projects" class="py-5">
-  <div class="container">
-    <h2 class="section-title">
-      Projects <span class="accent-underline"></span>
-    </h2>
+    <section id="projects" class="py-5">
+      <div class="container">
+        <h2 class="section-title">
+          Projects <span class="accent-underline"></span>
+        </h2>
 
-    <!-- Project Slider -->
-    <!-- <div
+        <!-- Project Slider -->
+        <!-- <div
       class="project-slider"
       aria-roledescription="carousel"
       aria-label="Project slider"
@@ -349,197 +360,263 @@
       <div class="slider-dots" id="sliderDots" aria-hidden="true"></div>
     </div> -->
 
-    <!-- Filter Buttons -->
-    <div class="project-filters">
-      <button class="filter-btn active" data-filter="all">
-        All Projects
-      </button>
-      <button class="filter-btn" data-filter="pet">Pet Projects</button>
-      <button class="filter-btn" data-filter="assignment">
-        Assignments
-      </button>
-    </div>
+        <!-- Filter Buttons -->
+        <div class="project-filters">
+          <button class="filter-btn active" data-filter="all">
+            All Projects
+          </button>
+          <button class="filter-btn" data-filter="pet">Pet Projects</button>
+          <button class="filter-btn" data-filter="assignment">
+            Assignments
+          </button>
+        </div>
 
-    <!-- Project Cards Grid - 6 cards in 3 columns -->
-    <div class="row g-4">
-      <!-- Project 1 -->
-      <div class="col-md-6 col-lg-4" data-category="pet">
-        <div class="project-card">
-          <div class="project-card-header">
-            <h3 class="project-card-title">Kazora Watches</h3>
-            <div class="status-container">
-              <span class="mini-badge status-done">Done</span>
-              <span class="mini-badge project-type">Pet Project</span>
+        <!-- Project Cards Grid - 6 cards in 3 columns -->
+        <div class="row g-4">
+          <!-- Project 1 -->
+          <div class="col-md-6 col-lg-4" data-category="pet">
+            <div class="project-card">
+              <div class="project-card-header">
+                <h3 class="project-card-title">Kazora Watches</h3>
+                <div class="status-container">
+                  <span class="mini-badge status-done">Done</span>
+                  <span class="mini-badge project-type">Pet Project</span>
+                </div>
+              </div>
+              <div class="project-card-body">
+                <p class="project-card-description">
+                  Premium Watch E-commerce. Built a secure PHP/MySQL store with
+                  robust admin/user management. Features excellent product
+                  presentation and Google Maps integration.
+                </p>
+                <div class="project-card-tech">
+                  <span class="tech-item"
+                    ><i class="bi bi-filetype-php"></i> PHP</span
+                  >
+                  <span class="tech-item"
+                    ><i class="bi bi-database"></i> MySQL</span
+                  >
+                  <span class="tech-item"
+                    ><i class="bi bi-bootstrap"></i> Bootstrap</span
+                  >
+                </div>
+              </div>
+              <div class="project-card-footer">
+                <div class="project-actions">
+                  <!-- <a href="#" class="btn-project btn-primary-project"><i class="bi bi-eye"></i> Live</a> -->
+                  <a
+                    href="https://github.com/kasbihari/Kazora"
+                    target="_blank"
+                    class="btn-project btn-outline-project"
+                    ><i class="bi bi-github"></i> Code</a
+                  >
+                </div>
+              </div>
             </div>
           </div>
-          <div class="project-card-body">
-            <p class="project-card-description">
-              E-commerce design & build with PHP/MySQL. Premium look with
-              focus on product photography.
-            </p>
-            <div class="project-card-tech">
-              <span class="tech-item"><i class="bi bi-filetype-php"></i> PHP</span>
-              <span class="tech-item"><i class="bi bi-database"></i> MySQL</span>
-              <span class="tech-item"><i class="bi bi-bootstrap"></i> Bootstrap</span>
+
+          <!-- Project 2 -->
+          <div class="col-md-6 col-lg-4" data-category="pet">
+            <div class="project-card">
+              <div class="project-card-header">
+                <h3 class="project-card-title">Project in progress...</h3>
+                <div class="status-container">
+                  <span class="mini-badge status-progress">In Progress</span>
+                  <span class="mini-badge project-type">Pet Project</span>
+                </div>
+              </div>
+              <div class="project-card-body">
+                <p class="project-card-description">Coming soon...</p>
+                <div class="project-card-tech">
+                  <span class="tech-item"
+                    ><i class="bi bi-unity"></i> Unity</span
+                  >
+                  <span class="tech-item"
+                    ><i class="bi bi-code-slash"></i> C#</span
+                  >
+                  <span class="tech-item"
+                    ><i class="bi bi-palette"></i> Pixel Art</span
+                  >
+                </div>
+              </div>
+              <div class="project-card-footer">
+                <div class="project-actions">
+                  <a href="#" class="btn-project btn-primary-project"
+                    ><i class="bi bi-play-circle"></i> Demo</a
+                  >
+                  <a href="#" class="btn-project btn-outline-project"
+                    ><i class="bi bi-github"></i> Code</a
+                  >
+                </div>
+              </div>
             </div>
           </div>
-          <div class="project-card-footer">
-            <div class="project-actions">
-              <!-- <a href="#" class="btn-project btn-primary-project"><i class="bi bi-eye"></i> Live</a> -->
-              <a href="https://github.com/kasbihari/Kazora" class="btn-project btn-outline-project"><i class="bi bi-github"></i> Code</a>
+
+          <!-- Project 3 -->
+          <div class="col-md-6 col-lg-4" data-category="assignment">
+            <div class="project-card">
+              <div class="project-card-header">
+                <h3 class="project-card-title">CodeLibrary</h3>
+                <div class="status-container">
+                  <span class="mini-badge status-done">Done</span>
+                  <span class="mini-badge project-type">Assignment</span>
+                </div>
+              </div>
+              <div class="project-card-body">
+                <p class="project-card-description">
+                  Snippets, patterns and micro-components that I use daily. With
+                  search and tags functionality.
+                </p>
+                <div class="project-card-tech">
+                  <span class="tech-item"
+                    ><i class="bi bi-filetype-js"></i> JavaScript</span
+                  >
+                  <span class="tech-item"
+                    ><i class="bi bi-diagram-3"></i> Patterns</span
+                  >
+                  <span class="tech-item"
+                    ><i class="bi bi-pencil"></i> Design</span
+                  >
+                </div>
+              </div>
+              <div class="project-card-footer">
+                <div class="project-actions">
+                  <a
+                    href="https://kasbihari.github.io/CodeLibrary/"
+                    target="_blank"
+                    class="btn-project btn-primary-project"
+                    ><i class="bi bi-link"></i> Live</a
+                  >
+                  <a
+                    href="https://github.com/kasbihari/CodeLibrary"
+                    target="_blank"
+                    class="btn-project btn-outline-project"
+                    ><i class="bi bi-github"></i> Code</a
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Project 4 -->
+          <div class="col-md-6 col-lg-4" data-category="assignment">
+            <div class="project-card">
+              <div class="project-card-header">
+                <h3 class="project-card-title">Project in progress...</h3>
+                <div class="status-container">
+                  <span class="mini-badge status-progress">In Progress</span>
+                  <span class="mini-badge project-type">Assignment</span>
+                </div>
+              </div>
+              <div class="project-card-body">
+                <p class="project-card-description">Coming soon...</p>
+                <div class="project-card-tech">
+                  <span class="tech-item"
+                    ><i class="bi bi-bar-chart"></i> D3.js</span
+                  >
+                  <span class="tech-item"
+                    ><i class="bi bi-filetype-js"></i> JavaScript</span
+                  >
+                  <span class="tech-item"
+                    ><i class="bi bi-bootstrap"></i> Bootstrap</span
+                  >
+                </div>
+              </div>
+              <div class="project-card-footer">
+                <div class="project-actions">
+                  <a href="#" class="btn-project btn-primary-project"
+                    ><i class="bi bi-eye"></i> Preview</a
+                  >
+                  <a href="#" class="btn-project btn-outline-project"
+                    ><i class="bi bi-github"></i> Code</a
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Project 5 -->
+          <div class="col-md-6 col-lg-4" data-category="pet">
+            <div class="project-card">
+              <div class="project-card-header">
+                <h3 class="project-card-title">Project in progress...</h3>
+                <div class="status-container">
+                  <span class="mini-badge status-progress">Done</span>
+                  <span class="mini-badge project-type">Pet Project</span>
+                </div>
+              </div>
+              <div class="project-card-body">
+                <p class="project-card-description">Coming soon...</p>
+                <div class="project-card-tech">
+                  <span class="tech-item"
+                    ><i class="bi bi-filetype-html"></i> HTML/CSS</span
+                  >
+                  <span class="tech-item"
+                    ><i class="bi bi-filetype-js"></i> JavaScript</span
+                  >
+                  <span class="tech-item"
+                    ><i class="bi bi-bootstrap"></i> Bootstrap</span
+                  >
+                </div>
+              </div>
+              <div class="project-card-footer">
+                <div class="project-actions">
+                  <a href="#" class="btn-project btn-primary-project"
+                    ><i class="bi bi-eye"></i> Live</a
+                  >
+                  <a href="#" class="btn-project btn-outline-project"
+                    ><i class="bi bi-github"></i> Code</a
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Project 6 -->
+          <div class="col-md-6 col-lg-4" data-category="assignment">
+            <div class="project-card">
+              <div class="project-card-header">
+                <h3 class="project-card-title">Budget Buddy</h3>
+                <div class="status-container">
+                  <span class="mini-badge status-done">Done</span>
+                  <span class="mini-badge project-type">Assignment</span>
+                </div>
+              </div>
+              <div class="project-card-body">
+                <p class="project-card-description">
+                  Sleek Finance Manager (Symfony/Chart.js). Built a secure
+                  platform for managing transactions, reporting, and
+                  visualization. Features a premium dashboard and robust
+                  user/admin system.
+                </p>
+                <div class="project-card-tech">
+                  <span class="tech-item"
+                    ><i class="bi bi-filetype-php"></i> Symfony</span
+                  >
+                  <span class="tech-item"
+                    ><i class="bi bi-graph-up"></i> Charts.js</span
+                  >
+                  <span class="tech-item"
+                    ><i class="bi bi-bootstrap"></i> Bootstrap</span
+                  >
+                </div>
+              </div>
+              <div class="project-card-footer">
+                <div class="project-actions">
+                  <!-- <a href="#" class="btn-project btn-primary-project"><i class="bi bi-eye"></i> Preview</a> -->
+                  <a
+                    href="https://github.com/kasbihari/Budget-Buddy"
+                    target="_blank"
+                    class="btn-project btn-outline-project"
+                    ><i class="bi bi-github"></i> Code</a
+                  >
+                </div>
+              </div>
             </div>
           </div>
         </div>
       </div>
-
-      <!-- Project 2 -->
-      <div class="col-md-6 col-lg-4" data-category="pet">
-        <div class="project-card">
-          <div class="project-card-header">
-            <h3 class="project-card-title">Project in progress...</h3>
-            <div class="status-container">
-              <span class="mini-badge status-progress">In Progress</span>
-              <span class="mini-badge project-type">Pet Project</span>
-            </div>
-          </div>
-          <div class="project-card-body">
-            <p class="project-card-description">
-              Coming soon...
-            </p>
-            <div class="project-card-tech">
-              <span class="tech-item"><i class="bi bi-unity"></i> Unity</span>
-              <span class="tech-item"><i class="bi bi-code-slash"></i> C#</span>
-              <span class="tech-item"><i class="bi bi-palette"></i> Pixel Art</span>
-            </div>
-          </div>
-          <div class="project-card-footer">
-            <div class="project-actions">
-              <a href="#" class="btn-project btn-primary-project"><i class="bi bi-play-circle"></i> Demo</a>
-              <a href="#" class="btn-project btn-outline-project"><i class="bi bi-github"></i> Code</a>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Project 3 -->
-      <div class="col-md-6 col-lg-4" data-category="assignment">
-        <div class="project-card">
-          <div class="project-card-header">
-            <h3 class="project-card-title">CodeLibrary</h3>
-            <div class="status-container">
-              <span class="mini-badge status-done">Done</span>
-              <span class="mini-badge project-type">Assignment</span>
-            </div>
-          </div>
-          <div class="project-card-body">
-            <p class="project-card-description">
-              Snippets, patterns and micro-components that I use daily. With
-              search and tags functionality.
-            </p>
-            <div class="project-card-tech">
-              <span class="tech-item"><i class="bi bi-filetype-js"></i> JavaScript</span>
-              <span class="tech-item"><i class="bi bi-diagram-3"></i> Patterns</span>
-              <span class="tech-item"><i class="bi bi-pencil"></i> Design</span>
-            </div>
-          </div>
-          <div class="project-card-footer">
-            <div class="project-actions">
-              <a href="https://kasbihari.github.io/CodeLibrary/" class="btn-project btn-primary-project"><i class="bi bi-link"></i> Live</a>
-              <a href="https://github.com/kasbihari/CodeLibrary" class="btn-project btn-outline-project"><i class="bi bi-github"></i> Code</a>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Project 4 -->
-      <div class="col-md-6 col-lg-4" data-category="assignment">
-        <div class="project-card">
-          <div class="project-card-header">
-            <h3 class="project-card-title">Project in progress...</h3>
-            <div class="status-container">
-              <span class="mini-badge status-progress">In Progress</span>
-              <span class="mini-badge project-type">Assignment</span>
-            </div>
-          </div>
-          <div class="project-card-body">
-            <p class="project-card-description">
-              Coming soon...
-            </p>
-            <div class="project-card-tech">
-              <span class="tech-item"><i class="bi bi-bar-chart"></i> D3.js</span>
-              <span class="tech-item"><i class="bi bi-filetype-js"></i> JavaScript</span>
-              <span class="tech-item"><i class="bi bi-bootstrap"></i> Bootstrap</span>
-            </div>
-          </div>
-          <div class="project-card-footer">
-            <div class="project-actions">
-              <a href="#" class="btn-project btn-primary-project"><i class="bi bi-eye"></i> Preview</a>
-              <a href="#" class="btn-project btn-outline-project"><i class="bi bi-github"></i> Code</a>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Project 5 -->
-      <div class="col-md-6 col-lg-4" data-category="pet">
-        <div class="project-card">
-          <div class="project-card-header">
-            <h3 class="project-card-title">Project in progress...</h3>
-            <div class="status-container">
-              <span class="mini-badge status-progress">Done</span>
-              <span class="mini-badge project-type">Pet Project</span>
-            </div>
-          </div>
-          <div class="project-card-body">
-            <p class="project-card-description">
-              Coming soon...
-            </p>
-            <div class="project-card-tech">
-              <span class="tech-item"><i class="bi bi-filetype-html"></i> HTML/CSS</span>
-              <span class="tech-item"><i class="bi bi-filetype-js"></i> JavaScript</span>
-              <span class="tech-item"><i class="bi bi-bootstrap"></i> Bootstrap</span>
-            </div>
-          </div>
-          <div class="project-card-footer">
-            <div class="project-actions">
-              <a href="#" class="btn-project btn-primary-project"><i class="bi bi-eye"></i> Live</a>
-              <a href="#" class="btn-project btn-outline-project"><i class="bi bi-github"></i> Code</a>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Project 6 -->
-      <div class="col-md-6 col-lg-4" data-category="assignment">
-        <div class="project-card">
-          <div class="project-card-header">
-            <h3 class="project-card-title">Project in progress...</h3>
-            <div class="status-container">
-              <span class="mini-badge status-progress">In Progress</span>
-              <span class="mini-badge project-type">Assignment</span>
-            </div>
-          </div>
-          <div class="project-card-body">
-            <p class="project-card-description">
-              Coming soon...
-            </p>
-            <div class="project-card-tech">
-              <span class="tech-item"><i class="bi bi-filetype-js"></i> JavaScript</span>
-              <span class="tech-item"><i class="bi bi-graph-up"></i> Charts.js</span>
-              <span class="tech-item"><i class="bi bi-bootstrap"></i> Bootstrap</span>
-            </div>
-          </div>
-          <div class="project-card-footer">
-            <div class="project-actions">
-              <a href="#" class="btn-project btn-primary-project"><i class="bi bi-eye"></i> Preview</a>
-              <a href="#" class="btn-project btn-outline-project"><i class="bi bi-github"></i> Code</a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
+    </section>
 
     <!-- CONTACT -->
     <section id="contact" class="py-5">
@@ -586,10 +663,8 @@
                 </li>
                 <li class="mb-2">
                   <i class="bi bi-github me-2"></i
-                  ><a
-                    href="https://github.com/KrishnaBihari04"
-                    class="clickable"
-                    >github.com/KrishnaBihari04</a
+                  ><a href="https://github.com/kasbihari" class="clickable"
+                    >github.com/kasbihari</a
                   >
                 </li>
                 <li>
