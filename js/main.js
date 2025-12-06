@@ -335,3 +335,152 @@ document.addEventListener("DOMContentLoaded", function () {
     bar.style.width = "0%";
   });
 })();
+
+/* About Page Specific JavaScript */
+
+// Initialize when DOM is loaded
+document.addEventListener('DOMContentLoaded', function() {
+  
+  // Dropdown functionality for passion cards
+  const passionCards = document.querySelectorAll('.passion-dropdown');
+  
+  passionCards.forEach(card => {
+    const toggle = card.querySelector('.passion-toggle');
+    const header = card.querySelector('.passion-header');
+    
+    function toggleCard() {
+      card.classList.toggle('active');
+      const isActive = card.classList.contains('active');
+      
+      // Animate progress bars when opening
+      if (isActive) {
+        const progressBars = card.querySelectorAll('.progress-bar');
+        progressBars.forEach(bar => {
+          const width = bar.style.width;
+          bar.style.width = '0%';
+          setTimeout(() => {
+            bar.style.width = width;
+          }, 100);
+        });
+      }
+    }
+    
+    if (toggle) toggle.addEventListener('click', toggleCard);
+    if (header) header.addEventListener('click', toggleCard);
+  });
+  
+  // Culture slider functionality
+  const cultureSlides = document.querySelectorAll('.culture-slide');
+  const cultureDots = document.querySelectorAll('.culture-dots .dot');
+  const prevBtn = document.querySelector('.culture-prev');
+  const nextBtn = document.querySelector('.culture-next');
+  let currentSlide = 0;
+  
+  function showSlide(index) {
+    // Remove active class from all slides and dots
+    cultureSlides.forEach(slide => slide.classList.remove('active'));
+    cultureDots.forEach(dot => dot.classList.remove('active'));
+    
+    // Add active class to current slide and dot
+    cultureSlides[index].classList.add('active');
+    cultureDots[index].classList.add('active');
+    currentSlide = index;
+  }
+  
+  function nextSlide() {
+    let nextIndex = currentSlide + 1;
+    if (nextIndex >= cultureSlides.length) nextIndex = 0;
+    showSlide(nextIndex);
+  }
+  
+  function prevSlide() {
+    let prevIndex = currentSlide - 1;
+    if (prevIndex < 0) prevIndex = cultureSlides.length - 1;
+    showSlide(prevIndex);
+  }
+  
+  // Add click events to dots
+  cultureDots.forEach((dot, index) => {
+    dot.addEventListener('click', () => showSlide(index));
+  });
+  
+  // Add click events to navigation buttons
+  if (prevBtn) prevBtn.addEventListener('click', prevSlide);
+  if (nextBtn) nextBtn.addEventListener('click', nextSlide);
+  
+  // Auto-rotate culture slides (every 5 seconds)
+  let slideInterval = setInterval(nextSlide, 5000);
+  
+  // Pause auto-rotation on hover
+  const cultureSlider = document.querySelector('.culture-slider');
+  if (cultureSlider) {
+    cultureSlider.addEventListener('mouseenter', () => {
+      clearInterval(slideInterval);
+    });
+    
+    cultureSlider.addEventListener('mouseleave', () => {
+      slideInterval = setInterval(nextSlide, 5000);
+    });
+  }
+  
+  // Animate progress meters when they come into view
+  const meters = document.querySelectorAll('.meter-fill');
+  const meterObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const meter = entry.target;
+        const width = meter.style.width;
+        meter.style.width = '0%';
+        
+        setTimeout(() => {
+          meter.style.width = width;
+        }, 300);
+        
+        // Unobserve after animating
+        meterObserver.unobserve(meter);
+      }
+    });
+  }, { threshold: 0.5 });
+  
+  meters.forEach(meter => meterObserver.observe(meter));
+  
+  // Animate timeline items
+  const timelineItems = document.querySelectorAll('.timeline-item');
+  const timelineObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('show');
+      }
+    });
+  }, { threshold: 0.2 });
+  
+  timelineItems.forEach(item => timelineObserver.observe(item));
+  
+  // Add click animation to trait cards
+  const traitCards = document.querySelectorAll('.trait-card');
+  traitCards.forEach(card => {
+    card.addEventListener('click', function() {
+      this.style.transform = 'scale(0.98)';
+      setTimeout(() => {
+        this.style.transform = '';
+      }, 150);
+    });
+  });
+  
+  // Keyboard navigation for culture slider
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'ArrowLeft') prevSlide();
+    if (e.key === 'ArrowRight') nextSlide();
+  });
+  
+  // Initialize first passion card as open
+  if (passionCards.length > 0) {
+    passionCards[0].classList.add('active');
+  }
+});
+
+// Make sure all scripts run after page is fully loaded
+window.addEventListener('load', function() {
+  // Force a reflow to trigger animations
+  document.body.clientHeight;
+});

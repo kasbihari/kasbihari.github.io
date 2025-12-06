@@ -1,0 +1,587 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="burgundy-noir">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>About Me | Krishna</title>
+    <link
+      rel="shortcut icon"
+      href="assets/img/k-logo.png"
+      type="image/x-icon"
+    />
+
+    <!-- Google Fonts -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;800;900&family=Inter:wght@300;400;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <!-- Bootstrap 5 + Icons -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css"
+      rel="stylesheet"
+    />
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/about.css" />
+    <script defer src="js/main.js"></script>
+    <script defer src="js/about.js"></script>
+  </head>
+  <body>
+    <!-- Animated background -->
+    <div class="animated-bg"></div>
+
+    <!-- Scroll progress bar -->
+    <div class="scroll-progress" aria-hidden="true"></div>
+
+    <!-- Start Screen -->
+    <div class="intro" id="intro">
+      <div class="logo-orb" aria-hidden="true">
+        <div class="scanline"></div>
+        <div class="logo-k">KB</div>
+      </div>
+      <p class="mt-4 text-center text-secondary small">
+        Getting to Know Krishna
+      </p>
+    </div>
+
+    <!-- Noise -->
+    <div class="noise"></div>
+
+    <!-- NAV -->
+    <div class="nav-wrap">
+      <nav class="navbar navbar-expand-lg container py-2">
+        <!-- Centered brand -->
+        <a class="navbar-brand brand" href="index.html" aria-label="Home">
+          <span class="dot"></span> Krishna Bihari
+        </a>
+
+        <!-- Custom hamburger menu -->
+        <div class="hamburger-menu" id="hamburgerMenu">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+
+        <!-- Links -->
+        <ul class="navbar-nav" id="navLinks">
+          <li class="nav-item">
+            <a class="nav-link clickable" href="index.html">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link clickable active" href="about.html">About</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link clickable" href="index.html#projects">Projects</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link clickable" href="index.html#contact">Contact</a>
+          </li>
+        </ul>
+      </nav>
+    </div>
+
+    <!-- HERO -->
+    <header class="hero about-hero" role="banner">
+      <div class="container">
+        <div class="row g-4 align-items-center">
+          <div class="col-lg-7">
+            <h1 class="title reveal">
+              Beyond the
+              <span
+                style="
+                  background: linear-gradient(
+                    90deg,
+                    var(--accent),
+                    var(--accent-2)
+                  );
+                  -webkit-background-clip: text;
+                  background-clip: text;
+                  color: transparent;
+                "
+                >Code</span
+              >
+            </h1>
+            <p class="mt-3 tagline reveal" style="max-width: 52ch">
+              The person behind the pixels — a journey through my passions, 
+              inspirations, and what makes me who I am.
+            </p>
+          </div>
+          <div class="col-lg-5 slide-right">
+            <div class="profile-circle d-none d-lg-block">
+              <img
+                src="assets/img/pfpa.jpeg"
+                alt="Krishna Bihari"
+                class="profile-img"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- ABOUT TIMELINE -->
+    <section id="timeline" class="py-5">
+      <div class="container">
+        <h2 class="section-title reveal">
+          My Journey <span class="accent-underline"></span>
+        </h2>
+        
+        <div class="timeline">
+          <!-- Timeline item 1 -->
+          <div class="timeline-item reveal">
+            <div class="timeline-marker">
+              <i class="bi bi-controller"></i>
+            </div>
+            <div class="timeline-content">
+              <h3>Early Beginnings</h3>
+              <div class="timeline-date">Childhood</div>
+              <p>Growing up, I was fascinated by video games and animation. 
+                I spent hours drawing characters from my favorite anime and 
+                trying to understand how games were made. This curiosity 
+                about digital creation planted the seeds for my future path.</p>
+            </div>
+          </div>
+          
+          <!-- Timeline item 2 -->
+          <div class="timeline-item reveal">
+            <div class="timeline-marker">
+              <i class="bi bi-code-square"></i>
+            </div>
+            <div class="timeline-content">
+              <h3>Discovering Code</h3>
+              <div class="timeline-date">High School Years</div>
+              <p>My first encounter with HTML/CSS was through customizing 
+                MySpace profiles and forum signatures. I quickly realized 
+                I could build things that people actually used and enjoyed. 
+                This led me to pursue computer science and design seriously.</p>
+            </div>
+          </div>
+          
+          <!-- Timeline item 3 -->
+          <div class="timeline-item reveal">
+            <div class="timeline-marker">
+              <i class="bi bi-globe2"></i>
+            </div>
+            <div class="timeline-content">
+              <h3>Cultural Awakening</h3>
+              <div class="timeline-date">College Years</div>
+              <p>Studying different cultures through their art and design 
+                philosophies became a passion. Japanese minimalism, Arabic 
+                geometric patterns, and Indian vibrant color schemes all 
+                influenced my aesthetic sense and approach to design.</p>
+            </div>
+          </div>
+          
+          <!-- Timeline item 4 -->
+          <div class="timeline-item reveal">
+            <div class="timeline-marker">
+              <i class="bi bi-brush"></i>
+            </div>
+            <div class="timeline-content">
+              <h3>Design & Development Fusion</h3>
+              <div class="timeline-date">Present</div>
+              <p>Today, I see design and development not as separate disciplines 
+                but as two sides of the same coin. Every line of code has aesthetic 
+                implications, and every design choice has technical requirements. 
+                This holistic approach defines my work.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PASSIONS SECTION -->
+    <section id="passions" class="py-5">
+      <div class="container">
+        <h2 class="section-title reveal">
+          Passions & Interests <span class="accent-underline"></span>
+        </h2>
+        
+        <!-- Interactive Dropdowns -->
+        <div class="passions-grid">
+          <!-- Chess -->
+          <div class="passion-card card-x clickable passion-dropdown">
+            <div class="passion-header">
+              <div class="passion-icon">
+                <i class="bi bi-chess-knight"></i>
+              </div>
+              <div>
+                <h3>Chess Strategy</h3>
+                <p class="text-secondary mb-0">Elite tactical thinking</p>
+              </div>
+              <i class="bi bi-chevron-down passion-toggle"></i>
+            </div>
+            <div class="passion-content">
+              <div class="chess-stats">
+                <div class="stat-item">
+                  <span class="stat-label">Current Rating</span>
+                  <span class="stat-value">1750</span>
+                  <div class="progress" style="height: 8px;">
+                    <div class="progress-bar" style="width: 70%;"></div>
+                  </div>
+                </div>
+                <div class="stat-item">
+                  <span class="stat-label">Favorite Opening</span>
+                  <span class="stat-value">Ruy Lopez</span>
+                </div>
+                <div class="stat-item">
+                  <span class="stat-label">Games Analyzed</span>
+                  <span class="stat-value">500+</span>
+                </div>
+              </div>
+              <p class="mt-3">Chess teaches patience, strategic thinking, 
+                and the importance of anticipating consequences — skills 
+                that directly translate to debugging and system design.</p>
+            </div>
+          </div>
+          
+          <!-- Anime -->
+          <div class="passion-card card-x clickable passion-dropdown">
+            <div class="passion-header">
+              <div class="passion-icon">
+                <i class="bi bi-tv"></i>
+              </div>
+              <div>
+                <h3>Anime & Storytelling</h3>
+                <p class="text-secondary mb-0">Narrative inspiration</p>
+              </div>
+              <i class="bi bi-chevron-down passion-toggle"></i>
+            </div>
+            <div class="passion-content">
+              <div class="favorites-list">
+                <h4>Top 5 Anime:</h4>
+                <ol>
+                  <li><strong>Attack on Titan</strong> — Masterful world-building</li>
+                  <li><strong>Demon Slayer</strong> — Visual perfection</li>
+                  <li><strong>Death Note</strong> — Psychological depth</li>
+                  <li><strong>Fullmetal Alchemist</strong> — Narrative balance</li>
+                  <li><strong>One Piece</strong> — Character development</li>
+                </ol>
+              </div>
+              <p>Anime has taught me about visual storytelling, character 
+                development, and creating emotional impact through design 
+                choices — lessons I apply to UI/UX design.</p>
+            </div>
+          </div>
+          
+          <!-- Martial Arts -->
+          <div class="passion-card card-x clickable passion-dropdown">
+            <div class="passion-header">
+              <div class="passion-icon">
+                <i class="bi bi-person-arms-up"></i>
+              </div>
+              <div>
+                <h3>Martial Arts</h3>
+                <p class="text-secondary mb-0">Discipline & focus</p>
+              </div>
+              <i class="bi bi-chevron-down passion-toggle"></i>
+            </div>
+            <div class="passion-content">
+              <div class="martial-arts-stats">
+                <div class="stat-item">
+                  <span class="stat-label">Years Training</span>
+                  <span class="stat-value">8+</span>
+                </div>
+                <div class="stat-item">
+                  <span class="stat-label">Styles</span>
+                  <span class="stat-value">Kickboxing, BJJ</span>
+                </div>
+                <div class="stat-item">
+                  <span class="stat-label">Tournaments</span>
+                  <span class="stat-value">12</span>
+                </div>
+              </div>
+              <p class="mt-3">Martial arts taught me discipline, resilience, 
+                and the importance of continuous improvement — principles 
+                that guide my approach to mastering new technologies.</p>
+            </div>
+          </div>
+          
+          <!-- Cars -->
+          <div class="passion-card card-x clickable passion-dropdown">
+            <div class="passion-header">
+              <div class="passion-icon">
+                <i class="bi bi-car-front"></i>
+              </div>
+              <div>
+                <h3>Automotive Design</h3>
+                <p class="text-secondary mb-0">Form meets function</p>
+              </div>
+              <i class="bi bi-chevron-down passion-toggle"></i>
+            </div>
+            <div class="passion-content">
+              <div class="car-favorites">
+                <h4>Dream Garage:</h4>
+                <ul>
+                  <li><strong>Porsche 911 GT3 RS</strong> — Engineering perfection</li>
+                  <li><strong>Mazda RX-7 FD</strong> — Rotary elegance</li>
+                  <li><strong>Nissan GT-R R34</strong> — Iconic design</li>
+                  <li><strong>Toyota AE86</strong> — Pure driving joy</li>
+                </ul>
+              </div>
+              <p>Car design embodies the perfect marriage of aesthetics 
+                and performance — a philosophy I carry into every project, 
+                ensuring it's both beautiful and high-performing.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PERSONALITY TRAITS -->
+    <section id="traits" class="py-5">
+      <div class="container">
+        <h2 class="section-title reveal">
+          My Personality <span class="accent-underline"></span>
+        </h2>
+        
+        <div class="traits-grid">
+          <!-- Trait 1 -->
+          <div class="trait-card card-x clickable">
+            <div class="trait-icon">
+              <i class="bi bi-lightbulb"></i>
+            </div>
+            <h3>Analytical Thinker</h3>
+            <p>I break down complex problems into manageable pieces, 
+              finding elegant solutions through structured analysis.</p>
+            <div class="trait-meter">
+              <div class="meter-fill" style="width: 90%"></div>
+            </div>
+          </div>
+          
+          <!-- Trait 2 -->
+          <div class="trait-card card-x clickable">
+            <div class="trait-icon">
+              <i class="bi bi-palette"></i>
+            </div>
+            <h3>Creative Visionary</h3>
+            <p>I see patterns and possibilities others might miss, 
+              combining unexpected elements into cohesive designs.</p>
+            <div class="trait-meter">
+              <div class="meter-fill" style="width: 85%"></div>
+            </div>
+          </div>
+          
+          <!-- Trait 3 -->
+          <div class="trait-card card-x clickable">
+            <div class="trait-icon">
+              <i class="bi bi-shield-check"></i>
+            </div>
+            <h3>Detail-Oriented</h3>
+            <p>From pixel-perfect alignment to clean code architecture, 
+              I believe excellence is in the details.</p>
+            <div class="trait-meter">
+              <div class="meter-fill" style="width: 95%"></div>
+            </div>
+          </div>
+          
+          <!-- Trait 4 -->
+          <div class="trait-card card-x clickable">
+            <div class="trait-icon">
+              <i class="bi bi-people"></i>
+            </div>
+            <h3>Collaborative Spirit</h3>
+            <p>I thrive in team environments where diverse perspectives 
+              lead to better solutions than any individual could create alone.</p>
+            <div class="trait-meter">
+              <div class="meter-fill" style="width: 80%"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CULTURAL INSPIRATIONS -->
+    <section id="culture" class="py-5">
+      <div class="container">
+        <h2 class="section-title reveal">
+          Cultural Inspirations <span class="accent-underline"></span>
+        </h2>
+        
+        <div class="culture-slider">
+          <div class="culture-slide active">
+            <div class="culture-content">
+              <div class="culture-icon">
+                <i class="bi bi-brightness-alt-high"></i>
+              </div>
+              <h3>Japanese Aesthetics</h3>
+              <p>Wabi-sabi (beauty in imperfection), minimalism, and 
+                attention to detail influence my clean, purposeful designs. 
+                The concept of "ma" (negative space) teaches me about 
+                breathing room in layouts.</p>
+            </div>
+          </div>
+          
+          <div class="culture-slide">
+            <div class="culture-content">
+              <div class="culture-icon">
+                <i class="bi bi-symmetry-vertical"></i>
+              </div>
+              <h3>Islamic Geometric Patterns</h3>
+              <p>The mathematical precision and infinite repeatability 
+                of these patterns inspire my approach to systematic design 
+                and reusable components.</p>
+            </div>
+          </div>
+          
+          <div class="culture-slide">
+            <div class="culture-content">
+              <div class="culture-icon">
+                <i class="bi bi-flower1"></i>
+              </div>
+              <h3>Indian Vibrancy</h3>
+              <p>Bold colors, intricate details, and rich symbolism 
+                from Indian art teach me about creating visual impact 
+                while maintaining harmony.</p>
+            </div>
+          </div>
+          
+          <div class="culture-controls">
+            <button class="culture-prev"><i class="bi bi-chevron-left"></i></button>
+            <div class="culture-dots">
+              <span class="dot active"></span>
+              <span class="dot"></span>
+              <span class="dot"></span>
+            </div>
+            <button class="culture-next"><i class="bi bi-chevron-right"></i></button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- DAILY ROUTINE -->
+    <section id="routine" class="py-5">
+      <div class="container">
+        <h2 class="section-title reveal">
+          Daily Philosophy <span class="accent-underline"></span>
+        </h2>
+        
+        <div class="routine-card card-x">
+          <div class="routine-quote">
+            <i class="bi bi-quote"></i>
+            <blockquote>
+              "Balance the board. Design the future."
+            </blockquote>
+            <p class="text-end mt-3">— Krishna Bihari</p>
+          </div>
+          
+          <div class="routine-grid">
+            <div class="routine-item">
+              <div class="routine-time">Morning</div>
+              <div class="routine-activity">
+                <i class="bi bi-cup-hot"></i>
+                <span>Chess tactics & planning the day</span>
+              </div>
+            </div>
+            
+            <div class="routine-item">
+              <div class="routine-time">Work Session</div>
+              <div class="routine-activity">
+                <i class="bi bi-code-slash"></i>
+                <span>Deep focus coding/design sprints</span>
+              </div>
+            </div>
+            
+            <div class="routine-item">
+              <div class="routine-time">Afternoon</div>
+              <div class="routine-activity">
+                <i class="bi bi-lightning-charge"></i>
+                <span>Creative exploration & learning</span>
+              </div>
+            </div>
+            
+            <div class="routine-item">
+              <div class="routine-time">Evening</div>
+              <div class="routine-activity">
+                <i class="bi bi-dice-5"></i>
+                <span>Training, anime, or gaming</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer class="py-4">
+      <div class="container">
+        <div class="footer-content">
+          <div class="footer-links">
+            <a href="index.html" class="clickable">Home</a>
+            <a href="about.html" class="clickable active">About</a>
+            <a href="index.html#projects" class="clickable">Projects</a>
+            <a href="index.html#contact" class="clickable">Contact</a>
+          </div>
+
+          <div class="social-links">
+            <a
+              href="https://github.com/kasbihari"
+              aria-label="GitHub"
+              class="clickable"
+              ><i class="bi bi-github"></i
+            ></a>
+            <a
+              href="https://www.linkedin.com/in/krishna-b-098124339/"
+              aria-label="LinkedIn"
+              class="clickable"
+              ><i class="bi bi-linkedin"></i
+            ></a>
+            <a
+              href="https://www.instagram.com/_kr.shna_/"
+              aria-label="Instagram"
+              class="clickable"
+              ><i class="bi bi-instagram"></i
+            ></a>
+            <a
+              href="https://x.com/_krshna_04"
+              aria-label="Twitter"
+              class="clickable"
+              ><i class="bi bi-twitter"></i
+            ></a>
+          </div>
+
+          <div class="text-center">
+            <div class="small text-secondary">
+              © <span id="year"></span> Krishna Bihari. All rights reserved.
+            </div>
+            <div class="small text-secondary">
+              Theme: <strong id="themeName">Burgundy Noir</strong> ·
+              <span class="text-secondary">getting to know me</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Floating Theme Switch -->
+    <div class="theme-fab">
+      <button id="themeToggle" class="btn-x clickable">
+        <i class="bi bi-palette2 me-1"></i> Theme
+      </button>
+      <div id="themePanel" class="theme-panel">
+        <div class="theme-cat">Signature Style</div>
+        <div class="theme-item clickable" data-theme="burgundy-noir">
+          <div
+            class="swatch"
+            style="background: linear-gradient(135deg, #b41c3b, #7f1126)"
+          ></div>
+          <div>
+            <div><strong>Burgundy Noir</strong></div>
+            <small class="text-secondary">dark, rich & cinematic</small>
+          </div>
+        </div>
+        <div class="theme-item clickable" data-theme="elegant-desert">
+          <div class="swatch duo"><span></span><span></span></div>
+          <div>
+            <div><strong>Elegant Desert</strong></div>
+            <small class="text-secondary">bright, natural & elegant</small>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
