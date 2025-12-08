@@ -1,4 +1,4 @@
-/* Krishna CSS v1.2 — More about me page */
+/* Krishna CSS v1.3 — Complete Stylesheet */
 
 /* =========================
    Root tokens & themes
@@ -672,7 +672,7 @@
   }
   
   /* =========================
-     Buttons & Links - UPDATED
+     Buttons & Links
      ========================= */
   .btn-x {
     background: linear-gradient(180deg, var(--accent-2), var(--accent));
@@ -697,7 +697,7 @@
     transform: translateY(0) scale(.98);
   }
   
-  /* Updated ghost buttons with arrows */
+  /* Ghost buttons with arrows */
   .btn-ghost {
     background: transparent;
     color: var(--ink);
@@ -1165,7 +1165,7 @@
     }
   }
   
-  /* Filter Buttons */
+  /* Filter Buttons - FIXED */
   .project-filters {
     display: flex;
     justify-content: center;
@@ -1180,21 +1180,61 @@
     background: transparent;
     border: 1px solid var(--stroke);
     color: var(--ink-2);
-    transition: transform .2s var(--easing), background .25s var(--easing), color .25s var(--easing), border-color .25s var(--easing);
+    transition: all 0.3s var(--easing);
     cursor: pointer;
+    isolation: isolate;
+    position: relative;
+    overflow: hidden;
   }
   
-  .filter-btn:hover {
+  .filter-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(180deg, var(--accent-2), var(--accent));
+    opacity: 0;
+    transition: opacity 0.3s var(--easing);
+    z-index: -1;
+  }
+  
+  /* Hover State (not active) */
+  .filter-btn:hover:not(.active) {
     transform: translateY(-1px);
-    background: color-mix(in oklab, var(--bg-3) 60%, transparent);
+    background: color-mix(in oklab, var(--bg-3) 70%, transparent);
     color: var(--ink);
+    border-color: color-mix(in oklab, var(--accent) 30%, transparent);
   }
   
+  .filter-btn:hover:not(.active)::before {
+    opacity: 0.1;
+  }
+  
+  /* Active State (current filter) */
   .filter-btn.active {
     background: linear-gradient(180deg, var(--accent-2), var(--accent));
     color: #fff;
     border-color: transparent;
     box-shadow: 0 10px 30px color-mix(in oklab, var(--accent) 35%, transparent);
+  }
+  
+  .filter-btn.active::before {
+    opacity: 1;
+  }
+  
+  /* Hover on Active Button - Keep active state visible */
+  .filter-btn.active:hover {
+    transform: translateY(-2px) scale(1.05);
+    box-shadow: 0 12px 35px color-mix(in oklab, var(--accent) 45%, transparent);
+    filter: brightness(1.1);
+  }
+  
+  /* Focus State */
+  .filter-btn:focus-visible {
+    outline: 2px solid var(--accent-2);
+    outline-offset: 2px;
   }
   
   /* Grid & Cards */
@@ -2095,5 +2135,349 @@
   
   .passions-grid {
     grid-template-columns: 1fr;
+  }
+}
+
+/* Designs Page Styles - Updated Filters */
+
+/* Hero */
+.designs-hero {
+  padding: 8rem 0 4rem;
+  text-align: center;
+}
+
+.designs-hero .title {
+  font-size: clamp(2.5rem, 6vw, 4rem);
+  margin-bottom: 1rem;
+}
+
+.accent-text {
+  background: linear-gradient(90deg, var(--accent), var(--accent-2));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* Updated Filters */
+.designs-filters {
+  padding: 2rem 0 3rem;
+  background: transparent;
+  position: relative;
+  border: none;
+  backdrop-filter: none;
+  top: auto;
+}
+
+.designs-filters .project-filters {
+  display: flex;
+  justify-content: center;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.designs-filters .filter-btn {
+  padding: 0.75rem 1.5rem;
+  border-radius: var(--radius);
+  background: color-mix(in oklab, var(--bg-3) 60%, transparent);
+  border: 1px solid var(--stroke);
+  color: var(--ink-2);
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s var(--easing);
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  isolation: isolate;
+}
+
+.designs-filters .filter-btn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, var(--accent-2), var(--accent));
+  opacity: 0;
+  transition: opacity 0.3s var(--easing);
+  z-index: -1;
+}
+
+.designs-filters .filter-btn > * {
+  position: relative;
+  z-index: 1;
+}
+
+/* Hover State */
+.designs-filters .filter-btn:hover:not(.active) {
+  transform: translateY(-2px);
+  border-color: color-mix(in oklab, var(--accent) 40%, transparent);
+  color: var(--ink);
+  box-shadow: 0 8px 25px color-mix(in oklab, var(--accent) 10%, transparent);
+}
+
+.designs-filters .filter-btn:hover:not(.active)::before {
+  opacity: 0.1;
+}
+
+/* Active State - Current Filter */
+.designs-filters .filter-btn.active {
+  background: linear-gradient(135deg, var(--accent-2), var(--accent));
+  border-color: transparent;
+  color: white;
+  box-shadow: 0 10px 30px color-mix(in oklab, var(--accent) 25%, transparent);
+  transform: translateY(-2px);
+}
+
+.designs-filters .filter-btn.active::before {
+  opacity: 1;
+}
+
+/* Hover on Active Button - Different Effect */
+.designs-filters .filter-btn.active:hover {
+  transform: translateY(-3px) scale(1.02);
+  box-shadow: 0 12px 35px color-mix(in oklab, var(--accent) 35%, transparent);
+  filter: brightness(1.1);
+}
+
+/* Focus State for Accessibility */
+.designs-filters .filter-btn:focus-visible {
+  outline: 2px solid var(--accent-2);
+  outline-offset: 2px;
+}
+
+/* Filter icons */
+.designs-filters .filter-btn::after {
+  content: '';
+  font-family: "bootstrap-icons";
+  font-size: 1rem;
+  transition: transform 0.3s var(--easing);
+}
+
+/* Icon animations */
+.designs-filters .filter-btn:hover:not(.active)::after {
+  transform: translateX(2px);
+}
+
+.designs-filters .filter-btn.active::after {
+  transform: scale(1.1);
+}
+
+/* Specific icons */
+.designs-filters .filter-btn[data-filter="all"]::after {
+  content: '\f479'; /* bi-grid-3x3 */
+}
+
+.designs-filters .filter-btn[data-filter="graphic"]::after {
+  content: '\f3fa'; /* bi-palette */
+}
+
+.designs-filters .filter-btn[data-filter="clothing"]::after {
+  content: '\f4d6'; /* bi-person-standing */
+}
+
+.designs-filters .filter-btn[data-filter="photography"]::after {
+  content: '\f1c5'; /* bi-camera */
+}
+
+.designs-filters .filter-btn[data-filter="logo"]::after {
+  content: '\f1d4'; /* bi-brush */
+}
+
+/* Elegant Desert Theme Specific Adjustments */
+html[data-theme="elegant-desert"] .designs-filters .filter-btn.active {
+  background: linear-gradient(135deg, #8a6d3b, #a47c48);
+  color: #faf7f2;
+}
+
+html[data-theme="elegant-desert"] .designs-filters .filter-btn:hover:not(.active) {
+  border-color: rgba(164, 124, 72, 0.4);
+}
+
+/* Designs Grid */
+.designs-grid-section {
+  min-height: 60vh;
+}
+
+.designs-grid {
+  opacity: 1;
+  transition: opacity 0.3s var(--easing);
+}
+
+.design-card {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.3s var(--easing);
+}
+
+.design-card:hover {
+  transform: translateY(-5px);
+}
+
+/* Design Media */
+.design-media {
+  height: 200px;
+  position: relative;
+  overflow: hidden;
+  border-bottom: 1px solid var(--stroke);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.design-placeholder {
+  text-align: center;
+  color: white;
+}
+
+.design-placeholder i {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+  filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.3));
+}
+
+.design-placeholder span {
+  display: block;
+  font-size: 0.9rem;
+  opacity: 0.9;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+/* Design Content */
+.design-content {
+  padding: 1.5rem;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.design-title {
+  font-family: var(--font-display);
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: var(--ink);
+  margin-bottom: 0.75rem;
+  line-height: 1.3;
+}
+
+.design-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.design-category {
+  font-size: 0.85rem;
+  padding: 0.25rem 0.75rem;
+  background: color-mix(in oklab, var(--accent) 15%, transparent);
+  color: var(--accent-2);
+  border-radius: 999px;
+  border: 1px solid color-mix(in oklab, var(--accent) 30%, transparent);
+  font-weight: 600;
+}
+
+.design-year {
+  font-size: 0.85rem;
+  color: var(--ink-2);
+  font-weight: 500;
+}
+
+.design-desc {
+  color: var(--ink-2);
+  font-size: 0.95rem;
+  line-height: 1.5;
+  margin: 0;
+  flex: 1;
+}
+
+/* Animation for grid items */
+.col-md-6 {
+  animation: fadeInUp 0.6s var(--easing) forwards;
+  opacity: 0;
+}
+
+@keyframes fadeInUp {
+  from {
+      opacity: 0;
+      transform: translateY(20px);
+  }
+  to {
+      opacity: 1;
+      transform: translateY(0);
+  }
+}
+
+/* Stagger animation delays */
+.col-md-6:nth-child(1) { animation-delay: 0.1s; }
+.col-md-6:nth-child(2) { animation-delay: 0.2s; }
+.col-md-6:nth-child(3) { animation-delay: 0.3s; }
+.col-md-6:nth-child(4) { animation-delay: 0.4s; }
+.col-md-6:nth-child(5) { animation-delay: 0.5s; }
+.col-md-6:nth-child(6) { animation-delay: 0.6s; }
+.col-md-6:nth-child(7) { animation-delay: 0.7s; }
+.col-md-6:nth-child(8) { animation-delay: 0.8s; }
+.col-md-6:nth-child(9) { animation-delay: 0.9s; }
+.col-md-6:nth-child(10) { animation-delay: 1s; }
+.col-md-6:nth-child(11) { animation-delay: 1.1s; }
+.col-md-6:nth-child(12) { animation-delay: 1.2s; }
+
+/* Responsive */
+@media (max-width: 768px) {
+  .designs-hero {
+      padding: 6rem 0 3rem;
+  }
+  
+  .designs-filters {
+      padding: 1.5rem 0 2.5rem;
+  }
+  
+  .designs-filters .project-filters {
+      gap: 0.5rem;
+  }
+  
+  .designs-filters .filter-btn {
+      padding: 0.6rem 1.25rem;
+      font-size: 0.9rem;
+  }
+  
+  .design-media {
+      height: 180px;
+  }
+  
+  .design-content {
+      padding: 1.25rem;
+  }
+  
+  .design-title {
+      font-size: 1.2rem;
+  }
+}
+
+@media (max-width: 576px) {
+  .design-card {
+      max-width: 400px;
+      margin-left: auto;
+      margin-right: auto;
+  }
+  
+  .designs-filters .project-filters {
+      justify-content: flex-start;
+      overflow-x: auto;
+      padding-bottom: 0.5rem;
+      -webkit-overflow-scrolling: touch;
+  }
+  
+  .designs-filters .project-filters::-webkit-scrollbar {
+      display: none;
+  }
+  
+  .designs-filters .filter-btn {
+      white-space: nowrap;
+      flex-shrink: 0;
   }
 }

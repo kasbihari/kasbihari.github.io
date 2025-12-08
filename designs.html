@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="burgundy-noir">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Designs | Krishna Bihari</title>
+    <link rel="shortcut icon" href="assets/img/k-logo.png" type="image/x-icon" />
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;800;900&family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet" />
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/designs.css" />
+    <script defer src="js/main.js"></script>
+    <script defer src="js/designs.js"></script>
+</head>
+<body>
+    <!-- Animated background -->
+    <div class="animated-bg"></div>
+
+    <!-- Scroll progress bar -->
+    <div class="scroll-progress" aria-hidden="true"></div>
+
+    <!-- Start Screen -->
+    <div class="intro" id="intro">
+        <div class="logo-orb" aria-hidden="true">
+            <div class="scanline"></div>
+            <div class="logo-k">KB</div>
+        </div>
+        <p class="mt-4 text-center text-secondary small">Design Portfolio</p>
+    </div>
+
+    <!-- Noise -->
+    <div class="noise"></div>
+
+    <!-- NAV -->
+    <div class="nav-wrap">
+        <nav class="navbar navbar-expand-lg container py-2">
+            <a class="navbar-brand brand" href="index.html" aria-label="Home">
+                <span class="dot"></span> Krishna Bihari
+            </a>
+            <div class="hamburger-menu" id="hamburgerMenu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <ul class="navbar-nav" id="navLinks">
+                <li class="nav-item"><a class="nav-link clickable" href="index.html">Back ⭢</a></li>
+            </ul>
+        </nav>
+    </div>
+
+    <!-- HERO -->
+    <header class="hero designs-hero">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-8 mx-auto text-center">
+                    <h1 class="title reveal">My <span class="accent-text">Designs</span></h1>
+                    <p class="mt-3 tagline reveal">
+                        A collection of my graphic designs, clothing creations, photography, and branding work.
+                        Filter by category or browse everything.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- FILTERS -->
+    <section class="designs-filters py-4">
+        <div class="container">
+            <div class="project-filters">
+                <button class="filter-btn" data-filter="all">All Work</button>
+                <button class="filter-btn" data-filter="graphic">Graphic Design</button>
+                <button class="filter-btn" data-filter="clothing">Clothing Design</button>
+                <button class="filter-btn" data-filter="photography">Photography</button>
+                <button class="filter-btn" data-filter="logo">Logo & Branding</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- DESIGNS GRID -->
+    <main class="designs-grid-section py-5">
+        <div class="container">
+            <div class="row g-4 designs-grid">
+                <!-- Graphic Design -->
+                <div class="col-md-6 col-lg-4" data-category="graphic">
+                    <div class="card-x design-card">
+                        <div class="design-media" style="background: linear-gradient(135deg, var(--accent-2), var(--accent))">
+                            <div class="design-placeholder">
+                                <i class="bi bi-palette"></i>
+                                <span>Graphic Design</span>
+                            </div>
+                        </div>
+                        <div class="design-content">
+                            <h3 class="design-title">Cultural Fusion Series</h3>
+                            <div class="design-meta">
+                                <span class="design-category">Graphic Design</span>
+                                <span class="design-year">2024</span>
+                            </div>
+                            <p class="design-desc">
+                                Digital illustrations merging Japanese, Arabic, and Indian visual elements.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-6 col-lg-4" data-category="graphic">
+                    <div class="card-x design-card">
+                        <div class="design-media" style="background: linear-gradient(135deg, #8b5cf6, #7c3aed)">
+                            <div class="design-placeholder">
+                                <i class="bi bi-palette"></i>
+                                <span>Graphic Design</span>
+                            </div>
+                        </div>
+                        <div class="design-content">
+                            <h3 class="design-title">Cyber Samurai</h3>
+                            <div class="design-meta">
+                                <span class="design-category">Graphic Design</span>
+                                <span class="design-year">2023</span>
+                            </div>
+                            <p class="design-desc">
+                                Neon-noir character designs blending traditional armor with cyberpunk.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Clothing Design -->
+                <div class="col-md-6 col-lg-4" data-category="clothing">
+                    <div class="card-x design-card">
+                        <div class="design-media" style="background: linear-gradient(135deg, #ef4444, #dc2626)">
+                            <div class="design-placeholder">
+                                <i class="bi bi-person-standing"></i>
+                                <span>Clothing Design</span>
+                            </div>
+                        </div>
+                        <div class="design-content">
+                            <h3 class="design-title">Yūrei Streetwear</h3>
+                            <div class="design-meta">
+                                <span class="design-category">Clothing Design</span>
+                                <span class="design-year">2023</span>
+                            </div>
+                            <p class="design-desc">
+                                Limited-edition streetwear collection with Japanese ghost lore motifs.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-6 col-lg-4" data-category="clothing">
+                    <div class="card-x design-card">
+                        <div class="design-media" style="background: linear-gradient(135deg, #10b981, #059669)">
+                            <div class="design-placeholder">
+                                <i class="bi bi-person-standing"></i>
+                                <span>Clothing Design</span>
+                            </div>
+                        </div>
+                        <div class="design-content">
+                            <h3 class="design-title">Desert Nomad</h3>
+                            <div class="design-meta">
+                                <span class="design-category">Clothing Design</span>
+                                <span class="design-year">2024</span>
+                            </div>
+                            <p class="design-desc">
+                                Apparel inspired by Arabic desert culture with flowing silhouettes.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Photography -->
+                <div class="col-md-6 col-lg-4" data-category="photography">
+                    <div class="card-x design-card">
+                        <div class="design-media" style="background: linear-gradient(135deg, #3b82f6, #1d4ed8)">
+                            <div class="design-placeholder">
+                                <i class="bi bi-camera"></i>
+                                <span>Photography</span>
+                            </div>
+                        </div>
+                        <div class="design-content">
+                            <h3 class="design-title">Urban Echoes</h3>
+                            <div class="design-meta">
+                                <span class="design-category">Photography</span>
+                                <span class="design-year">2024</span>
+                            </div>
+                            <p class="design-desc">
+                                Street photography exploring traditional and modern urban landscapes.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-6 col-lg-4" data-category="photography">
+                    <div class="card-x design-card">
+                        <div class="design-media" style="background: linear-gradient(135deg, #8b5cf6, #7c3aed)">
+                            <div class="design-placeholder">
+                                <i class="bi bi-camera"></i>
+                                <span>Photography</span>
+                            </div>
+                        </div>
+                        <div class="design-content">
+                            <h3 class="design-title">Elements: Water & Light</h3>
+                            <div class="design-meta">
+                                <span class="design-category">Photography</span>
+                                <span class="design-year">2023</span>
+                            </div>
+                            <p class="design-desc">
+                                Long-exposure photography capturing water-light relationships.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Logo & Branding -->
+                <div class="col-md-6 col-lg-4" data-category="logo">
+                    <div class="card-x design-card">
+                        <div class="design-media" style="background: linear-gradient(135deg, #f97316, #ea580c)">
+                            <div class="design-placeholder">
+                                <i class="bi bi-brush"></i>
+                                <span>Logo Design</span>
+                            </div>
+                        </div>
+                        <div class="design-content">
+                            <h3 class="design-title">Kazora Watches</h3>
+                            <div class="design-meta">
+                                <span class="design-category">Logo & Branding</span>
+                                <span class="design-year">2023</span>
+                            </div>
+                            <p class="design-desc">
+                                Complete luxury watch brand identity system.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-6 col-lg-4" data-category="logo">
+                    <div class="card-x design-card">
+                        <div class="design-media" style="background: linear-gradient(135deg, #84cc16, #65a30d)">
+                            <div class="design-placeholder">
+                                <i class="bi bi-brush"></i>
+                                <span>Branding</span>
+                            </div>
+                        </div>
+                        <div class="design-content">
+                            <h3 class="design-title">Chai Chronicles</h3>
+                            <div class="design-meta">
+                                <span class="design-category">Logo & Branding</span>
+                                <span class="design-year">2024</span>
+                            </div>
+                            <p class="design-desc">
+                                Whimsical branding for specialty tea house.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- More Graphic Design -->
+                <div class="col-md-6 col-lg-4" data-category="graphic">
+                    <div class="card-x design-card">
+                        <div class="design-media" style="background: linear-gradient(135deg, #ec4899, #db2777)">
+                            <div class="design-placeholder">
+                                <i class="bi bi-palette"></i>
+                                <span>Graphic Design</span>
+                            </div>
+                        </div>
+                        <div class="design-content">
+                            <h3 class="design-title">Geometric Nature</h3>
+                            <div class="design-meta">
+                                <span class="design-category">Graphic Design</span>
+                                <span class="design-year">2024</span>
+                            </div>
+                            <p class="design-desc">
+                                Repeat patterns inspired by organic forms.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- More Clothing -->
+                <div class="col-md-6 col-lg-4" data-category="clothing">
+                    <div class="card-x design-card">
+                        <div class="design-media" style="background: linear-gradient(135deg, #06b6d4, #0891b2)">
+                            <div class="design-placeholder">
+                                <i class="bi bi-person-standing"></i>
+                                <span>Clothing Design</span>
+                            </div>
+                        </div>
+                        <div class="design-content">
+                            <h3 class="design-title">Tech-Wear Fusion</h3>
+                            <div class="design-meta">
+                                <span class="design-category">Clothing Design</span>
+                                <span class="design-year">2023</span>
+                            </div>
+                            <p class="design-desc">
+                                Functional outerwear with technical fabrics.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- More Photography -->
+                <div class="col-md-6 col-lg-4" data-category="photography">
+                    <div class="card-x design-card">
+                        <div class="design-media" style="background: linear-gradient(135deg, #fbbf24, #f59e0b)">
+                            <div class="design-placeholder">
+                                <i class="bi bi-camera"></i>
+                                <span>Photography</span>
+                            </div>
+                        </div>
+                        <div class="design-content">
+                            <h3 class="design-title">Portrait Stories</h3>
+                            <div class="design-meta">
+                                <span class="design-category">Photography</span>
+                                <span class="design-year">2024</span>
+                            </div>
+                            <p class="design-desc">
+                                Cultural identity portrait series.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- More Logo -->
+                <div class="col-md-6 col-lg-4" data-category="logo">
+                    <div class="card-x design-card">
+                        <div class="design-media" style="background: linear-gradient(135deg, #a855f7, #9333ea)">
+                            <div class="design-placeholder">
+                                <i class="bi bi-brush"></i>
+                                <span>Brand Identity</span>
+                            </div>
+                        </div>
+                        <div class="design-content">
+                            <h3 class="design-title">Lumina Tech</h3>
+                            <div class="design-meta">
+                                <span class="design-category">Logo & Branding</span>
+                                <span class="design-year">2024</span>
+                            </div>
+                            <p class="design-desc">
+                                Modern tech startup branding.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="py-4">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-links">
+                    <a href="index.html" class="clickable">Home</a>
+                    <a href="about.html" class="clickable">About</a>
+                    <a href="designs.html" class="clickable active">Designs</a>
+                    <a href="index.html#contact" class="clickable">Contact</a>
+                </div>
+                <div class="social-links">
+                    <a href="https://github.com/kasbihari" aria-label="GitHub" class="clickable">
+                        <i class="bi bi-github"></i>
+                    </a>
+                    <a href="https://www.linkedin.com/in/krishna-b-098124339/" aria-label="LinkedIn" class="clickable">
+                        <i class="bi bi-linkedin"></i>
+                    </a>
+                    <a href="https://www.instagram.com/_kr.shna_/" aria-label="Instagram" class="clickable">
+                        <i class="bi bi-instagram"></i>
+                    </a>
+                    <a href="https://x.com/_krshna_04" aria-label="Twitter" class="clickable">
+                        <i class="bi bi-twitter"></i>
+                    </a>
+                </div>
+                <div class="text-center">
+                    <div class="small text-secondary">
+                        © <span id="year"></span> Krishna Bihari. All rights reserved.
+                    </div>
+                    <div class="small text-secondary">
+                        Theme: <strong id="themeName">Burgundy Noir</strong> · 
+                        <span class="text-secondary">design portfolio</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Floating Theme Switch -->
+    <div class="theme-fab">
+        <button id="themeToggle" class="btn-x clickable">
+            <i class="bi bi-palette2 me-1"></i> Theme
+        </button>
+        <div id="themePanel" class="theme-panel">
+            <div class="theme-cat">Signature Style</div>
+            <div class="theme-item clickable" data-theme="burgundy-noir">
+                <div class="swatch" style="background: linear-gradient(135deg, #b41c3b, #7f1126)"></div>
+                <div>
+                    <div><strong>Burgundy Noir</strong></div>
+                    <small class="text-secondary">dark, rich & cinematic</small>
+                </div>
+            </div>
+            <div class="theme-item clickable" data-theme="elegant-desert">
+                <div class="swatch duo"><span></span><span></span></div>
+                <div>
+                    <div><strong>Elegant Desert</strong></div>
+                    <small class="text-secondary">bright, natural & elegant</small>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
