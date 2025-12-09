@@ -10,223 +10,52 @@ document.addEventListener('DOMContentLoaded', function() {
     const designCards = document.querySelectorAll('.designs-grid .col-md-6');
     const gridContainer = document.querySelector('.designs-grid');
     
-    // Design data for popup
+    // Design data for popup - Only 3 projects
     const designData = {
-        'cultural-fusion': {
-            title: 'Cultural Fusion Series',
-            subtitle: 'Digital illustrations merging visual elements from multiple cultures',
-            category: 'Graphic Design',
+        'kazora-brand': {
+            title: 'Kazora Brand Identity',
+            subtitle: 'Complete luxury brand identity system',
+            category: 'Brand Identity',
             year: '2024',
-            description: 'A series of digital illustrations merging Japanese, Arabic, and Indian visual elements into contemporary designs. This project explores cultural symbology through modern graphic techniques, creating visual narratives that bridge traditional aesthetics with contemporary design language.',
+            description: 'A comprehensive brand identity system for Kazora, a luxury lifestyle brand. This project includes logo design, typography system, color palette, brand guidelines, and application across various touchpoints. The design language balances minimalism with sophistication, creating a timeless and elegant brand presence.',
             images: [
-                { src: 'https://images.unsplash.com/photo-1631679706909-1844bbd07221?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80', caption: 'Japanese wave patterns meet Arabic calligraphy' },
-                { src: 'https://images.unsplash.com/photo-1542744095-fcf48d80b0fd?ixlib=rb-4.0.3&auto=format&fit=crop&w-800&q=80', caption: 'Mandala-inspired geometric patterns' },
-                { src: 'https://images.unsplash.com/photo-1626785774573-4b799315345d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80', caption: 'Color palette inspired by traditional textiles' },
-                { src: 'https://images.unsplash.com/photo-1579546929662-711aa81148cf?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80', caption: 'Digital painting process' },
-                { src: 'https://images.unsplash.com/photo-1541961017774-22349e4a1262?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80', caption: 'Final series presentation' }
+                { src: 'assets/designs/Kazora.jpg', caption: 'Logo' },
+                { src: 'assets/designs/Kazora2.jpeg', caption: 'A more stylish logo' },
             ],
-            tools: ['Adobe Illustrator', 'Procreate', 'Photoshop'],
-            timeframe: '2-3 weeks',
-            liveLink: '#',
-            codeLink: '#'
-        },
-        'cyber-samurai': {
-            title: 'Cyber Samurai',
-            subtitle: 'Neon-noir character designs blending traditional armor with cyberpunk',
-            category: 'Graphic Design',
-            year: '2023',
-            description: 'Neon-noir character designs blending traditional Japanese armor with cyberpunk aesthetics and futuristic elements. This series reimagines samurai warriors in a dystopian future where technology and tradition collide.',
-            images: [
-                { src: 'https://images.unsplash.com/photo-1550745165-9bc0b252726f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80', caption: 'Main character design' },
-                { src: 'https://images.unsplash.com/photo-1518709268805-4e9042af2176?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80', caption: 'Weapon design concepts' },
-                { src: 'https://images.unsplash.com/photo-1578662996442-48f60103fc96?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80', caption: 'Neon lighting studies' },
-                { src: 'https://images.unsplash.com/photo-1551650975-87deedd944c3?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80', caption: 'Environment concept art' }
-            ],
-            tools: ['Photoshop', 'Blender 3D', 'After Effects'],
-            timeframe: '3-4 weeks',
-            liveLink: '#',
-            codeLink: '#'
-        },
-        'yurei-streetwear': {
-            title: 'Yūrei Streetwear',
-            subtitle: 'Limited-edition streetwear collection with Japanese ghost lore motifs',
-            category: 'Clothing Design',
-            year: '2023',
-            description: 'A limited-edition streetwear collection featuring Japanese ghost lore motifs with modern cut-and-sew construction. Each piece tells a story from Japanese folklore through contemporary fashion.',
-            images: [
-                { src: 'https://images.unsplash.com/photo-1558769132-cb1fc898c1e7?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80', caption: 'Collection overview' },
-                { src: 'https://images.unsplash.com/photo-1523381210434-271e8be1f52b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80', caption: 'Yūrei spirit print design' },
-                { src: 'https://images.unsplash.com/photo-1489987707025-afc232f7ea0f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80', caption: 'Hoodie detail - embroidery' },
-                { src: 'https://images.unsplash.com/photo-1490481651871-ab68de25d43d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80', caption: 'Model photography' },
-                { src: 'https://images.unsplash.com/photo-1520006403909-838d6b92c22e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80', caption: 'Lookbook spread' },
-                { src: 'https://images.unsplash.com/photo-1496747611176-843222e1e57c?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80', caption: 'Packaging design' }
-            ],
-            tools: ['Pattern Making', 'Screen Printing', 'Digital Embroidery'],
+            tools: ['Logo Design', 'Brand Strategy', 'Typography', 'Color Theory', 'Packaging Design'],
             timeframe: '4-6 weeks',
-            liveLink: '#',
-            codeLink: '#'
+            instagramLink: 'https://www.instagram.com/noirress/'
         },
-        'desert-nomad': {
-            title: 'Desert Nomad',
-            subtitle: 'Apparel inspired by Arabic desert culture with flowing silhouettes',
-            category: 'Clothing Design',
+        'noirres-streetwear': {
+            title: 'Noirres Streetwear',
+            subtitle: 'Urban streetwear collection with Japanese influences',
+            category: 'Streetwear',
             year: '2024',
-            description: 'Apparel line inspired by Arabic desert culture, featuring flowing silhouettes and intricate embroidery patterns. This collection explores the intersection of nomadic traditions and modern fashion.',
+            description: 'A premium streetwear collection that merges Japanese aesthetic principles with contemporary urban fashion. Noirres explores the concept of "wabi-sabi" (beauty in imperfection) through distressed fabrics, asymmetric cuts, and minimalist detailing. The collection features oversized silhouettes, technical fabrics, and subtle branding.',
             images: [
-                { src: 'https://images.unsplash.com/photo-1490481651871-ab68de25d43d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80', caption: 'Collection concept board' },
-                { src: 'https://images.unsplash.com/photo-1523381210434-271e8be1f52b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80', caption: 'Fabric selection and samples' },
-                { src: 'https://images.unsplash.com/photo-1489987707025-afc232f7ea0f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80', caption: 'Detailed embroidery patterns' }
+                { src: 'assets/designs/Noirres.png', caption: 'Noirres logo' },
             ],
-            tools: ['Digital Pattern Design', 'Embroidery Design', 'Fabric Dyeing'],
-            timeframe: 'In Progress',
-            liveLink: '#',
-            codeLink: '#'
+            tools: ['Pattern Making', 'Technical Drawing', 'Fabric Sourcing', 'Photography', 'Branding'],
+            timeframe: '6-8 weeks',
+            instagramLink: 'https://www.instagram.com/noirres/'
         },
-        'urban-echoes': {
-            title: 'Urban Echoes',
-            subtitle: 'Street photography exploring traditional and modern urban landscapes',
-            category: 'Photography',
+        'kazora-luxury': {
+            title: 'Kazora Luxury Collection',
+            subtitle: 'High-end luxury goods and exclusive accessories',
+            category: 'Luxury',
             year: '2024',
-            description: 'Street photography collection exploring the intersection of traditional architecture and modern urban landscapes. Capturing moments where history and contemporary life converge.',
+            description: 'An exclusive luxury collection under the Kazora brand, featuring premium accessories, leather goods, and lifestyle products. This collection emphasizes exceptional craftsmanship, rare materials, and attention to detail. Each piece is designed to be timeless, functional, and a statement of refined taste.',
             images: [
-                { src: 'https://images.unsplash.com/photo-1541336032412-2048a678540d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80', caption: 'Traditional market alley' },
-                { src: 'https://images.unsplash.com/photo-1559131397-f94da358f059?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80', caption: 'Modern architecture reflection' },
-                { src: 'https://images.unsplash.com/photo-1513475382585-d06e58bcb0e0?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80', caption: 'Street scene at golden hour' },
-                { src: 'https://images.unsplash.com/photo-1538469990725-c8e59f1c3e43?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80', caption: 'Urban geometry patterns' },
-                { src: 'https://images.unsplash.com/photo-1559827260-dc66d52bef19?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80', caption: 'Cultural juxtaposition' },
-                { src: 'https://images.unsplash.com/photo-1542327897-d73f4005b533?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80', caption: 'Night photography series' },
-                { src: 'https://images.unsplash.com/photo-1583939003579-730e3918a45a?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80', caption: 'Urban textures' },
-                { src: 'https://images.unsplash.com/photo-1541336032412-2048a678540d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80', caption: 'Final curated selection' }
+                { src: 'assets/designs/KZ-T1-Red.jpeg', caption: 'Classy red tracksuit design.' },
+                { src: 'assets/designs/KZ-T1-Blue.jpeg', caption: 'Classy blue tracksuit design.' },
+                { src: 'assets/designs/KZ-T1-Green.jpeg', caption: 'Classy green tracksuit design.' },
+                { src: 'assets/designs/KZ-T1-Black.jpeg', caption: 'Classy black tracksuit design.' },
+                { src: 'assets/designs/KZ-T1-Brown.jpeg', caption: 'Classy brown tracksuit design.' }
+                
             ],
-            tools: ['Sony α7 III', 'Lightroom', 'Street Photography'],
-            timeframe: '1-2 weeks',
-            liveLink: '#',
-            codeLink: '#'
-        },
-        'water-light': {
-            title: 'Elements: Water & Light',
-            subtitle: 'Long-exposure photography capturing water-light relationships',
-            category: 'Photography',
-            year: '2023',
-            description: 'Long-exposure photography capturing the dynamic relationship between water surfaces and changing light conditions. Meditative compositions that explore the interplay of natural elements.',
-            images: [
-                { src: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80', caption: 'Morning reflections' },
-                { src: 'https://images.unsplash.com/photo-1439066615861-d1af74d74000?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80', caption: 'Water surface patterns' },
-                { src: 'https://images.unsplash.com/photo-1505142468610-359e7d316be0?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80', caption: 'Sunset on water' },
-                { src: 'https://images.unsplash.com/photo-1518837695005-2083093ee35b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80', caption: 'Long exposure river' },
-                { src: 'https://images.unsplash.com/photo-1519681393784-d120267933ba?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80', caption: 'Night water reflections' },
-                { src: 'https://images.unsplash.com/photo-1472214103451-9374bd1c798e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80', caption: 'Abstract water patterns' },
-                { src: 'https://images.unsplash.com/photo-1418065460487-3e41a6c84dc5?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80', caption: 'Series exhibition layout' }
-            ],
-            tools: ['Canon EOS R5', 'ND Filters', 'Long Exposure'],
-            timeframe: '2 weeks',
-            liveLink: '#',
-            codeLink: '#'
-        },
-        'kazora-watches': {
-            title: 'Kazora Watches',
-            subtitle: 'Complete luxury watch brand identity system',
-            category: 'Logo & Branding',
-            year: '2023',
-            description: 'Complete brand identity for a luxury watch company, including logo, packaging, and visual language system. The design communicates precision, heritage, and exclusivity.',
-            images: [
-                { src: 'https://images.unsplash.com/photo-1523170335258-f5ed11844a49?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80', caption: 'Logo development sketches' },
-                { src: 'https://images.unsplash.com/photo-1546868871-7041f2a55e12?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80', caption: 'Final logo mark' },
-                { src: 'https://images.unsplash.com/photo-1524592094714-0f0654e20314?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80', caption: 'Packaging design' },
-                { src: 'https://images.unsplash.com/photo-1551816230-ef5deaed4a26?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80', caption: 'Brand guidelines book' }
-            ],
-            tools: ['Logo Design', 'Brand Guidelines', 'Packaging Design'],
-            timeframe: '3-4 weeks',
-            liveLink: '#',
-            codeLink: '#'
-        },
-        'chai-chronicles': {
-            title: 'Chai Chronicles Café',
-            subtitle: 'Whimsical branding for specialty tea house',
-            category: 'Logo & Branding',
-            year: '2024',
-            description: 'Whimsical yet sophisticated branding for a specialty tea house, blending traditional motifs with contemporary design. Creating a warm, inviting atmosphere through visual identity.',
-            images: [
-                { src: 'https://images.unsplash.com/photo-1575089976121-8ed7b2a54265?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80', caption: 'Logo and wordmark' },
-                { src: 'https://images.unsplash.com/photo-1563729784474-d77dbb933a9e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80', caption: 'Illustration system' },
-                { src: 'https://images.unsplash.com/photo-1517256064527-09c73fc073e0?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80', caption: 'Menu design' },
-                { src: 'https://images.unsplash.com/photo-1567306301408-9b74779a11af?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80', caption: 'Tea packaging series' },
-                { src: 'https://images.unsplash.com/photo-1594736797933-d1004ba2bfc9?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80', caption: 'Store signage mockup' }
-            ],
-            tools: ['Typography', 'Packaging Design', 'Environmental Graphics'],
-            timeframe: '3 weeks',
-            liveLink: '#',
-            codeLink: '#'
-        },
-        'geometric-nature': {
-            title: 'Geometric Nature',
-            subtitle: 'Repeat patterns inspired by organic forms',
-            category: 'Graphic Design',
-            year: '2024',
-            description: 'Repeat patterns and textures inspired by natural forms, created for textile and surface design applications. Exploring the mathematical beauty in organic structures.',
-            images: [
-                { src: 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80', caption: 'Pattern research and sketches' },
-                { src: 'https://images.unsplash.com/photo-1550684848-fac1c5b4e853?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80', caption: 'Digital pattern development' },
-                { src: 'https://images.unsplash.com/photo-1516802273409-68526ee1bdd6?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80', caption: 'Color variations' }
-            ],
-            tools: ['Adobe Fresco', 'Pattern Design', 'Vector Illustration'],
-            timeframe: 'In Progress',
-            liveLink: '#',
-            codeLink: '#'
-        },
-        'tech-wear-fusion': {
-            title: 'Tech-Wear Fusion',
-            subtitle: 'Functional outerwear combining technical fabrics with traditional patterns',
-            category: 'Clothing Design',
-            year: '2023',
-            description: 'Functional outerwear combining technical fabrics with traditional Indian textile patterns and modern streetwear aesthetics. Performance meets cultural expression.',
-            images: [
-                { src: 'https://images.unsplash.com/photo-1552374196-c4e7ffc6e126?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80', caption: 'Jacket design concept' },
-                { src: 'https://images.unsplash.com/photo-1523381210434-271e8be1f52b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80', caption: 'Fabric technology details' },
-                { src: 'https://images.unsplash.com/photo-1490481651871-ab68de25d43d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80', caption: 'Pattern integration studies' },
-                { src: 'https://images.unsplash.com/photo-1489987707025-afc232f7ea0f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80', caption: 'Prototype testing' },
-                { src: 'https://images.unsplash.com/photo-1539533018447-63df8b6f9cc9?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80', caption: 'Final collection presentation' }
-            ],
-            tools: ['Tech Wear Design', 'CAD Pattern', 'Functional Fabrics'],
-            timeframe: '5-6 weeks',
-            liveLink: '#',
-            codeLink: '#'
-        },
-        'portrait-stories': {
-            title: 'Portrait Stories',
-            subtitle: 'Cultural identity portrait series',
-            category: 'Photography',
-            year: '2024',
-            description: 'Portrait series documenting individuals at the intersection of multiple cultural identities and personal narratives. Exploring identity through intimate portraiture.',
-            images: [
-                { src: 'https://images.unsplash.com/photo-1544005313-94ddf0286df2?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80', caption: 'Portrait 1: Cultural fusion' },
-                { src: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80', caption: 'Portrait 2: Identity exploration' },
-                { src: 'https://images.unsplash.com/photo-1494790108755-2616b612b786?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80', caption: 'Portrait 3: Personal narrative' },
-                { src: 'https://images.unsplash.com/photo-1544725176-7c40e5a71c5e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80', caption: 'Portrait 4: Heritage and modernity' },
-                { src: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80', caption: 'Portrait 5: Cultural duality' },
-                { src: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80', caption: 'Series exhibition concept' }
-            ],
-            tools: ['Studio Lighting', 'Capture One', 'Environmental Portraits'],
-            timeframe: 'In Progress',
-            liveLink: '#',
-            codeLink: '#'
-        },
-        'lumina-tech': {
-            title: 'Lumina Tech Solutions',
-            subtitle: 'Modern tech startup branding',
-            category: 'Logo & Branding',
-            year: '2024',
-            description: 'Modern tech startup branding focused on clean lines, dynamic motion, and scalable identity systems. Communicating innovation and reliability.',
-            images: [
-                { src: 'https://images.unsplash.com/photo-1634942537034-2531766767d1?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80', caption: 'Brand mark development' },
-                { src: 'https://images.unsplash.com/photo-1563013544-824ae1b704d3?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80', caption: 'Color system and typography' },
-                { src: 'https://images.unsplash.com/photo-1545235617-9465d2a55698?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80', caption: 'Digital applications' },
-                { src: 'https://images.unsplash.com/photo-1593642632823-8f785ba67e45?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80', caption: 'Brand guidelines document' }
-            ],
-            tools: ['Vector Design', 'Motion Graphics', 'Brand Strategy'],
-            timeframe: 'In Progress',
-            liveLink: '#',
-            codeLink: '#'
+            tools: ['Product Design', 'Material Science', 'Luxury Branding', 'Retail Design', 'Photography'],
+            timeframe: '8-12 weeks',
+            instagramLink: 'https://www.instagram.com/noirress/'
         }
     };
     
@@ -240,14 +69,14 @@ document.addEventListener('DOMContentLoaded', function() {
         let visibleCount = 0;
         
         designCards.forEach(card => {
-            const cardCategory = card.dataset.category;
+            const cardCategories = card.dataset.category.split(' ');
             
             // Reset animation
             card.style.opacity = '0';
             card.style.transform = 'translateY(20px)';
             card.style.animation = '';
             
-            if (category === 'all' || cardCategory === category) {
+            if (category === 'all' || cardCategories.includes(category)) {
                 // Show with animation
                 card.style.display = 'block';
                 visibleCount++;
@@ -371,24 +200,16 @@ document.addEventListener('DOMContentLoaded', function() {
         popupYear.textContent = data.year;
         popupDescription.textContent = data.description;
         
-        // Update action buttons
+        // Update action buttons - ONLY Instagram button
         popupActions.innerHTML = '';
-        if (data.liveLink) {
-            const liveBtn = document.createElement('a');
-            liveBtn.href = data.liveLink;
-            liveBtn.className = 'card-popup-btn card-popup-btn-primary';
-            liveBtn.target = '_blank';
-            liveBtn.innerHTML = '<i class="bi bi-eye"></i> Live Preview';
-            popupActions.appendChild(liveBtn);
-        }
         
-        if (data.codeLink) {
-            const codeBtn = document.createElement('a');
-            codeBtn.href = data.codeLink;
-            codeBtn.className = 'card-popup-btn card-popup-btn-secondary';
-            codeBtn.target = '_blank';
-            codeBtn.innerHTML = '<i class="bi bi-github"></i> View Code';
-            popupActions.appendChild(codeBtn);
+        if (data.instagramLink) {
+            const instaBtn = document.createElement('a');
+            instaBtn.href = data.instagramLink;
+            instaBtn.className = 'card-popup-btn card-popup-btn-primary';
+            instaBtn.target = '_blank';
+            instaBtn.innerHTML = '<i class="bi bi-instagram"></i> View on Instagram';
+            popupActions.appendChild(instaBtn);
         }
         
         // Clear and populate Pinterest grid
@@ -522,8 +343,8 @@ document.addEventListener('DOMContentLoaded', function() {
         // Don't trigger if in input field
         if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') return;
         
-        // Number keys 1-5 for filters
-        if (e.key >= '1' && e.key <= '5') {
+        // Number keys 1-4 for filters
+        if (e.key >= '1' && e.key <= '4') {
             const index = parseInt(e.key) - 1;
             if (filterButtons[index]) {
                 filterButtons[index].click();
