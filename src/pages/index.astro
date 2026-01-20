@@ -1,6 +1,5 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import LoadingScreen from '../components/astro/LoadingScreen.astro';
 import HeroSection from '../components/astro/HeroSection.astro';
 import AboutSection from '../components/astro/AboutSection.astro';
 import SkillGalaxy from '../components/react/skill-galaxy/SkillGalaxy';
@@ -9,9 +8,6 @@ import ContactSection from '../components/react/contact/ContactSection.tsx';
 ---
 
 <Layout>
-  <!-- Loading Screen -->
-  <LoadingScreen client:load />
-  
   <!-- Hero Section -->
   <HeroSection />
   
@@ -27,3 +23,93 @@ import ContactSection from '../components/react/contact/ContactSection.tsx';
   <!-- Contact Section -->
   <ContactSection client:load />
 </Layout>
+
+<!-- Loading Screen als inline HTML (werkt altijd) -->
+<div id="loading-screen" style="
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #0a0506 0%, #1a0a0f 15%, #2d0f17 30%, #4a1522 45%, #6d1f31 60%, #8a273d 75%, #a52f4a 90%, #b41c3b 100%);
+  color: #f0f0f0;
+  transition: opacity 1s ease;
+">
+  <div style="
+    text-align: center;
+    max-width: 36rem;
+    padding: 0 1.5rem;
+  ">
+    <h1 style="
+      font-size: 4rem;
+      font-family: var(--font-amsterdam);
+      color: var(--ink);
+      margin-bottom: 1rem;
+      font-weight: normal;
+      letter-spacing: 0.02em;
+      text-shadow: 0 2px 20px rgba(0, 0, 0, 0.3);
+      animation: fadeIn 1s ease;
+    ">
+      Krishna Bihari
+    </h1>
+    <div style="
+      width: 8rem;
+      height: 0.125rem;
+      background: linear-gradient(90deg, transparent, var(--accent), transparent);
+      margin: 2rem auto;
+    "></div>
+    <p style="
+      font-family: var(--font-display);
+      font-size: 1.5rem;
+      color: var(--ink-2);
+      font-weight: 300;
+      font-style: italic;
+      letter-spacing: 0.01em;
+      line-height: 1.4;
+      animation: fadeIn 1s ease 0.3s both;
+    ">
+      Blending Code, Art & Culture
+    </p>
+  </div>
+</div>
+
+<style>
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  
+  @media (min-width: 768px) {
+    #loading-screen h1 {
+      font-size: 5rem;
+    }
+    #loading-screen p {
+      font-size: 1.75rem;
+    }
+  }
+  
+  @media (min-width: 1024px) {
+    #loading-screen h1 {
+      font-size: 6rem;
+    }
+  }
+</style>
+
+<script>
+  // Simple JavaScript om loading screen te verwijderen na 3 seconden
+  document.addEventListener('DOMContentLoaded', () => {
+    const loadingScreen = document.getElementById('loading-screen');
+    
+    if (loadingScreen) {
+      setTimeout(() => {
+        loadingScreen.style.opacity = '0';
+        
+        setTimeout(() => {
+          loadingScreen.style.display = 'none';
+        }, 1000); // Wacht op fade-out animatie
+      }, 3000); // 3 seconden
+    }
+  });
+</script>
