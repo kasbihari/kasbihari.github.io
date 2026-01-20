@@ -1,21 +1,94 @@
-/* Clean Bordeaux Gradient - Geen effects, alleen de gradient */
+/* Dark Animated Bordeaux Gradient */
 .bordeaux-bg {
+  /* Donkerdere gradient met meer diepte */
   background: linear-gradient(
     135deg,
-    #0a0506 0%,          /* Zeer donker rood-zwart */
-    #1a0a0f 15%,         /* Donker bordeaux */
-    #2d0f17 30%,         /* Medium donker bordeaux */
-    #4a1522 45%,         /* Rijke bordeaux */
-    #6d1f31 60%,         /* Diepe bordeaux */
-    #8a273d 75%,         /* Warme bordeaux */
-    #a52f4a 90%,         /* Helder bordeaux */
-    #b41c3b 100%         /* Accent bordeaux */
+    #060203 0%,          /* Donkerder: bijna zwart-rood */
+    #0f0609 15%,         /* Diep bordeaux */
+    #1a0a10 30%,         /* Donker bordeaux */
+    #2d0f18 45%,         /* Rijke donkere bordeaux */
+    #451522 60%,         /* Diepe wijnrood */
+    #5c1a29 75%,         /* Donker robijn */
+    #7a1f34 90%,         /* Verzadigd bordeaux */
+    #8c243c 100%         /* Iets lichter accent */
   );
+  /* Maak gradient groter voor vloeiende animatie */
+  background-size: 300% 300%;
   min-height: 100vh;
-  color: #f0f0f0;
+  
+  /* Zorg dat ALLE tekst wit is */
+  color: #ffffff !important;
+  
+  /* Langzamere, vloeiendere animatie */
+  animation: gradientFlow 35s ease-in-out infinite;
 }
 
-/* Zorg dat content goed werkt */
+/* Vloeiende beweging van de gradient */
+@keyframes gradientFlow {
+  0% {
+    background-position: 0% 0%;
+  }
+  25% {
+    background-position: 100% 50%;
+  }
+  50% {
+    background-position: 50% 100%;
+  }
+  75% {
+    background-position: 0% 50%;
+  }
+  100% {
+    background-position: 0% 0%;
+  }
+}
+
+/* Zorg dat alle child elementen ook witte tekst hebben */
+.bordeaux-bg * {
+  color: inherit;
+}
+
+.bordeaux-bg a {
+  color: #ffccd8; /* Licht roze voor links voor contrast */
+}
+
+.bordeaux-bg a:hover {
+  color: #ffffff;
+  text-decoration: underline;
+}
+
+/* Toegankelijkheid: respecteer reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .bordeaux-bg {
+    animation: none;
+    background-size: cover;
+    background-position: center;
+  }
+}
+
+/* Mobiele optimalisatie: nog langzamer */
+@media (max-width: 768px) {
+  .bordeaux-bg {
+    animation-duration: 45s;
+    background-size: 350% 350%;
+  }
+}
+
+/* Content container */
 .site-content {
   min-height: calc(100vh - 160px);
+  position: relative;
+  z-index: 1;
+}
+
+/* Forceer witte tekst op specifieke elementen als nodig */
+.bordeaux-bg h1,
+.bordeaux-bg h2,
+.bordeaux-bg h3,
+.bordeaux-bg h4,
+.bordeaux-bg h5,
+.bordeaux-bg h6,
+.bordeaux-bg p,
+.bordeaux-bg span,
+.bordeaux-bg li {
+  color: #ffffff;
 }
