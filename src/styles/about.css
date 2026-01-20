@@ -1,0 +1,19 @@
+/* About Section - Geen background, gebruikt globale bordeaux gradient */
+.about-section {
+  padding: 6rem 1.5rem;
+  position: relative;
+}
+
+@media (min-width: 768px) {
+  .about-section {
+    padding: 8rem 3rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .about-section {
+    padding: 10rem 6rem;
+  }
+}
+
+/* Rest van je about styling... */

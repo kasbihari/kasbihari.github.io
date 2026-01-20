@@ -1,0 +1,23 @@
+---
+import '../styles/globals.css';
+import Header from '../components/astro/Header.astro';
+import Footer from '../components/astro/Footer.astro';
+---
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Krishna Bihari | Full-Stack Developer & Graphic Designer</title>
+    <meta name="description" content="Blending Code, Art & Culture - A cinematic portfolio of Krishna Bihari" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  </head>
+  <body class="bordeaux-bg">
+    <Header />
+    <div class="site-content">
+      <slot />
+    </div>
+    <Footer />
+  </body>
+</html>

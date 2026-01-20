@@ -1,0 +1,125 @@
+/* Contact Section - Clean */
+.contactSection {
+  padding: 6rem 1.5rem;
+  position: relative;
+}
+
+@media (min-width: 768px) {
+  .contactSection {
+    padding: 8rem 3rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .contactSection {
+    padding: 10rem 6rem;
+  }
+}
+
+.contactContainer {
+  max-width: 600px;
+  margin: 0 auto;
+  width: 100%;
+  text-align: center;
+}
+
+.contactHeader {
+  margin-bottom: 4rem;
+}
+
+.contactTitle {
+  font-size: 3.5rem;
+  font-family: var(--font-display);
+  color: var(--ink);
+  margin-bottom: 1rem;
+  font-weight: 600;
+}
+
+.contactSubtitle {
+  font-size: 1.25rem;
+  color: var(--ink-2);
+  font-family: var(--font-ui);
+  font-weight: 300;
+}
+
+.contactCard {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: var(--radius);
+  padding: 3rem 2rem;
+  backdrop-filter: blur(10px);
+  margin-bottom: 2rem;
+}
+
+.contactIcon {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--accent-2), var(--accent-3));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  margin: 0 auto 1.5rem;
+}
+
+.contactCard h3 {
+  font-size: 1.75rem;
+  font-family: var(--font-display);
+  color: var(--ink);
+  margin-bottom: 1rem;
+}
+
+.contactCard p {
+  color: var(--ink-2);
+  line-height: 1.6;
+  margin-bottom: 1.5rem;
+}
+
+.contactEmail {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--accent);
+  text-decoration: none;
+  font-family: var(--font-ui);
+  font-weight: 500;
+  padding: 0.75rem 1.5rem;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 2rem;
+  transition: all var(--speed-1) var(--easing);
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.contactEmail:hover {
+  background: rgba(180, 28, 59, 0.2);
+  border-color: var(--accent);
+  color: var(--ink);
+}
+
+.contactLinks {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-top: 2rem;
+}
+
+.contactLink {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--ink-2);
+  transition: all var(--speed-1) var(--easing);
+}
+
+.contactLink:hover {
+  background: rgba(180, 28, 59, 0.2);
+  color: white;
+  transform: translateY(-2px);
+  border-color: var(--accent);
+}

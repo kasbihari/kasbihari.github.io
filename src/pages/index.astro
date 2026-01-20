@@ -1,0 +1,29 @@
+---
+import Layout from '../layouts/Layout.astro';
+import LoadingScreen from '../components/astro/LoadingScreen.astro';
+import HeroSection from '../components/astro/HeroSection.astro';
+import AboutSection from '../components/astro/AboutSection.astro';
+import SkillGalaxy from '../components/react/skill-galaxy/SkillGalaxy';
+import ProjectsGrid from '../components/react/projects/ProjectsGrid.tsx';
+import ContactSection from '../components/react/contact/ContactSection.tsx';
+---
+
+<Layout>
+  <!-- Loading Screen -->
+  <LoadingScreen client:load />
+  
+  <!-- Hero Section -->
+  <HeroSection />
+  
+  <!-- About Section -->
+  <AboutSection />
+  
+  <!-- Skill Galaxy -->
+  <SkillGalaxy client:load />
+  
+  <!-- Projects Section -->
+  <ProjectsGrid client:load />
+  
+  <!-- Contact Section -->
+  <ContactSection client:load />
+</Layout>

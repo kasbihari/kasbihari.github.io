@@ -1,0 +1,104 @@
+---
+import { Github, Linkedin, Mail, FileText } from 'lucide-react';
+---
+
+<header class="site-header">
+  <div class="header-container">
+    <!-- Logo/Name links -->
+    <a href="/" class="header-logo">
+      Krishna Bihari
+    </a>
+
+    <!-- Social Links rechts -->
+    <nav class="header-nav">
+      <a 
+        href="https://github.com/kasbihari" 
+        target="_blank" 
+        rel="noopener noreferrer"
+        class="header-social-link"
+        aria-label="GitHub"
+      >
+        <Github class="header-icon" />
+      </a>
+      
+      <a 
+        href="https://linkedin.com/in/krishna-bihari" 
+        target="_blank" 
+        rel="noopener noreferrer"
+        class="header-social-link"
+        aria-label="LinkedIn"
+      >
+        <Linkedin class="header-icon" />
+      </a>
+      
+      <a 
+        href="mailto:hello@krishnabihari.com" 
+        class="header-social-link"
+        aria-label="Email"
+      >
+        <Mail class="header-icon" />
+      </a>
+      
+      <a 
+        href="/cv.pdf" 
+        target="_blank"
+        class="header-social-link"
+        aria-label="CV"
+      >
+        <FileText class="header-icon" />
+      </a>
+    </nav>
+  </div>
+</header>
+
+<style>
+  .site-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    background: rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    z-index: 1000;
+    padding: 1rem 1.5rem;
+  }
+  
+  .header-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .header-logo {
+    font-family: var(--font-amsterdam);
+    font-size: 1.5rem;
+    color: var(--ink);
+    text-decoration: none;
+    letter-spacing: -0.5px;
+  }
+  
+  .header-nav {
+    display: flex;
+    gap: 1.5rem;
+  }
+  
+  .header-social-link {
+    color: var(--ink-2);
+    transition: color var(--speed-1) var(--easing);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .header-social-link:hover {
+    color: var(--ink);
+  }
+  
+  .header-icon {
+    width: 1.25rem;
+    height: 1.25rem;
+  }
+</style>

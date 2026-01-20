@@ -1,0 +1,21 @@
+/* Clean Bordeaux Gradient - Geen effects, alleen de gradient */
+.bordeaux-bg {
+  background: linear-gradient(
+    135deg,
+    #0a0506 0%,          /* Zeer donker rood-zwart */
+    #1a0a0f 15%,         /* Donker bordeaux */
+    #2d0f17 30%,         /* Medium donker bordeaux */
+    #4a1522 45%,         /* Rijke bordeaux */
+    #6d1f31 60%,         /* Diepe bordeaux */
+    #8a273d 75%,         /* Warme bordeaux */
+    #a52f4a 90%,         /* Helder bordeaux */
+    #b41c3b 100%         /* Accent bordeaux */
+  );
+  min-height: 100vh;
+  color: #f0f0f0;
+}
+
+/* Zorg dat content goed werkt */
+.site-content {
+  min-height: calc(100vh - 160px);
+}
