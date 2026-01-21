@@ -1,171 +1,107 @@
 ---
 // src/components/astro/Footer.astro
-import { Github, Linkedin, Mail, FileText, Heart, ChevronUp, Code, Palette } from 'lucide-react';
-import { motion } from 'framer-motion';
+import { Github, Linkedin, Mail, Heart, ChevronUp } from 'lucide-react';
 ---
 
-<footer class="w-full bg-gradient-to-t from-bg/95 via-bg-2/90 to-transparent border-t border-stroke/30 backdrop-blur-xl mt-auto">
-  <div class="max-w-7xl mx-auto px-6 lg:px-8 py-12 lg:py-16">
+<footer class="w-full border-t border-white/10 bg-gradient-to-t from-black/30 via-transparent to-transparent backdrop-blur-sm">
+  <div class="max-w-6xl mx-auto px-6 py-12">
     
-    <!-- Main Footer Content -->
-    <div class="grid grid-cols-1 lg:grid-cols-3 gap-10 lg:gap-16 mb-12">
-      
-      <!-- Left: Brand & Description -->
-      <div class="space-y-5">
-        <div class="flex items-center gap-3">
-          <div class="w-10 h-10 rounded-full bg-gradient-to-br from-accent to-accent-2 flex items-center justify-center">
-            <span class="text-ink font-bold text-lg">KB</span>
-          </div>
-          <h3 class="font-amsterdam text-3xl text-ink tracking-wide">Krishna Bihari</h3>
-        </div>
-        
-        <p class="text-ink-2/80 font-serif italic text-lg leading-relaxed max-w-md">
-          "Where <span class="text-accent-2 font-semibold">code</span> meets <span class="text-accent font-semibold">canvas</span>—crafting digital experiences that resonate."
-        </p>
-        
-        <div class="flex items-center gap-4 pt-4">
-          <div class="flex items-center gap-2 text-sm text-ink-3">
-            <Code size={14} />
-            <span>Full-Stack Dev</span>
-          </div>
-          <div class="flex items-center gap-2 text-sm text-ink-3">
-            <Palette size={14} />
-            <span>Graphic Designer</span>
-          </div>
-        </div>
+    <!-- Logo & Name Center -->
+    <div class="flex flex-col items-center justify-center mb-10">
+      <div class="flex items-center gap-4 mb-6">
+        <!-- Logo Icon -->
+        <h3 class="font-amsterdam text-4xl text-white tracking-wider">Krishna Bihari</h3>
       </div>
       
-      <!-- Center: Quick Links -->
-      <div class="grid grid-cols-2 gap-8">
-        <div class="space-y-4">
-          <h4 class="font-playfair text-lg font-semibold text-ink mb-4 pb-2 border-b border-stroke/30">Navigate</h4>
-          <nav class="flex flex-col gap-3">
-            {['About', 'Skills', 'Projects', 'Contact'].map((item) => (
-              <a 
-                href={`#${item.toLowerCase()}`}
-                class="text-ink-2 hover:text-accent-2 transition-colors duration-300 hover:translate-x-1 inline-block"
-              >
-                {item}
-              </a>
-            ))}
-          </nav>
-        </div>
-        
-        <div class="space-y-4">
-          <h4 class="font-playfair text-lg font-semibold text-ink mb-4 pb-2 border-b border-stroke/30">Resources</h4>
-          <nav class="flex flex-col gap-3">
-            <a href="/cv.pdf" target="_blank" class="text-ink-2 hover:text-accent-2 transition-colors duration-300">
-              Download CV
-            </a>
-            <a href="https://github.com/kasbihari" target="_blank" class="text-ink-2 hover:text-accent-2 transition-colors duration-300">
-              GitHub
-            </a>
-            <a href="/styleguide" class="text-ink-2 hover:text-accent-2 transition-colors duration-300">
-              Design System
-            </a>
-            <a href="/privacy" class="text-ink-2 hover:text-accent-2 transition-colors duration-300">
-              Privacy Policy
-            </a>
-          </nav>
-        </div>
-      </div>
-      
-      <!-- Right: Contact & Social -->
-      <div class="space-y-6">
-        <div>
-          <h4 class="font-playfair text-lg font-semibold text-ink mb-4 pb-2 border-b border-stroke/30">Let's Connect</h4>
-          <p class="text-ink-2 text-sm mb-6 max-w-xs">
-            Open to collaborations, freelance projects, or just a good conversation about tech and design.
-          </p>
-          <a 
-            href="mailto:hello@krishnabihari.com" 
-            class="inline-flex items-center gap-2 bg-gradient-to-r from-accent/20 to-accent-2/20 border border-stroke/30 rounded-custom-sm px-5 py-3 text-ink hover:from-accent/30 hover:to-accent-2/30 transition-all duration-300 group"
-          >
-            <Mail size={16} />
-            <span>hello@krishnabihari.com</span>
-          </a>
-        </div>
-        
-        <!-- Social Icons -->
-        <div class="pt-4">
-          <div class="flex items-center gap-4">
-            {[
-              { icon: Github, href: 'https://github.com/kasbihari', label: 'GitHub' },
-              { icon: Linkedin, href: 'https://linkedin.com/in/krishna-bihari', label: 'LinkedIn' },
-              { icon: FileText, href: '/cv.pdf', label: 'CV' },
-            ].map((social, index) => (
-              <a
-                href={social.href}
-                target={social.href.startsWith('http') ? '_blank' : undefined}
-                rel="noopener noreferrer"
-                aria-label={social.label}
-                class="w-12 h-12 rounded-full bg-bg-3 border border-stroke/30 flex items-center justify-center text-ink-2 hover:text-ink hover:border-accent/50 hover:bg-accent/10 hover:scale-110 transition-all duration-300 group"
-              >
-                <social.icon size={20} class="group-hover:rotate-6 transition-transform duration-300" />
-              </a>
-            ))}
-          </div>
-        </div>
-      </div>
+      <!-- Minimalist Tagline -->
+      <p class="text-white/70 font-playfair italic text-center text-lg max-w-md mb-8">
+        Blending <span class="text-accent-2 font-semibold">Code</span> & <span class="text-accent font-semibold">Art</span>
+      </p>
     </div>
     
-    <!-- Divider -->
-    <div class="h-px w-full bg-gradient-to-r from-transparent via-stroke/30 to-transparent my-10"></div>
+    <!-- Social Links - Clean Row -->
+    <div class="flex justify-center items-center gap-8 mb-10">
+      <a
+        href="https://github.com/kasbihari"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="group relative p-3"
+        aria-label="GitHub"
+      >
+        <div class="absolute inset-0 bg-gradient-to-br from-accent/10 to-accent-2/10 rounded-full blur-sm group-hover:blur-md transition-all duration-500"></div>
+        <Github size={22} class="relative text-white/80 group-hover:text-white transition-colors duration-300" />
+      </a>
+      
+      <a
+        href="https://linkedin.com/in/krishna-bihari"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="group relative p-3"
+        aria-label="LinkedIn"
+      >
+        <div class="absolute inset-0 bg-gradient-to-br from-accent/10 to-accent-2/10 rounded-full blur-sm group-hover:blur-md transition-all duration-500"></div>
+        <Linkedin size={22} class="relative text-white/80 group-hover:text-white transition-colors duration-300" />
+      </a>
+      
+      <a
+        href="mailto:hello@krishnabihari.com"
+        class="group relative p-3"
+        aria-label="Email"
+      >
+        <div class="absolute inset-0 bg-gradient-to-br from-accent/10 to-accent-2/10 rounded-full blur-sm group-hover:blur-md transition-all duration-500"></div>
+        <Mail size={22} class="relative text-white/80 group-hover:text-white transition-colors duration-300" />
+      </a>
+    </div>
     
-    <!-- Bottom Bar -->
-    <div class="flex flex-col md:flex-row justify-between items-center gap-6">
-      <div class="text-center md:text-left">
-        <p class="text-ink-3 text-sm">
-          © {new Date().getFullYear()} Krishna Bihari. All rights reserved.
-          <span class="mx-2">•</span>
-          Made with <Heart size={12} class="inline mx-1 text-accent" /> 
-          using Astro, React & Tailwind
-        </p>
-        <p class="text-ink-3/60 text-xs mt-2">
-          Fonts: Amsterdam Four • Playfair Display • Inter
-          <span class="mx-2">•</span>
-          Hosted on GitHub Pages
+    <!-- Minimal Divider -->
+    <div class="h-px w-48 mx-auto bg-gradient-to-r from-transparent via-white/20 to-transparent mb-10"></div>
+    
+    <!-- Bottom Bar - Super Clean -->
+    <div class="flex flex-col md:flex-row justify-between items-center gap-6 text-white/50 text-sm">
+      <div class="text-center md:text-left order-2 md:order-1">
+        <p class="flex items-center justify-center md:justify-start gap-1">
+          © {new Date().getFullYear()} Krishna Bihari
+          <Heart size={12} class="text-accent mx-1" />
+          All rights reserved
         </p>
       </div>
       
-      <!-- Back to Top Button -->
+      <!-- Back to Top - Elegant -->
       <button
         onclick="window.scrollTo({ top: 0, behavior: 'smooth' })"
-        class="group flex items-center gap-2 text-ink-2 hover:text-ink text-sm border border-stroke/30 rounded-custom-sm px-4 py-2 hover:border-accent/50 hover:bg-accent/10 transition-all duration-300"
+        class="group flex items-center gap-2 order-1 md:order-2 hover:text-white transition-colors duration-300"
         aria-label="Back to top"
       >
-        <ChevronUp size={16} class="group-hover:-translate-y-0.5 transition-transform duration-300" />
-        <span>Back to Top</span>
+        <span class="text-xs tracking-wider">BACK TO TOP</span>
+        <div class="relative">
+          <div class="absolute inset-0 bg-gradient-to-br from-accent/20 to-accent-2/20 rounded-full blur-sm group-hover:blur-md transition-all duration-500"></div>
+          <ChevronUp size={16} class="relative group-hover:-translate-y-0.5 transition-transform duration-300" />
+        </div>
       </button>
-    </div>
-    
-    <!-- Signature -->
-    <div class="text-center pt-10">
-      <p class="text-ink-3/40 text-xs font-mono">
-        <span class="text-accent/60">/*</span> Crafted with attention to detail <span class="text-accent/60">*/</span>
-      </p>
     </div>
   </div>
 </footer>
 
 <style is:global>
-  /* Footer animations */
-  .footer-link-hover {
+  /* Subtle hover effects */
+  footer a {
     position: relative;
+    overflow: hidden;
   }
   
-  .footer-link-hover::after {
+  footer a::after {
     content: '';
     position: absolute;
-    bottom: -2px;
-    left: 0;
+    bottom: 0;
+    left: 50%;
     width: 0;
     height: 1px;
-    background: linear-gradient(to right, var(--accent), var(--accent-2));
-    transition: width 0.3s var(--easing);
+    background: linear-gradient(90deg, transparent, var(--accent-2), transparent);
+    transition: all 0.3s var(--easing);
+    transform: translateX(-50%);
   }
   
-  .footer-link-hover:hover::after {
+  footer a:hover::after {
     width: 100%;
   }
 </style>
