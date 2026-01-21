@@ -1,211 +1,107 @@
 ---
 // src/components/astro/Footer.astro
-import { Github, Linkedin, Mail, FileText, Heart } from 'lucide-react';
+import { Github, Linkedin, Mail, Heart, ChevronUp } from 'lucide-react';
 ---
 
-<footer class="site-footer">
-  <div class="footer-container">
-    <!-- Left Column: Quote & Copyright -->
-    <div class="footer-content">
-      <h3>Krishna Bihari</h3>
-      <p class="footer-quote">
-        "Creating digital experiences that blend technical precision with artistic vision."
-      </p>
-      <p class="footer-copyright">
-        © {new Date().getFullYear()} Krishna Bihari. All rights reserved.<br />
-        Built with <Heart size={12} style={{ display: 'inline', verticalAlign: 'middle' }} />
-        using <a href="https://astro.build" target="_blank">Astro</a>, 
-        <a href="https://react.dev" target="_blank">React</a>, and 
-        <a href="https://tailwindcss.com" target="_blank">Tailwind CSS</a>.
+<footer class="w-full border-t border-white/10 bg-gradient-to-t from-black/30 via-transparent to-transparent backdrop-blur-sm">
+  <div class="max-w-6xl mx-auto px-6 py-12">
+    
+    <!-- Logo & Name Center -->
+    <div class="flex flex-col items-center justify-center mb-10">
+      <div class="flex items-center gap-4 mb-6">
+        <!-- Logo Icon -->
+        <h3 class="font-amsterdam text-4xl text-white tracking-wider">Krishna Bihari</h3>
+      </div>
+      
+      <!-- Minimalist Tagline -->
+      <p class="text-white/70 font-playfair italic text-center text-lg max-w-md mb-8">
+        Blending <span class="text-accent-2 font-semibold">Code</span> & <span class="text-accent font-semibold">Art</span>
       </p>
     </div>
-
-    <!-- Right Column: Links & Social -->
-    <div class="footer-links">
-      <div>
-        <h4>Navigation</h4>
-        <nav class="footer-nav">
-          <a href="#about">About</a>
-          <a href="#skills">Skills</a>
-          <a href="#projects">Projects</a>
-          <a href="#contact">Contact</a>
-        </nav>
+    
+    <!-- Social Links - Clean Row -->
+    <div class="flex justify-center items-center gap-8 mb-10">
+      <a
+        href="https://github.com/kasbihari"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="group relative p-3"
+        aria-label="GitHub"
+      >
+        <div class="absolute inset-0 bg-gradient-to-br from-accent/10 to-accent-2/10 rounded-full blur-sm group-hover:blur-md transition-all duration-500"></div>
+        <Github size={22} class="relative text-white/80 group-hover:text-white transition-colors duration-300" />
+      </a>
+      
+      <a
+        href="https://linkedin.com/in/krishna-bihari"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="group relative p-3"
+        aria-label="LinkedIn"
+      >
+        <div class="absolute inset-0 bg-gradient-to-br from-accent/10 to-accent-2/10 rounded-full blur-sm group-hover:blur-md transition-all duration-500"></div>
+        <Linkedin size={22} class="relative text-white/80 group-hover:text-white transition-colors duration-300" />
+      </a>
+      
+      <a
+        href="mailto:hello@krishnabihari.com"
+        class="group relative p-3"
+        aria-label="Email"
+      >
+        <div class="absolute inset-0 bg-gradient-to-br from-accent/10 to-accent-2/10 rounded-full blur-sm group-hover:blur-md transition-all duration-500"></div>
+        <Mail size={22} class="relative text-white/80 group-hover:text-white transition-colors duration-300" />
+      </a>
+    </div>
+    
+    <!-- Minimal Divider -->
+    <div class="h-px w-48 mx-auto bg-gradient-to-r from-transparent via-white/20 to-transparent mb-10"></div>
+    
+    <!-- Bottom Bar - Super Clean -->
+    <div class="flex flex-col md:flex-row justify-between items-center gap-6 text-white/50 text-sm">
+      <div class="text-center md:text-left order-2 md:order-1">
+        <p class="flex items-center justify-center md:justify-start gap-1">
+          © {new Date().getFullYear()} Krishna Bihari
+          <Heart size={12} class="text-accent mx-1" />
+          All rights reserved
+        </p>
       </div>
-
-      <div>
-        <h4>Connect</h4>
-        <div class="footer-social">
-          <a 
-            href="https://github.com/kasbihari" 
-            target="_blank" 
-            rel="noopener noreferrer"
-            aria-label="GitHub"
-            class="footer-social-link"
-          >
-            <Github size={18} />
-          </a>
-          <a 
-            href="https://linkedin.com/in/krishna-bihari" 
-            target="_blank" 
-            rel="noopener noreferrer"
-            aria-label="LinkedIn"
-            class="footer-social-link"
-          >
-            <Linkedin size={18} />
-          </a>
-          <a 
-            href="mailto:hello@krishnabihari.com" 
-            aria-label="Email"
-            class="footer-social-link"
-          >
-            <Mail size={18} />
-          </a>
-          <a 
-            href="/cv.pdf" 
-            target="_blank"
-            aria-label="CV"
-            class="footer-social-link"
-          >
-            <FileText size={18} />
-          </a>
+      
+      <!-- Back to Top - Elegant -->
+      <button
+        onclick="window.scrollTo({ top: 0, behavior: 'smooth' })"
+        class="group flex items-center gap-2 order-1 md:order-2 hover:text-white transition-colors duration-300"
+        aria-label="Back to top"
+      >
+        <span class="text-xs tracking-wider">BACK TO TOP</span>
+        <div class="relative">
+          <div class="absolute inset-0 bg-gradient-to-br from-accent/20 to-accent-2/20 rounded-full blur-sm group-hover:blur-md transition-all duration-500"></div>
+          <ChevronUp size={16} class="relative group-hover:-translate-y-0.5 transition-transform duration-300" />
         </div>
-      </div>
+      </button>
     </div>
-  </div>
-
-  <div class="footer-bottom">
-    <p>
-      Fonts: Amsterdam Four (custom) • Playfair Display • Inter
-    </p>
   </div>
 </footer>
 
-<style>
-  /* Footer Styles */
-  .site-footer {
-    background: linear-gradient(
-      to top,
-      rgba(10, 5, 6, 0.95) 0%,
-      rgba(26, 10, 15, 0.9) 100%
-    );
-    backdrop-filter: blur(10px);
-    border-top: 1px solid rgba(180, 28, 59, 0.2);
-    color: var(--ink-2);
-    padding: 3rem 1.5rem 2rem;
-    margin-top: auto;
+<style is:global>
+  /* Subtle hover effects */
+  footer a {
+    position: relative;
+    overflow: hidden;
   }
-
-  .footer-container {
-    max-width: 1200px;
-    margin: 0 auto;
-    display: flex;
-    flex-direction: column;
-    gap: 2.5rem;
+  
+  footer a::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    width: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--accent-2), transparent);
+    transition: all 0.3s var(--easing);
+    transform: translateX(-50%);
   }
-
-  @media (min-width: 768px) {
-    .footer-container {
-      flex-direction: row;
-      justify-content: space-between;
-      align-items: flex-start;
-    }
-  }
-
-  .footer-content {
-    max-width: 300px;
-  }
-
-  .footer-content h3 {
-    font-family: var(--font-amsterdam);
-    font-size: 2rem;
-    color: var(--ink);
-    margin-bottom: 0.5rem;
-    font-weight: normal;
-  }
-
-  .footer-quote {
-    font-family: var(--font-serif);
-    font-style: italic;
-    color: var(--ink-3);
-    font-size: 1rem;
-    margin-bottom: 1rem;
-  }
-
-  .footer-copyright {
-    font-size: 0.875rem;
-    color: var(--ink-3);
-    line-height: 1.5;
-  }
-
-  .footer-copyright a {
-    color: var(--accent-3);
-    text-decoration: none;
-    transition: color var(--speed-1) var(--easing);
-  }
-
-  .footer-copyright a:hover {
-    color: var(--ink);
-  }
-
-  .footer-links {
-    display: flex;
-    gap: 3rem;
-  }
-
-  .footer-links h4 {
-    font-family: var(--font-display);
-    font-size: 1.125rem;
-    color: var(--ink);
-    margin-bottom: 1rem;
-    font-weight: 600;
-  }
-
-  .footer-nav {
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
-  }
-
-  .footer-nav a {
-    color: var(--ink-2);
-    text-decoration: none;
-    font-size: 0.875rem;
-    transition: color var(--speed-1) var(--easing);
-  }
-
-  .footer-nav a:hover {
-    color: var(--accent-3);
-  }
-
-  .footer-social {
-    display: flex;
-    gap: 1rem;
-  }
-
-  .footer-social-link {
-    color: var(--ink-2);
-    transition: color var(--speed-1) var(--easing);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 36px;
-    height: 36px;
-    border-radius: 50%;
-    background: rgba(255, 255, 255, 0.05);
-  }
-
-  .footer-social-link:hover {
-    color: var(--ink);
-    background: rgba(180, 28, 59, 0.2);
-  }
-
-  .footer-bottom {
-    border-top: 1px solid rgba(255, 255, 255, 0.05);
-    padding-top: 1.5rem;
-    margin-top: 2rem;
-    text-align: center;
-    font-size: 0.75rem;
-    color: var(--ink-3);
-    opacity: 0.7;
+  
+  footer a:hover::after {
+    width: 100%;
   }
 </style>
