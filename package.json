@@ -1,28 +1,29 @@
 {
-  "name": "krishna-bihari-portfolio",
-  "type": "module",
+  "name": "developer",
   "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
   "scripts": {
-    "dev": "astro dev",
-    "build": "astro build",
-    "preview": "astro preview",
-    "astro": "astro"
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kasbihari/kasbihari.github.io.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/kasbihari/kasbihari.github.io/issues"
+  },
+  "homepage": "https://github.com/kasbihari/kasbihari.github.io#readme",
   "dependencies": {
-    "astro": "^4.5.0",
-    "clsx": "^2.1.1",
-    "framer-motion": "^11.18.2",
-    "lucide-react": "^0.344.0",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "astro": "^5.17.1",
+    "gsap": "^3.14.2"
   },
   "devDependencies": {
-    "@astrojs/react": "^3.3.0",
-    "@astrojs/tailwind": "^5.1.0",
-    "@types/react": "^18.2.0",
-    "@types/react-dom": "^18.2.0",
-    "autoprefixer": "^10.4.16",
-    "postcss": "^8.4.32",
-    "tailwindcss": "^3.4.0"
+    "@astrojs/tailwind": "^6.0.2",
+    "tailwindcss": "^3.4.19"
   }
 }
