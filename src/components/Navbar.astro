@@ -1,14 +1,12 @@
 ---
-// Pure static markup – no client JS yet. Interaction will be handled by React.
-const navItems = ["Hero", "About", "Projects", "Contact"];
+const navItems = ['Hero', 'About', 'Projects', 'Contact'];
 ---
-
 <nav class="fixed top-8 left-8 z-50 flex flex-col items-start space-y-3">
   {
     navItems.map((item) => (
       <a
         href={`#${item.toLowerCase()}`}
-        class="font-display text-xl uppercase tracking-widest text-neon-white/70 hover:text-glow-subtle transition-all duration-300"
+        class="font-body text-xl uppercase tracking-widest text-white/60 hover:text-bordeaux transition-colors duration-300"
         data-nav-item
       >
         {item}

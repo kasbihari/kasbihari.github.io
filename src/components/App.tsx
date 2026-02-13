@@ -10,22 +10,19 @@ type Section = 'hero' | 'about' | 'projects' | 'contact';
 const App: React.FC = () => {
   const [activeSection, setActiveSection] = useState<Section>('hero');
 
-  // Functie om sectie te zetten op basis van hash
   const setSectionFromHash = () => {
-    const hash = window.location.hash.slice(1).toLowerCase(); // verwijder #
+    const hash = window.location.hash.slice(1).toLowerCase();
     if (['hero', 'about', 'projects', 'contact'].includes(hash)) {
       setActiveSection(hash as Section);
     } else {
-      setActiveSection('hero'); // fallback
+      setActiveSection('hero');
     }
   };
 
-  // Bij mount: lees de initiële hash
   useEffect(() => {
     setSectionFromHash();
   }, []);
 
-  // Luister naar hash-veranderingen (back/forward knoppen)
   useEffect(() => {
     const handleHashChange = () => {
       setSectionFromHash();
@@ -34,7 +31,6 @@ const App: React.FC = () => {
     return () => window.removeEventListener('hashchange', handleHashChange);
   }, []);
 
-  // Luister naar klikken op de statische navbar
   useEffect(() => {
     const handleNavClick = (e: MouseEvent) => {
       const target = e.target as HTMLElement;
@@ -42,10 +38,9 @@ const App: React.FC = () => {
       if (!anchor) return;
 
       e.preventDefault();
-      const href = anchor.getAttribute('href')?.substring(1); // verwijdert #
+      const href = anchor.getAttribute('href')?.substring(1);
       if (href && ['hero', 'about', 'projects', 'contact'].includes(href)) {
         setActiveSection(href as Section);
-        // Update URL hash zonder scrollen (triggt géén hashchange, dus state is al gezet)
         history.pushState(null, '', `#${href}`);
       }
     };

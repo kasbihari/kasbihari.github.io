@@ -2,8 +2,6 @@ import React from 'react';
 import { Button } from '../ui/button';
 
 const Hero: React.FC = () => {
-  // Programmatic navigation – we can emit a custom event or use a global state.
-  // For simplicity, we'll use a click handler that triggers a custom event.
   const handleViewWork = () => {
     const event = new CustomEvent('navigate', { detail: { section: 'projects' } });
     window.dispatchEvent(event);
@@ -11,23 +9,23 @@ const Hero: React.FC = () => {
 
   return (
     <section className="section-container">
-      <h2 className="text-7xl md:text-8xl font-display text-glow mb-6 leading-none">
-        Hari Kasbi
-      </h2>
-      <p className="text-xl md:text-2xl font-body text-neon-white/80 max-w-2xl mb-12">
+      <h1 className="font-name text-7xl md:text-8xl mb-4 text-white">
+        Krishna Bihari
+      </h1>
+      <p className="font-body text-xl md:text-2xl text-white/70 max-w-2xl mb-12">
         Creative Developer & Systems Architect
       </p>
       <div className="flex space-x-4">
         <Button 
           onClick={handleViewWork}
-          className="bg-neon-white/10 hover:bg-neon-white/20 text-neon-white border border-neon-white/30 backdrop-blur-sm transition-all duration-300"
+          className="bg-white/10 hover:bg-bordeaux text-white border border-white/20 transition-colors duration-300"
         >
           View Work
         </Button>
         <Button 
           variant="outline" 
           onClick={() => window.dispatchEvent(new CustomEvent('navigate', { detail: { section: 'contact' } }))}
-          className="border-neon-white/30 text-neon-white hover:bg-neon-white/10"
+          className="border-white/20 text-white hover:bg-white/10"
         >
           Contact
         </Button>

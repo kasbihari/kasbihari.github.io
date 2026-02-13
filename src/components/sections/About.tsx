@@ -3,10 +3,24 @@ import React from 'react';
 const About: React.FC = () => {
   return (
     <section className="section-container">
-      <h2 className="text-5xl font-display text-glow mb-6">About</h2>
-      <div className="space-y-4 text-neon-white/80 max-w-2xl">
-        <p>I build performant, visually refined digital experiences with strict attention to technical discipline.</p>
-        <p>Specialised in WebGL, systems architecture, and creative direction.</p>
+      <div className="flex flex-col md:flex-row gap-12 items-center max-w-5xl">
+        <div className="flex-1">
+          <h2 className="font-body text-5xl font-medium mb-6 text-white">About</h2>
+          <div className="space-y-4 text-white/70 text-lg">
+            <p>
+              I architect digital experiences where performance meets visual poetry. 
+              With a background in systems engineering and creative coding, I bridge 
+              the gap between technical rigor and artistic expression.
+            </p>
+            <p>
+              Currently focused on WebGL, generative design, and design systems 
+              for forward‑thinking studios.
+            </p>
+          </div>
+        </div>
+        <div className="flex-1 flex justify-center">
+          <div className="w-64 h-64 rounded-full bg-bordeaux/20 border border-bordeaux/30" />
+        </div>
       </div>
     </section>
   );

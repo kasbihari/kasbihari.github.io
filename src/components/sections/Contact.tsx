@@ -7,45 +7,45 @@ import { Textarea } from '../ui/textarea';
 const Contact: React.FC = () => {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    alert('Bedankt voor je bericht. (Demo – er wordt niets verzonden)');
+    alert('Thank you for reaching out. (Demo)');
   };
 
   return (
     <section className="section-container max-w-2xl">
-      <h2 className="text-5xl font-display text-glow mb-8">Contact</h2>
+      <h2 className="font-body text-5xl font-medium mb-8 text-white">Contact</h2>
       <form onSubmit={handleSubmit} className="space-y-6">
         <div className="space-y-2">
-          <Label htmlFor="name" className="text-neon-white/80">Naam</Label>
+          <Label htmlFor="name" className="text-white/70">Name</Label>
           <Input 
             type="text" 
             id="name" 
-            placeholder="Je naam"
-            className="bg-surface/50 border-neon-white/20 text-neon-white placeholder:text-neon-white/30"
+            placeholder="Your name"
+            className="bg-anthracite/50 border-white/20 text-white placeholder:text-white/30"
           />
         </div>
         <div className="space-y-2">
-          <Label htmlFor="email" className="text-neon-white/80">E-mail</Label>
+          <Label htmlFor="email" className="text-white/70">Email</Label>
           <Input 
             type="email" 
             id="email" 
-            placeholder="naam@voorbeeld.com"
-            className="bg-surface/50 border-neon-white/20 text-neon-white placeholder:text-neon-white/30"
+            placeholder="you@example.com"
+            className="bg-anthracite/50 border-white/20 text-white placeholder:text-white/30"
           />
         </div>
         <div className="space-y-2">
-          <Label htmlFor="message" className="text-neon-white/80">Bericht</Label>
+          <Label htmlFor="message" className="text-white/70">Message</Label>
           <Textarea 
             id="message" 
-            placeholder="Je bericht..."
+            placeholder="Your message..."
             rows={4}
-            className="bg-surface/50 border-neon-white/20 text-neon-white placeholder:text-neon-white/30"
+            className="bg-anthracite/50 border-white/20 text-white placeholder:text-white/30"
           />
         </div>
         <Button 
           type="submit"
-          className="w-full bg-neon-white/10 hover:bg-neon-white/20 text-neon-white border border-neon-white/30"
+          className="w-full bg-bordeaux hover:bg-bordeaux/80 text-white border-none"
         >
-          Verstuur bericht
+          Send Message
         </Button>
       </form>
     </section>

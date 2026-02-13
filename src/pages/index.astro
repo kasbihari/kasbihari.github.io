@@ -1,22 +1,17 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import Logo from '../components/Logo.astro';
 import Navbar from '../components/Navbar.astro';
 import SocialIcons from '../components/SocialIcons.astro';
 import Footer from '../components/Footer.astro';
-import NeonParticles from '../components/3d/NeonParticles';
 import App from '../components/App';
 ---
+
 <Layout title="Krishna Bihari – Portfolio">
-  <!-- Fixed non‑interactive elements -->
-  <Logo />
+  <!-- Statische elementen -->
   <Navbar />
   <SocialIcons />
   <Footer />
 
-  <!-- 3D Background – lazy loads when visible -->
-  <NeonParticles client:visible />
-
-  <!-- Main interactive React app – hydrates immediately (critical for navigation) -->
+  <!-- React-app (volledige interactie) -->
   <App client:only="react" />
 </Layout>
