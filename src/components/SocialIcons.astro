@@ -1,0 +1,23 @@
+---
+const socials = [
+  { name: 'GitHub', url: 'https://github.com/kasbihari', icon: 'GH' },
+  { name: 'LinkedIn', url: 'https://linkedin.com/in/...', icon: 'LI' },
+  { name: 'Twitter', url: 'https://twitter.com/...', icon: 'TW' },
+];
+---
+<div class="fixed bottom-8 right-8 z-50 flex flex-col space-y-4">
+  {
+    socials.map((s) => (
+      <a
+        href={s.url}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="text-neon-white/60 hover:text-neon-white transition-colors duration-200 text-lg"
+        aria-label={s.name}
+      >
+        {s.icon}
+        <!-- Replace with proper SVG icons later -->
+      </a>
+    ))
+  }
+</div>
