@@ -3,15 +3,17 @@ import Layout from '../layouts/Layout.astro';
 import Navbar from '../components/Navbar.astro';
 import SocialIcons from '../components/SocialIcons.astro';
 import Footer from '../components/Footer.astro';
+import AdvancedBackground from '../components/3d/AdvancedBackground'; // nieuwe naam
 import App from '../components/App';
 ---
 
-<Layout title="Krishna Bihari – Portfolio">
-  <!-- Statische elementen -->
+<Layout title="Krishna Bihari – Creative Developer">
+  <!-- Geavanceerde achtergrond (laadt wanneer browser idle is) -->
+  <AdvancedBackground client:idle />
+
   <Navbar />
   <SocialIcons />
   <Footer />
 
-  <!-- React-app (volledige interactie) -->
   <App client:only="react" />
 </Layout>
