@@ -1,17 +1,22 @@
 ---
-
+import Layout from '../layouts/Layout.astro';
+import Logo from '../components/Logo.astro';
+import Navbar from '../components/Navbar.astro';
+import SocialIcons from '../components/SocialIcons.astro';
+import Footer from '../components/Footer.astro';
+import NeonParticles from '../components/3d/NeonParticles';
+import App from '../components/App';
 ---
+<Layout title="Krishna Bihari – Portfolio">
+  <!-- Fixed non‑interactive elements -->
+  <Logo />
+  <Navbar />
+  <SocialIcons />
+  <Footer />
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+  <!-- 3D Background – lazy loads when visible -->
+  <NeonParticles client:visible />
+
+  <!-- Main interactive React app – hydrates immediately (critical for navigation) -->
+  <App client:only="react" />
+</Layout>
