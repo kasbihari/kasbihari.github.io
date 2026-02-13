@@ -3,32 +3,34 @@ import { Button } from '../ui/button';
 
 const Hero: React.FC = () => {
   const handleViewWork = () => {
-    const event = new CustomEvent('navigate', { detail: { section: 'projects' } });
-    window.dispatchEvent(event);
+    window.dispatchEvent(new CustomEvent('navigate', { detail: { section: 'projects' } }));
   };
 
   return (
-    <section className="section-container">
-      <h1 className="font-name text-7xl md:text-8xl mb-4 text-white">
-        Krishna Bihari
-      </h1>
-      <p className="font-body text-xl md:text-2xl text-white/70 max-w-2xl mb-12">
-        Creative Developer & Systems Architect
-      </p>
-      <div className="flex space-x-4">
-        <Button 
-          onClick={handleViewWork}
-          className="bg-white/10 hover:bg-bordeaux text-white border border-white/20 transition-colors duration-300"
-        >
-          View Work
-        </Button>
-        <Button 
-          variant="outline" 
-          onClick={() => window.dispatchEvent(new CustomEvent('navigate', { detail: { section: 'contact' } }))}
-          className="border-white/20 text-white hover:bg-white/10"
-        >
-          Contact
-        </Button>
+    <section className="section-container-centered">
+      <div className="content-card text-center">
+        <h1 className="font-name text-6xl md:text-8xl mb-6 text-white">
+          Krishna Bihari
+        </h1>
+        <p className="font-body text-xl md:text-2xl text-white/70 max-w-2xl mx-auto mb-12">
+          I architect digital experiences where performance meets visual poetry. 
+          Creative Developer & Systems Architect.
+        </p>
+        <div className="flex flex-col sm:flex-row gap-4 justify-center">
+          <Button 
+            onClick={handleViewWork}
+            className="bg-bordeaux hover:bg-bordeaux-light text-white px-8 py-6 text-lg transition-all duration-300"
+          >
+            Explore My Work
+          </Button>
+          <Button 
+            variant="outline" 
+            onClick={() => window.dispatchEvent(new CustomEvent('navigate', { detail: { section: 'contact' } }))}
+            className="border-white/20 text-white hover:bg-white/10 px-8 py-6 text-lg"
+          >
+            Get in Touch
+          </Button>
+        </div>
       </div>
     </section>
   );

@@ -14,7 +14,6 @@
 @tailwind utilities;
 
 @layer base {
-  /* Algemene HTML-instellingen */
   html {
     @apply bg-black text-white;
     -webkit-font-smoothing: antialiased;
@@ -23,44 +22,42 @@
 
   body {
     @apply font-body;
-    overflow: hidden;        /* geen scrollen op paginaniveau */
+    overflow: hidden;
     height: 100vh;
     width: 100vw;
     margin: 0;
     padding: 0;
   }
 
-  /* Standaard headings krijgen Playfair (behalve de naam, die krijgt aparte class) */
   h1, h2, h3, h4, h5, h6 {
     @apply font-body font-medium;
   }
 
-  /* Utility class voor de naam (Amsterdam Four) */
   .font-name {
     font-family: 'Amsterdam Four', sans-serif;
   }
 
-  /* shadcn variabelen – donkere thema (aangepast aan zwart/bordeaux) */
+  /* shadcn variabelen – afgestemd op zwart/antraciet/bordeaux */
   :root {
-    --background: 0 0% 4%;   /* bijna zwart */
-    --foreground: 0 0% 100%;  /* wit */
-    --card: 0 0% 7%;          /* anthracite */
+    --background: 0 0% 4%;
+    --foreground: 0 0% 100%;
+    --card: 0 0% 7%;
     --card-foreground: 0 0% 100%;
     --popover: 0 0% 4%;
     --popover-foreground: 0 0% 100%;
-    --primary: 0 0% 100%;     /* wit als primary */
+    --primary: 0 0% 100%;
     --primary-foreground: 0 0% 4%;
-    --secondary: 0 0% 15%;    /* donkergrijs */
+    --secondary: 0 0% 15%;
     --secondary-foreground: 0 0% 100%;
     --muted: 0 0% 15%;
     --muted-foreground: 0 0% 65%;
-    --accent: 0 58% 27%;      /* bordeaux */
+    --accent: 0 58% 27%;
     --accent-foreground: 0 0% 100%;
     --destructive: 0 84% 60%;
     --destructive-foreground: 0 0% 100%;
-    --border: 0 0% 20%;
-    --input: 0 0% 20%;
-    --ring: 0 58% 27%;        /* bordeaux ring */
+    --border: 0 0% 17%;        /* afgestemd op anthracite */
+    --input: 0 0% 17%;
+    --ring: 0 58% 27%;
     --chart-1: 0 58% 27%;
     --chart-2: 0 0% 20%;
     --chart-3: 0 0% 30%;
@@ -69,7 +66,7 @@
     --radius: 0.5rem;
   }
 
-  /* Fallback voor dark class – hier feitelijk hetzelfde, maar voor consistentie */
+  /* .dark optioneel (identiek aan :root) */
   .dark {
     --background: 0 0% 4%;
     --foreground: 0 0% 100%;
@@ -87,8 +84,8 @@
     --accent-foreground: 0 0% 100%;
     --destructive: 0 84% 60%;
     --destructive-foreground: 0 0% 100%;
-    --border: 0 0% 20%;
-    --input: 0 0% 20%;
+    --border: 0 0% 17%;
+    --input: 0 0% 17%;
     --ring: 0 58% 27%;
     --chart-1: 0 58% 27%;
     --chart-2: 0 0% 20%;
@@ -99,23 +96,41 @@
 }
 
 @layer components {
-  /* Container voor secties – behouden we */
-  .section-container {
-    @apply w-full h-full flex flex-col justify-center px-12 py-16;
+  /* Gecentreerde container voor alle secties */
+  .section-container-centered {
+    @apply w-full h-full flex flex-col items-center justify-center px-4 md:px-12;
+    max-width: 1200px;
+    margin: 0 auto;
   }
 
-  /* Subtiele gradient voor achtergronden (optioneel) */
+  /* Kaart met glasachtig effect */
+  .content-card {
+    @apply bg-anthracite/30 backdrop-blur-sm border border-white/10 rounded-lg p-8 md:p-12;
+    max-width: 800px;
+    width: 100%;
+  }
+
+  /* Herbruikbare glass-utility */
+  .glass {
+    @apply bg-anthracite/30 backdrop-blur-sm border border-white/10;
+  }
+
+  /* Subtiele gradienten */
   .bg-subtle-gradient {
     @apply bg-gradient-to-br from-black via-anthracite to-black;
   }
 
-  /* Accent-gradient voor knoppen of kaarten */
   .bg-bordeaux-gradient {
     @apply bg-gradient-to-r from-bordeaux to-bordeaux-light;
   }
+
+  /* Badge voor filters/tags (optioneel) */
+  .badge {
+    @apply text-xs px-3 py-1 rounded-full bg-white/10 text-white/70 hover:bg-white/20 transition-colors duration-200;
+  }
 }
 
-/* Fade-transitie (blijft ongewijzigd) */
+/* Fade-transitie */
 .fade-enter {
   opacity: 0;
   transform: scale(0.98);
@@ -137,9 +152,15 @@
               transform 200ms cubic-bezier(0.2, 0, 0, 1);
 }
 
-/* Eventuele extra hulpklassen */
 @layer utilities {
   .text-balance {
     text-wrap: balance;
+  }
+
+  .hover-glow {
+    @apply transition-all duration-300;
+  }
+  .hover-glow:hover {
+    box-shadow: 0 0 20px rgba(94, 42, 44, 0.3);
   }
 }
