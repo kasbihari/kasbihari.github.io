@@ -3,6 +3,7 @@ import Hero from './sections/Hero';
 import About from './sections/About';
 import Projects from './sections/Projects';
 import Contact from './sections/Contact';
+import FadeTransition from './FadeTransition';
 
 type Section = 'hero' | 'about' | 'projects' | 'contact';
 
@@ -29,15 +30,20 @@ const App: React.FC = () => {
     return () => document.removeEventListener('click', handleNavClick);
   }, []);
 
-  // Render active section
   const renderSection = () => {
+    let sectionComponent;
     switch (activeSection) {
-      case 'hero': return <Hero />;
-      case 'about': return <About />;
-      case 'projects': return <Projects />;
-      case 'contact': return <Contact />;
-      default: return <Hero />;
+      case 'hero': sectionComponent = <Hero />; break;
+      case 'about': sectionComponent = <About />; break;
+      case 'projects': sectionComponent = <Projects />; break;
+      case 'contact': sectionComponent = <Contact />; break;
+      default: sectionComponent = <Hero />;
     }
+    return (
+      <FadeTransition keyValue={activeSection}>
+        {sectionComponent}
+      </FadeTransition>
+    );
   };
 
   return (
