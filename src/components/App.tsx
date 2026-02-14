@@ -3,44 +3,44 @@ import Hero from './sections/Hero';
 import About from './sections/About';
 import Projects from './sections/Projects';
 import Contact from './sections/Contact';
-import Skills from './sections/Skills';
+import Skills from './sections/Skills'; // Uncommented to fix the error
 import FadeTransition from './FadeTransition';
 import Footer from './Footer';
 
-type Section = 'hero' | 'about' | 'projects' | 'skills' | 'contact'; // <-- skills toegevoegd
+type Section = 'hero' | 'about' | 'projects' | 'skills' | 'contact';
 
 const App: React.FC = () => {
   const [activeSection, setActiveSection] = useState<Section>('hero');
 
+  // Functie om sectie te zetten op basis van hash
   const setSectionFromHash = () => {
-    const hash = window.location.hash.slice(1).toLowerCase();
+    const hash = window.location.hash.slice(1).toLowerCase() as Section;
     if (['hero', 'about', 'projects', 'skills', 'contact'].includes(hash)) {
-      setActiveSection(hash as Section);
+      setActiveSection(hash);
     } else {
       setActiveSection('hero');
     }
   };
 
+  // Luister naar hashchange (back/forward knoppen)
   useEffect(() => {
     setSectionFromHash();
     window.addEventListener('hashchange', setSectionFromHash);
     return () => window.removeEventListener('hashchange', setSectionFromHash);
   }, []);
 
+  // Luister naar custom navigate events (vanuit navbar)
   useEffect(() => {
-    const handleNavClick = (e: MouseEvent) => {
-      const target = e.target as HTMLElement;
-      const anchor = target.closest('a[data-nav-item]') || target.closest('button[data-nav-item]');
-      if (!anchor) return;
-      e.preventDefault();
-      const href = anchor.getAttribute('href')?.substring(1);
-      if (href && ['hero', 'about', 'projects', 'skills', 'contact'].includes(href)) {
-        setActiveSection(href as Section);
-        history.pushState(null, '', `#${href}`);
+    const handleNavigate = (e: CustomEvent) => {
+      const section = e.detail.section as Section;
+      if (['hero', 'about', 'projects', 'skills', 'contact'].includes(section)) {
+        setActiveSection(section);
+        // Update URL hash zonder hashchange te triggeren
+        history.pushState(null, '', `#${section}`);
       }
     };
-    document.addEventListener('click', handleNavClick);
-    return () => document.removeEventListener('click', handleNavClick);
+    window.addEventListener('navigate', handleNavigate as EventListener);
+    return () => window.removeEventListener('navigate', handleNavigate as EventListener);
   }, []);
 
   const renderSection = () => {

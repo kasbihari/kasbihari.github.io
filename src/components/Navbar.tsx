@@ -1,16 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import { Menu, X } from 'lucide-react';
 
-const navItems = ['Hero', 'About', 'Skills', 'Projects', 'Contact'];
+const navItems = ['Hero', 'About', 'Projects', 'Skills', 'Contact'];
 
 const Navbar: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
 
   const handleNavigate = (section: string) => {
-    const sectionLower = section.toLowerCase();
-    // Direct de hash aanpassen – triggert hashchange event in App
-    window.location.hash = sectionLower;
-    setIsOpen(false);
+    // Stuur custom event met de sectie (in lowercase)
+    window.dispatchEvent(new CustomEvent('navigate', { detail: { section: section.toLowerCase() } }));
+    setIsOpen(false); // sluit menu op mobiel
   };
 
   // Sluit menu bij klik buiten
@@ -27,7 +26,7 @@ const Navbar: React.FC = () => {
 
   return (
     <>
-      {/* Desktop versie (vanaf md) */}
+      {/* Desktop versie */}
       <nav className="fixed top-8 left-8 z-50 hidden md:flex flex-col items-start space-y-3">
         {navItems.map((item) => (
           <button
@@ -40,7 +39,7 @@ const Navbar: React.FC = () => {
         ))}
       </nav>
 
-      {/* Mobiele versie (tot md) */}
+      {/* Mobiele versie */}
       <div className="md:hidden fixed top-4 left-4 z-50">
         <button
           onClick={() => setIsOpen(!isOpen)}
