@@ -1,0 +1,21 @@
+---
+// Static SVG logo – zero JS
+---
+<div class="fixed top-8 left-8 z-40 animate-pulse-slow">
+  <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <!-- K -->
+    <path d="M14 14V34H18V25L24 34H29L22 24L29 14H24L18 22V14H14Z" fill="white" fill-opacity="0.9"/>
+    <!-- B -->
+    <path d="M32 14V34H37C39.5 34 42 31.5 42 28V20C42 16.5 39.5 14 37 14H32ZM36 18H38C39.1 18 40 18.9 40 20V28C40 29.1 39.1 30 38 30H36V18Z" fill="white" fill-opacity="0.9"/>
+  </svg>
+</div>
+
+<style>
+  @keyframes slowPulse {
+    0%, 100% { opacity: 0.9; }
+    50% { opacity: 1; }
+  }
+  .animate-pulse-slow {
+    animation: slowPulse 4s ease-in-out infinite;
+  }
+</style>

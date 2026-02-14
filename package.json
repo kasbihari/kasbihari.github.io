@@ -1,7 +1,7 @@
 {
-  "name": "krishna-bihari-portfolio",
+  "name": "developer",
   "type": "module",
-  "version": "1.0.0",
+  "version": "0.0.1",
   "scripts": {
     "dev": "astro dev",
     "build": "astro build",
@@ -9,20 +9,33 @@
     "astro": "astro"
   },
   "dependencies": {
-    "astro": "^4.5.0",
+    "@astrojs/check": "^0.9.6",
+    "@astrojs/react": "^4.4.2",
+    "@radix-ui/react-label": "^2.1.8",
+    "@radix-ui/react-slot": "^1.2.4",
+    "astro": "^5.17.1",
+    "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
-    "framer-motion": "^11.18.2",
-    "lucide-react": "^0.344.0",
+    "framer-motion": "^12.34.0",
+    "lucide-react": "^0.564.0",
     "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react-dom": "^18.2.0",
+    "react-transition-group": "^4.4.5",
+    "tailwind-merge": "^3.4.0",
+    "tailwindcss-animate": "^1.0.7",
+    "three": "^0.182.0",
+    "typescript": "^5.9.3"
   },
   "devDependencies": {
-    "@astrojs/react": "^3.3.0",
-    "@astrojs/tailwind": "^5.1.0",
-    "@types/react": "^18.2.0",
-    "@types/react-dom": "^18.2.0",
-    "autoprefixer": "^10.4.16",
-    "postcss": "^8.4.32",
-    "tailwindcss": "^3.4.0"
+    "@astrojs/tailwind": "^6.0.2",
+    "@types/node": "^25.2.3",
+    "@types/react": "^19.2.14",
+    "@types/react-dom": "^19.2.3",
+    "@types/react-transition-group": "^4.4.12",
+    "@types/three": "^0.182.0",
+    "autoprefixer": "^10.4.24",
+    "postcss": "^8.5.6",
+    "tailwindcss": "^3.4.19",
+    "vite-plugin-glsl": "^1.5.5"
   }
 }
