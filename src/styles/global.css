@@ -1,9 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600&display=swap');
 
+/* Enkel de font-face voor Amsterdam Four – gebruik jouw .ttf bestand */
 @font-face {
   font-family: 'Amsterdam Four';
-  src: url('/fonts/AmsterdamFour.woff2') format('woff2'),
-       url('/fonts/AmsterdamFour.woff') format('woff');
+  src: url('/fonts/Amsterdam.ttf') format('truetype');
   font-weight: normal;
   font-style: normal;
   font-display: swap;
@@ -37,37 +37,8 @@
     font-family: 'Amsterdam Four', sans-serif;
   }
 
-  /* shadcn variabelen – afgestemd op zwart/antraciet/bordeaux */
+  /* shadcn variabelen */
   :root {
-    --background: 0 0% 4%;
-    --foreground: 0 0% 100%;
-    --card: 0 0% 7%;
-    --card-foreground: 0 0% 100%;
-    --popover: 0 0% 4%;
-    --popover-foreground: 0 0% 100%;
-    --primary: 0 0% 100%;
-    --primary-foreground: 0 0% 4%;
-    --secondary: 0 0% 15%;
-    --secondary-foreground: 0 0% 100%;
-    --muted: 0 0% 15%;
-    --muted-foreground: 0 0% 65%;
-    --accent: 0 58% 27%;
-    --accent-foreground: 0 0% 100%;
-    --destructive: 0 84% 60%;
-    --destructive-foreground: 0 0% 100%;
-    --border: 0 0% 17%;        /* afgestemd op anthracite */
-    --input: 0 0% 17%;
-    --ring: 0 58% 27%;
-    --chart-1: 0 58% 27%;
-    --chart-2: 0 0% 20%;
-    --chart-3: 0 0% 30%;
-    --chart-4: 0 58% 35%;
-    --chart-5: 0 58% 20%;
-    --radius: 0.5rem;
-  }
-
-  /* .dark optioneel (identiek aan :root) */
-  .dark {
     --background: 0 0% 4%;
     --foreground: 0 0% 100%;
     --card: 0 0% 7%;
@@ -92,27 +63,83 @@
     --chart-3: 0 0% 30%;
     --chart-4: 0 58% 35%;
     --chart-5: 0 58% 20%;
+    --radius: 0.5rem;
+  }
+
+  .dark {
+    /* identiek aan :root, optioneel */
+    --background: 0 0% 4%;
+    --foreground: 0 0% 100%;
+    --card: 0 0% 7%;
+    --card-foreground: 0 0% 100%;
+    --popover: 0 0% 4%;
+    --popover-foreground: 0 0% 100%;
+    --primary: 0 0% 100%;
+    --primary-foreground: 0 0% 4%;
+    --secondary: 0 0% 15%;
+    --secondary-foreground: 0 0% 100%;
+    --muted: 0 0% 15%;
+    --muted-foreground: 0 0% 65%;
+    --accent: 0 58% 27%;
+    --accent-foreground: 0 0% 100%;
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 0 0% 17%;
+    --input: 0 0% 17%;
+    --ring: 0 58% 27%;
   }
 }
 
 @layer components {
-  /* Gecentreerde container voor alle secties */
+  /* Gecentreerde container */
   .section-container-centered {
     @apply w-full h-full flex flex-col items-center justify-center px-4 md:px-12;
     max-width: 1200px;
     margin: 0 auto;
   }
 
-  /* Kaart met glasachtig effect */
-  .content-card {
-    @apply bg-anthracite/30 backdrop-blur-sm border border-white/10 rounded-lg p-8 md:p-12;
-    max-width: 800px;
-    width: 100%;
+  /* Glasachtige kaarten (unified) */
+  .glass {
+    @apply bg-anthracite/20 backdrop-blur-md border border-white/10 rounded-lg;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
   }
 
-  /* Herbruikbare glass-utility */
-  .glass {
-    @apply bg-anthracite/30 backdrop-blur-sm border border-white/10;
+  .glass-card {
+    @apply glass p-6 md:p-8 transition-all duration-300 hover:border-bordeaux/50;
+  }
+
+  .glass-card:hover {
+    box-shadow: 0 12px 48px rgba(94, 42, 44, 0.2);
+  }
+
+  /* Scrollbare secties */
+  .scrollable-section {
+    overflow-y: auto;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(94, 42, 44, 0.5) rgba(255, 255, 255, 0.05);
+  }
+
+  .scrollable-section::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  .scrollable-section::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 10px;
+  }
+
+  .scrollable-section::-webkit-scrollbar-thumb {
+    background: rgba(94, 42, 44, 0.5);
+    border-radius: 10px;
+  }
+
+  .scrollable-section::-webkit-scrollbar-thumb:hover {
+    background: rgba(94, 42, 44, 0.8);
+  }
+
+  /* Badge */
+  .badge {
+    @apply text-xs px-3 py-1 rounded-full bg-white/10 text-white/70 hover:bg-white/20 transition-colors duration-200;
   }
 
   /* Subtiele gradienten */
@@ -121,12 +148,7 @@
   }
 
   .bg-bordeaux-gradient {
-    @apply bg-gradient-to-r from-bordeaux to-bordeaux-light;
-  }
-
-  /* Badge voor filters/tags (optioneel) */
-  .badge {
-    @apply text-xs px-3 py-1 rounded-full bg-white/10 text-white/70 hover:bg-white/20 transition-colors duration-200;
+    @apply bg-gradient-to-r from-bordeaux to-bordeaux/80;
   }
 }
 

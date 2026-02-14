@@ -1,36 +1,49 @@
 import React from 'react';
-import { Button } from '../ui/button';
 
 const Hero: React.FC = () => {
-  const handleViewWork = () => {
-    window.dispatchEvent(new CustomEvent('navigate', { detail: { section: 'projects' } }));
-  };
-
   return (
-    <section className="section-container-centered">
-      <div className="content-card text-center">
-        <h1 className="font-name text-6xl md:text-8xl mb-6 text-white">
+    <section className="section-container-centered min-h-screen">
+      <div className="glass-card w-full max-w-4xl mx-auto flex flex-col items-center justify-center py-16 px-6 md:px-12 my-auto">
+        
+        {/* Naam – subtiel groot, maar niet overdreven */}
+        <h1
+          className="
+            font-name
+            text-5xl sm:text-6xl md:text-7xl
+            text-white text-center
+            leading-tight
+            mb-12 md:mb-16
+            drop-shadow-[0_0_10px_rgba(94,42,44,0.4)]
+          "
+        >
           Krishna Bihari
-        </h1>
-        <p className="font-body text-xl md:text-2xl text-white/70 max-w-2xl mx-auto mb-12">
-          I architect digital experiences where performance meets visual poetry. 
-          Creative Developer & Systems Architect.
-        </p>
-        <div className="flex flex-col sm:flex-row gap-4 justify-center">
-          <Button 
-            onClick={handleViewWork}
-            className="bg-bordeaux hover:bg-bordeaux-light text-white px-8 py-6 text-lg transition-all duration-300"
+        </h1> <br /><br />
+
+        {/* Quote – in een verfijnde box */}
+        <div
+          className="
+            glass
+            max-w-md mx-auto
+            p-6 md:p-8
+            rounded-2xl
+            border border-white/10
+            hover:border-bordeaux/50 hover:shadow-[0_0_30px_rgba(94,42,44,0.3)]
+            transition-all duration-500 ease-out
+            backdrop-blur-lg
+          "
+        >
+          <p
+            className="
+              font-body
+              text-lg sm:text-xl md:text-2xl
+              text-white/80 text-center
+              leading-relaxed
+            "
           >
-            Explore My Work
-          </Button>
-          <Button 
-            variant="outline" 
-            onClick={() => window.dispatchEvent(new CustomEvent('navigate', { detail: { section: 'contact' } }))}
-            className="border-white/20 text-white hover:bg-white/10 px-8 py-6 text-lg"
-          >
-            Get in Touch
-          </Button>
+            "Blending Code, Art & Culture"
+          </p>
         </div>
+
       </div>
     </section>
   );

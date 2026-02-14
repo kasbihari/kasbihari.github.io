@@ -14,8 +14,8 @@ const Contact: React.FC = () => {
   };
 
   return (
-    <section className="section-container-centered">
-      <div className="content-card max-w-md text-center">
+    <section className="section-container-centered scrollable-section">
+      <div className="glass-card max-w-md text-center">
         <h2 className="font-body text-4xl md:text-5xl font-medium mb-4 text-white">
           Let's Connect
         </h2>
@@ -38,7 +38,7 @@ const Contact: React.FC = () => {
                 id="name" 
                 placeholder="Your name"
                 required
-                className="bg-anthracite/50 border-white/20 text-white placeholder:text-white/30 focus:border-bordeaux focus:ring-bordeaux/20"
+                className="glass border-white/20 text-white placeholder:text-white/30 focus:border-bordeaux focus:ring-bordeaux/20"
               />
             </div>
             <div className="space-y-2">
@@ -48,7 +48,7 @@ const Contact: React.FC = () => {
                 id="email" 
                 placeholder="you@example.com"
                 required
-                className="bg-anthracite/50 border-white/20 text-white placeholder:text-white/30 focus:border-bordeaux focus:ring-bordeaux/20"
+                className="glass border-white/20 text-white placeholder:text-white/30 focus:border-bordeaux focus:ring-bordeaux/20"
               />
             </div>
             <div className="space-y-2">
@@ -58,12 +58,12 @@ const Contact: React.FC = () => {
                 placeholder="Tell me about your project..."
                 rows={4}
                 required
-                className="bg-anthracite/50 border-white/20 text-white placeholder:text-white/30 focus:border-bordeaux focus:ring-bordeaux/20"
+                className="glass border-white/20 text-white placeholder:text-white/30 focus:border-bordeaux focus:ring-bordeaux/20"
               />
             </div>
             <Button 
               type="submit"
-              className="w-full bg-bordeaux hover:bg-bordeaux-light text-white border-none py-6 text-lg transition-all duration-300"
+              className="w-full bg-bordeaux hover:bg-bordeaux-light text-white border-none py-6 text-lg transition-all duration-300 glass"
             >
               Send Message
             </Button>

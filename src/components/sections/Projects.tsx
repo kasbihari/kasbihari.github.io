@@ -50,53 +50,55 @@ const Projects: React.FC = () => {
     : projects.filter(p => p.category === activeCategory);
 
   return (
-    <section className="section-container-centered overflow-y-auto">
-      <h2 className="font-body text-4xl md:text-5xl font-medium mb-8 text-white text-center">
-        Selected Work
-      </h2>
-      
-      {/* Filter buttons */}
-      <div className="flex flex-wrap gap-3 justify-center mb-12">
-        {categories.map(cat => (
-          <button
-            key={cat}
-            onClick={() => setActiveCategory(cat)}
-            className={`px-4 py-2 rounded-full text-sm font-body transition-all duration-300
-              ${activeCategory === cat 
-                ? 'bg-bordeaux text-white' 
-                : 'bg-white/5 text-white/60 hover:bg-white/10'}`}
-          >
-            {cat.charAt(0).toUpperCase() + cat.slice(1)}
-          </button>
-        ))}
-      </div>
+    <section className="section-container-centered scrollable-section">
+      <div className="w-full max-w-6xl">
+        <h2 className="font-body text-4xl md:text-5xl font-medium mb-8 text-white text-center">
+          Selected Work
+        </h2>
+        
+        {/* Filter buttons */}
+        <div className="flex flex-wrap gap-3 justify-center mb-12">
+          {categories.map(cat => (
+            <button
+              key={cat}
+              onClick={() => setActiveCategory(cat)}
+              className={`px-4 py-2 rounded-full text-sm font-body transition-all duration-300 glass
+                ${activeCategory === cat 
+                  ? 'bg-bordeaux text-white border-bordeaux/50' 
+                  : 'bg-white/5 text-white/60 hover:bg-white/10'}`}
+            >
+              {cat.charAt(0).toUpperCase() + cat.slice(1)}
+            </button>
+          ))}
+        </div>
 
-      {/* Project grid */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
-        {filteredProjects.map((project, i) => (
-          <Card key={i} className="bg-anthracite/40 border-white/10 hover:border-bordeaux/50 transition-all duration-500 backdrop-blur-sm">
-            <CardHeader>
-              <CardTitle className="font-body text-2xl text-white">{project.title}</CardTitle>
-              <CardDescription className="font-body text-white/60">
-                {project.description}
-              </CardDescription>
-            </CardHeader>
-            <CardContent>
-              <div className="flex flex-wrap gap-2">
-                {project.tags.map(tag => (
-                  <span key={tag} className="text-xs px-2 py-1 rounded-full bg-white/10 text-white/70">
-                    {tag}
-                  </span>
-                ))}
-              </div>
-            </CardContent>
-            <CardFooter>
-              <Button variant="ghost" className="text-white hover:text-bordeaux p-0" asChild>
-                <a href={project.url}>Learn more →</a>
-              </Button>
-            </CardFooter>
-          </Card>
-        ))}
+        {/* Project grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {filteredProjects.map((project, i) => (
+            <Card key={i} className="glass-card border-white/10 hover:border-bordeaux/50 transition-all duration-500">
+              <CardHeader>
+                <CardTitle className="font-body text-2xl text-white">{project.title}</CardTitle>
+                <CardDescription className="font-body text-white/60">
+                  {project.description}
+                </CardDescription>
+              </CardHeader>
+              <CardContent>
+                <div className="flex flex-wrap gap-2">
+                  {project.tags.map(tag => (
+                    <span key={tag} className="text-xs px-3 py-1 rounded-full glass text-white/70">
+                      {tag}
+                    </span>
+                  ))}
+                </div>
+              </CardContent>
+              <CardFooter>
+                <Button variant="ghost" className="text-white hover:text-bordeaux p-0" asChild>
+                  <a href={project.url}>Learn more →</a>
+                </Button>
+              </CardFooter>
+            </Card>
+          ))}
+        </div>
       </div>
     </section>
   );
