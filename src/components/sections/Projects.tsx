@@ -1,100 +1,169 @@
 import React, { useState } from 'react';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '../ui/card';
 import { Button } from '../ui/button';
+import { Github, ExternalLink, Play } from 'lucide-react';
 
-const projects = [
+type Filter = 'all' | 'pet' | 'assignment';
+
+interface Project {
+  id: number;
+  title: string;
+  description: string;
+  category: 'pet' | 'assignment';
+  status: 'Done' | 'In Progress';
+  tech: string[];
+  liveUrl?: string;
+  codeUrl?: string;
+}
+
+const projects: Project[] = [
   {
-    title: 'Nebula Engine',
-    description: 'Real‑time WebGL particle system with custom GLSL shaders. Interactive hover effects and color mapping.',
-    tags: ['Three.js', 'GLSL', 'React'],
-    category: 'webgl',
-    url: '#'
+    id: 1,
+    title: 'Kazora Watches',
+    description: 'Premium Watch E-commerce. Built a secure PHP/MySQL store with robust admin/user management. Features excellent product presentation and Google Maps integration.',
+    category: 'assignment',
+    status: 'Done',
+    tech: ['PHP', 'MySQL', 'Bootstrap'],
+    codeUrl: 'https://github.com/kasbihari/Kazora'
   },
   {
-    title: 'Spectra UI',
-    description: 'Design system with minimalist aesthetics, built for scale. Used across 5+ production applications.',
-    tags: ['Tailwind', 'Framer Motion', 'TypeScript'],
-    category: 'design-system',
-    url: '#'
+    id: 2,
+    title: 'Project in progress...',
+    description: 'Coming soon...',
+    category: 'pet',
+    status: 'In Progress',
+    tech: ['Unity', 'C#', 'Pixel Art'],
+    liveUrl: '#',
+    codeUrl: '#'
   },
   {
-    title: 'Portfolio 2026',
-    description: 'This very site – a study in restraint, typography, and interactive backgrounds.',
-    tags: ['Astro', 'Three.js', 'shadcn/ui'],
-    category: 'web',
-    url: '#'
+    id: 3,
+    title: 'CodeLibrary',
+    description: 'Snippets, patterns and micro-components that I use daily. With search and tags functionality.',
+    category: 'pet',
+    status: 'Done',
+    tech: ['JavaScript', 'Patterns', 'Design'],
+    liveUrl: 'https://kasbihari.github.io/CodeLibrary/',
+    codeUrl: 'https://github.com/kasbihari/CodeLibrary'
   },
   {
-    title: 'Fluid Simulations',
-    description: 'Real-time fluid dynamics in the browser using WebGL compute shaders.',
-    tags: ['WebGL', 'Compute Shaders', 'Math'],
-    category: 'webgl',
-    url: '#'
+    id: 4,
+    title: 'Project in progress...',
+    description: 'Coming soon...',
+    category: 'assignment',
+    status: 'In Progress',
+    tech: ['D3.js', 'JavaScript', 'Bootstrap'],
+    liveUrl: '#',
+    codeUrl: '#'
   },
   {
-    title: 'Motion System',
-    description: 'Generative motion library for React applications with spring physics.',
-    tags: ['React', 'Animation', 'Framer'],
-    category: 'library',
-    url: '#'
+    id: 5,
+    title: 'Project in progress...',
+    description: 'Coming soon...',
+    category: 'pet',
+    status: 'Done',
+    tech: ['HTML/CSS', 'JavaScript', 'Bootstrap'],
+    liveUrl: '#',
+    codeUrl: '#'
+  },
+  {
+    id: 6,
+    title: 'Budget Buddy',
+    description: 'Sleek Finance Manager (Symfony/Chart.js). Built a secure platform for managing transactions, reporting, and visualization. Features a premium dashboard and robust user/admin system.',
+    category: 'assignment',
+    status: 'Done',
+    tech: ['Symfony', 'Charts.js', 'Bootstrap'],
+    codeUrl: 'https://github.com/kasbihari/Budget-Buddy'
   }
 ];
 
-const categories = ['all', 'webgl', 'design-system', 'web', 'library'];
+const Badge: React.FC<{ children: React.ReactNode; variant?: 'status' | 'category' }> = ({ children, variant = 'status' }) => {
+  const baseClasses = 'inline-flex items-center px-2 py-1 rounded-full text-xs font-medium';
+  const variantClasses = variant === 'status'
+    ? children === 'Done' ? 'bg-emerald-500/20 text-emerald-300' : 'bg-amber-500/20 text-amber-300'
+    : 'bg-bordeaux/20 text-bordeaux-light';
+  return <span className={`${baseClasses} ${variantClasses}`}>{children}</span>;
+};
+
+const TechTag: React.FC<{ tech: string }> = ({ tech }) => (
+  <span className="px-2 py-1 text-xs rounded-full glass text-white/70">{tech}</span>
+);
 
 const Projects: React.FC = () => {
-  const [activeCategory, setActiveCategory] = useState('all');
+  const [activeFilter, setActiveFilter] = useState<Filter>('all');
 
-  const filteredProjects = activeCategory === 'all' 
-    ? projects 
-    : projects.filter(p => p.category === activeCategory);
+  const filteredProjects = activeFilter === 'all'
+    ? projects
+    : projects.filter(p => p.category === activeFilter);
 
   return (
     <section className="section-container-centered scrollable-section">
       <div className="w-full max-w-6xl">
         <h2 className="font-body text-4xl md:text-5xl font-medium mb-8 text-white text-center">
-          Selected Work
+          Projects <span className="text-bordeaux/80">✦</span>
         </h2>
         
-        {/* Filter buttons */}
         <div className="flex flex-wrap gap-3 justify-center mb-12">
-          {categories.map(cat => (
+          {(['all', 'pet', 'assignment'] as const).map((filter) => (
             <button
-              key={cat}
-              onClick={() => setActiveCategory(cat)}
-              className={`px-4 py-2 rounded-full text-sm font-body transition-all duration-300 glass
-                ${activeCategory === cat 
-                  ? 'bg-bordeaux text-white border-bordeaux/50' 
-                  : 'bg-white/5 text-white/60 hover:bg-white/10'}`}
+              key={filter}
+              onClick={() => setActiveFilter(filter)}
+              className={`px-6 py-2 rounded-full glass transition-all duration-300 ${
+                activeFilter === filter
+                  ? 'bg-bordeaux text-white border-bordeaux/50'
+                  : 'text-white/60 hover:text-white hover:bg-white/10'
+              }`}
             >
-              {cat.charAt(0).toUpperCase() + cat.slice(1)}
+              {filter === 'all' ? 'All Projects' : filter === 'pet' ? 'Pet Projects' : 'Assignments'}
             </button>
           ))}
         </div>
 
-        {/* Project grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {filteredProjects.map((project, i) => (
-            <Card key={i} className="glass-card border-white/10 hover:border-bordeaux/50 transition-all duration-500">
-              <CardHeader>
-                <CardTitle className="font-body text-2xl text-white">{project.title}</CardTitle>
-                <CardDescription className="font-body text-white/60">
+          {filteredProjects.map((project) => (
+            <Card key={project.id} className="glass-card border-white/10 hover:border-bordeaux/50 transition-all duration-500 flex flex-col h-full">
+              <CardHeader className="pb-3">
+                <div className="flex items-start justify-between gap-2">
+                  <CardTitle className="font-body text-xl text-white flex-1">{project.title}</CardTitle>
+                  <div className="flex gap-1.5 flex-shrink-0">
+                    <Badge variant="status">{project.status}</Badge>
+                    <Badge variant="category">{project.category === 'pet' ? 'Pet' : 'Assignment'}</Badge>
+                  </div>
+                </div>
+                <CardDescription className="font-body text-white/60 text-sm mt-2">
                   {project.description}
                 </CardDescription>
               </CardHeader>
-              <CardContent>
+              <CardContent className="flex-grow">
                 <div className="flex flex-wrap gap-2">
-                  {project.tags.map(tag => (
-                    <span key={tag} className="text-xs px-3 py-1 rounded-full glass text-white/70">
-                      {tag}
-                    </span>
+                  {project.tech.map((tag, i) => (
+                    <TechTag key={i} tech={tag} />
                   ))}
                 </div>
               </CardContent>
-              <CardFooter>
-                <Button variant="ghost" className="text-white hover:text-bordeaux p-0" asChild>
-                  <a href={project.url}>Learn more →</a>
-                </Button>
+              <CardFooter className="flex gap-3 pt-4 border-t border-white/10">
+                {project.liveUrl && project.liveUrl !== '#' ? (
+                  <Button variant="ghost" className="text-white hover:text-bordeaux p-0 h-auto flex items-center gap-1" asChild>
+                    <a href={project.liveUrl} target="_blank" rel="noopener noreferrer">
+                      <ExternalLink size={16} /> Live
+                    </a>
+                  </Button>
+                ) : (
+                  <span className="text-white/40 flex items-center gap-1 text-sm cursor-not-allowed">
+                    <Play size={16} /> Preview
+                  </span>
+                )}
+                {project.codeUrl && project.codeUrl !== '#' ? (
+                  <Button variant="ghost" className="text-white hover:text-bordeaux p-0 h-auto flex items-center gap-1" asChild>
+                    <a href={project.codeUrl} target="_blank" rel="noopener noreferrer">
+                      <Github size={16} /> Code
+                    </a>
+                  </Button>
+                ) : (
+                  <span className="text-white/40 flex items-center gap-1 text-sm cursor-not-allowed">
+                    <Github size={16} /> Code
+                  </span>
+                )}
               </CardFooter>
             </Card>
           ))}
