@@ -7,6 +7,38 @@ import App from '../components/App';
 ---
 
 <Layout title="Krishna Bihari – Creative Developer">
+  <!-- Splash screen (startscherm) -->
+  <div id="splash" class="fixed inset-0 z-[100] flex flex-col items-center justify-center bg-black transition-opacity duration-1000">
+    <h1
+      class="font-name text-6xl md:text-7xl lg:text-8xl text-white text-center leading-tight mb-6"
+      style="text-shadow: 0 0 8px rgba(94,42,44,0.8), 0 0 16px rgba(94,42,44,0.5), 0 0 24px rgba(94,42,44,0.3);"
+    >
+      Krishna Bihari
+    </h1> <br><br><br><br>
+    <div class="flex items-center gap-3">
+      <!-- Draaiend laadicoon (pure CSS) -->
+      <div class="w-5 h-5 border-2 border-bordeaux border-t-transparent rounded-full animate-spin"></div>
+      <span class="font-body text-white/70 text-lg">loading...</span>
+    </div>
+  </div>
+
+  <script>
+    // Verberg de splash na 2.5 seconden met een vloeiende overgang
+    setTimeout(() => {
+      const splash = document.getElementById('splash');
+      if (splash) {
+        splash.style.opacity = '0';
+        // Verwijder splash uit DOM na de fade-out (1 seconde later)
+        setTimeout(() => {
+          if (splash && splash.parentNode) {
+            splash.parentNode.removeChild(splash);
+          }
+        }, 1000);
+      }
+    }, 2500);
+  </script>
+
+  <!-- Normale inhoud (achtergrond, navbar, app) -->
   <FluidAuroraBackground client:idle />
   <Navbar client:load />
   <SocialIcons />
