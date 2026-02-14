@@ -53,7 +53,7 @@ const FluidAuroraBackground: React.FC = () => {
       }
     `;
 
-    // --- Smooth / Calm Fragment Shader ---
+    // --- Donkere / Bordeaux / Slate Fragment Shader ---
     const fragmentShader = `
       precision highp float;
 
@@ -113,18 +113,20 @@ const FluidAuroraBackground: React.FC = () => {
 
         pattern = smoothstep(0.2, 0.8, pattern);
 
-        // --- Kleuren ---
-        vec3 base = vec3(0.16, 0.16, 0.17);
-        vec3 aurora = vec3(0.45, 0.18, 0.28);
-        vec3 highlight = vec3(0.85, 0.85, 0.9);
+        // --- Donkere kleuren: bordeaux, antraciet, slate ---
+        vec3 base = vec3(0.08, 0.08, 0.10);   // zeer donker grijs / slate
+        vec3 bordeaux = vec3(0.30, 0.12, 0.16); // diep bordeaux (was 0.45,0.18,0.28)
+        vec3 slate = vec3(0.12, 0.14, 0.18);    // donker leigrijs
 
-        vec3 color = mix(base, aurora, pattern * 0.35);
-
+        // Mix op basis van patroon en flow
+        vec3 color = mix(base, bordeaux, pattern * 0.4);
+        
         float flow = sin(uv.y * 3.0 + t) * 0.5 + 0.5;
-        color = mix(color, highlight, flow * pattern * 0.15);
+        color = mix(color, slate, flow * pattern * 0.3);
 
-        float glow = pow(pattern, 2.0) * 0.25;
-        color += glow * 0.12;
+        // Zeer subtiele highlight (minimaal)
+        float glow = pow(pattern, 2.0) * 0.15;
+        color += glow * 0.08;
 
         gl_FragColor = vec4(color, 1.0);
       }
