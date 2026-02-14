@@ -1,10 +1,15 @@
 import React from 'react';
 import { Button } from '../ui/button';
-import { Zap, Mail } from 'lucide-react';
+import { Zap, Mail, Download } from 'lucide-react';
 
 const Hero: React.FC = () => {
   const handleNavigate = (section: string) => {
     window.dispatchEvent(new CustomEvent('navigate', { detail: { section } }));
+  };
+
+  const handleDownloadCV = () => {
+    // Zorg dat je cv.pdf in de public map staat
+    window.open('/CV - Krishna.pdf', '_blank');
   };
 
   return (
@@ -49,6 +54,14 @@ const Hero: React.FC = () => {
           >
             <Mail className="mr-2 h-5 w-5" />
             Let's build something amazing!
+          </Button>
+          <Button
+            variant="outline"
+            onClick={handleDownloadCV}
+            className="border-white/20 text-white hover:bg-white/10 px-8 py-6 text-lg glass flex-1 sm:flex-none"
+          >
+            <Download className="mr-2 h-5 w-5" />
+            Download CV
           </Button>
         </div>
 
