@@ -136,6 +136,16 @@
   .scrollable-section::-webkit-scrollbar-thumb:hover {
     background: rgba(94, 42, 44, 0.8);
   }
+  /* Scrollable secties met verborgen scrollbar */
+.scrollable-section {
+  overflow-y: auto;
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE and Edge */
+}
+
+.scrollable-section::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, Opera */
+}
 
   /* Badge */
   .badge {
