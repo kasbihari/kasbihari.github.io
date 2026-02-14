@@ -8,11 +8,9 @@ import {
   Sparkles
 } from 'lucide-react';
 
-// ---------- Types ----------
 type PassionKey = 'chess' | 'anime' | 'martialarts' | 'cars';
 type CultureIndex = 0 | 1 | 2;
 
-// ---------- Helper Components ----------
 const ProgressBar: React.FC<{ value: number; max?: number }> = ({ value, max = 100 }) => (
   <div className="w-full h-2 bg-white/10 rounded-full overflow-hidden">
     <div 
@@ -22,13 +20,11 @@ const ProgressBar: React.FC<{ value: number; max?: number }> = ({ value, max = 1
   </div>
 );
 
-// ---------- Main Component ----------
 const About: React.FC = () => {
-  // State voor uitklapbare passies
   const [openPassion, setOpenPassion] = useState<PassionKey | null>(null);
-
-  // State voor culture slider
   const [cultureIndex, setCultureIndex] = useState<CultureIndex>(0);
+  const sectionRef = useRef<HTMLElement>(null);
+
   const cultureSlides = [
     {
       icon: <Sun className="w-8 h-8" />,
@@ -50,15 +46,11 @@ const About: React.FC = () => {
   const nextCulture = () => setCultureIndex(((cultureIndex + 1) % 3) as CultureIndex);
   const prevCulture = () => setCultureIndex(((cultureIndex - 1 + 3) % 3) as CultureIndex);
 
-  // Toggle voor passie-uitklappers
   const togglePassion = (key: PassionKey) => {
     setOpenPassion(openPassion === key ? null : key);
   };
 
-  // Ref voor scrollbare sectie
-  const sectionRef = useRef<HTMLElement>(null);
-
-  // Forceer focus op de sectie bij laden, zodat pijltjestoetsen werken
+  // Focus op de sectie voor pijltjestoetsen
   useEffect(() => {
     const timer = setTimeout(() => {
       if (sectionRef.current) {
@@ -72,12 +64,11 @@ const About: React.FC = () => {
     <section
       ref={sectionRef}
       tabIndex={-1}
-      className="relative w-full h-screen overflow-y-auto scrollable-section px-4 md:px-12 pt-16 md:pt-24 pb-12 outline-none"
+      className="w-full py-12 md:py-16 px-4 md:px-12 outline-none"
     >
       <div className="max-w-6xl mx-auto space-y-16">
-        
-        {/* ----- HERO HEADER (extra marge boven) ----- */}
-        <div className="glass-card p-8 md:p-12 flex flex-col md:flex-row items-center gap-8 mb-8">
+
+        <div className="glass-card p-8 md:p-12 flex flex-col md:flex-row items-center gap-8">
           <div className="flex-1 text-center md:text-left">
             <h1 className="font-body text-5xl md:text-6xl font-medium mb-4">
               Beyond the <span className="text-bordeaux">Code</span>
@@ -99,7 +90,6 @@ const About: React.FC = () => {
           </div>
         </div>
 
-        {/* ----- TIMELINE ----- */}
         <div>
           <h2 className="font-body text-4xl md:text-5xl font-medium mb-10 text-center">
             My Journey <span className="text-bordeaux/80">✦</span>
@@ -127,13 +117,11 @@ const About: React.FC = () => {
           </div>
         </div>
 
-        {/* ----- PASSIONS & INTERESTS ----- */}
         <div>
           <h2 className="font-body text-4xl md:text-5xl font-medium mb-10 text-center">
             Passions & Interests <span className="text-bordeaux/80">✦</span>
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {/* Chess */}
             <PassionCard
               icon={<Gamepad2 />}
               title="Chess Strategy"
@@ -165,7 +153,6 @@ const About: React.FC = () => {
               </div>
             </PassionCard>
 
-            {/* Anime */}
             <PassionCard
               icon={<Tv />}
               title="Anime & Storytelling"
@@ -190,7 +177,6 @@ const About: React.FC = () => {
               </div>
             </PassionCard>
 
-            {/* Martial Arts */}
             <PassionCard
               icon={<PersonStanding />}
               title="Martial Arts"
@@ -219,7 +205,6 @@ const About: React.FC = () => {
               </div>
             </PassionCard>
 
-            {/* Cars */}
             <PassionCard
               icon={<Car />}
               title="Automotive Design"
@@ -245,7 +230,6 @@ const About: React.FC = () => {
           </div>
         </div>
 
-        {/* ----- PERSONALITY TRAITS ----- */}
         <div>
           <h2 className="font-body text-4xl md:text-5xl font-medium mb-10 text-center">
             My Personality <span className="text-bordeaux/80">✦</span>
@@ -269,7 +253,6 @@ const About: React.FC = () => {
           </div>
         </div>
 
-        {/* ----- CULTURAL INSPIRATIONS (SLIDER) ----- */}
         <div>
           <h2 className="font-body text-4xl md:text-5xl font-medium mb-10 text-center">
             Cultural Inspirations <span className="text-bordeaux/80">✦</span>
@@ -313,7 +296,6 @@ const About: React.FC = () => {
           </div>
         </div>
 
-        {/* ----- DAILY PHILOSOPHY ----- */}
         <div>
           <h2 className="font-body text-4xl md:text-5xl font-medium mb-10 text-center">
             Daily Philosophy <span className="text-bordeaux/80">✦</span>
@@ -334,23 +316,10 @@ const About: React.FC = () => {
             </div>
           </div>
         </div>
-
-        {/* Extra ruimte onderaan voor comfortabel scrollen */}
-        <div className="h-12" />
       </div>
     </section>
   );
 };
-
-// ----- Helper component voor Passion Cards -----
-interface PassionCardProps {
-  icon: React.ReactNode;
-  title: string;
-  subtitle: string;
-  isOpen: boolean;
-  onToggle: () => void;
-  children: React.ReactNode;
-}
 
 const PassionCard: React.FC<PassionCardProps> = ({ icon, title, subtitle, isOpen, onToggle, children }) => (
   <div className="glass-card p-6 cursor-pointer hover:border-bordeaux/50 transition-all" onClick={onToggle}>
@@ -376,7 +345,6 @@ const PassionCard: React.FC<PassionCardProps> = ({ icon, title, subtitle, isOpen
   </div>
 );
 
-// ----- Helper component voor Daily Item -----
 const DailyItem: React.FC<{ icon: React.ReactNode; time: string; activity: string }> = ({ icon, time, activity }) => (
   <div className="flex flex-col items-center text-center glass p-4 rounded-xl">
     <div className="w-10 h-10 rounded-full bg-bordeaux/20 flex items-center justify-center text-bordeaux mb-2">
@@ -386,5 +354,14 @@ const DailyItem: React.FC<{ icon: React.ReactNode; time: string; activity: strin
     <div className="text-white/70 text-sm">{activity}</div>
   </div>
 );
+
+interface PassionCardProps {
+  icon: React.ReactNode;
+  title: string;
+  subtitle: string;
+  isOpen: boolean;
+  onToggle: () => void;
+  children: React.ReactNode;
+}
 
 export default About;

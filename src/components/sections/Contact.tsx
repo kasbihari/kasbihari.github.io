@@ -3,8 +3,8 @@ import { Mail, Send, MessageCircle, Github, Linkedin } from 'lucide-react';
 
 const Contact: React.FC = () => {
   return (
-    <section className="section-container-centered scrollable-section">
-      <div className="w-full max-w-5xl">
+    <section className="w-full py-12 md:py-16 px-4 md:px-12">
+      <div className="max-w-5xl mx-auto">
         <h2 className="font-body text-4xl md:text-5xl font-medium mb-10 text-white text-center">
           Contact <span className="text-bordeaux/80">✦</span>
         </h2>
@@ -81,9 +81,6 @@ const Contact: React.FC = () => {
             </ul>
           </div>
         </div>
-
-        {/* Extra ruimte onderaan */}
-        <div className="h-8" />
       </div>
     </section>
   );

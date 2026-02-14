@@ -1,16 +1,14 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import Navbar from '../components/Navbar.astro';
+import Navbar from '../components/Navbar'; // React component
 import SocialIcons from '../components/SocialIcons.astro';
-import Footer from '../components/Footer.astro';
 import FluidAuroraBackground from '../components/3d/FluidAuroraBackground';
 import App from '../components/App';
 ---
 
 <Layout title="Krishna Bihari – Creative Developer">
   <FluidAuroraBackground client:idle />
-  <Navbar />
+  <Navbar client:load />
   <SocialIcons />
-  <Footer />
   <App client:only="react" />
 </Layout>

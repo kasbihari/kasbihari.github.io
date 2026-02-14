@@ -97,12 +97,12 @@ const Projects: React.FC = () => {
     : projects.filter(p => p.category === activeFilter);
 
   return (
-    <section className="section-container-centered scrollable-section">
-      <div className="w-full max-w-6xl">
+    <section className="w-full py-12 md:py-16 px-4 md:px-12">
+      <div className="max-w-6xl mx-auto">
         <h2 className="font-body text-4xl md:text-5xl font-medium mb-8 text-white text-center">
           Projects <span className="text-bordeaux/80">✦</span>
         </h2>
-        
+
         <div className="flex flex-wrap gap-3 justify-center mb-12">
           {(['all', 'pet', 'assignment'] as const).map((filter) => (
             <button
