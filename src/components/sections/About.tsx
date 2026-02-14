@@ -64,38 +64,20 @@ const About: React.FC = () => {
       if (sectionRef.current) {
         sectionRef.current.focus();
       }
-    }, 100); // kleine vertraging voor de zekerheid
+    }, 100);
     return () => clearTimeout(timer);
   }, []);
-
-  // Optionele fallback: als focus niet genoeg is, kun je deze keydown-listener activeren
-  // (uitcommentarieerd, want native scroll zou moeten werken na focus)
-  /*
-  useEffect(() => {
-    const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.key === 'ArrowDown' || e.key === 'ArrowUp') {
-        e.preventDefault();
-        if (sectionRef.current) {
-          const scrollAmount = e.key === 'ArrowDown' ? 100 : -100;
-          sectionRef.current.scrollBy({ top: scrollAmount, behavior: 'smooth' });
-        }
-      }
-    };
-    window.addEventListener('keydown', handleKeyDown);
-    return () => window.removeEventListener('keydown', handleKeyDown);
-  }, []);
-  */
 
   return (
     <section
       ref={sectionRef}
       tabIndex={-1}
-      className="relative w-full h-screen overflow-y-auto scrollable-section px-4 md:px-12 py-8 md:py-12 outline-none"
+      className="relative w-full h-screen overflow-y-auto scrollable-section px-4 md:px-12 pt-16 md:pt-24 pb-12 outline-none"
     >
       <div className="max-w-6xl mx-auto space-y-16">
         
-        {/* ----- HERO HEADER ----- */}
-        <div className="glass-card p-8 md:p-12 flex flex-col md:flex-row items-center gap-8">
+        {/* ----- HERO HEADER (extra marge boven) ----- */}
+        <div className="glass-card p-8 md:p-12 flex flex-col md:flex-row items-center gap-8 mb-8">
           <div className="flex-1 text-center md:text-left">
             <h1 className="font-body text-5xl md:text-6xl font-medium mb-4">
               Beyond the <span className="text-bordeaux">Code</span>
@@ -354,7 +336,7 @@ const About: React.FC = () => {
         </div>
 
         {/* Extra ruimte onderaan voor comfortabel scrollen */}
-        <div className="h-8" />
+        <div className="h-12" />
       </div>
     </section>
   );
