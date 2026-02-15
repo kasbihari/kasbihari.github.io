@@ -59,31 +59,14 @@
 ---
 
 ## 🚀 Getting Started
-
+--
 ### Prerequisites
 
 - Node.js 20+
 - npm
 
-### Installation
+--
 
-```bash
-git clone https://github.com/kasbihari/kasbihari.github.io.git
-cd kasbihari.github.io
-npm install
-npm run dev
-
----
-Open:
-http://localhost:4321
-The site hot-reloads on edits.
-
-```bash
-npm run build
-npm run preview
-The output will be generated in the dist/ directory.
-
----
 🌐 Deployment
 
 This project deploys automatically to GitHub Pages via GitHub Actions.
@@ -93,7 +76,7 @@ Static export
 Deployment
 Workflow location: .github/workflows/deploy.yml
 
----
+--
 🎨 Customisation
 
 Colors & Fonts → tailwind.config.mjs, src/styles/global.css
@@ -102,11 +85,7 @@ Projects → Projects.tsx
 Contact Content → Contact.tsx
 Aurora Background → FluidAuroraBackground.tsx
 
----
-📄 License
-MIT License
-
----
+--
 🙏 Acknowledgements
 Built with:
 Astro
@@ -114,3 +93,14 @@ shadcn/ui
 Three.js
 Framer Motion
 Made with ☕ and code by Krishna Bihari
+
+📄 License
+MIT License
+
+### Installation
+
+```bash
+git clone https://github.com/kasbihari/kasbihari.github.io.git
+cd kasbihari.github.io
+npm install
+npm run dev
