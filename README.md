@@ -9,7 +9,7 @@
 > A minimalist, cinematic portfolio blending code, art & culture.  
 > Built with performance, accessibility, and a dark liquid glass aesthetic.
 
-![Portfolio Preview](public/assets/preview.jpg)
+![Portfolio Preview](public/images/preview.png)
 
 ---
 
@@ -73,14 +73,17 @@ cd kasbihari.github.io
 npm install
 npm run dev
 
+---
 Open:
 http://localhost:4321
 The site hot-reloads on edits.
 
+```bash
 npm run build
 npm run preview
 The output will be generated in the dist/ directory.
 
+---
 🌐 Deployment
 
 This project deploys automatically to GitHub Pages via GitHub Actions.
@@ -90,6 +93,7 @@ Static export
 Deployment
 Workflow location: .github/workflows/deploy.yml
 
+---
 🎨 Customisation
 
 Colors & Fonts → tailwind.config.mjs, src/styles/global.css
@@ -98,9 +102,11 @@ Projects → Projects.tsx
 Contact Content → Contact.tsx
 Aurora Background → FluidAuroraBackground.tsx
 
+---
 📄 License
 MIT License
 
+---
 🙏 Acknowledgements
 Built with:
 Astro
