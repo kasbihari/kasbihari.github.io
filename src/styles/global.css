@@ -33,6 +33,11 @@
     @apply font-body font-medium;
   }
 
+  img, svg, video {
+    max-width: 100%;
+    height: auto;
+  }
+
   .font-name {
     font-family: 'Amsterdam Four', sans-serif;
   }

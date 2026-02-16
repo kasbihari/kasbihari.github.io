@@ -7,9 +7,8 @@ const Navbar: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
 
   const handleNavigate = (section: string) => {
-    // Stuur custom event met de sectie (in lowercase)
     window.dispatchEvent(new CustomEvent('navigate', { detail: { section: section.toLowerCase() } }));
-    setIsOpen(false); // sluit menu op mobiel
+    setIsOpen(false);
   };
 
   // Sluit menu bij klik buiten
@@ -26,20 +25,27 @@ const Navbar: React.FC = () => {
 
   return (
     <>
-      {/* Desktop versie */}
+      {/* Desktop versie (vanaf md) */}
       <nav className="fixed top-8 left-8 z-50 hidden md:flex flex-col items-start space-y-3">
         {navItems.map((item) => (
           <button
             key={item}
             onClick={() => handleNavigate(item)}
-            className="font-body text-xl uppercase tracking-widest text-white/60 hover:text-bordeaux transition-all duration-300 glass px-4 py-2 rounded-lg"
+            className="
+              font-body text-xl uppercase tracking-widest
+              text-white/60 hover:text-white
+              transition-all duration-300
+              glass px-6 py-3 rounded-full
+              min-w-[140px] text-left
+              hover:bg-bordeaux/20 hover:border-bordeaux/50
+            "
           >
             {item}
           </button>
         ))}
       </nav>
 
-      {/* Mobiele versie */}
+      {/* Mobiele versie (tot md) */}
       <div className="md:hidden fixed top-4 left-4 z-50">
         <button
           onClick={() => setIsOpen(!isOpen)}
@@ -50,12 +56,16 @@ const Navbar: React.FC = () => {
         </button>
 
         {isOpen && (
-          <div className="mobile-menu absolute top-16 left-0 glass p-4 rounded-2xl border border-white/10 flex flex-col space-y-3 min-w-[150px]">
+          <div className="mobile-menu absolute top-16 left-0 glass p-3 rounded-3xl border border-white/10 flex flex-col space-y-2 min-w-[160px]">
             {navItems.map((item) => (
               <button
                 key={item}
                 onClick={() => handleNavigate(item)}
-                className="font-body text-lg text-white/80 hover:text-bordeaux transition-colors text-left px-2 py-1"
+                className="
+                  font-body text-base text-white/80 hover:text-white
+                  transition-colors text-left px-4 py-2
+                  rounded-full hover:bg-bordeaux/20
+                "
               >
                 {item}
               </button>

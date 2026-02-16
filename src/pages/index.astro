@@ -1,9 +1,9 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import Navbar from '../components/Navbar'; // React component
-import SocialIcons from '../components/SocialIcons.astro';
 import FluidAuroraBackground from '../components/3d/FluidAuroraBackground';
 import App from '../components/App';
+import RadialNav from '../components/navigation/RadialNav';
+import RadialSocial from '../components/navigation/RadialSocial';
 ---
 
 <Layout title="Krishna Bihari – Creative Developer">
@@ -16,19 +16,16 @@ import App from '../components/App';
       Krishna Bihari
     </h1> <br><br><br><br>
     <div class="flex items-center gap-3">
-      <!-- Draaiend laadicoon (pure CSS) -->
       <div class="w-5 h-5 border-2 border-bordeaux border-t-transparent rounded-full animate-spin"></div>
       <span class="font-body text-white/70 text-lg">loading...</span>
     </div>
   </div>
 
   <script>
-    // Verberg de splash na 2.5 seconden met een vloeiende overgang
     setTimeout(() => {
       const splash = document.getElementById('splash');
       if (splash) {
         splash.style.opacity = '0';
-        // Verwijder splash uit DOM na de fade-out (1 seconde later)
         setTimeout(() => {
           if (splash && splash.parentNode) {
             splash.parentNode.removeChild(splash);
@@ -38,9 +35,8 @@ import App from '../components/App';
     }, 2500);
   </script>
 
-  <!-- Normale inhoud (achtergrond, navbar, app) -->
   <FluidAuroraBackground client:idle />
-  <Navbar client:load />
-  <SocialIcons />
+  <RadialNav client:load />
+  <RadialSocial client:load />
   <App client:only="react" />
 </Layout>
