@@ -12,14 +12,14 @@ const Contact: React.FC = () => {
   };
 
   return (
-    <section className="w-full py-12 md:py-16 px-4 md:px-12">
-      <div className="max-w-5xl mx-auto">
+    <section className="min-h-screen flex items-center justify-center px-4 md:px-12 py-12">
+      <div className="max-w-5xl w-full mx-auto">
         <h2 className="font-body text-4xl md:text-5xl font-medium mb-10 text-white text-center">
           Contact <span className="text-bordeaux/80">✦</span>
         </h2>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
-          {/* Linker kaart – e-mail */}
+          {/* Left card: email */}
           <motion.div
             className="glass-card p-8 flex flex-col items-center text-center h-full transition-all duration-300 hover:border-bordeaux/50 hover:shadow-[0_0_30px_rgba(94,42,44,0.3)]"
             whileHover={{ scale: 1.02 }}
@@ -34,8 +34,8 @@ const Contact: React.FC = () => {
             <p className="text-white/60 mb-6">
               I'm always open for new projects and collaborations.
             </p>
-            
-            {/* E-mail met kopieerfunctie */}
+
+            {/* Email with copy */}
             <div className="flex items-center gap-2 mb-4">
               <span className="text-white/80 font-mono text-sm">kas.bihari@gmail.com</span>
               <button
@@ -61,7 +61,7 @@ const Contact: React.FC = () => {
             </a>
           </motion.div>
 
-          {/* Rechter kaart – contactgegevens */}
+          {/* Right card: contact details */}
           <motion.div
             className="glass-card p-8 flex flex-col h-full transition-all duration-300 hover:border-bordeaux/50 hover:shadow-[0_0_30px_rgba(94,42,44,0.3)]"
             whileHover={{ scale: 1.02 }}
@@ -115,7 +115,7 @@ const Contact: React.FC = () => {
               </li>
             </ul>
 
-            {/* Social media iconen extra */}
+            {/* Extra social icons */}
             <div className="flex justify-center gap-4 mt-6">
               <a
                 href="https://github.com/kasbihari"
@@ -139,7 +139,7 @@ const Contact: React.FC = () => {
           </motion.div>
         </div>
 
-        {/* Fun fact box – full width onder de twee kolommen */}
+        {/* Fun fact box */}
         <motion.div
           className="glass-card p-6 w-full transition-all duration-300 hover:border-bordeaux/50 hover:shadow-[0_0_30px_rgba(94,42,44,0.3)]"
           whileHover={{ scale: 1.01 }}

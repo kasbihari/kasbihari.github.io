@@ -8,13 +8,13 @@ const Hero: React.FC = () => {
   };
 
   const handleDownloadCV = () => {
-    // Zorg dat je cv.pdf in de public map staat
-    window.open('/CV - Krishna.pdf', '_blank');
+    window.open('/cv.pdf', '_blank');
   };
 
   return (
-    <section className="w-full py-12 md:py-16 px-4 md:px-12">
-      <div className="max-w-4xl mx-auto flex flex-col items-center justify-center pt-24 pb-16 px-6 md:px-12 space-y-8 glass-card">
+    <section className="min-h-screen flex items-center justify-center px-4 md:px-12 py-12 pt-20 md:pt-0">
+      <div className="max-w-4xl w-full mx-auto flex flex-col items-center justify-center space-y-8">
+        {/* Name with glow */}
         <h1
           className="font-name text-5xl sm:text-6xl md:text-7xl text-white text-center leading-tight"
           style={{
@@ -22,8 +22,9 @@ const Hero: React.FC = () => {
           }}
         >
           Krishna Bihari
-        </h1> <br /><br />
+        </h1> <br /><br /> <br />
 
+        {/* Tagline box */}
         <div className="glass max-w-lg mx-auto p-5 md:p-6 rounded-2xl border border-white/10 hover:border-bordeaux/50 hover:shadow-[0_0_30px_rgba(94,42,44,0.3)] transition-all duration-500 ease-out backdrop-blur-lg">
           <p className="font-body text-xl md:text-2xl text-center leading-relaxed">
             Blending{' '}
@@ -34,11 +35,13 @@ const Hero: React.FC = () => {
           </p>
         </div>
 
+        {/* Description */}
         <p className="font-body text-lg md:text-xl text-white/70 text-center max-w-2xl mx-auto leading-relaxed">
           Front-end developer & visual creator — I build stylish,
           performance-focused experiences with a cultural signature.
         </p>
 
+        {/* Buttons */}
         <div className="flex flex-col sm:flex-row gap-4 justify-center w-full sm:w-auto">
           <Button
             onClick={() => handleNavigate('projects')}
@@ -65,6 +68,7 @@ const Hero: React.FC = () => {
           </Button>
         </div>
 
+        {/* Skill chips */}
         <div className="flex flex-wrap gap-2 justify-center pt-4">
           {[
             'HTML/CSS',

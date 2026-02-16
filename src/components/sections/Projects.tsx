@@ -97,12 +97,13 @@ const Projects: React.FC = () => {
     : projects.filter(p => p.category === activeFilter);
 
   return (
-    <section className="w-full py-12 md:py-16 px-4 md:px-12">
-      <div className="max-w-6xl mx-auto">
+    <section className="min-h-screen flex items-center justify-center px-4 md:px-12 py-12">
+      <div className="max-w-6xl w-full mx-auto">
         <h2 className="font-body text-4xl md:text-5xl font-medium mb-8 text-white text-center">
           Projects <span className="text-bordeaux/80">✦</span>
         </h2>
 
+        {/* Filter buttons */}
         <div className="flex flex-wrap gap-3 justify-center mb-12">
           {(['all', 'pet', 'assignment'] as const).map((filter) => (
             <button
@@ -119,6 +120,7 @@ const Projects: React.FC = () => {
           ))}
         </div>
 
+        {/* Project grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {filteredProjects.map((project) => (
             <Card key={project.id} className="glass-card border-white/10 hover:border-bordeaux/50 transition-all duration-500 flex flex-col h-full">

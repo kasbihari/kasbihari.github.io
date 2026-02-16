@@ -50,7 +50,6 @@ const About: React.FC = () => {
     setOpenPassion(openPassion === key ? null : key);
   };
 
-  // Focus op de sectie voor pijltjestoetsen
   useEffect(() => {
     const timer = setTimeout(() => {
       if (sectionRef.current) {
@@ -64,10 +63,10 @@ const About: React.FC = () => {
     <section
       ref={sectionRef}
       tabIndex={-1}
-      className="w-full py-12 md:py-16 px-4 md:px-12 outline-none"
+      className="min-h-screen flex items-center justify-center px-4 md:px-12 py-12 outline-none"
     >
-      <div className="max-w-6xl mx-auto space-y-16">
-
+      <div className="max-w-6xl w-full mx-auto space-y-12">
+        {/* Hero header */}
         <div className="glass-card p-8 md:p-12 flex flex-col md:flex-row items-center gap-8">
           <div className="flex-1 text-center md:text-left">
             <h1 className="font-body text-5xl md:text-6xl font-medium mb-4">
@@ -90,6 +89,7 @@ const About: React.FC = () => {
           </div>
         </div>
 
+        {/* Timeline */}
         <div>
           <h2 className="font-body text-4xl md:text-5xl font-medium mb-10 text-center">
             My Journey <span className="text-bordeaux/80">✦</span>
@@ -117,11 +117,13 @@ const About: React.FC = () => {
           </div>
         </div>
 
+        {/* Passions & Interests (unchanged, keep as is) */}
         <div>
           <h2 className="font-body text-4xl md:text-5xl font-medium mb-10 text-center">
             Passions & Interests <span className="text-bordeaux/80">✦</span>
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            {/* Chess */}
             <PassionCard
               icon={<Gamepad2 />}
               title="Chess Strategy"
@@ -153,6 +155,7 @@ const About: React.FC = () => {
               </div>
             </PassionCard>
 
+            {/* Anime */}
             <PassionCard
               icon={<Tv />}
               title="Anime & Storytelling"
@@ -177,6 +180,7 @@ const About: React.FC = () => {
               </div>
             </PassionCard>
 
+            {/* Martial Arts */}
             <PassionCard
               icon={<PersonStanding />}
               title="Martial Arts"
@@ -205,6 +209,7 @@ const About: React.FC = () => {
               </div>
             </PassionCard>
 
+            {/* Cars */}
             <PassionCard
               icon={<Car />}
               title="Automotive Design"
@@ -230,6 +235,7 @@ const About: React.FC = () => {
           </div>
         </div>
 
+        {/* Personality Traits */}
         <div>
           <h2 className="font-body text-4xl md:text-5xl font-medium mb-10 text-center">
             My Personality <span className="text-bordeaux/80">✦</span>
@@ -253,6 +259,7 @@ const About: React.FC = () => {
           </div>
         </div>
 
+        {/* Cultural Inspirations */}
         <div>
           <h2 className="font-body text-4xl md:text-5xl font-medium mb-10 text-center">
             Cultural Inspirations <span className="text-bordeaux/80">✦</span>
@@ -296,6 +303,7 @@ const About: React.FC = () => {
           </div>
         </div>
 
+        {/* Daily Philosophy */}
         <div>
           <h2 className="font-body text-4xl md:text-5xl font-medium mb-10 text-center">
             Daily Philosophy <span className="text-bordeaux/80">✦</span>
@@ -321,6 +329,7 @@ const About: React.FC = () => {
   );
 };
 
+// Helper components (keep as they were)
 const PassionCard: React.FC<PassionCardProps> = ({ icon, title, subtitle, isOpen, onToggle, children }) => (
   <div className="glass-card p-6 cursor-pointer hover:border-bordeaux/50 transition-all" onClick={onToggle}>
     <div className="flex items-start justify-between">
