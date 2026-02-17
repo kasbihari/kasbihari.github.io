@@ -57,7 +57,7 @@ const projects: Project[] = [
   },
   {
     id: 5,
-    title: 'Stichting Waahan Website',
+    title: 'Stichting Waahan',
     description: 'Waahan Mobility is a WordPress website that I built with a custom theme, coded in PHP and Bootstrap. Instead of using standard drag-and-drop features, I developed a tailored design that aligns with the branding and specific needs of Waahan Mobility.',
     category: 'assignment',
     status: 'Done',
