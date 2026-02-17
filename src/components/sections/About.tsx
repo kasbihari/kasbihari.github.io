@@ -1,19 +1,37 @@
-import React, { useState, useRef, useEffect } from 'react';
-import { 
-  ChevronDown, ChevronUp, ChevronLeft, ChevronRight, 
-  Quote, Coffee, Code, Zap, Dice5, 
-  Gamepad2, Tv, PersonStanding, Car,
-  Lightbulb, Palette, ShieldCheck, Users,
-  Sun, Moon, Flower,
-  Sparkles
-} from 'lucide-react';
+import React, { useState, useRef, useEffect } from "react";
+import {
+  ChevronDown,
+  ChevronUp,
+  ChevronLeft,
+  ChevronRight,
+  Quote,
+  Coffee,
+  Code,
+  Zap,
+  Dice5,
+  Gamepad2,
+  Tv,
+  PersonStanding,
+  Car,
+  Lightbulb,
+  Palette,
+  ShieldCheck,
+  Users,
+  Sun,
+  Moon,
+  Flower,
+  Sparkles,
+} from "lucide-react";
 
-type PassionKey = 'chess' | 'anime' | 'martialarts' | 'cars';
+type PassionKey = "chess" | "anime" | "martialarts" | "cars";
 type CultureIndex = 0 | 1 | 2;
 
-const ProgressBar: React.FC<{ value: number; max?: number }> = ({ value, max = 100 }) => (
+const ProgressBar: React.FC<{ value: number; max?: number }> = ({
+  value,
+  max = 100,
+}) => (
   <div className="w-full h-2 bg-white/10 rounded-full overflow-hidden">
-    <div 
+    <div
       className="h-full bg-bordeaux rounded-full transition-all duration-300"
       style={{ width: `${(value / max) * 100}%` }}
     />
@@ -28,23 +46,25 @@ const About: React.FC = () => {
   const cultureSlides = [
     {
       icon: <Sun className="w-8 h-8" />,
-      title: 'Japanese Culture',
-      text: 'The harmony, respect, and attention to detail in Japanese culture deeply influence my approach to design. Concepts like "kaizen" (continuous improvement) and "omotenashi" (selfless hospitality) shape how I approach user experience and craftsmanship in my work.'
+      title: "Japanese Culture",
+      text: 'The harmony, respect, and attention to detail in Japanese culture deeply influence my approach to design. Concepts like "kaizen" (continuous improvement) and "omotenashi" (selfless hospitality) shape how I approach user experience and craftsmanship in my work.',
     },
     {
       icon: <Moon className="w-8 h-8" />,
-      title: 'Arabic Culture',
-      text: 'The rich storytelling traditions, poetic language, and community-focused values of Arabic culture inspire my work. The emphasis on hospitality ("diyafa") and intricate calligraphic arts influence how I think about typography and creating welcoming digital experiences.'
+      title: "Arabic Culture",
+      text: 'The rich storytelling traditions, poetic language, and community-focused values of Arabic culture inspire my work. The emphasis on hospitality ("diyafa") and intricate calligraphic arts influence how I think about typography and creating welcoming digital experiences.',
     },
     {
       icon: <Flower className="w-8 h-8" />,
-      title: 'Indian Culture',
-      text: 'The vibrant diversity, spiritual depth, and celebratory nature of Indian culture fuel my creativity. From colorful festivals to philosophical concepts of "dharma" (duty/purpose), these elements inspire me to create work that\'s meaningful, colorful, and deeply human.'
-    }
+      title: "Indian Culture",
+      text: 'The vibrant diversity, spiritual depth, and celebratory nature of Indian culture fuel my creativity. From colorful festivals to philosophical concepts of "dharma" (duty/purpose), these elements inspire me to create work that\'s meaningful, colorful, and deeply human.',
+    },
   ];
 
-  const nextCulture = () => setCultureIndex(((cultureIndex + 1) % 3) as CultureIndex);
-  const prevCulture = () => setCultureIndex(((cultureIndex - 1 + 3) % 3) as CultureIndex);
+  const nextCulture = () =>
+    setCultureIndex(((cultureIndex + 1) % 3) as CultureIndex);
+  const prevCulture = () =>
+    setCultureIndex(((cultureIndex - 1 + 3) % 3) as CultureIndex);
 
   const togglePassion = (key: PassionKey) => {
     setOpenPassion(openPassion === key ? null : key);
@@ -73,17 +93,17 @@ const About: React.FC = () => {
               Beyond the <span className="text-bordeaux">Code</span>
             </h1>
             <p className="text-white/70 text-lg md:text-xl max-w-2xl">
-              The person behind the pixels — a journey through my passions,
+              The person behind the pixels a journey through my passions,
               inspirations, and what makes me who I am.
             </p>
           </div>
           <div className="flex-shrink-0">
             <div className="w-40 h-40 md:w-48 md:h-48 rounded-full glass border-2 border-bordeaux/30 overflow-hidden">
-              <img 
-                src="/assets/pfpa.jpeg" 
+              <img
+                src="/assets/pfpa.jpeg"
                 alt="Krishna Bihari"
                 className="w-full h-full object-cover"
-                onError={(e) => (e.currentTarget.src = '/images/k-logo.jpg')}
+                onError={(e) => (e.currentTarget.src = "/images/k-logo.jpg")}
               />
             </div>
           </div>
@@ -96,18 +116,43 @@ const About: React.FC = () => {
           </h2>
           <div className="space-y-8">
             {[
-              { icon: <Gamepad2 />, title: 'Early Beginnings', date: 'Childhood', desc: 'Growing up, I was fascinated by video games and animation. I spent hours drawing characters from my favorite anime and trying to understand how games were made. This curiosity about digital creation planted the seeds for my future path.' },
-              { icon: <Code />, title: 'Discovering Code', date: 'High School Years', desc: 'My first encounter with HTML/CSS was through customizing MySpace profiles and forum signatures. I quickly realized I could build things that people actually used and enjoyed. This led me to pursue computer science and design seriously.' },
-              { icon: <Sparkles />, title: 'Cultural Awakening', date: 'College Years', desc: 'Studying different cultures through their traditions, values, and artistic expressions became a passion. Japanese harmony and precision, Arabic storytelling and hospitality, and Indian vibrancy and spirituality all influenced my worldview and approach to creative work.' },
-              { icon: <Palette />, title: 'Design & Development Fusion', date: 'Present', desc: 'Today, I see design and development not as separate disciplines but as two sides of the same coin. Every line of code has aesthetic implications, and every design choice has technical requirements. This holistic approach defines my work.' }
+              {
+                icon: <Gamepad2 />,
+                title: "Early Beginnings",
+                date: "Childhood",
+                desc: "Growing up, I was captivated by cars, video games, and animation. I spent hours sketching my favorite anime characters and exploring how games were made. My fascination with automobiles dreaming of fast cars and sleek designs further fueled my curiosity about digital creation. This blend of interests planted the seeds for my future journey in the world of technology and design.",
+              },
+              {
+                icon: <Code />,
+                title: "Discovering Code",
+                date: "High School Years",
+                desc: "My first encounter with HTML and CSS was through customizing portfolios and creating simple websites. I quickly realized I could build things that people actually used and enjoyed. Alongside this, I spent a lot of time making games with Scratch, and since I was young, I was also active on Code.org, exploring coding and problem-solving. These early experiences sparked a genuine passion for coding and design, leading me to pursue them seriously.",
+              },
+              {
+                icon: <Sparkles />,
+                title: "Cultural Awakening",
+                date: "College Years",
+                desc: "Studying different cultures through their traditions, values, and artistic expressions became a true passion of mine. I was fascinated by Japanese harmony and precision, Arabic storytelling and hospitality, and Indian vibrancy and spirituality. These diverse influences shaped my worldview and approach to creative work. I have always been curious about history and eager to understand how everything fits together why things are the way they are, how different elements connect, and where they originate. This curiosity about the interconnectedness of culture and history has been a core part of my passion from a young age.",
+              },
+              {
+                icon: <Palette />,
+                title: "Design & Development Fusion",
+                date: "Present",
+                desc: "Today, I see design and development not as separate disciplines but as two sides of the same coin. Every line of code has aesthetic implications, and every design choice has technical requirements. This holistic approach defines my work.",
+              },
             ].map((item, i) => (
-              <div key={i} className="flex gap-4 md:gap-6 items-start glass p-6 rounded-2xl">
+              <div
+                key={i}
+                className="flex gap-4 md:gap-6 items-start glass p-6 rounded-2xl"
+              >
                 <div className="flex-shrink-0 w-12 h-12 rounded-full bg-bordeaux/20 flex items-center justify-center text-bordeaux">
                   {item.icon}
                 </div>
                 <div>
                   <div className="flex flex-wrap items-baseline gap-3 mb-2">
-                    <h3 className="font-body text-2xl font-medium">{item.title}</h3>
+                    <h3 className="font-body text-2xl font-medium">
+                      {item.title}
+                    </h3>
                     <span className="text-sm text-white/40">{item.date}</span>
                   </div>
                   <p className="text-white/70 leading-relaxed">{item.desc}</p>
@@ -128,8 +173,8 @@ const About: React.FC = () => {
               icon={<Gamepad2 />}
               title="Chess Strategy"
               subtitle="Elite tactical thinking"
-              isOpen={openPassion === 'chess'}
-              onToggle={() => togglePassion('chess')}
+              isOpen={openPassion === "chess"}
+              onToggle={() => togglePassion("chess")}
             >
               <div className="space-y-4">
                 <div>
@@ -148,9 +193,13 @@ const About: React.FC = () => {
                   <span className="text-bordeaux">200+</span>
                 </div>
                 <p className="text-white/70 text-sm">
-                  Chess teaches patience, strategic thinking, and the importance
-                  of anticipating consequences — skills that directly translate
-                  to debugging and system design.
+                  Chess teaches patience, strategic thinking, and anticipating
+                  consequences—skills essential for debugging and system design.
+                  Much like a King’s Fianchetto, great architecture relies on
+                  building a quiet, positional stronghold that exerts long-range
+                  influence. This strategic setup ensures system dominance,
+                  providing a secure foundation that prevents collapse under
+                  pressure.
                 </p>
               </div>
             </PassionCard>
@@ -160,22 +209,34 @@ const About: React.FC = () => {
               icon={<Tv />}
               title="Anime & Storytelling"
               subtitle="Narrative inspiration"
-              isOpen={openPassion === 'anime'}
-              onToggle={() => togglePassion('anime')}
+              isOpen={openPassion === "anime"}
+              onToggle={() => togglePassion("anime")}
             >
               <div className="space-y-4">
                 <h4 className="font-medium">Top 5 Anime:</h4>
                 <ol className="list-decimal list-inside space-y-1 text-white/70 text-sm">
-                  <li><strong>Bleach</strong> — Peak story</li>
-                  <li><strong>Demon Slayer</strong> — Visual perfection</li>
-                  <li><strong>Beyblade Metal Fusion</strong> — Childhood memories</li>
-                  <li><strong>Naruto</strong> — Narrative balance</li>
-                  <li><strong>Solo Leveling</strong> — Character development</li>
+                  <li>
+                    <strong>Bleach</strong> — Peak story
+                  </li>
+                  <li>
+                    <strong>Demon Slayer</strong> — Visual perfection
+                  </li>
+                  <li>
+                    <strong>Beyblade Metal Fusion</strong> — Childhood memories
+                  </li>
+                  <li>
+                    <strong>Naruto</strong> — Narrative balance
+                  </li>
+                  <li>
+                    <strong>Solo Leveling</strong> — Character development
+                  </li>
                 </ol>
                 <p className="text-white/70 text-sm">
                   Anime has taught me about visual storytelling, character
                   development, and creating emotional impact through design
-                  choices — lessons I apply to UI/UX design.
+                  choices—lessons I apply to UI/UX design. By blending aesthetic
+                  depth with functional clarity, I create interfaces that
+                  resonate with users and command digital dominance.
                 </p>
               </div>
             </PassionCard>
@@ -185,8 +246,8 @@ const About: React.FC = () => {
               icon={<PersonStanding />}
               title="Martial Arts"
               subtitle="Discipline & focus"
-              isOpen={openPassion === 'martialarts'}
-              onToggle={() => togglePassion('martialarts')}
+              isOpen={openPassion === "martialarts"}
+              onToggle={() => togglePassion("martialarts")}
             >
               <div className="space-y-4">
                 <div className="flex justify-between text-sm">
@@ -195,7 +256,9 @@ const About: React.FC = () => {
                 </div>
                 <div className="flex justify-between text-sm">
                   <span>Styles</span>
-                  <span className="text-bordeaux">Taekwondo, Kickboxing, Muay Thai</span>
+                  <span className="text-bordeaux">
+                    Taekwondo, Kickboxing, Muay Thai, Krav Maga
+                  </span>
                 </div>
                 <div className="flex justify-between text-sm">
                   <span>Tournaments</span>
@@ -203,8 +266,10 @@ const About: React.FC = () => {
                 </div>
                 <p className="text-white/70 text-sm">
                   Martial arts taught me discipline, resilience, and the
-                  importance of continuous improvement — principles that guide
-                  my approach to mastering new technologies.
+                  importance of continuous improvement—principles that guide my
+                  approach to mastering new technologies. This unwavering
+                  dedication allows me to overcome any obstacle and constantly
+                  push my own limits to achieve personal dominance.
                 </p>
               </div>
             </PassionCard>
@@ -214,20 +279,35 @@ const About: React.FC = () => {
               icon={<Car />}
               title="Automotive Design"
               subtitle="Form meets function"
-              isOpen={openPassion === 'cars'}
-              onToggle={() => togglePassion('cars')}
+              isOpen={openPassion === "cars"}
+              onToggle={() => togglePassion("cars")}
             >
               <div className="space-y-4">
                 <h4 className="font-medium">Dream Garage:</h4>
                 <ul className="list-disc list-inside space-y-1 text-white/70 text-sm">
-                  <li><strong>Mercedes W222 S63 amg</strong> — Engineering perfection</li>
-                  <li><strong>Mazda RX-7 FD</strong> — Rotary elegance</li>
-                  <li><strong>BMW F90 M5</strong> — Iconic design</li>
-                  <li><strong>Cadillac Escalade V</strong> — Dominance on the road</li>
+                  <li>
+                    <strong>Mercedes W222 S63 amg</strong> — Peak luxury
+                    athlete.
+                  </li>
+                  <li>
+                    <strong>Kimera EVO 37</strong> — Exquisite Italian
+                    masterpiece.
+                  </li>
+                  <li>
+                    <strong>BMW E31 850i</strong> — Underrated V12 elegance.
+                  </li>
+                  <li>
+                    <strong>Mitshubishi GTO</strong> — Truly underrated
+                    masterpiece.
+                  </li>
+                  <li>
+                    <strong>Cadillac Escalade V</strong> — Pure American
+                    dominance.
+                  </li>
                 </ul>
                 <p className="text-white/70 text-sm">
                   Car design embodies the perfect marriage of aesthetics and
-                  performance — a philosophy I carry into every project, ensuring
+                  performance, a philosophy I carry into every project, ensuring
                   it's both beautiful and high-performing.
                 </p>
               </div>
@@ -242,16 +322,41 @@ const About: React.FC = () => {
           </h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {[
-              { icon: <Lightbulb />, title: 'Analytical Thinker', desc: 'I break down complex problems into manageable pieces, finding elegant solutions through structured analysis.', value: 90 },
-              { icon: <Palette />, title: 'Creative Visionary', desc: 'I see patterns and possibilities others might miss, combining unexpected elements into cohesive designs.', value: 85 },
-              { icon: <ShieldCheck />, title: 'Detail-Oriented', desc: 'From pixel-perfect alignment to clean code architecture, I believe excellence is in the details.', value: 95 },
-              { icon: <Users />, title: 'Collaborative Spirit', desc: 'I thrive in team environments where diverse perspectives lead to better solutions.', value: 80 }
+              {
+                icon: <Lightbulb />,
+                title: "Analytical Thinker",
+                desc: "I break down complex problems into manageable pieces, finding elegant solutions through structured analysis.",
+                value: 90,
+              },
+              {
+                icon: <Palette />,
+                title: "Creative Visionary",
+                desc: "I see patterns and possibilities others might miss, combining unexpected elements into cohesive designs.",
+                value: 85,
+              },
+              {
+                icon: <ShieldCheck />,
+                title: "Detail-Oriented",
+                desc: "From pixel-perfect alignment to clean code architecture, I believe excellence is in the details.",
+                value: 95,
+              },
+              {
+                icon: <Users />,
+                title: "Collaborative Spirit",
+                desc: "I thrive in team environments where diverse perspectives lead to better solutions.",
+                value: 80,
+              },
             ].map((trait, i) => (
-              <div key={i} className="glass-card p-6 hover:border-bordeaux/50 transition-all">
+              <div
+                key={i}
+                className="glass-card p-6 hover:border-bordeaux/50 transition-all"
+              >
                 <div className="w-12 h-12 rounded-full bg-bordeaux/20 flex items-center justify-center text-bordeaux mb-4">
                   {trait.icon}
                 </div>
-                <h3 className="font-body text-xl font-medium mb-2">{trait.title}</h3>
+                <h3 className="font-body text-xl font-medium mb-2">
+                  {trait.title}
+                </h3>
                 <p className="text-white/70 text-sm mb-4">{trait.desc}</p>
                 <ProgressBar value={trait.value} />
               </div>
@@ -269,11 +374,15 @@ const About: React.FC = () => {
               <div className="w-16 h-16 rounded-full bg-bordeaux/20 flex items-center justify-center text-bordeaux mb-4">
                 {cultureSlides[cultureIndex].icon}
               </div>
-              <h3 className="font-body text-2xl font-medium mb-4">{cultureSlides[cultureIndex].title}</h3>
-              <p className="text-white/70 max-w-2xl">{cultureSlides[cultureIndex].text}</p>
+              <h3 className="font-body text-2xl font-medium mb-4">
+                {cultureSlides[cultureIndex].title}
+              </h3>
+              <p className="text-white/70 max-w-2xl">
+                {cultureSlides[cultureIndex].text}
+              </p>
             </div>
             <div className="flex justify-center items-center gap-4 mt-8">
-              <button 
+              <button
                 onClick={prevCulture}
                 className="w-10 h-10 rounded-full glass flex items-center justify-center hover:text-bordeaux transition-colors"
                 aria-label="Previous"
@@ -281,18 +390,18 @@ const About: React.FC = () => {
                 <ChevronLeft size={20} />
               </button>
               <div className="flex gap-2">
-                {[0,1,2].map(i => (
+                {[0, 1, 2].map((i) => (
                   <button
                     key={i}
                     onClick={() => setCultureIndex(i as CultureIndex)}
                     className={`w-2 h-2 rounded-full transition-all ${
-                      i === cultureIndex ? 'bg-bordeaux w-4' : 'bg-white/30'
+                      i === cultureIndex ? "bg-bordeaux w-4" : "bg-white/30"
                     }`}
-                    aria-label={`Go to slide ${i+1}`}
+                    aria-label={`Go to slide ${i + 1}`}
                   />
                 ))}
               </div>
-              <button 
+              <button
                 onClick={nextCulture}
                 className="w-10 h-10 rounded-full glass flex items-center justify-center hover:text-bordeaux transition-colors"
                 aria-label="Next"
@@ -317,10 +426,26 @@ const About: React.FC = () => {
               <p className="text-right mt-4 text-white/60">— Krishna Bihari</p>
             </div>
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6">
-              <DailyItem icon={<Coffee />} time="Morning" activity="Chess tactics & planning the day" />
-              <DailyItem icon={<Code />} time="Work Session" activity="Deep focus coding/design sprints" />
-              <DailyItem icon={<Zap />} time="Afternoon" activity="Creative exploration & learning" />
-              <DailyItem icon={<Dice5 />} time="Evening" activity="Training, anime, or gaming" />
+              <DailyItem
+                icon={<Coffee />}
+                time="Morning"
+                activity="Chess tactics & planning the day"
+              />
+              <DailyItem
+                icon={<Code />}
+                time="Work Session"
+                activity="Deep focus coding/design sprints"
+              />
+              <DailyItem
+                icon={<Zap />}
+                time="Afternoon"
+                activity="Creative exploration & learning"
+              />
+              <DailyItem
+                icon={<Dice5 />}
+                time="Evening"
+                activity="Training, anime, or gaming"
+              />
             </div>
           </div>
         </div>
@@ -330,8 +455,18 @@ const About: React.FC = () => {
 };
 
 // Helper components (keep as they were)
-const PassionCard: React.FC<PassionCardProps> = ({ icon, title, subtitle, isOpen, onToggle, children }) => (
-  <div className="glass-card p-6 cursor-pointer hover:border-bordeaux/50 transition-all" onClick={onToggle}>
+const PassionCard: React.FC<PassionCardProps> = ({
+  icon,
+  title,
+  subtitle,
+  isOpen,
+  onToggle,
+  children,
+}) => (
+  <div
+    className="glass-card p-6 cursor-pointer hover:border-bordeaux/50 transition-all"
+    onClick={onToggle}
+  >
     <div className="flex items-start justify-between">
       <div className="flex gap-4">
         <div className="w-12 h-12 rounded-full bg-bordeaux/20 flex items-center justify-center text-bordeaux flex-shrink-0">
@@ -347,14 +482,16 @@ const PassionCard: React.FC<PassionCardProps> = ({ icon, title, subtitle, isOpen
       </div>
     </div>
     {isOpen && (
-      <div className="mt-4 pt-4 border-t border-white/10">
-        {children}
-      </div>
+      <div className="mt-4 pt-4 border-t border-white/10">{children}</div>
     )}
   </div>
 );
 
-const DailyItem: React.FC<{ icon: React.ReactNode; time: string; activity: string }> = ({ icon, time, activity }) => (
+const DailyItem: React.FC<{
+  icon: React.ReactNode;
+  time: string;
+  activity: string;
+}> = ({ icon, time, activity }) => (
   <div className="flex flex-col items-center text-center glass p-4 rounded-xl">
     <div className="w-10 h-10 rounded-full bg-bordeaux/20 flex items-center justify-center text-bordeaux mb-2">
       {icon}

@@ -37,8 +37,8 @@ const Hero: React.FC = () => {
 
         {/* Description */}
         <p className="font-body text-lg md:text-xl text-white/70 text-center max-w-2xl mx-auto leading-relaxed">
-          Front-end developer & visual creator — I build stylish,
-          performance-focused experiences with a cultural signature.
+          Full-Stack developer & visual creator I build stylish,
+          performance focused experiences with a cultural signature.
         </p>
 
         {/* Buttons */}

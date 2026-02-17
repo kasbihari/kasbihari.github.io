@@ -28,16 +28,6 @@ const projects: Project[] = [
   },
   {
     id: 2,
-    title: 'Project in progress...',
-    description: 'Coming soon...',
-    category: 'pet',
-    status: 'In Progress',
-    tech: ['Unity', 'C#', 'Pixel Art'],
-    liveUrl: '#',
-    codeUrl: '#'
-  },
-  {
-    id: 3,
     title: 'CodeLibrary',
     description: 'Snippets, patterns and micro-components that I use daily. With search and tags functionality.',
     category: 'pet',
@@ -47,13 +37,32 @@ const projects: Project[] = [
     codeUrl: 'https://github.com/kasbihari/CodeLibrary'
   },
   {
-    id: 4,
-    title: 'Project in progress...',
-    description: 'Coming soon...',
+    id: 3,
+    title: 'Budget Buddy',
+    description: 'Sleek Finance Manager (Symfony/Chart.js). Built a secure platform for managing transactions, reporting, and visualization. Features a premium dashboard and robust user/admin system.',
     category: 'assignment',
-    status: 'In Progress',
-    tech: ['D3.js', 'JavaScript', 'Bootstrap'],
+    status: 'Done',
+    tech: ['Symfony', 'Charts.js', 'Bootstrap'],
+    codeUrl: 'https://github.com/kasbihari/Budget-Buddy'
+  },
+  {
+    id: 4,
+    title: 'SDG Dashboard',
+    description: 'SDG Dashboard is a Next.js and TypeScript platform for real-time tracking of UN Sustainable Development Goals. It features interactive charts, KPI monitoring, user authentication, an AI chatbot for insights, and CSV data export, all built on MySQL with Prisma ORM.',
+    category: 'assignment',
+    status: 'Done',
+    tech: ['NextJS', 'Typescript', 'Tailwind'],
     liveUrl: '#',
+    codeUrl: 'https://github.com/kasbihari/SDG-Dashboard'
+  },
+  {
+    id: 5,
+    title: 'Stichting Waahan Website',
+    description: 'Waahan Mobility is a WordPress website that I built with a custom theme, coded in PHP and Bootstrap. Instead of using standard drag-and-drop features, I developed a tailored design that aligns with the branding and specific needs of Waahan Mobility.',
+    category: 'assignment',
+    status: 'Done',
+    tech: ['HTML/CSS', 'PHP', 'Bootstrap'],
+    liveUrl: 'https://preview.waahanmobility.com',
     codeUrl: '#'
   },
   {
@@ -65,15 +74,6 @@ const projects: Project[] = [
     tech: ['HTML/CSS', 'JavaScript', 'Bootstrap'],
     liveUrl: '#',
     codeUrl: '#'
-  },
-  {
-    id: 6,
-    title: 'Budget Buddy',
-    description: 'Sleek Finance Manager (Symfony/Chart.js). Built a secure platform for managing transactions, reporting, and visualization. Features a premium dashboard and robust user/admin system.',
-    category: 'assignment',
-    status: 'Done',
-    tech: ['Symfony', 'Charts.js', 'Bootstrap'],
-    codeUrl: 'https://github.com/kasbihari/Budget-Buddy'
   }
 ];
 

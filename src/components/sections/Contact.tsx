@@ -152,7 +152,7 @@ const Contact: React.FC = () => {
             <div>
               <h3 className="font-body text-xl font-medium text-white">Fun fact</h3>
               <p className="text-white/70">
-                I speak three languages (Dutch, English, Spanish) and I'm learning a fourth – 
+                I speak three languages (Dutch, English, Spanish) and I'm learning a fourth  
                 because great communication builds great products.
               </p>
             </div>

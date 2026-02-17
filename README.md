@@ -178,7 +178,3 @@ Built with:
 Crafted with ☕ and precision by **Krishna Bihari**
 
 ---
-
-## 📄 License
-
-MIT License
