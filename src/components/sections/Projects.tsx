@@ -66,7 +66,7 @@ const projects: Project[] = [
     codeUrl: '#'
   },
   {
-    id: 5,
+    id: 6,
     title: 'Project in progress...',
     description: 'Coming soon...',
     category: 'pet',
