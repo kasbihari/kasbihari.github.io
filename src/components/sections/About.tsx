@@ -1,7 +1,5 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState } from "react";
 import {
-  ChevronDown,
-  ChevronUp,
   ChevronLeft,
   ChevronRight,
   Quote,
@@ -14,16 +12,15 @@ import {
   PersonStanding,
   Car,
   Lightbulb,
-  Palette,
   ShieldCheck,
   Users,
   Sun,
   Moon,
   Flower,
-  Sparkles,
+  ChevronDown,
+  ChevronUp,
 } from "lucide-react";
 
-type PassionKey = "chess" | "anime" | "martialarts" | "cars";
 type CultureIndex = 0 | 1 | 2;
 
 const ProgressBar: React.FC<{ value: number; max?: number }> = ({
@@ -39,25 +36,24 @@ const ProgressBar: React.FC<{ value: number; max?: number }> = ({
 );
 
 const About: React.FC = () => {
-  const [openPassion, setOpenPassion] = useState<PassionKey | null>(null);
+  const [openPassion, setOpenPassion] = useState<string | null>(null);
   const [cultureIndex, setCultureIndex] = useState<CultureIndex>(0);
-  const sectionRef = useRef<HTMLElement>(null);
 
   const cultureSlides = [
     {
-      icon: <Sun className="w-8 h-8" />,
-      title: "Japanese Culture",
-      text: 'The harmony, respect, and attention to detail in Japanese culture deeply influence my approach to design. Concepts like "kaizen" (continuous improvement) and "omotenashi" (selfless hospitality) shape how I approach user experience and craftsmanship in my work.',
+      icon: <Sun className="w-7 h-7" />,
+      title: "Japanese",
+      text: "Harmony, precision, and the philosophy of 'kaizen' (continuous improvement) influence my design process.",
     },
     {
-      icon: <Moon className="w-8 h-8" />,
-      title: "Arabic Culture",
-      text: 'The rich storytelling traditions, poetic language, and community-focused values of Arabic culture inspire my work. The emphasis on hospitality ("diyafa") and intricate calligraphic arts influence how I think about typography and creating welcoming digital experiences.',
+      icon: <Moon className="w-7 h-7" />,
+      title: "Arabic",
+      text: "Storytelling, hospitality, and the geometric beauty of calligraphy inspire my approach to typography and user experience.",
     },
     {
-      icon: <Flower className="w-8 h-8" />,
-      title: "Indian Culture",
-      text: 'The vibrant diversity, spiritual depth, and celebratory nature of Indian culture fuel my creativity. From colorful festivals to philosophical concepts of "dharma" (duty/purpose), these elements inspire me to create work that\'s meaningful, colorful, and deeply human.',
+      icon: <Flower className="w-7 h-7" />,
+      title: "Indian",
+      text: "Vibrancy, spiritual depth, and the concept of 'dharma' (purpose) remind me that design must be meaningful and inclusive.",
     },
   ];
 
@@ -66,39 +62,17 @@ const About: React.FC = () => {
   const prevCulture = () =>
     setCultureIndex(((cultureIndex - 1 + 3) % 3) as CultureIndex);
 
-  const togglePassion = (key: PassionKey) => {
+  const togglePassion = (key: string) => {
     setOpenPassion(openPassion === key ? null : key);
   };
 
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      if (sectionRef.current) {
-        sectionRef.current.focus();
-      }
-    }, 100);
-    return () => clearTimeout(timer);
-  }, []);
-
   return (
-    <section
-      ref={sectionRef}
-      tabIndex={-1}
-      className="min-h-screen flex items-center justify-center px-4 md:px-12 py-12 outline-none"
-    >
-      <div className="max-w-6xl w-full mx-auto space-y-12">
-        {/* Hero header */}
-        <div className="glass-card p-8 md:p-12 flex flex-col md:flex-row items-center gap-8">
-          <div className="flex-1 text-center md:text-left">
-            <h1 className="font-body text-5xl md:text-6xl font-medium mb-4">
-              Beyond the <span className="text-bordeaux">Code</span>
-            </h1>
-            <p className="text-white/70 text-lg md:text-xl max-w-2xl">
-              The person behind the pixels a journey through my passions,
-              inspirations, and what makes me who I am.
-            </p>
-          </div>
+    <section className="min-h-screen flex items-center justify-center px-6 md:px-16 py-16">
+      <div className="max-w-5xl w-full mx-auto space-y-16">
+        {/* Header with profile */}
+        <div className="glass-card p-10 md:p-14 flex flex-col md:flex-row items-center gap-10">
           <div className="flex-shrink-0">
-            <div className="w-40 h-40 md:w-48 md:h-48 rounded-full glass border-2 border-bordeaux/30 overflow-hidden">
+            <div className="w-36 h-36 md:w-48 md:h-48 rounded-full glass border-2 border-bordeaux/30 overflow-hidden">
               <img
                 src="/assets/pfpa.jpeg"
                 alt="Krishna Bihari"
@@ -107,345 +81,393 @@ const About: React.FC = () => {
               />
             </div>
           </div>
+          <div className="flex-1 text-center md:text-left">
+            <h1 className="font-name text-5xl md:text-6xl text-white mb-3">
+              Krishna Bihari
+            </h1> <br /><br /><br />
+            <p className="font-body text-2xl text-white/70 mb-4">
+              Creative Developer & Systems Architect
+            </p>
+            <p className="text-white/60 text-lg leading-relaxed">
+              I build digital experiences where performance meets visual poetry.
+              With a background in systems engineering and creative coding,
+              I bridge technical rigor and artistic expression.
+            </p>
+          </div>
         </div>
 
-        {/* Timeline */}
-        <div>
-          <h2 className="font-body text-4xl md:text-5xl font-medium mb-10 text-center">
-            My Journey <span className="text-bordeaux/80">✦</span>
+        {/* My Story */}
+        <div className="space-y-8 glass-card p-10 md:p-14">
+          <h2 className="font-body text-4xl md:text-5xl font-medium text-white border-b border-white/10 pb-5">
+            My Story
           </h2>
-          <div className="space-y-8">
+          <div className="space-y-5 text-white/70 text-lg leading-relaxed">
+            <p>
+              Growing up, I was captivated by cars, video games, and animation.
+              I spent hours sketching anime characters and deconstructing how
+              games were made. This curiosity about creation led me to explore
+              coding at an early age, starting with Scratch and Code.org.
+            </p>
+            <p>
+              In high school, I discovered the power of HTML and CSS while
+              customising online portfolios. I realised I could build things
+              that people actually used and enjoyed. This spark grew into a
+              serious pursuit of computer science and design.
+            </p>
+            <p>
+              Today, I see design and development not as separate disciplines
+              but as two sides of the same coin. Every line of code carries
+              aesthetic weight, and every design choice has technical
+              consequences. This holistic philosophy defines my work: creating
+              experiences that are both beautiful and performant, with a
+              cultural signature that sets them apart.
+            </p>
+          </div>
+        </div>
+
+        {/* Values & Principles */}
+        <div>
+          <h2 className="font-body text-4xl md:text-5xl font-medium mb-10 text-white text-center">
+            What I Value
+          </h2>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
             {[
               {
-                icon: <Gamepad2 />,
-                title: "Early Beginnings",
-                date: "Childhood",
-                desc: "Growing up, I was captivated by cars, video games, and animation. I spent hours sketching my favorite anime characters and exploring how games were made. My fascination with automobiles dreaming of fast cars and sleek designs further fueled my curiosity about digital creation. This blend of interests planted the seeds for my future journey in the world of technology and design.",
+                icon: <Lightbulb className="w-7 h-7" />,
+                title: "Craftsmanship",
+                desc: "I believe in pixel‑perfect execution and clean, maintainable code.",
               },
               {
-                icon: <Code />,
-                title: "Discovering Code",
-                date: "High School Years",
-                desc: "My first encounter with HTML and CSS was through customizing portfolios and creating simple websites. I quickly realized I could build things that people actually used and enjoyed. Alongside this, I spent a lot of time making games with Scratch, and since I was young, I was also active on Code.org, exploring coding and problem-solving. These early experiences sparked a genuine passion for coding and design, leading me to pursue them seriously.",
+                icon: <Users className="w-7 h-7" />,
+                title: "Collaboration",
+                desc: "Great work emerges from diverse perspectives and open dialogue.",
               },
               {
-                icon: <Sparkles />,
-                title: "Cultural Awakening",
-                date: "College Years",
-                desc: "Studying different cultures through their traditions, values, and artistic expressions became a true passion of mine. I was fascinated by Japanese harmony and precision, Arabic storytelling and hospitality, and Indian vibrancy and spirituality. These diverse influences shaped my worldview and approach to creative work. I have always been curious about history and eager to understand how everything fits together why things are the way they are, how different elements connect, and where they originate. This curiosity about the interconnectedness of culture and history has been a core part of my passion from a young age.",
+                icon: <ShieldCheck className="w-7 h-7" />,
+                title: "Precision",
+                desc: "Attention to detail separates good from exceptional.",
               },
               {
-                icon: <Palette />,
-                title: "Design & Development Fusion",
-                date: "Present",
-                desc: "Today, I see design and development not as separate disciplines but as two sides of the same coin. Every line of code has aesthetic implications, and every design choice has technical requirements. This holistic approach defines my work.",
+                icon: <Zap className="w-7 h-7" />,
+                title: "Curiosity",
+                desc: "I’m always learning, always exploring new technologies and ideas.",
               },
             ].map((item, i) => (
               <div
                 key={i}
-                className="flex gap-4 md:gap-6 items-start glass p-6 rounded-2xl"
+                className="glass-card p-8 text-center hover:border-bordeaux/50 transition-all"
               >
-                <div className="flex-shrink-0 w-12 h-12 rounded-full bg-bordeaux/20 flex items-center justify-center text-bordeaux">
+                <div className="w-14 h-14 rounded-full bg-bordeaux/20 flex items-center justify-center text-bordeaux mx-auto mb-5">
                   {item.icon}
                 </div>
-                <div>
-                  <div className="flex flex-wrap items-baseline gap-3 mb-2">
-                    <h3 className="font-body text-2xl font-medium">
-                      {item.title}
-                    </h3>
-                    <span className="text-sm text-white/40">{item.date}</span>
-                  </div>
-                  <p className="text-white/70 leading-relaxed">{item.desc}</p>
-                </div>
+                <h3 className="font-body text-xl font-medium text-white mb-3">
+                  {item.title}
+                </h3>
+                <p className="text-white/60 text-base">{item.desc}</p>
               </div>
             ))}
           </div>
         </div>
 
-        {/* Passions & Interests (unchanged, keep as is) */}
+        {/* Beyond Work - Expandable Passion Cards (icons only) */}
         <div>
-          <h2 className="font-body text-4xl md:text-5xl font-medium mb-10 text-center">
-            Passions & Interests <span className="text-bordeaux/80">✦</span>
+          <h2 className="font-body text-4xl md:text-5xl font-medium mb-10 text-white text-center">
+            Beyond Work
           </h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {/* Chess */}
-            <PassionCard
-              icon={<Gamepad2 />}
-              title="Chess Strategy"
-              subtitle="Elite tactical thinking"
-              isOpen={openPassion === "chess"}
-              onToggle={() => togglePassion("chess")}
+            <div
+              className="glass-card p-8 cursor-pointer hover:border-bordeaux/50 transition-all"
+              onClick={() => togglePassion("chess")}
             >
-              <div className="space-y-4">
-                <div>
-                  <div className="flex justify-between text-sm mb-1">
-                    <span>Current Rating</span>
-                    <span className="text-bordeaux">1250</span>
+              <div className="flex items-start justify-between">
+                <div className="flex gap-4">
+                  <div className="w-14 h-14 rounded-full bg-bordeaux/20 flex items-center justify-center text-bordeaux flex-shrink-0">
+                    <Gamepad2 size={24} />
                   </div>
-                  <ProgressBar value={70} />
+                  <div>
+                    <h3 className="font-body text-xl font-medium text-white">
+                      Chess Strategy
+                    </h3>
+                    <p className="text-white/50 text-sm">
+                      Tactical thinking & foresight
+                    </p>
+                  </div>
                 </div>
-                <div className="flex justify-between text-sm">
-                  <span>Favorite Opening</span>
-                  <span className="text-bordeaux">King's Fianchetto</span>
+                <div className="text-bordeaux">
+                  {openPassion === "chess" ? (
+                    <ChevronUp size={20} />
+                  ) : (
+                    <ChevronDown size={20} />
+                  )}
                 </div>
-                <div className="flex justify-between text-sm">
-                  <span>Games Analyzed</span>
-                  <span className="text-bordeaux">200+</span>
-                </div>
-                <p className="text-white/70 text-sm">
-                  Chess teaches patience, strategic thinking, and anticipating
-                  consequences—skills essential for debugging and system design.
-                  Much like a King’s Fianchetto, great architecture relies on
-                  building a quiet, positional stronghold that exerts long-range
-                  influence. This strategic setup ensures system dominance,
-                  providing a secure foundation that prevents collapse under
-                  pressure.
-                </p>
               </div>
-            </PassionCard>
+              {openPassion === "chess" && (
+                <div className="mt-5 pt-5 border-t border-white/10 space-y-4">
+                  <div>
+                    <div className="flex justify-between text-sm mb-1">
+                      <span>Current Rating</span>
+                      <span className="text-bordeaux">1250</span>
+                    </div>
+                    <ProgressBar value={70} />
+                  </div>
+                  <div className="flex justify-between text-sm">
+                    <span>Favorite Opening</span>
+                    <span className="text-bordeaux">King's Fianchetto</span>
+                  </div>
+                  <div className="flex justify-between text-sm">
+                    <span>Games Analyzed</span>
+                    <span className="text-bordeaux">200+</span>
+                  </div>
+                  <p className="text-white/70 text-sm">
+                    Chess teaches patience, strategic depth, and the art of
+                    anticipating consequences—skills directly transferable to
+                    debugging and system architecture. Like a well‑played King’s
+                    Fianchetto, great code relies on building a quiet, positional
+                    stronghold that exerts long‑range influence, ensuring the
+                    system remains resilient under pressure.
+                  </p>
+                </div>
+              )}
+            </div>
 
             {/* Anime */}
-            <PassionCard
-              icon={<Tv />}
-              title="Anime & Storytelling"
-              subtitle="Narrative inspiration"
-              isOpen={openPassion === "anime"}
-              onToggle={() => togglePassion("anime")}
+            <div
+              className="glass-card p-8 cursor-pointer hover:border-bordeaux/50 transition-all"
+              onClick={() => togglePassion("anime")}
             >
-              <div className="space-y-4">
-                <h4 className="font-medium">Top 5 Anime:</h4>
-                <ol className="list-decimal list-inside space-y-1 text-white/70 text-sm">
-                  <li>
-                    <strong>Bleach</strong> — Peak story
-                  </li>
-                  <li>
-                    <strong>Demon Slayer</strong> — Visual perfection
-                  </li>
-                  <li>
-                    <strong>Beyblade Metal Fusion</strong> — Childhood memories
-                  </li>
-                  <li>
-                    <strong>Naruto</strong> — Narrative balance
-                  </li>
-                  <li>
-                    <strong>Solo Leveling</strong> — Character development
-                  </li>
-                </ol>
-                <p className="text-white/70 text-sm">
-                  Anime has taught me about visual storytelling, character
-                  development, and creating emotional impact through design
-                  choices—lessons I apply to UI/UX design. By blending aesthetic
-                  depth with functional clarity, I create interfaces that
-                  resonate with users and command digital dominance.
-                </p>
+              <div className="flex items-start justify-between">
+                <div className="flex gap-4">
+                  <div className="w-14 h-14 rounded-full bg-bordeaux/20 flex items-center justify-center text-bordeaux flex-shrink-0">
+                    <Tv size={24} />
+                  </div>
+                  <div>
+                    <h3 className="font-body text-xl font-medium text-white">
+                      Anime & Storytelling
+                    </h3>
+                    <p className="text-white/50 text-sm">
+                      Narrative & visual inspiration
+                    </p>
+                  </div>
+                </div>
+                <div className="text-bordeaux">
+                  {openPassion === "anime" ? (
+                    <ChevronUp size={20} />
+                  ) : (
+                    <ChevronDown size={20} />
+                  )}
+                </div>
               </div>
-            </PassionCard>
+              {openPassion === "anime" && (
+                <div className="mt-5 pt-5 border-t border-white/10 space-y-4">
+                  <h4 className="font-medium">Top 5 Anime:</h4>
+                  <ol className="list-decimal list-inside space-y-1 text-white/70 text-sm">
+                    <li>
+                      <strong>Bleach</strong> – peak storytelling
+                    </li>
+                    <li>
+                      <strong>Demon Slayer</strong> – visual perfection
+                    </li>
+                    <li>
+                      <strong>Beyblade Metal Fusion</strong> – childhood memories
+                    </li>
+                    <li>
+                      <strong>Naruto</strong> – narrative balance
+                    </li>
+                    <li>
+                      <strong>Solo Leveling</strong> – character development
+                    </li>
+                  </ol>
+                  <p className="text-white/70 text-sm">
+                    Anime has taught me about visual storytelling, character
+                    arcs, and creating emotional impact through design—lessons I
+                    apply to UI/UX. By blending aesthetic depth with functional
+                    clarity, I craft interfaces that resonate with users and tell a
+                    compelling story.
+                  </p>
+                </div>
+              )}
+            </div>
 
             {/* Martial Arts */}
-            <PassionCard
-              icon={<PersonStanding />}
-              title="Martial Arts"
-              subtitle="Discipline & focus"
-              isOpen={openPassion === "martialarts"}
-              onToggle={() => togglePassion("martialarts")}
+            <div
+              className="glass-card p-8 cursor-pointer hover:border-bordeaux/50 transition-all"
+              onClick={() => togglePassion("martialarts")}
             >
-              <div className="space-y-4">
-                <div className="flex justify-between text-sm">
-                  <span>Years Training</span>
-                  <span className="text-bordeaux">8+</span>
+              <div className="flex items-start justify-between">
+                <div className="flex gap-4">
+                  <div className="w-14 h-14 rounded-full bg-bordeaux/20 flex items-center justify-center text-bordeaux flex-shrink-0">
+                    <PersonStanding size={24} />
+                  </div>
+                  <div>
+                    <h3 className="font-body text-xl font-medium text-white">
+                      Martial Arts
+                    </h3>
+                    <p className="text-white/50 text-sm">
+                      Discipline & continuous improvement
+                    </p>
+                  </div>
                 </div>
-                <div className="flex justify-between text-sm">
-                  <span>Styles</span>
-                  <span className="text-bordeaux">
-                    Taekwondo, Kickboxing, Muay Thai, Krav Maga
-                  </span>
+                <div className="text-bordeaux">
+                  {openPassion === "martialarts" ? (
+                    <ChevronUp size={20} />
+                  ) : (
+                    <ChevronDown size={20} />
+                  )}
                 </div>
-                <div className="flex justify-between text-sm">
-                  <span>Tournaments</span>
-                  <span className="text-bordeaux">2</span>
-                </div>
-                <p className="text-white/70 text-sm">
-                  Martial arts taught me discipline, resilience, and the
-                  importance of continuous improvement—principles that guide my
-                  approach to mastering new technologies. This unwavering
-                  dedication allows me to overcome any obstacle and constantly
-                  push my own limits to achieve personal dominance.
-                </p>
               </div>
-            </PassionCard>
+              {openPassion === "martialarts" && (
+                <div className="mt-5 pt-5 border-t border-white/10 space-y-4">
+                  <div className="flex justify-between text-sm">
+                    <span>Years Training</span>
+                    <span className="text-bordeaux">8+</span>
+                  </div>
+                  <div className="flex justify-between text-sm">
+                    <span>Styles</span>
+                    <span className="text-bordeaux">
+                      Taekwondo, Kickboxing, Muay Thai, Krav Maga
+                    </span>
+                  </div>
+                  <div className="flex justify-between text-sm">
+                    <span>Tournaments</span>
+                    <span className="text-bordeaux">2</span>
+                  </div>
+                  <p className="text-white/70 text-sm">
+                    Martial arts taught me discipline, resilience, and the
+                    relentless pursuit of improvement—principles that guide my
+                    approach to mastering new technologies. This mindset allows me
+                    to overcome obstacles and constantly push the boundaries of
+                    what I can create.
+                  </p>
+                </div>
+              )}
+            </div>
 
             {/* Cars */}
-            <PassionCard
-              icon={<Car />}
-              title="Automotive Design"
-              subtitle="Form meets function"
-              isOpen={openPassion === "cars"}
-              onToggle={() => togglePassion("cars")}
+            <div
+              className="glass-card p-8 cursor-pointer hover:border-bordeaux/50 transition-all"
+              onClick={() => togglePassion("cars")}
             >
-              <div className="space-y-4">
-                <h4 className="font-medium">Dream Garage:</h4>
-                <ul className="list-disc list-inside space-y-1 text-white/70 text-sm">
-                  <li>
-                    <strong>Mercedes W222 S63 amg</strong> — Peak luxury
-                    athlete.
-                  </li>
-                  <li>
-                    <strong>Kimera EVO 37</strong> — Exquisite Italian
-                    masterpiece.
-                  </li>
-                  <li>
-                    <strong>BMW E31 850i</strong> — Underrated V12 elegance.
-                  </li>
-                  <li>
-                    <strong>Mitshubishi GTO</strong> — Truly underrated
-                    masterpiece.
-                  </li>
-                  <li>
-                    <strong>Cadillac Escalade V</strong> — Pure American
-                    dominance.
-                  </li>
-                </ul>
-                <p className="text-white/70 text-sm">
-                  Car design embodies the perfect marriage of aesthetics and
-                  performance, a philosophy I carry into every project, ensuring
-                  it's both beautiful and high-performing.
-                </p>
-              </div>
-            </PassionCard>
-          </div>
-        </div>
-
-        {/* Personality Traits */}
-        <div>
-          <h2 className="font-body text-4xl md:text-5xl font-medium mb-10 text-center">
-            My Personality <span className="text-bordeaux/80">✦</span>
-          </h2>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            {[
-              {
-                icon: <Lightbulb />,
-                title: "Analytical Thinker",
-                desc: "I break down complex problems into manageable pieces, finding elegant solutions through structured analysis.",
-                value: 90,
-              },
-              {
-                icon: <Palette />,
-                title: "Creative Visionary",
-                desc: "I see patterns and possibilities others might miss, combining unexpected elements into cohesive designs.",
-                value: 85,
-              },
-              {
-                icon: <ShieldCheck />,
-                title: "Detail-Oriented",
-                desc: "From pixel-perfect alignment to clean code architecture, I believe excellence is in the details.",
-                value: 95,
-              },
-              {
-                icon: <Users />,
-                title: "Collaborative Spirit",
-                desc: "I thrive in team environments where diverse perspectives lead to better solutions.",
-                value: 80,
-              },
-            ].map((trait, i) => (
-              <div
-                key={i}
-                className="glass-card p-6 hover:border-bordeaux/50 transition-all"
-              >
-                <div className="w-12 h-12 rounded-full bg-bordeaux/20 flex items-center justify-center text-bordeaux mb-4">
-                  {trait.icon}
+              <div className="flex items-start justify-between">
+                <div className="flex gap-4">
+                  <div className="w-14 h-14 rounded-full bg-bordeaux/20 flex items-center justify-center text-bordeaux flex-shrink-0">
+                    <Car size={24} />
+                  </div>
+                  <div>
+                    <h3 className="font-body text-xl font-medium text-white">
+                      Automotive Design
+                    </h3>
+                    <p className="text-white/50 text-sm">
+                      Form meets function
+                    </p>
+                  </div>
                 </div>
-                <h3 className="font-body text-xl font-medium mb-2">
-                  {trait.title}
-                </h3>
-                <p className="text-white/70 text-sm mb-4">{trait.desc}</p>
-                <ProgressBar value={trait.value} />
+                <div className="text-bordeaux">
+                  {openPassion === "cars" ? (
+                    <ChevronUp size={20} />
+                  ) : (
+                    <ChevronDown size={20} />
+                  )}
+                </div>
               </div>
-            ))}
+              {openPassion === "cars" && (
+                <div className="mt-5 pt-5 border-t border-white/10 space-y-4">
+                  <h4 className="font-medium">Dream Garage:</h4>
+                  <ul className="list-disc list-inside space-y-1 text-white/70 text-sm">
+                    <li>
+                      <strong>Mercedes W222 S63 AMG</strong> – peak luxury athlete
+                    </li>
+                    <li>
+                      <strong>Kimera EVO 37</strong> – exquisite Italian masterpiece
+                    </li>
+                    <li>
+                      <strong>BMW E31 850i</strong> – underrated V12 elegance
+                    </li>
+                    <li>
+                      <strong>Mitsubishi GTO</strong> – truly underrated masterpiece
+                    </li>
+                    <li>
+                      <strong>Cadillac Escalade V</strong> – pure American dominance
+                    </li>
+                  </ul>
+                  <p className="text-white/70 text-sm">
+                    Car design embodies the perfect marriage of aesthetics and
+                    performance—a philosophy I carry into every project, ensuring
+                    that what I build is both beautiful and high‑performing.
+                  </p>
+                </div>
+              )}
+            </div>
           </div>
         </div>
 
         {/* Cultural Inspirations */}
         <div>
-          <h2 className="font-body text-4xl md:text-5xl font-medium mb-10 text-center">
-            Cultural Inspirations <span className="text-bordeaux/80">✦</span>
+          <h2 className="font-body text-4xl md:text-5xl font-medium mb-10 text-white text-center">
+            Cultural Inspirations
           </h2>
-          <div className="glass-card p-8 relative">
-            <div className="flex flex-col items-center text-center">
-              <div className="w-16 h-16 rounded-full bg-bordeaux/20 flex items-center justify-center text-bordeaux mb-4">
-                {cultureSlides[cultureIndex].icon}
-              </div>
-              <h3 className="font-body text-2xl font-medium mb-4">
-                {cultureSlides[cultureIndex].title}
-              </h3>
-              <p className="text-white/70 max-w-2xl">
-                {cultureSlides[cultureIndex].text}
-              </p>
-            </div>
-            <div className="flex justify-center items-center gap-4 mt-8">
+          <div className="glass-card p-10">
+            <div className="flex items-center gap-6">
               <button
                 onClick={prevCulture}
-                className="w-10 h-10 rounded-full glass flex items-center justify-center hover:text-bordeaux transition-colors"
+                className="w-12 h-12 rounded-full glass flex items-center justify-center hover:text-bordeaux transition-colors"
                 aria-label="Previous"
               >
-                <ChevronLeft size={20} />
+                <ChevronLeft size={24} />
               </button>
-              <div className="flex gap-2">
-                {[0, 1, 2].map((i) => (
-                  <button
-                    key={i}
-                    onClick={() => setCultureIndex(i as CultureIndex)}
-                    className={`w-2 h-2 rounded-full transition-all ${
-                      i === cultureIndex ? "bg-bordeaux w-4" : "bg-white/30"
-                    }`}
-                    aria-label={`Go to slide ${i + 1}`}
-                  />
-                ))}
+              <div className="flex-1 flex flex-col items-center text-center">
+                <div className="w-16 h-16 rounded-full bg-bordeaux/20 flex items-center justify-center text-bordeaux mb-4">
+                  {cultureSlides[cultureIndex].icon}
+                </div>
+                <h3 className="font-body text-2xl font-medium text-white mb-3">
+                  {cultureSlides[cultureIndex].title}
+                </h3>
+                <p className="text-white/60 text-base max-w-lg">
+                  {cultureSlides[cultureIndex].text}
+                </p>
               </div>
               <button
                 onClick={nextCulture}
-                className="w-10 h-10 rounded-full glass flex items-center justify-center hover:text-bordeaux transition-colors"
+                className="w-12 h-12 rounded-full glass flex items-center justify-center hover:text-bordeaux transition-colors"
                 aria-label="Next"
               >
-                <ChevronRight size={20} />
+                <ChevronRight size={24} />
               </button>
             </div>
           </div>
         </div>
 
         {/* Daily Philosophy */}
-        <div>
-          <h2 className="font-body text-4xl md:text-5xl font-medium mb-10 text-center">
-            Daily Philosophy <span className="text-bordeaux/80">✦</span>
-          </h2>
-          <div className="glass-card p-8">
-            <div className="text-center mb-8">
-              <Quote className="w-10 h-10 text-bordeaux/50 mx-auto mb-4" />
-              <blockquote className="font-body text-2xl md:text-3xl italic text-white/90">
-                "Balance the board. Design the future."
-              </blockquote>
-              <p className="text-right mt-4 text-white/60">— Krishna Bihari</p>
+        <div className="glass-card p-10">
+          <div className="text-center">
+            <Quote className="w-10 h-10 text-bordeaux/50 mx-auto mb-5" />
+            <blockquote className="font-body text-2xl md:text-3xl italic text-white/90">
+              "Balance the board. Design the future."
+            </blockquote>
+            <p className="text-right mt-5 text-white/60 text-lg">
+              — Krishna Bihari
+            </p>
+          </div>
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-5 mt-10">
+            <div className="glass p-4 rounded-lg text-center">
+              <Coffee className="w-6 h-6 text-bordeaux mx-auto mb-2" />
+              <div className="font-medium text-sm text-white/80">Morning</div>
+              <div className="text-white/50 text-xs">Chess & planning</div>
             </div>
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6">
-              <DailyItem
-                icon={<Coffee />}
-                time="Morning"
-                activity="Chess tactics & planning the day"
-              />
-              <DailyItem
-                icon={<Code />}
-                time="Work Session"
-                activity="Deep focus coding/design sprints"
-              />
-              <DailyItem
-                icon={<Zap />}
-                time="Afternoon"
-                activity="Creative exploration & learning"
-              />
-              <DailyItem
-                icon={<Dice5 />}
-                time="Evening"
-                activity="Training, anime, or gaming"
-              />
+            <div className="glass p-4 rounded-lg text-center">
+              <Code className="w-6 h-6 text-bordeaux mx-auto mb-2" />
+              <div className="font-medium text-sm text-white/80">Work</div>
+              <div className="text-white/50 text-xs">Deep focus</div>
+            </div>
+            <div className="glass p-4 rounded-lg text-center">
+              <Zap className="w-6 h-6 text-bordeaux mx-auto mb-2" />
+              <div className="font-medium text-sm text-white/80">Afternoon</div>
+              <div className="text-white/50 text-xs">Creative learning</div>
+            </div>
+            <div className="glass p-4 rounded-lg text-center">
+              <Dice5 className="w-6 h-6 text-bordeaux mx-auto mb-2" />
+              <div className="font-medium text-sm text-white/80">Evening</div>
+              <div className="text-white/50 text-xs">Training & anime</div>
             </div>
           </div>
         </div>
@@ -453,61 +475,5 @@ const About: React.FC = () => {
     </section>
   );
 };
-
-// Helper components (keep as they were)
-const PassionCard: React.FC<PassionCardProps> = ({
-  icon,
-  title,
-  subtitle,
-  isOpen,
-  onToggle,
-  children,
-}) => (
-  <div
-    className="glass-card p-6 cursor-pointer hover:border-bordeaux/50 transition-all"
-    onClick={onToggle}
-  >
-    <div className="flex items-start justify-between">
-      <div className="flex gap-4">
-        <div className="w-12 h-12 rounded-full bg-bordeaux/20 flex items-center justify-center text-bordeaux flex-shrink-0">
-          {icon}
-        </div>
-        <div>
-          <h3 className="font-body text-xl font-medium">{title}</h3>
-          <p className="text-white/50 text-sm">{subtitle}</p>
-        </div>
-      </div>
-      <div className="text-bordeaux">
-        {isOpen ? <ChevronUp size={20} /> : <ChevronDown size={20} />}
-      </div>
-    </div>
-    {isOpen && (
-      <div className="mt-4 pt-4 border-t border-white/10">{children}</div>
-    )}
-  </div>
-);
-
-const DailyItem: React.FC<{
-  icon: React.ReactNode;
-  time: string;
-  activity: string;
-}> = ({ icon, time, activity }) => (
-  <div className="flex flex-col items-center text-center glass p-4 rounded-xl">
-    <div className="w-10 h-10 rounded-full bg-bordeaux/20 flex items-center justify-center text-bordeaux mb-2">
-      {icon}
-    </div>
-    <div className="font-medium text-sm text-bordeaux mb-1">{time}</div>
-    <div className="text-white/70 text-sm">{activity}</div>
-  </div>
-);
-
-interface PassionCardProps {
-  icon: React.ReactNode;
-  title: string;
-  subtitle: string;
-  isOpen: boolean;
-  onToggle: () => void;
-  children: React.ReactNode;
-}
 
 export default About;
