@@ -8,7 +8,7 @@ const Hero: React.FC = () => {
   };
 
   const handleDownloadCV = () => {
-    window.open('/cv.pdf', '_blank');
+    window.open('/CV-Krishna.pdf', '_blank');
   };
 
   return (
