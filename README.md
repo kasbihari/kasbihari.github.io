@@ -18,7 +18,7 @@
 
 ---
 
-## ✨ Overview
+## Overview
 
 A cinematic, minimalist portfolio blending **code, motion, and atmosphere**.
 
@@ -29,35 +29,35 @@ focused on **fluidity**, **depth**, and **visual calm**.
 
 ---
 
-## 🚀 Live Experience
+## Live Experience
 
 🌐 **View Portfolio**  
 👉 https://kasbihari.github.io/
 
 ---
 
-## ✨ Core Experience
+## Core Experience
 
-### 🌌 Fluid Aurora Background  
+### Fluid Aurora Background  
 Custom GPU-driven WebGL shader system with dynamic mouse interaction.
 
-### 🧊 Dark Liquid Glass UI  
+### Dark Liquid Glass UI  
 Consistent glass-morphism design language with bordeaux accents.
 
-### 🌠 Interactive Skill Galaxy  
+### Interactive Skill Galaxy  
 Pan & zoom through an animated skill constellation  
 (Desktop + Touch Optimised).
 
-### 🎬 Cinematic Page Transitions  
+### Cinematic Page Transitions  
 Seamless fades without disruptive reload behaviour.
 
 ### 📱 Fully Responsive  
 Carefully tuned layouts across all breakpoints.
 
-### ⚡ Performance-Driven  
+### Performance-Driven  
 Lazy-loaded Three.js, static rendering, GPU-efficient shaders.
 
-### ♿ Accessibility-Focused  
+### Accessibility-Focused  
 Semantic HTML, contrast-safe palette, motion-aware interactions.
 
 ---
@@ -99,7 +99,7 @@ Semantic HTML, contrast-safe palette, motion-aware interactions.
 
 ---
 
-## 🚀 Getting Started
+## Getting Started
 
 ### Prerequisites
 
@@ -117,7 +117,7 @@ npm run dev
 
 ---
 
-## 🌐 Deployment Pipeline
+## Deployment Pipeline
 
 Automated deployment via **GitHub Actions**.
 
@@ -141,7 +141,7 @@ Workflow:
 
 ---
 
-## 🎨 Customisation Guide
+## Customisation Guide
 
 | Element | Location |
 |---------|----------|
@@ -153,7 +153,7 @@ Workflow:
 
 ---
 
-## 🎯 Design Philosophy
+## Design Philosophy
 
 This portfolio prioritises:
 
