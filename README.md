@@ -51,7 +51,7 @@ Pan & zoom through an animated skill constellation
 ### Cinematic Page Transitions  
 Seamless fades without disruptive reload behaviour.
 
-### 📱 Fully Responsive  
+### Fully Responsive  
 Carefully tuned layouts across all breakpoints.
 
 ### Performance-Driven  
@@ -62,7 +62,7 @@ Semantic HTML, contrast-safe palette, motion-aware interactions.
 
 ---
 
-## 🛠 Technology Stack
+## Technology Stack
 
 | Category | Technologies |
 |----------|-------------|
@@ -76,7 +76,7 @@ Semantic HTML, contrast-safe palette, motion-aware interactions.
 
 ---
 
-## 📁 Architecture
+## Architecture
 
 ```
 ├── public/                # Static assets (images, fonts, cv.pdf)
@@ -166,7 +166,7 @@ The interface behaves more like an **environment** than a webpage.
 
 ---
 
-## 🙏 Acknowledgements
+## Acknowledgements
 
 Built with:
 
