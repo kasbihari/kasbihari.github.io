@@ -67,11 +67,11 @@ const projects: Project[] = [
   },
   {
     id: 6,
-    title: 'Project in progress...',
+    title: 'Social Media Platform',
     description: 'Coming soon...',
-    category: 'pet',
-    status: 'Done',
-    tech: ['HTML/CSS', 'JavaScript', 'Bootstrap'],
+    category: 'assignment',
+    status: 'In Progress',
+    tech: ['NextJS', 'Typescript', 'Tailwind'],
     liveUrl: '#',
     codeUrl: '#'
   }

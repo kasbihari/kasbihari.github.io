@@ -77,7 +77,7 @@ const Hero: React.FC = () => {
             'Next/Node/React',
             'Bootstrap/Tailwind',
             'PHP/Symfony',
-            'SQL',
+            'SQL/MariaDB/Prisma',
             'Unity/C#',
             'Adobe/Canva',
             'Wordpress/Figma/Bubble'
