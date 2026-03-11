@@ -73,12 +73,14 @@ const Hero: React.FC = () => {
           {[
             'HTML/CSS',
             'JavaScript/TypeScript',
+            'Python',
             'Next/Node/React',
             'Bootstrap/Tailwind',
             'PHP/Symfony',
             'SQL',
             'Unity/C#',
-            'Adobe/Canva'
+            'Adobe/Canva',
+            'Wordpress/Figma/Bubble'
           ].map((skill) => (
             <span key={skill} className="px-3 py-1 text-sm rounded-full glass text-white/70">
               {skill}
