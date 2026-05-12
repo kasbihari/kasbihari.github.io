@@ -69,7 +69,7 @@ const ALL_PROJECTS: Project[] = [
     tech: ['Next.js', 'TypeScript', 'Tailwind', 'Prisma'],
     liveUrl: '#',
     codeUrl: 'https://github.com/kasbihari/SDG-Dashboard',
-    year: '2024',
+    year: '2025',
   },
   {
     id: 5,
@@ -80,7 +80,7 @@ const ALL_PROJECTS: Project[] = [
     status: 'Done',
     tech: ['HTML/CSS', 'PHP', 'Bootstrap', 'WordPress'],
     liveUrl: 'https://preview.waahanmobility.com',
-    year: '2023',
+    year: '2025',
   },
   {
     id: 6,
@@ -90,7 +90,7 @@ const ALL_PROJECTS: Project[] = [
     category: 'assignment',
     status: 'In Progress',
     tech: ['Next.js', 'TypeScript', 'Tailwind'],
-    year: '2025',
+    year: '2026',
   },
 ];
 

@@ -76,7 +76,7 @@ const Contact: React.FC = () => {
             <span className="text-white/35">something great.</span>
           </h2>
           <p className="text-white/45 text-lg max-w-md leading-relaxed">
-            Whether it's a freelance project, a collaboration, or just a conversation —
+            Whether it's a freelance project, a collaboration, or just a conversation
             I'm always open. Reach out through any of the channels below.
           </p>
         </Reveal>

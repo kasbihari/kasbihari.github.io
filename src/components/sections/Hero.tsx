@@ -100,7 +100,7 @@ const Hero: React.FC = () => {
       <div
         className="relative z-10 w-full max-w-4xl mx-auto flex flex-col items-center text-center"
         style={{ opacity: mounted ? 1 : 0, transition: 'opacity 0.5s ease' }}
-      >
+      > <br />
 
         {/* ── Availability pill ── */}
         <div className="glass px-4 py-2 rounded-full flex items-center gap-2.5 mb-12">
@@ -134,7 +134,7 @@ const Hero: React.FC = () => {
         <p className="font-body text-xl md:text-2xl text-white/60 max-w-xl leading-relaxed mb-12">
           I build digital experiences where{' '}
           <span className="text-white font-medium">performance</span> meets{' '}
-          <span className="text-white font-medium">visual poetry</span> — with a
+          <span className="text-white font-medium">visual poetry</span> with a
           cultural signature that sets them apart.
         </p>
 

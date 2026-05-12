@@ -277,7 +277,7 @@ const About: React.FC = () => {
               <p className="text-white/70 text-xl leading-relaxed">
                 Growing up, I was captivated by{" "}
                 <span className="text-white font-medium">cars, video games, and animation</span>.
-                I spent hours sketching anime characters and reverse-engineering how games were made —
+                I spent hours sketching anime characters and reverse-engineering how games were made
                 that obsessive curiosity about creation led me to coding at an early age,
                 starting with Scratch and Code.org.
               </p>
@@ -303,7 +303,7 @@ const About: React.FC = () => {
 
             <Reveal delay={200}>
               <p className="text-white/55 text-lg leading-relaxed">
-                Today, design and development aren't separate disciplines to me — they're two sides of the same coin.
+                Today, design and development aren't separate disciplines to me they're two sides of the same coin.
                 This holistic philosophy defines my work: creating experiences that are beautiful <em>and</em> performant,
                 with a cultural signature that sets them apart.
               </p>

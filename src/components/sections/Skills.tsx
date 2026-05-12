@@ -33,20 +33,20 @@ interface Skill {
 const SKILLS: Skill[] = [
   // Frontend
   { id: 'react', name: 'React / Next.js', category: 'frontend', level: 5, years: '3+', description: 'Primary framework for all production work. Deep knowledge of hooks, SSR, App Router and performance patterns.', icon: <Code2 size={18} /> },
-  { id: 'ts', name: 'TypeScript', category: 'frontend', level: 4, years: '2+', description: 'Strong typing across all projects. Generics, utility types and strict mode fluency.', icon: <Layers size={18} /> },
+  { id: 'ts', name: 'TypeScript', category: 'frontend', level: 4, years: '3+', description: 'Strong typing across all projects. Generics, utility types and strict mode fluency.', icon: <Layers size={18} /> },
   { id: 'css', name: 'HTML / CSS', category: 'frontend', level: 5, years: '5+', description: 'Foundation of everything. Custom properties, complex layouts, animations and responsive design.', icon: <Layout size={18} /> },
-  { id: 'tailwind', name: 'Tailwind CSS', category: 'frontend', level: 5, years: '2+', description: 'Utility-first workflow with custom design tokens. Plugin authoring and performance optimisation.', icon: <Sparkles size={18} /> },
+  { id: 'tailwind', name: 'Tailwind CSS', category: 'frontend', level: 5, years: '3+', description: 'Utility-first workflow with custom design tokens. Plugin authoring and performance optimisation.', icon: <Sparkles size={18} /> },
   { id: 'js', name: 'JavaScript', category: 'frontend', level: 5, years: '5+', description: 'ES2024+, async/await, Web APIs, Canvas, WebGL basics and performance profiling.', icon: <Terminal size={18} /> },
 
   // Backend
   { id: 'node', name: 'Node.js', category: 'backend', level: 4, years: '2+', description: 'REST APIs, middleware, file I/O and real-time with WebSockets.', icon: <Server size={18} /> },
   { id: 'php', name: 'PHP / Symfony', category: 'backend', level: 4, years: '3+', description: 'MVC architecture, Doctrine ORM, security and custom WordPress themes.', icon: <Globe size={18} /> },
-  { id: 'python', name: 'Python', category: 'backend', level: 3, years: '2+', description: 'Scripting, data processing and AI/ML prototyping with pandas and numpy.', icon: <Cpu size={18} /> },
+  { id: 'python', name: 'Python', category: 'backend', level: 3, years: '4+', description: 'Scripting, data processing and AI/ML prototyping with pandas and numpy.', icon: <Cpu size={18} /> },
   { id: 'sql', name: 'SQL / Prisma', category: 'backend', level: 4, years: '3+', description: 'MariaDB, MySQL, query optimisation and type-safe ORM with Prisma.', icon: <Database size={18} /> },
 
   // Design
-  { id: 'figma', name: 'Figma', category: 'design', level: 4, years: '2+', description: 'Component libraries, auto-layout, prototyping and design-to-code handoff.', icon: <Figma size={18} /> },
-  { id: 'adobe', name: 'Adobe Suite', category: 'design', level: 3, years: '3+', description: 'Photoshop, Illustrator and Premiere for asset creation and post-production.', icon: <Palette size={18} /> },
+  { id: 'figma', name: 'Figma', category: 'design', level: 4, years: '4+', description: 'Component libraries, auto-layout, prototyping and design-to-code handoff.', icon: <Figma size={18} /> },
+  { id: 'adobe', name: 'Adobe Suite', category: 'design', level: 3, years: '5+', description: 'Photoshop, Illustrator and Premiere for asset creation and post-production.', icon: <Palette size={18} /> },
   { id: 'motion', name: 'Motion / Animation', category: 'design', level: 4, years: '2+', description: 'CSS keyframes, Web Animations API, Framer Motion and GSAP for cinematic UX.', icon: <BarChart2 size={18} /> },
 
   // Tools
