@@ -180,7 +180,7 @@ const Hero: React.FC = () => {
             ))}
           </div>
         </div>
-      </div>
+      </div> <br /><br /><br /><br />
 
       {/* ── Scroll cue — bottom center ── */}
       <button

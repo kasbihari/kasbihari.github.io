@@ -72,7 +72,6 @@
   }
 
   .dark {
-    /* identiek aan :root, optioneel */
     --background: 0 0% 4%;
     --foreground: 0 0% 100%;
     --card: 0 0% 7%;
@@ -117,40 +116,24 @@
     box-shadow: 0 12px 48px rgba(94, 42, 44, 0.2);
   }
 
-  /* Scrollbare secties */
+  /*
+   * Scrollbare secties
+   * – scrollbar-width: none / display:none verbergt de scrollbar visueel
+   * – -webkit-overflow-scrolling: touch zorgt voor iOS momentum scrolling
+   * – overscroll-behavior: contain voorkomt dat scrollen in een sectie de
+   *   parent (body) meesleurt op mobiel
+   */
   .scrollable-section {
     overflow-y: auto;
-    scrollbar-width: thin;
-    scrollbar-color: rgba(94, 42, 44, 0.5) rgba(255, 255, 255, 0.05);
+    overscroll-behavior: contain;
+    -webkit-overflow-scrolling: touch; /* iOS momentum scroll */
+    scrollbar-width: none;           /* Firefox */
+    -ms-overflow-style: none;        /* IE / Edge */
   }
 
   .scrollable-section::-webkit-scrollbar {
-    width: 6px;
+    display: none; /* Chrome, Safari, Opera */
   }
-
-  .scrollable-section::-webkit-scrollbar-track {
-    background: rgba(255, 255, 255, 0.05);
-    border-radius: 10px;
-  }
-
-  .scrollable-section::-webkit-scrollbar-thumb {
-    background: rgba(94, 42, 44, 0.5);
-    border-radius: 10px;
-  }
-
-  .scrollable-section::-webkit-scrollbar-thumb:hover {
-    background: rgba(94, 42, 44, 0.8);
-  }
-  /* Scrollable secties met verborgen scrollbar */
-.scrollable-section {
-  overflow-y: auto;
-  scrollbar-width: none; /* Firefox */
-  -ms-overflow-style: none; /* IE and Edge */
-}
-
-.scrollable-section::-webkit-scrollbar {
-  display: none; /* Chrome, Safari, Opera */
-}
 
   /* Badge */
   .badge {
@@ -167,7 +150,71 @@
   }
 }
 
-/* Fade-transitie */
+/* ─────────────────────────────────────────────
+   RESPONSIVE BREAKPOINT OVERRIDES
+   Alle breakpoints volgen de Tailwind-conventies:
+   xs  < 480 px
+   sm  ≥ 640 px  (Tailwind sm)
+   md  ≥ 768 px  (Tailwind md)
+   lg  ≥ 1024 px (Tailwind lg)
+   xl  ≥ 1280 px (Tailwind xl)
+───────────────────────────────────────────── */
+
+/*
+ * Extra-small screens (≤ 479 px, bijv. iPhone SE 375 px)
+ * Hier krimpen we specifieke componenten die Tailwind niet
+ * klein genoeg kan maken met alleen utility-classes.
+ */
+@media (max-width: 479px) {
+  /*
+   * glass-card standaard padding iets verkleinen zodat
+   * content op 320 px schermen niet tegen de randen drukt.
+   * Overschrijft de @apply p-6 md:p-8 in .glass-card.
+   */
+  .glass-card {
+    padding: 1rem; /* 16 px */
+  }
+
+  /*
+   * Sectie horizontale padding uniformeren:
+   * px-6 (24px) is prima voor ≥ 360px maar op 320px
+   * even iets lucht geven via een min()-clamp.
+   */
+  section {
+    padding-left: max(1rem, env(safe-area-inset-left));
+    padding-right: max(1rem, env(safe-area-inset-right));
+  }
+
+  /*
+   * Daily-rhythm grid in About (grid-cols-2 md:grid-cols-4):
+   * op 320 px zijn 2 kolommen comfortabel, maar de border-right
+   * op de middelste items zorgt voor een rare scheiding als de
+   * tweede kolom overloopt. We maken het 1-kolom op xs.
+   */
+  .daily-rhythm-grid {
+    grid-template-columns: 1fr !important;
+  }
+  .daily-rhythm-grid > div {
+    border-right: none !important;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  }
+  .daily-rhythm-grid > div:last-child {
+    border-bottom: none;
+  }
+}
+
+/*
+ * Safe-area insets voor iPhone met notch / Dynamic Island.
+ * Zorgt dat content niet achter de home-indicator valt.
+ */
+@supports (padding: max(0px)) {
+  body {
+    padding-left: env(safe-area-inset-left);
+    padding-right: env(safe-area-inset-right);
+  }
+}
+
+/* Fade-transitie (ongewijzigd) */
 .fade-enter {
   opacity: 0;
   transform: scale(0.98);
@@ -204,19 +251,17 @@
 
 @keyframes glow {
   0%, 100% { filter: drop-shadow(0 0 10px rgba(94,42,44,0.4)); }
-  50% { filter: drop-shadow(0 0 20px rgba(94,42,44,0.8)); }
+  50%       { filter: drop-shadow(0 0 20px rgba(94,42,44,0.8)); }
 }
-
 .animate-glow {
   animation: glow 3s ease-in-out infinite;
 }
 
 @keyframes gradientShift {
-  0% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
+  0%   { background-position: 0% 50%; }
+  50%  { background-position: 100% 50%; }
   100% { background-position: 0% 50%; }
 }
-
 .animate-gradient {
   animation: gradientShift 6s ease infinite;
 }
