@@ -273,3 +273,14 @@
 .animation-delay-2000 {
   animation-delay: 2s;
 }
+
+@keyframes fly {
+  0%   { transform: translateX(0) rotate(0deg); }
+  50%  { transform: translateX(4px) rotate(5deg); }
+  100% { transform: translateX(0) rotate(0deg); }
+}
+
+.animate-fly {
+  animation: fly 1s ease-in-out infinite;
+  display: inline-block; /* zorgt dat de transform werkt */
+}
