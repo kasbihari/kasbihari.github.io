@@ -1,379 +1,403 @@
-import React, { useState, useRef, useEffect } from 'react';
-import {
-  Mail, Github, Linkedin, Copy, Check,
-  ArrowRight, Languages, Send,
-} from 'lucide-react';
-import { useForm, ValidationError } from '@formspree/react';
+import { useState } from 'react';
 
-/* ─── Scroll-reveal hook (ongewijzigd) ─── */
-function useReveal(threshold = 0.12) {
-  const ref = useRef<HTMLDivElement>(null);
-  const [visible, setVisible] = useState(false);
-  useEffect(() => {
-    const el = ref.current;
-    if (!el) return;
-    const obs = new IntersectionObserver(
-      ([e]) => {
-        if (e.isIntersecting) {
-          setVisible(true);
-          obs.disconnect();
-        }
-      },
-      { threshold }
-    );
-    obs.observe(el);
-    return () => obs.disconnect();
-  }, [threshold]);
-  return { ref, visible };
-}
+const contactLinks = [
+  {
+    label: 'GitHub',
+    value: 'github.com/kasbihari',
+    href: 'https://github.com/kasbihari',
+  },
+  {
+    label: 'LinkedIn',
+    value: 'linkedin.com/in/krishnabihari',
+    href: 'https://linkedin.com/in/krishnabihari',
+  },
+  {
+    label: 'Email',
+    value: 'krishna@example.com',
+    href: 'mailto:krishna@example.com',
+  },
+];
 
-const Reveal: React.FC<{
-  children: React.ReactNode;
-  delay?: number;
-  className?: string;
-}> = ({ children, delay = 0, className = '' }) => {
-  const { ref, visible } = useReveal();
-  return (
-    <div
-      ref={ref}
-      className={className}
-      style={{
-        opacity: visible ? 1 : 0,
-        transform: visible ? 'translateY(0)' : 'translateY(20px)',
-        transition: `opacity 0.65s cubic-bezier(0.16,1,0.3,1) ${delay}ms, transform 0.65s cubic-bezier(0.16,1,0.3,1) ${delay}ms`,
-      }}
-    >
-      {children}
-    </div>
-  );
-};
+type FormState = 'idle' | 'sending' | 'sent' | 'error';
 
-/* ─── Papieren vliegtuigje SVG (reusable) ─── */
-const PaperPlaneIcon: React.FC<{ className?: string }> = ({ className }) => (
-  <svg
-    width="18"
-    height="18"
-    viewBox="0 0 24 24"
-    fill="none"
-    stroke="currentColor"
-    strokeWidth="2"
-    strokeLinecap="round"
-    strokeLinejoin="round"
-    className={className}
-  >
-    <polygon points="12 2 22 8.5 12 15 2 8.5" />
-    <line x1="12" y1="15" x2="12" y2="22" />
-    <line x1="8" y1="18" x2="12" y2="22" />
-    <line x1="16" y1="18" x2="12" y2="22" />
-  </svg>
-);
+export default function Contact() {
+  const [form, setForm]       = useState({ name: '', email: '', message: '' });
+  const [status, setStatus]   = useState<FormState>('idle');
 
-/* ─── Contact page ─── */
-const Contact: React.FC = () => {
-  const [copied, setCopied] = useState(false);
-
-  // Formspree – let op de reset-functie
-  const [formState, handleSubmit, resetFormspree] = useForm('mbdwvkgq');
-
-  // Honeypot state
-  const [honeypot, setHoneypot] = useState('');
-  const [fakeSuccess, setFakeSuccess] = useState(false);
-
-  // Key om het formulier te resetten na succes
-  const [formKey, setFormKey] = useState(0);
-
-  const handleCopy = () => {
-    navigator.clipboard.writeText('kas.bihari@gmail.com').then(() => {
-      setCopied(true);
-      setTimeout(() => setCopied(false), 2200);
-    });
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
+    setForm((prev) => ({ ...prev, [e.target.name]: e.target.value }));
   };
 
-  const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    if (honeypot) {
-      e.preventDefault();
-      setFakeSuccess(true); // bot denkt dat het gelukt is
-      return;
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setStatus('sending');
+
+    // Replace with your actual form endpoint (Formspree, Resend, etc.)
+    try {
+      await fetch('https://formspree.io/f/YOUR_FORM_ID', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(form),
+      });
+      setStatus('sent');
+      setForm({ name: '', email: '', message: '' });
+    } catch {
+      setStatus('error');
     }
-    handleSubmit(e); // normale verzending via Formspree
   };
-
-  const resetForm = () => {
-    resetFormspree();            // Formspree-status terug naar idle
-    setFakeSuccess(false);
-    setHoneypot('');
-    setFormKey((prev) => prev + 1);
-  };
-
-  const isSuccess = formState.succeeded || fakeSuccess;
 
   return (
-    <section className="min-h-screen px-6 md:px-16 py-20 flex items-center">
-      {/* Inline animatie-definitie */}
-      <style>{`
-        @keyframes fly {
-          0%   { transform: translateX(0) rotate(0deg); }
-          50%  { transform: translateX(8px) rotate(10deg); }
-          100% { transform: translateX(0) rotate(0deg); }
-        }
-        .animate-fly {
-          animation: fly 0.8s ease-in-out infinite;
-          will-change: transform;
-        }
-      `}</style>
+    <section id="contact" className="section-padding">
+      <div className="container-main">
 
-      <div className="max-w-4xl w-full mx-auto space-y-20">
-        {/* ══════════════════════════════════════
-            HEADER
-        ══════════════════════════════════════ */}
-        <Reveal>
-          <p className="text-bordeaux/60 text-xs tracking-[0.3em] uppercase font-mono mb-3">
-            Get in touch
+        {/* Header */}
+        <div style={{ marginBottom: '5rem' }}>
+          <p data-reveal className="section-label">
+            Contact
           </p>
-          <h2 className="font-body text-5xl md:text-6xl font-medium text-white leading-tight mb-5">
-            Let's build
-            <br />
-            <span className="text-white/35">something great.</span>
+          <h2
+            data-reveal
+            data-delay="100"
+            style={{
+              fontSize: 'clamp(2rem, 4vw, 3.5rem)',
+              fontWeight: 500,
+              letterSpacing: '-0.025em',
+              color: 'var(--soft-white)',
+              lineHeight: 1.05,
+              maxWidth: '560px',
+            }}
+          >
+            Let's build something{' '}
+            <span
+              style={{
+                fontFamily: 'Playfair Display, Georgia, serif',
+                fontStyle: 'italic',
+                fontWeight: 400,
+                color: 'var(--sand-light)',
+              }}
+            >
+              worth shipping.
+            </span>
           </h2>
-          <p className="text-white/45 text-lg max-w-md leading-relaxed">
-            Whether it's a freelance project, a collaboration, or just a conversation
-            I'm always open. Reach out through any of the channels below.
+
+          <p
+            data-reveal
+            data-delay="200"
+            style={{
+              marginTop: '1.5rem',
+              fontSize: '0.95rem',
+              color: 'var(--muted)',
+              lineHeight: 1.75,
+              maxWidth: '420px',
+            }}
+          >
+            Open to freelance projects, long-term collaborations, and
+            interesting engineering challenges. Response within 24 hours.
           </p>
-        </Reveal>
+        </div>
 
-        {/* ══════════════════════════════════════
-            PRIMARY: EMAIL BLOCK
-        ══════════════════════════════════════ */}
-        <Reveal delay={80}>
-          <div className="glass-card p-8 md:p-10">
-            <div className="flex flex-col md:flex-row md:items-center gap-6 md:gap-10">
-              <div className="w-16 h-16 rounded-2xl bg-bordeaux/20 flex items-center justify-center text-bordeaux flex-shrink-0">
-                <Mail size={28} />
-              </div>
-              <div className="flex-1 min-w-0">
-                <p className="text-white/40 text-xs tracking-widest uppercase font-mono mb-2">
-                  Email
-                </p>
-                <div className="flex items-center gap-3 flex-wrap">
-                  <span className="font-mono text-white text-xl md:text-2xl tracking-tight select-all">
-                    kas.bihari@gmail.com
-                  </span>
-                  <button
-                    onClick={handleCopy}
-                    className="w-9 h-9 glass rounded-full flex items-center justify-center hover:bg-bordeaux/20 transition-colors duration-150 relative flex-shrink-0"
-                    aria-label="Copy email address"
-                  >
-                    {copied ? (
-                      <Check size={15} className="text-emerald-400" />
-                    ) : (
-                      <Copy size={15} className="text-white/50" />
-                    )}
-                    {copied && (
-                      <span className="absolute -top-9 left-1/2 -translate-x-1/2 text-xs glass px-2.5 py-1 rounded-lg whitespace-nowrap text-emerald-400">
-                        Copied!
-                      </span>
-                    )}
-                  </button>
-                </div>
-              </div>
-              <a
-                href="mailto:kas.bihari@gmail.com"
-                className="flex items-center gap-2 px-6 py-3 bg-bordeaux hover:bg-bordeaux/80 text-white rounded-lg text-sm font-medium transition-all duration-200 hover:shadow-[0_0_20px_rgba(94,42,44,0.4)] flex-shrink-0 w-full md:w-auto justify-center"
-              >
-                <Send size={15} />
-                Send email
-                <ArrowRight size={13} className="ml-1 opacity-60" />
-              </a>
-            </div>
-          </div>
-        </Reveal>
+        {/* Two column layout */}
+        <div
+          style={{
+            display: 'grid',
+            gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
+            gap: '5rem',
+            alignItems: 'start',
+          }}
+        >
 
-        {/* ══════════════════════════════════════
-            CONTACT FORM (Formspree + honeypot)
-        ══════════════════════════════════════ */}
-        <Reveal delay={110}>
-          <div className="glass-card p-8 md:p-10">
-            <p className="text-white/30 text-xs tracking-[0.3em] uppercase font-mono mb-5">
-              Or send a message
+          {/* Left — contact links */}
+          <div data-reveal data-delay="0">
+            <p
+              style={{
+                fontSize: '0.72rem',
+                fontWeight: 500,
+                letterSpacing: '0.12em',
+                textTransform: 'uppercase',
+                color: 'var(--muted)',
+                marginBottom: '2rem',
+              }}
+            >
+              Find me at
             </p>
 
-            {isSuccess ? (
-              <div className="text-center py-8 space-y-3">
-                <Check size={32} className="text-emerald-400 mx-auto" />
-                <p className="text-white text-lg">Message sent!</p>
-                <p className="text-white/40 text-sm">
-                  I'll get back to you soon.
-                </p>
-                <button
-                  onClick={resetForm}
-                  className="mt-4 text-bordeaux hover:underline text-sm"
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '0' }}>
+              {contactLinks.map((link) => (
+                <div key={link.label}>
+                  <div className="divider" />
+                  <a
+                    href={link.href}
+                    target={link.href.startsWith('mailto') ? undefined : '_blank'}
+                    rel="noopener noreferrer"
+                    style={{
+                      display: 'flex',
+                      justifyContent: 'space-between',
+                      alignItems: 'center',
+                      padding: '1.25rem 0',
+                      color: 'var(--muted-light)',
+                      transition: 'color 0.3s cubic-bezier(0.16,1,0.3,1)',
+                      textDecoration: 'none',
+                    }}
+                    onMouseEnter={(e) => {
+                      e.currentTarget.style.color = 'var(--soft-white)';
+                    }}
+                    onMouseLeave={(e) => {
+                      e.currentTarget.style.color = 'var(--muted-light)';
+                    }}
+                  >
+                    <div>
+                      <span
+                        style={{
+                          display: 'block',
+                          fontSize: '0.72rem',
+                          letterSpacing: '0.1em',
+                          textTransform: 'uppercase',
+                          color: 'var(--muted)',
+                          marginBottom: '0.25rem',
+                        }}
+                      >
+                        {link.label}
+                      </span>
+                      <span style={{ fontSize: '0.9rem' }}>{link.value}</span>
+                    </div>
+
+                    <svg
+                      width="16"
+                      height="16"
+                      viewBox="0 0 16 16"
+                      fill="none"
+                      style={{ opacity: 0.4, flexShrink: 0 }}
+                    >
+                      <path
+                        d="M3 13L13 3M13 3H6M13 3v7"
+                        stroke="currentColor"
+                        strokeWidth="1.5"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                      />
+                    </svg>
+                  </a>
+                </div>
+              ))}
+              <div className="divider" />
+            </div>
+
+            {/* Availability badge */}
+            <div
+              style={{
+                marginTop: '2.5rem',
+                display: 'inline-flex',
+                alignItems: 'center',
+                gap: '0.6rem',
+                padding: '0.6rem 1.1rem',
+                border: '1px solid var(--border-subtle)',
+                borderRadius: '4px',
+              }}
+            >
+              <span
+                style={{
+                  width: '6px',
+                  height: '6px',
+                  borderRadius: '50%',
+                  background: 'var(--forest-bright)',
+                  boxShadow: '0 0 6px var(--forest-bright)',
+                }}
+              />
+              <span
+                style={{
+                  fontSize: '0.78rem',
+                  color: 'var(--muted-light)',
+                  letterSpacing: '0.04em',
+                }}
+              >
+                Available for new projects
+              </span>
+            </div>
+          </div>
+
+          {/* Right — contact form */}
+          <div data-reveal data-delay="150">
+            {status === 'sent' ? (
+              <div
+                style={{
+                  padding: '3rem 2rem',
+                  border: '1px solid var(--border-subtle)',
+                  borderRadius: '6px',
+                  textAlign: 'center',
+                }}
+              >
+                <p
+                  style={{
+                    fontSize: '1.1rem',
+                    fontWeight: 500,
+                    color: 'var(--soft-white)',
+                    marginBottom: '0.75rem',
+                  }}
                 >
-                  Send another message
-                </button>
+                  Message received.
+                </p>
+                <p style={{ fontSize: '0.875rem', color: 'var(--muted)', lineHeight: 1.7 }}>
+                  I'll get back to you within 24 hours.
+                </p>
               </div>
             ) : (
-              <form key={formKey} onSubmit={onSubmit} className="space-y-6" noValidate>
-                {/* Honeypot – visually hidden for humans */}
-                <div className="absolute opacity-0 pointer-events-none" aria-hidden="true">
-                  <label htmlFor="bot-field">Leave this field blank</label>
+              <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '1.25rem' }}>
+                {/* Name */}
+                <div>
+                  <label
+                    htmlFor="name"
+                    style={{
+                      display: 'block',
+                      fontSize: '0.72rem',
+                      fontWeight: 500,
+                      letterSpacing: '0.1em',
+                      textTransform: 'uppercase',
+                      color: 'var(--muted)',
+                      marginBottom: '0.5rem',
+                    }}
+                  >
+                    Name
+                  </label>
                   <input
+                    id="name"
+                    name="name"
                     type="text"
-                    id="bot-field"
-                    name="bot-field"
-                    value={honeypot}
-                    onChange={(e) => setHoneypot(e.target.value)}
-                    tabIndex={-1}
-                    autoComplete="off"
+                    required
+                    value={form.name}
+                    onChange={handleChange}
+                    placeholder="Your name"
+                    style={{
+                      width: '100%',
+                      padding: '0.85rem 1rem',
+                      background: 'var(--charcoal-2)',
+                      border: '1px solid var(--border-subtle)',
+                      borderRadius: '4px',
+                      color: 'var(--soft-white)',
+                      fontSize: '0.9rem',
+                      outline: 'none',
+                      transition: 'border-color 0.3s',
+                      boxSizing: 'border-box',
+                    }}
+                    onFocus={(e) => (e.currentTarget.style.borderColor = 'var(--border-mid)')}
+                    onBlur={(e) => (e.currentTarget.style.borderColor = 'var(--border-subtle)')}
                   />
                 </div>
 
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                  <div>
-                    <label htmlFor="name" className="block text-xs text-white/40 mb-1.5 uppercase tracking-wider">
-                      Name
-                    </label>
-                    <input
-                      type="text"
-                      id="name"
-                      name="name"
-                      required
-                      className="w-full bg-black/40 border border-white/10 rounded-lg px-4 py-3 text-white placeholder-white/20 focus:outline-none focus:border-bordeaux/50 focus:ring-1 focus:ring-bordeaux/30 transition-all"
-                      placeholder="Your name"
-                    />
-                    <ValidationError field="name" errors={formState.errors} className="text-red-400 text-xs mt-1" />
-                  </div>
-                  <div>
-                    <label htmlFor="email" className="block text-xs text-white/40 mb-1.5 uppercase tracking-wider">
-                      Email
-                    </label>
-                    <input
-                      type="email"
-                      id="email"
-                      name="email"
-                      required
-                      className="w-full bg-black/40 border border-white/10 rounded-lg px-4 py-3 text-white placeholder-white/20 focus:outline-none focus:border-bordeaux/50 focus:ring-1 focus:ring-bordeaux/30 transition-all"
-                      placeholder="your@email.com"
-                    />
-                    <ValidationError field="email" errors={formState.errors} className="text-red-400 text-xs mt-1" />
-                  </div>
+                {/* Email */}
+                <div>
+                  <label
+                    htmlFor="email"
+                    style={{
+                      display: 'block',
+                      fontSize: '0.72rem',
+                      fontWeight: 500,
+                      letterSpacing: '0.1em',
+                      textTransform: 'uppercase',
+                      color: 'var(--muted)',
+                      marginBottom: '0.5rem',
+                    }}
+                  >
+                    Email
+                  </label>
+                  <input
+                    id="email"
+                    name="email"
+                    type="email"
+                    required
+                    value={form.email}
+                    onChange={handleChange}
+                    placeholder="your@email.com"
+                    style={{
+                      width: '100%',
+                      padding: '0.85rem 1rem',
+                      background: 'var(--charcoal-2)',
+                      border: '1px solid var(--border-subtle)',
+                      borderRadius: '4px',
+                      color: 'var(--soft-white)',
+                      fontSize: '0.9rem',
+                      outline: 'none',
+                      transition: 'border-color 0.3s',
+                      boxSizing: 'border-box',
+                    }}
+                    onFocus={(e) => (e.currentTarget.style.borderColor = 'var(--border-mid)')}
+                    onBlur={(e) => (e.currentTarget.style.borderColor = 'var(--border-subtle)')}
+                  />
                 </div>
 
+                {/* Message */}
                 <div>
-                  <label htmlFor="message" className="block text-xs text-white/40 mb-1.5 uppercase tracking-wider">
+                  <label
+                    htmlFor="message"
+                    style={{
+                      display: 'block',
+                      fontSize: '0.72rem',
+                      fontWeight: 500,
+                      letterSpacing: '0.1em',
+                      textTransform: 'uppercase',
+                      color: 'var(--muted)',
+                      marginBottom: '0.5rem',
+                    }}
+                  >
                     Message
                   </label>
                   <textarea
                     id="message"
                     name="message"
-                    rows={5}
                     required
-                    className="w-full bg-black/40 border border-white/10 rounded-lg px-4 py-3 text-white placeholder-white/20 focus:outline-none focus:border-bordeaux/50 focus:ring-1 focus:ring-bordeaux/30 transition-all resize-none"
-                    placeholder="Tell me what you'd like to discuss..."
+                    rows={5}
+                    value={form.message}
+                    onChange={handleChange}
+                    placeholder="Tell me about your project..."
+                    style={{
+                      width: '100%',
+                      padding: '0.85rem 1rem',
+                      background: 'var(--charcoal-2)',
+                      border: '1px solid var(--border-subtle)',
+                      borderRadius: '4px',
+                      color: 'var(--soft-white)',
+                      fontSize: '0.9rem',
+                      outline: 'none',
+                      transition: 'border-color 0.3s',
+                      resize: 'vertical',
+                      fontFamily: 'inherit',
+                      boxSizing: 'border-box',
+                    }}
+                    onFocus={(e) => (e.currentTarget.style.borderColor = 'var(--border-mid)')}
+                    onBlur={(e) => (e.currentTarget.style.borderColor = 'var(--border-subtle)')}
                   />
-                  <ValidationError field="message" errors={formState.errors} className="text-red-400 text-xs mt-1" />
                 </div>
 
-                {/* Algemene / server-fouten */}
-                <ValidationError errors={formState.errors} className="text-red-400 text-sm flex items-center gap-2" />
+                {status === 'error' && (
+                  <p style={{ fontSize: '0.82rem', color: '#e07070' }}>
+                    Something went wrong — try emailing me directly.
+                  </p>
+                )}
 
                 <button
                   type="submit"
-                  disabled={formState.submitting}
-                  className="flex items-center justify-center gap-2 px-6 py-3 bg-bordeaux hover:bg-bordeaux/80 text-white rounded-lg text-sm font-medium transition-all duration-200 hover:shadow-[0_0_20px_rgba(94,42,44,0.4)] disabled:opacity-60 disabled:cursor-not-allowed"
+                  disabled={status === 'sending'}
+                  className="btn-primary"
+                  style={{
+                    width: '100%',
+                    justifyContent: 'center',
+                    opacity: status === 'sending' ? 0.6 : 1,
+                    cursor: status === 'sending' ? 'not-allowed' : 'pointer',
+                  }}
                 >
-                  {/* Vliegtuigje altijd zichtbaar, alleen animeren tijdens verzenden */}
-                  <PaperPlaneIcon className={formState.submitting ? 'animate-fly' : ''} />
-                  {formState.submitting ? 'Sending...' : 'Send message'}
+                  {status === 'sending' ? 'Sending...' : 'Send message'}
+                  {status !== 'sending' && (
+                    <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+                      <path d="M2 7h10M7 2l5 5-5 5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                    </svg>
+                  )}
                 </button>
               </form>
             )}
           </div>
-        </Reveal>
-
-        {/* ══════════════════════════════════════
-            SOCIAL LINKS
-        ══════════════════════════════════════ */}
-        <Reveal delay={140}>
-          <p className="text-white/25 text-xs tracking-[0.3em] uppercase font-mono mb-5">
-            Find me online
-          </p>
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-            <a
-              href="https://github.com/kasbihari"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="glass-card p-5 flex items-center gap-4 group hover:border-bordeaux/50 transition-all duration-200"
-            >
-              <div className="w-11 h-11 rounded-full bg-white/8 flex items-center justify-center group-hover:bg-bordeaux/20 group-hover:text-bordeaux transition-all duration-200">
-                <Github size={20} />
-              </div>
-              <div className="flex-1 min-w-0">
-                <div className="text-white/80 text-sm font-medium group-hover:text-white transition-colors">
-                  GitHub
-                </div>
-                <div className="text-white/35 text-xs font-mono truncate">
-                  github.com/kasbihari
-                </div>
-              </div>
-              <ArrowRight
-                size={14}
-                className="text-white/20 group-hover:text-bordeaux/60 group-hover:translate-x-0.5 transition-all duration-150"
-              />
-            </a>
-
-            <a
-              href="https://www.linkedin.com/in/krishna-b-098124339/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="glass-card p-5 flex items-center gap-4 group hover:border-bordeaux/50 transition-all duration-200"
-            >
-              <div className="w-11 h-11 rounded-full bg-white/8 flex items-center justify-center group-hover:bg-bordeaux/20 group-hover:text-bordeaux transition-all duration-200">
-                <Linkedin size={20} />
-              </div>
-              <div className="flex-1 min-w-0">
-                <div className="text-white/80 text-sm font-medium group-hover:text-white transition-colors">
-                  LinkedIn
-                </div>
-                <div className="text-white/35 text-xs font-mono truncate">
-                  Krishna Bihari
-                </div>
-              </div>
-              <ArrowRight
-                size={14}
-                className="text-white/20 group-hover:text-bordeaux/60 group-hover:translate-x-0.5 transition-all duration-150"
-              />
-            </a>
-          </div>
-        </Reveal>
-
-        {/* ══════════════════════════════════════
-            FUN FACT
-        ══════════════════════════════════════ */}
-        <Reveal delay={200}>
-          <div className="border-t border-white/8 pt-12">
-            <div className="flex items-start gap-5">
-              <div className="w-10 h-10 rounded-full bg-bordeaux/15 flex items-center justify-center text-bordeaux flex-shrink-0 mt-1">
-                <Languages size={18} />
-              </div>
-              <div>
-                <p className="text-white/30 text-xs tracking-[0.25em] uppercase font-mono mb-2">
-                  Fun fact
-                </p>
-                <p className="text-white/65 text-lg leading-relaxed max-w-lg">
-                  I speak{' '}
-                  <span className="text-white font-medium">
-                    Dutch, English and Spanish
-                  </span>{' '}
-                  — and I'm learning a fourth, because great communication
-                  builds great products.
-                </p>
-              </div>
-            </div>
-          </div>
-        </Reveal>
+        </div>
       </div>
     </section>
   );
-};
-
-export default Contact;
+}

@@ -1,42 +1,42 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import FluidAuroraBackground from '../components/3d/FluidAuroraBackground';
-import App from '../components/App';
-import RadialNav from '../components/navigation/RadialNav';
-import RadialSocial from '../components/navigation/RadialSocial';
+import Navbar from '../components/Navbar';
+import Hero from '../components/sections/Hero';
+import About from '../components/sections/About';
+import Projects from '../components/sections/Projects';
+import Skills from '../components/sections/Skills';
+import Contact from '../components/sections/Contact';
+import Footer from '../components/Footer';
 ---
 
-<Layout title="Krishna Bihari – Creative Developer">
-  <!-- Splash screen (startscherm) -->
-  <div id="splash" class="fixed inset-0 z-[100] flex flex-col items-center justify-center bg-black transition-opacity duration-1000">
-    <h1
-      class="font-name text-6xl md:text-7xl lg:text-8xl text-white text-center leading-tight mb-6"
-      style="text-shadow: 0 0 8px rgba(94,42,44,0.8), 0 0 16px rgba(94,42,44,0.5), 0 0 24px rgba(94,42,44,0.3);"
-    >
-      Krishna Bihari
-    </h1> <br><br><br><br>
-    <div class="flex items-center gap-3">
-      <div class="w-5 h-5 border-2 border-bordeaux border-t-transparent rounded-full animate-spin"></div>
-      <span class="font-body text-white/70 text-lg">loading...</span>
+<Layout>
+  <Navbar client:load />
+
+  <!-- Each section fills the screen, cinematic scroll between them -->
+  <main>
+    <!-- Hero: full screen -->
+    <div class="full-screen">
+      <Hero client:load />
     </div>
-  </div>
 
-  <script>
-    setTimeout(() => {
-      const splash = document.getElementById('splash');
-      if (splash) {
-        splash.style.opacity = '0';
-        setTimeout(() => {
-          if (splash && splash.parentNode) {
-            splash.parentNode.removeChild(splash);
-          }
-        }, 1000);
-      }
-    }, 2500);
-  </script>
+    <!-- About: scroll reading (self-manages height) + detail block -->
+    <About client:load />
 
-  <FluidAuroraBackground client:idle />
-  <RadialNav client:load />
-  <RadialSocial client:load />
-  <App client:only="react" />
+    <!-- Projects: full screen feel with section-padding -->
+    <div class="full-screen" style="height: auto; min-height: 100svh;">
+      <Projects client:load />
+    </div>
+
+    <!-- Skills: full screen feel -->
+    <div class="full-screen" style="height: auto; min-height: 100svh;">
+      <Skills client:load />
+    </div>
+
+    <!-- Contact: full screen feel -->
+    <div class="full-screen" style="height: auto; min-height: 100svh;">
+      <Contact client:load />
+    </div>
+  </main>
+
+  <Footer />
 </Layout>

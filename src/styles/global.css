@@ -1,286 +1,225 @@
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600&display=swap');
-
-/* Enkel de font-face voor Amsterdam Four – gebruik jouw .ttf bestand */
-@font-face {
-  font-family: 'Amsterdam Four';
-  src: url('/fonts/Amsterdam.ttf') format('truetype');
-  font-weight: normal;
-  font-style: normal;
-  font-display: swap;
-}
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;1,400;1,500&display=swap');
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-@layer base {
-  html {
-    @apply bg-black text-white;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-  }
+/* ── CSS Variables ── */
+:root {
+  --charcoal-1:   #0a0a0a;
+  --charcoal-2:   #111111;
+  --charcoal-3:   #1a1a1a;
+  --charcoal-4:   #242424;
+  --charcoal-5:   #2e2e2e;
 
-  body {
-    @apply font-body;
-    overflow: hidden;
-    height: 100vh;
-    width: 100vw;
-    margin: 0;
-    padding: 0;
-  }
+  --soft-white:   #f0ece4;
+  --off-white:    #d8d2c8;
 
-  h1, h2, h3, h4, h5, h6 {
-    @apply font-body font-medium;
-  }
+  --sand:         #c8b89a;
+  --sand-light:   #d4c5aa;
+  --sand-dark:    #9e8c72;
 
-  img, svg, video {
-    max-width: 100%;
-    height: auto;
-  }
+  --forest:       #2d4a3e;
+  --forest-mid:   #3a5c4e;
+  --forest-bright:#4a7c6a;
 
-  .font-name {
-    font-family: 'Amsterdam Four', sans-serif;
-  }
+  --muted:        #5a5a5a;
+  --muted-light:  #8a8a8a;
 
-  /* shadcn variabelen */
-  :root {
-    --background: 0 0% 4%;
-    --foreground: 0 0% 100%;
-    --card: 0 0% 7%;
-    --card-foreground: 0 0% 100%;
-    --popover: 0 0% 4%;
-    --popover-foreground: 0 0% 100%;
-    --primary: 0 0% 100%;
-    --primary-foreground: 0 0% 4%;
-    --secondary: 0 0% 15%;
-    --secondary-foreground: 0 0% 100%;
-    --muted: 0 0% 15%;
-    --muted-foreground: 0 0% 65%;
-    --accent: 0 58% 27%;
-    --accent-foreground: 0 0% 100%;
-    --destructive: 0 84% 60%;
-    --destructive-foreground: 0 0% 100%;
-    --border: 0 0% 17%;
-    --input: 0 0% 17%;
-    --ring: 0 58% 27%;
-    --chart-1: 0 58% 27%;
-    --chart-2: 0 0% 20%;
-    --chart-3: 0 0% 30%;
-    --chart-4: 0 58% 35%;
-    --chart-5: 0 58% 20%;
-    --radius: 0.5rem;
-  }
+  --border-subtle: rgba(255,255,255,0.06);
+  --border-mid:    rgba(255,255,255,0.12);
+}
 
-  .dark {
-    --background: 0 0% 4%;
-    --foreground: 0 0% 100%;
-    --card: 0 0% 7%;
-    --card-foreground: 0 0% 100%;
-    --popover: 0 0% 4%;
-    --popover-foreground: 0 0% 100%;
-    --primary: 0 0% 100%;
-    --primary-foreground: 0 0% 4%;
-    --secondary: 0 0% 15%;
-    --secondary-foreground: 0 0% 100%;
-    --muted: 0 0% 15%;
-    --muted-foreground: 0 0% 65%;
-    --accent: 0 58% 27%;
-    --accent-foreground: 0 0% 100%;
-    --destructive: 0 84% 60%;
-    --destructive-foreground: 0 0% 100%;
-    --border: 0 0% 17%;
-    --input: 0 0% 17%;
-    --ring: 0 58% 27%;
+/* ── Base reset ── */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  background-color: var(--charcoal-1) !important;
+  color: var(--soft-white);
+  font-family: 'Inter', 'Helvetica Neue', Arial, sans-serif;
+  font-size: 1rem;
+  line-height: 1.6;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* ── Static dark background with grain + vignette ── */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: -2;
+  background:
+    radial-gradient(ellipse 80% 60% at 20% 20%, rgba(45,74,62,0.06) 0%, transparent 60%),
+    radial-gradient(ellipse 60% 80% at 80% 80%, rgba(200,184,154,0.03) 0%, transparent 55%),
+    var(--charcoal-1);
+  pointer-events: none;
+}
+
+/* Grain texture overlay */
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  opacity: 0.025;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+  background-size: 180px 180px;
+  pointer-events: none;
+}
+
+/* ── Typography ── */
+h1, h2, h3, h4, h5, h6 {
+  color: var(--soft-white);
+  font-weight: 500;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* ── Layout utilities ── */
+.container-main {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+@media (max-width: 768px) {
+  .container-main {
+    padding: 0 1.25rem;
   }
 }
 
-@layer components {
-  /* Gecentreerde container */
-  .section-container-centered {
-    @apply w-full h-full flex flex-col items-center justify-center px-4 md:px-12;
-    max-width: 1200px;
-    margin: 0 auto;
-  }
+/* ── Full-screen sections ── */
+.full-screen {
+  min-height: 100svh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  position: relative;
+}
 
-  /* Glasachtige kaarten (unified) */
-  .glass {
-    @apply bg-anthracite/20 backdrop-blur-md border border-white/10 rounded-lg;
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
-  }
+.section-padding {
+  padding: 8rem 0;
+}
 
-  .glass-card {
-    @apply glass p-6 md:p-8 transition-all duration-300 hover:border-bordeaux/50;
-  }
-
-  .glass-card:hover {
-    box-shadow: 0 12px 48px rgba(94, 42, 44, 0.2);
-  }
-
-  /*
-   * Scrollbare secties
-   * – scrollbar-width: none / display:none verbergt de scrollbar visueel
-   * – -webkit-overflow-scrolling: touch zorgt voor iOS momentum scrolling
-   * – overscroll-behavior: contain voorkomt dat scrollen in een sectie de
-   *   parent (body) meesleurt op mobiel
-   */
-  .scrollable-section {
-    overflow-y: auto;
-    overscroll-behavior: contain;
-    -webkit-overflow-scrolling: touch; /* iOS momentum scroll */
-    scrollbar-width: none;           /* Firefox */
-    -ms-overflow-style: none;        /* IE / Edge */
-  }
-
-  .scrollable-section::-webkit-scrollbar {
-    display: none; /* Chrome, Safari, Opera */
-  }
-
-  /* Badge */
-  .badge {
-    @apply text-xs px-3 py-1 rounded-full bg-white/10 text-white/70 hover:bg-white/20 transition-colors duration-200;
-  }
-
-  /* Subtiele gradienten */
-  .bg-subtle-gradient {
-    @apply bg-gradient-to-br from-black via-anthracite to-black;
-  }
-
-  .bg-bordeaux-gradient {
-    @apply bg-gradient-to-r from-bordeaux to-bordeaux/80;
+@media (max-width: 768px) {
+  .section-padding {
+    padding: 5rem 0;
   }
 }
 
-/* ─────────────────────────────────────────────
-   RESPONSIVE BREAKPOINT OVERRIDES
-   Alle breakpoints volgen de Tailwind-conventies:
-   xs  < 480 px
-   sm  ≥ 640 px  (Tailwind sm)
-   md  ≥ 768 px  (Tailwind md)
-   lg  ≥ 1024 px (Tailwind lg)
-   xl  ≥ 1280 px (Tailwind xl)
-───────────────────────────────────────────── */
-
-/*
- * Extra-small screens (≤ 479 px, bijv. iPhone SE 375 px)
- * Hier krimpen we specifieke componenten die Tailwind niet
- * klein genoeg kan maken met alleen utility-classes.
- */
-@media (max-width: 479px) {
-  /*
-   * glass-card standaard padding iets verkleinen zodat
-   * content op 320 px schermen niet tegen de randen drukt.
-   * Overschrijft de @apply p-6 md:p-8 in .glass-card.
-   */
-  .glass-card {
-    padding: 1rem; /* 16 px */
-  }
-
-  /*
-   * Sectie horizontale padding uniformeren:
-   * px-6 (24px) is prima voor ≥ 360px maar op 320px
-   * even iets lucht geven via een min()-clamp.
-   */
-  section {
-    padding-left: max(1rem, env(safe-area-inset-left));
-    padding-right: max(1rem, env(safe-area-inset-right));
-  }
-
-  /*
-   * Daily-rhythm grid in About (grid-cols-2 md:grid-cols-4):
-   * op 320 px zijn 2 kolommen comfortabel, maar de border-right
-   * op de middelste items zorgt voor een rare scheiding als de
-   * tweede kolom overloopt. We maken het 1-kolom op xs.
-   */
-  .daily-rhythm-grid {
-    grid-template-columns: 1fr !important;
-  }
-  .daily-rhythm-grid > div {
-    border-right: none !important;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
-  }
-  .daily-rhythm-grid > div:last-child {
-    border-bottom: none;
-  }
+/* ── Divider ── */
+.divider {
+  width: 100%;
+  height: 1px;
+  background: var(--border-subtle);
 }
 
-/*
- * Safe-area insets voor iPhone met notch / Dynamic Island.
- * Zorgt dat content niet achter de home-indicator valt.
- */
-@supports (padding: max(0px)) {
-  body {
-    padding-left: env(safe-area-inset-left);
-    padding-right: env(safe-area-inset-right);
-  }
+/* ── Section label ── */
+.section-label {
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--sand);
+  margin-bottom: 1.25rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
 }
 
-/* Fade-transitie (ongewijzigd) */
-.fade-enter {
+/* ── Buttons ── */
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.75rem;
+  background: var(--forest-bright);
+  color: var(--soft-white) !important;
+  border: 1px solid transparent;
+  border-radius: 4px;
+  font-size: 0.875rem;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  cursor: pointer;
+  transition: background 0.3s cubic-bezier(0.16,1,0.3,1), transform 0.2s;
+  text-decoration: none !important;
+}
+
+.btn-primary:hover {
+  background: var(--forest-mid);
+  transform: translateY(-1px);
+}
+
+.btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.75rem;
+  background: transparent;
+  color: var(--muted-light) !important;
+  border: 1px solid var(--border-mid);
+  border-radius: 4px;
+  font-size: 0.875rem;
+  font-weight: 400;
+  letter-spacing: 0.02em;
+  cursor: pointer;
+  transition: color 0.3s, border-color 0.3s, transform 0.2s;
+  text-decoration: none !important;
+}
+
+.btn-secondary:hover {
+  color: var(--soft-white) !important;
+  border-color: var(--border-mid);
+  transform: translateY(-1px);
+}
+
+/* ── Cinematic reveal system ── */
+[data-reveal] {
   opacity: 0;
-  transform: scale(0.98);
+  transform: translateY(28px);
+  transition:
+    opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.9s cubic-bezier(0.16, 1, 0.3, 1);
 }
-.fade-enter-active {
+
+[data-reveal].revealed {
   opacity: 1;
-  transform: scale(1);
-  transition: opacity 300ms cubic-bezier(0.2, 0, 0, 1),
-              transform 300ms cubic-bezier(0.2, 0, 0, 1);
-}
-.fade-exit {
-  opacity: 1;
-  transform: scale(1);
-}
-.fade-exit-active {
-  opacity: 0;
-  transform: scale(0.98);
-  transition: opacity 200ms cubic-bezier(0.2, 0, 0, 1),
-              transform 200ms cubic-bezier(0.2, 0, 0, 1);
+  transform: translateY(0);
 }
 
-@layer utilities {
-  .text-balance {
-    text-wrap: balance;
-  }
-
-  .hover-glow {
-    @apply transition-all duration-300;
-  }
-  .hover-glow:hover {
-    box-shadow: 0 0 20px rgba(94, 42, 44, 0.3);
-  }
+/* ── Skill bars ── */
+[data-reveal].revealed .skill-bar-fill {
+  width: var(--target-width) !important;
 }
 
-@keyframes glow {
-  0%, 100% { filter: drop-shadow(0 0 10px rgba(94,42,44,0.4)); }
-  50%       { filter: drop-shadow(0 0 20px rgba(94,42,44,0.8)); }
-}
-.animate-glow {
-  animation: glow 3s ease-in-out infinite;
+/* ── Scrollbar ── */
+::-webkit-scrollbar       { width: 4px; }
+::-webkit-scrollbar-track { background: var(--charcoal-1); }
+::-webkit-scrollbar-thumb { background: var(--charcoal-5); border-radius: 4px; }
+
+/* ── Selection ── */
+::selection {
+  background: rgba(200,184,154,0.2);
+  color: var(--soft-white);
 }
 
-@keyframes gradientShift {
-  0%   { background-position: 0% 50%; }
-  50%  { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
-}
-.animate-gradient {
-  animation: gradientShift 6s ease infinite;
-}
-
-.animate-pulse-subtle {
-  animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
-}
-
-.animation-delay-2000 {
-  animation-delay: 2s;
-}
-
-@keyframes fly {
-  0%   { transform: translateX(0) rotate(0deg); }
-  50%  { transform: translateX(4px) rotate(5deg); }
-  100% { transform: translateX(0) rotate(0deg); }
-}
-
-.animate-fly {
-  animation: fly 1s ease-in-out infinite;
-  display: inline-block; /* zorgt dat de transform werkt */
+/* ── Input placeholder ── */
+input::placeholder,
+textarea::placeholder {
+  color: var(--muted);
 }

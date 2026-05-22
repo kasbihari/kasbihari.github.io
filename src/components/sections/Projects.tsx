@@ -1,314 +1,436 @@
-import React, { useState, useRef, useEffect, useCallback } from 'react';
-import { Github, ExternalLink, ArrowRight, Clock } from 'lucide-react';
+import { useState } from 'react';
 
-/* ─────────────────────────────────────────────
-   PERFORMANCE NOTES:
-   - Removed framer-motion entirely (saves ~40 kB)
-   - Filter renders a sub-array, no DOM thrash
-   - IntersectionObserver for card reveals (no scroll listener)
-   - Project data defined outside component — no re-creation on render
-───────────────────────────────────────────── */
-
-type Category = 'all' | 'pet' | 'assignment';
-
-interface Project {
-  id: number;
-  title: string;
-  description: string;
-  category: 'pet' | 'assignment';
-  status: 'Done' | 'In Progress';
-  tech: string[];
-  liveUrl?: string;
-  codeUrl?: string;
-  year: string;
-}
-
-/* Static data — outside component, zero re-creation */
-const ALL_PROJECTS: Project[] = [
+const projects = [
   {
     id: 1,
-    title: 'Kazora Watches',
+    index: '01',
+    label: 'Full-Stack SaaS',
+    title: 'FlowgenAI',
+    tagline: 'AI-powered content generation platform for marketing teams.',
     description:
-      'Secure PHP/MySQL e-commerce store with robust admin/user management, excellent product presentation and Google Maps integration.',
-    category: 'assignment',
-    status: 'Done',
-    tech: ['PHP', 'MySQL', 'Bootstrap'],
-    codeUrl: 'https://github.com/kasbihari/Kazora',
-    year: '2024',
+      'Built the complete product from zero — authentication, subscription billing, AI pipeline, and a real-time editor. Designed for speed and reliability at scale.',
+    outcome: '3x faster content output for early users.',
+    stack: ['Next.js', 'TypeScript', 'OpenAI', 'Stripe', 'PostgreSQL', 'Prisma'],
+    architecture: ['REST API + streaming', 'Role-based access', 'Webhook billing sync', 'Edge-cached responses'],
+    link: 'https://github.com/kasbihari',
+    live: '',
+    accent: 'var(--forest-bright)',
   },
   {
     id: 2,
-    title: 'CodeLibrary',
+    index: '02',
+    label: 'Internal Tooling',
+    title: 'Data Pipeline Dashboard',
+    tagline: 'Real-time monitoring system for automated data workflows.',
     description:
-      'A personal library of snippets, patterns and micro-components I use daily. Features search and tag filtering.',
-    category: 'pet',
-    status: 'Done',
-    tech: ['JavaScript', 'Patterns', 'Design'],
-    liveUrl: 'https://kasbihari.github.io/CodeLibrary/',
-    codeUrl: 'https://github.com/kasbihari/CodeLibrary',
-    year: '2024',
+      'Engineered an internal platform to monitor, debug, and re-trigger ETL pipelines. Reduced manual intervention by surfacing errors with full context and one-click recovery.',
+    outcome: '80% reduction in manual pipeline debugging time.',
+    stack: ['React', 'Node.js', 'Python', 'PostgreSQL', 'Redis', 'Docker'],
+    architecture: ['Event-driven architecture', 'WebSocket live updates', 'Containerized workers', 'Audit logging'],
+    link: 'https://github.com/kasbihari',
+    live: '',
+    accent: 'var(--sand)',
   },
   {
     id: 3,
-    title: 'Budget Buddy',
+    index: '03',
+    label: 'Developer Tool',
+    title: 'CLI Scaffold Generator',
+    tagline: 'Opinionated project scaffolding tool for full-stack teams.',
     description:
-      'Sleek finance manager built on Symfony and Chart.js. Secure platform for transactions, reporting, and visualisation with a premium dashboard.',
-    category: 'assignment',
-    status: 'Done',
-    tech: ['Symfony', 'Chart.js', 'Bootstrap'],
-    codeUrl: 'https://github.com/kasbihari/Budget-Buddy',
-    year: '2024',
-  },
-  {
-    id: 4,
-    title: 'SDG Dashboard',
-    description:
-      'Real-time UN Sustainable Development Goals tracker. Interactive charts, KPI monitoring, user auth, AI chatbot insights, and CSV export.',
-    category: 'assignment',
-    status: 'Done',
-    tech: ['Next.js', 'TypeScript', 'Tailwind', 'Prisma'],
-    liveUrl: '#',
-    codeUrl: 'https://github.com/kasbihari/SDG-Dashboard',
-    year: '2025',
-  },
-  {
-    id: 5,
-    title: 'Stichting Waahan',
-    description:
-      'Custom WordPress theme coded in PHP and Bootstrap — no drag-and-drop. Tailored design aligned with Waahan Mobility specific branding needs.',
-    category: 'assignment',
-    status: 'Done',
-    tech: ['HTML/CSS', 'PHP', 'Bootstrap', 'WordPress'],
-    liveUrl: 'https://preview.waahanmobility.com',
-    year: '2025',
-  },
-  {
-    id: 6,
-    title: 'Social Media Platform',
-    description:
-      'A full-featured social platform in active development — authentication, feeds, real-time notifications and a custom design system.',
-    category: 'assignment',
-    status: 'In Progress',
-    tech: ['Next.js', 'TypeScript', 'Tailwind'],
-    year: '2026',
+      'Built a CLI that generates production-ready project structures with TypeScript, testing, Docker, and CI/CD pre-configured. Used internally and open-sourced.',
+    outcome: 'Setup time cut from hours to under 2 minutes.',
+    stack: ['Node.js', 'TypeScript', 'Shell', 'GitHub Actions'],
+    architecture: ['Plugin-based template system', 'Interactive prompts', 'Git init + remote setup', 'Auto dependency install'],
+    link: 'https://github.com/kasbihari',
+    live: '',
+    accent: 'var(--muted-light)',
   },
 ];
 
-/* ─── Scroll-reveal hook — IntersectionObserver, no scroll listener ─── */
-function useReveal() {
-  const ref = useRef<HTMLDivElement>(null);
-  const [visible, setVisible] = useState(false);
-  useEffect(() => {
-    const el = ref.current;
-    if (!el) return;
-    const obs = new IntersectionObserver(
-      ([e]) => { if (e.isIntersecting) { setVisible(true); obs.disconnect(); } },
-      { threshold: 0.1 }
-    );
-    obs.observe(el);
-    return () => obs.disconnect();
-  }, []);
-  return { ref, visible };
-}
-
-/* ─── Project card ─── */
-const ProjectCard: React.FC<{ project: Project; index: number }> = ({ project, index }) => {
-  const { ref, visible } = useReveal();
-  const isDone = project.status === 'Done';
+export default function Projects() {
+  const [activeProject, setActiveProject] = useState<number | null>(null);
 
   return (
-    <div
-      ref={ref}
-      className="group glass-card p-0 overflow-hidden flex flex-col h-full"
-      style={{
-        opacity: visible ? 1 : 0,
-        transform: visible ? 'translateY(0)' : 'translateY(24px)',
-        transition: `opacity 0.6s cubic-bezier(0.16,1,0.3,1) ${index * 60}ms, transform 0.6s cubic-bezier(0.16,1,0.3,1) ${index * 60}ms`,
-      }}
-    >
-      {/* ── Card header strip ── */}
-      <div className="px-6 pt-6 pb-4 border-b border-white/6">
-        <div className="flex items-start justify-between gap-3 mb-1">
-          <h3 className="font-body text-lg font-medium text-white group-hover:text-bordeaux/90 transition-colors duration-200 leading-tight">
-            {project.title}
-          </h3>
-          {/* Status badge */}
-          <span
-            className={`flex-shrink-0 text-xs px-2 py-0.5 rounded-full font-mono ${
-              isDone
-                ? 'bg-emerald-500/15 text-emerald-400'
-                : 'bg-amber-500/15 text-amber-400'
-            }`}
-          >
-            {isDone ? 'Done' : 'In Progress'}
-          </span>
-        </div>
-        <div className="flex items-center gap-2 text-white/25 text-xs font-mono">
-          <span className="uppercase tracking-wider">
-            {project.category === 'pet' ? 'Pet project' : 'Assignment'}
-          </span>
-          <span>·</span>
-          <span>{project.year}</span>
-          {!isDone && <Clock size={11} className="text-amber-400/70" />}
-        </div>
-      </div>
+    <section id="projects" className="section-padding">
+      <div className="container-main">
 
-      {/* ── Description ── */}
-      <div className="px-6 py-4 flex-1">
-        <p className="text-white/55 text-sm leading-relaxed">{project.description}</p>
-      </div>
-
-      {/* ── Tech tags ── */}
-      <div className="px-6 pb-4 flex flex-wrap gap-1.5">
-        {project.tech.map((t) => (
-          <span key={t} className="px-2.5 py-1 text-xs rounded-full glass text-white/50">
-            {t}
-          </span>
-        ))}
-      </div>
-
-      {/* ── Footer links ── */}
-      <div className="px-6 pb-5 flex items-center gap-4 border-t border-white/6 pt-4">
-        {project.liveUrl && project.liveUrl !== '#' ? (
-          <a
-            href={project.liveUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="flex items-center gap-1.5 text-xs text-white/50 hover:text-bordeaux transition-colors duration-150"
-          >
-            <ExternalLink size={13} />
-            Live demo
-          </a>
-        ) : (
-          <span className="flex items-center gap-1.5 text-xs text-white/20 cursor-not-allowed">
-            <ExternalLink size={13} />
-            No preview
-          </span>
-        )}
-        {project.codeUrl && project.codeUrl !== '#' ? (
-          <a
-            href={project.codeUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="flex items-center gap-1.5 text-xs text-white/50 hover:text-bordeaux transition-colors duration-150"
-          >
-            <Github size={13} />
-            Source
-          </a>
-        ) : (
-          <span className="flex items-center gap-1.5 text-xs text-white/20 cursor-not-allowed">
-            <Github size={13} />
-            Private
-          </span>
-        )}
-        {/* Arrow — hover reveal */}
-        <div className="ml-auto opacity-0 group-hover:opacity-100 transition-opacity duration-200">
-          <ArrowRight size={14} className="text-bordeaux/60" />
-        </div>
-      </div>
-    </div>
-  );
-};
-
-/* ─── Filter tab ─── */
-const FilterTab: React.FC<{
-  label: string;
-  value: Category;
-  active: Category;
-  count: number;
-  onClick: (v: Category) => void;
-}> = ({ label, value, active, count, onClick }) => (
-  <button
-    onClick={() => onClick(value)}
-    className={`relative px-5 py-2 rounded-full text-sm font-medium transition-all duration-200 ${
-      active === value
-        ? 'bg-bordeaux text-white shadow-[0_0_16px_rgba(94,42,44,0.4)]'
-        : 'glass text-white/50 hover:text-white/80'
-    }`}
-  >
-    {label}
-    <span
-      className={`ml-2 text-xs font-mono ${
-        active === value ? 'text-white/70' : 'text-white/25'
-      }`}
-    >
-      {count}
-    </span>
-  </button>
-);
-
-/* ─── Main Projects component ─── */
-const Projects: React.FC = () => {
-  const [filter, setFilter] = useState<Category>('all');
-
-  const filtered = filter === 'all'
-    ? ALL_PROJECTS
-    : ALL_PROJECTS.filter((p) => p.category === filter);
-
-  const counts = {
-    all: ALL_PROJECTS.length,
-    pet: ALL_PROJECTS.filter((p) => p.category === 'pet').length,
-    assignment: ALL_PROJECTS.filter((p) => p.category === 'assignment').length,
-  };
-
-  return (
-    <section className="min-h-screen px-6 md:px-16 py-20">
-      <div className="max-w-6xl mx-auto">
-
-        {/* ══════════════════════════════════════
-            HEADER — editorial, left-aligned
-        ══════════════════════════════════════ */}
-        <div className="mb-16">
-          <p className="text-bordeaux/60 text-xs tracking-[0.3em] uppercase font-mono mb-3">
-            Selected work
-          </p>
-          <h2 className="font-body text-5xl md:text-6xl font-medium text-white mb-4 leading-tight">
-            Projects
-          </h2>
-          <p className="text-white/40 text-lg max-w-md leading-relaxed">
-            A mix of freelance assignments and personal experiments —
-            each one a different problem solved.
-          </p>
-        </div>
-
-        {/* ══════════════════════════════════════
-            FILTER TABS
-        ══════════════════════════════════════ */}
-        <div className="flex flex-wrap gap-2 mb-12">
-          <FilterTab label="All" value="all" active={filter} count={counts.all} onClick={setFilter} />
-          <FilterTab label="Personal" value="pet" active={filter} count={counts.pet} onClick={setFilter} />
-          <FilterTab label="Assignments" value="assignment" active={filter} count={counts.assignment} onClick={setFilter} />
-        </div>
-
-        {/* ══════════════════════════════════════
-            PROJECT GRID — 3 columns on large screens
-        ══════════════════════════════════════ */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
-          {filtered.map((project, i) => (
-            <ProjectCard key={project.id} project={project} index={i} />
-          ))}
-        </div>
-
-        {/* ══════════════════════════════════════
-            FOOTER NOTE
-        ══════════════════════════════════════ */}
-        <div className="mt-16 text-center">
-          <p className="text-white/25 text-sm font-mono">
-            More on{' '}
-            <a
-              href="https://github.com/kasbihari"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-bordeaux/60 hover:text-bordeaux transition-colors underline underline-offset-4"
+        {/* Header */}
+        <div
+          style={{
+            display: 'flex',
+            alignItems: 'flex-end',
+            justifyContent: 'space-between',
+            marginBottom: '5rem',
+            flexWrap: 'wrap',
+            gap: '1rem',
+          }}
+        >
+          <div>
+            <p
+              data-reveal
+              className="section-label"
             >
-              github.com/kasbihari
-            </a>
+              Selected Work
+            </p>
+            <h2
+              data-reveal
+              data-delay="100"
+              style={{
+                fontSize: 'clamp(2rem, 4vw, 3.5rem)',
+                fontWeight: 500,
+                letterSpacing: '-0.025em',
+                color: 'var(--soft-white)',
+                lineHeight: 1.05,
+                maxWidth: '480px',
+              }}
+            >
+              Products I've{' '}
+              <span
+                style={{
+                  fontFamily: 'Playfair Display, Georgia, serif',
+                  fontStyle: 'italic',
+                  fontWeight: 400,
+                  color: 'var(--sand-light)',
+                }}
+              >
+                built & shipped.
+              </span>
+            </h2>
+          </div>
+
+          <p
+            data-reveal
+            data-delay="200"
+            style={{
+              fontSize: '0.875rem',
+              color: 'var(--muted)',
+              maxWidth: '260px',
+              lineHeight: 1.7,
+              textAlign: 'right',
+            }}
+          >
+            End-to-end ownership — from architecture decisions to production deployment.
           </p>
         </div>
+
+        {/* Project list */}
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '0' }}>
+          {projects.map((project, i) => (
+            <div
+              key={project.id}
+              data-reveal
+              data-delay={`${i * 80}`}
+            >
+              {/* Top divider */}
+              <div className="divider" />
+
+              <div
+                onClick={() =>
+                  setActiveProject(activeProject === project.id ? null : project.id)
+                }
+                style={{
+                  padding: '2.5rem 0',
+                  cursor: 'pointer',
+                  display: 'grid',
+                  gridTemplateColumns: '4rem 1fr auto',
+                  gap: '2rem',
+                  alignItems: 'start',
+                  transition: 'opacity 0.3s',
+                }}
+                onMouseEnter={(e) => {
+                  const el = e.currentTarget;
+                  el.style.opacity = '0.85';
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.opacity = '1';
+                }}
+              >
+                {/* Index */}
+                <span
+                  style={{
+                    fontSize: '0.75rem',
+                    color: 'var(--muted)',
+                    letterSpacing: '0.08em',
+                    paddingTop: '0.15rem',
+                    fontFamily: 'JetBrains Mono, monospace',
+                  }}
+                >
+                  {project.index}
+                </span>
+
+                {/* Main content */}
+                <div>
+                  {/* Label */}
+                  <p
+                    style={{
+                      fontSize: '0.72rem',
+                      fontWeight: 500,
+                      letterSpacing: '0.1em',
+                      textTransform: 'uppercase',
+                      color: project.accent,
+                      marginBottom: '0.5rem',
+                    }}
+                  >
+                    {project.label}
+                  </p>
+
+                  {/* Title */}
+                  <h3
+                    style={{
+                      fontSize: 'clamp(1.4rem, 3vw, 2.2rem)',
+                      fontWeight: 500,
+                      letterSpacing: '-0.02em',
+                      color: 'var(--soft-white)',
+                      marginBottom: '0.5rem',
+                      lineHeight: 1.1,
+                    }}
+                  >
+                    {project.title}
+                  </h3>
+
+                  {/* Tagline */}
+                  <p
+                    style={{
+                      fontSize: '0.9rem',
+                      color: 'var(--muted-light)',
+                      lineHeight: 1.6,
+                    }}
+                  >
+                    {project.tagline}
+                  </p>
+
+                  {/* Expanded case study */}
+                  <div
+                    style={{
+                      overflow: 'hidden',
+                      maxHeight: activeProject === project.id ? '600px' : '0',
+                      transition: 'max-height 0.7s cubic-bezier(0.16,1,0.3,1), opacity 0.5s cubic-bezier(0.16,1,0.3,1)',
+                      opacity: activeProject === project.id ? 1 : 0,
+                    }}
+                  >
+                    <div
+                      style={{
+                        paddingTop: '2rem',
+                        display: 'grid',
+                        gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))',
+                        gap: '2.5rem',
+                      }}
+                    >
+                      {/* Description */}
+                      <div>
+                        <p
+                          style={{
+                            fontSize: '0.72rem',
+                            fontWeight: 500,
+                            letterSpacing: '0.1em',
+                            textTransform: 'uppercase',
+                            color: 'var(--muted)',
+                            marginBottom: '0.75rem',
+                          }}
+                        >
+                          Overview
+                        </p>
+                        <p
+                          style={{
+                            fontSize: '0.9rem',
+                            color: 'var(--muted-light)',
+                            lineHeight: 1.7,
+                          }}
+                        >
+                          {project.description}
+                        </p>
+                      </div>
+
+                      {/* Outcome */}
+                      <div>
+                        <p
+                          style={{
+                            fontSize: '0.72rem',
+                            fontWeight: 500,
+                            letterSpacing: '0.1em',
+                            textTransform: 'uppercase',
+                            color: 'var(--muted)',
+                            marginBottom: '0.75rem',
+                          }}
+                        >
+                          Outcome
+                        </p>
+                        <p
+                          style={{
+                            fontSize: '1.05rem',
+                            fontWeight: 500,
+                            color: project.accent,
+                            lineHeight: 1.5,
+                          }}
+                        >
+                          {project.outcome}
+                        </p>
+                      </div>
+
+                      {/* Architecture */}
+                      <div>
+                        <p
+                          style={{
+                            fontSize: '0.72rem',
+                            fontWeight: 500,
+                            letterSpacing: '0.1em',
+                            textTransform: 'uppercase',
+                            color: 'var(--muted)',
+                            marginBottom: '0.75rem',
+                          }}
+                        >
+                          Architecture
+                        </p>
+                        <div style={{ display: 'flex', flexDirection: 'column', gap: '0.4rem' }}>
+                          {project.architecture.map((a) => (
+                            <div
+                              key={a}
+                              style={{
+                                display: 'flex',
+                                alignItems: 'center',
+                                gap: '0.6rem',
+                                fontSize: '0.85rem',
+                                color: 'var(--muted-light)',
+                              }}
+                            >
+                              <span
+                                style={{
+                                  width: '3px',
+                                  height: '3px',
+                                  borderRadius: '50%',
+                                  background: 'var(--border-mid)',
+                                  flexShrink: 0,
+                                }}
+                              />
+                              {a}
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+
+                      {/* Stack */}
+                      <div>
+                        <p
+                          style={{
+                            fontSize: '0.72rem',
+                            fontWeight: 500,
+                            letterSpacing: '0.1em',
+                            textTransform: 'uppercase',
+                            color: 'var(--muted)',
+                            marginBottom: '0.75rem',
+                          }}
+                        >
+                          Stack
+                        </p>
+                        <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.5rem' }}>
+                          {project.stack.map((tech) => (
+                            <span
+                              key={tech}
+                              style={{
+                                fontSize: '0.75rem',
+                                padding: '0.3rem 0.75rem',
+                                border: '1px solid var(--border-subtle)',
+                                borderRadius: '3px',
+                                color: 'var(--muted-light)',
+                                fontFamily: 'JetBrains Mono, monospace',
+                                letterSpacing: '0.02em',
+                              }}
+                            >
+                              {tech}
+                            </span>
+                          ))}
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* Links */}
+                    <div style={{ display: 'flex', gap: '1rem', marginTop: '2rem', flexWrap: 'wrap' }}>
+                      {project.link && (
+                        <a
+                          href={project.link}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="btn-secondary"
+                          style={{ fontSize: '0.8rem', padding: '0.5rem 1.25rem' }}
+                          onClick={(e) => e.stopPropagation()}
+                        >
+                          View on GitHub
+                          <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
+                            <path d="M2 10L10 2M10 2H4M10 2v6" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                          </svg>
+                        </a>
+                      )}
+                      {project.live && (
+                        <a
+                          href={project.live}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="btn-primary"
+                          style={{ fontSize: '0.8rem', padding: '0.5rem 1.25rem' }}
+                          onClick={(e) => e.stopPropagation()}
+                        >
+                          Live site
+                          <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
+                            <path d="M2 10L10 2M10 2H4M10 2v6" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                          </svg>
+                        </a>
+                      )}
+                    </div>
+                  </div>
+                </div>
+
+                {/* Expand indicator */}
+                <div
+                  style={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    paddingTop: '0.3rem',
+                    color: 'var(--muted)',
+                    transition: 'transform 0.4s cubic-bezier(0.16,1,0.3,1), color 0.3s',
+                    transform: activeProject === project.id ? 'rotate(45deg)' : 'rotate(0deg)',
+                  }}
+                >
+                  <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                    <path d="M10 4v12M4 10h12" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
+                  </svg>
+                </div>
+              </div>
+            </div>
+          ))}
+
+          {/* Bottom divider */}
+          <div className="divider" />
+        </div>
+
+        {/* Footer note */}
+        <p
+          data-reveal
+          style={{
+            marginTop: '3rem',
+            fontSize: '0.8rem',
+            color: 'var(--muted)',
+            textAlign: 'center',
+            letterSpacing: '0.04em',
+          }}
+        >
+          More work available on{' '}
+          <a
+            href="https://github.com/kasbihari"
+            target="_blank"
+            rel="noopener noreferrer"
+            style={{
+              color: 'var(--sand)',
+              borderBottom: '1px solid var(--sand-dark)',
+              paddingBottom: '1px',
+              transition: 'color 0.3s, border-color 0.3s',
+            }}
+          >
+            GitHub
+          </a>
+        </p>
 
       </div>
     </section>
   );
-};
-
-export default Projects;
+}
