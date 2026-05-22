@@ -1,18 +1,11 @@
 import { defineConfig } from 'astro/config';
-import tailwind from '@astrojs/tailwind';
 import react from '@astrojs/react';
-import glsl from 'vite-plugin-glsl';
+import tailwindcss from '@tailwindcss/vite';  // default import, geen { }
 
 export default defineConfig({
-  integrations: [
-    tailwind(),
-    react()
-  ],
-  output: 'static',
+  site: 'https://kasbihari.github.io',
+  integrations: [react()],
   vite: {
-    plugins: [glsl()],
-    optimizeDeps: {
-      exclude: ['three'] // prevent three from being bundled too early
-    }
-  }
+    plugins: [tailwindcss()],
+  },
 });
