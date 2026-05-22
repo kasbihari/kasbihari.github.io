@@ -1,55 +1,63 @@
 import { useState } from 'react';
 
-const projects = [
+type Project = {
+  id: string;
+  category: string;
+  title: string;
+  tagline: string;
+  description: string;
+  outcome: string;
+  architecture: string[];
+  stack: string[];
+  link: string;
+  accent: string;
+  live?: string;
+};
+
+const projects: Project[] = [
   {
-    id: 1,
-    index: '01',
-    label: 'Full-Stack SaaS',
-    title: 'FlowgenAI',
-    tagline: 'AI-powered content generation platform for marketing teams.',
+    id: '01',
+    category: 'FULL-STACK WEB APP',
+    title: 'Budget Buddy',
+    tagline: 'Sleek personal finance manager with a premium dashboard and reporting engine.',
     description:
-      'Built the complete product from zero — authentication, subscription billing, AI pipeline, and a real-time editor. Designed for speed and reliability at scale.',
-    outcome: '3x faster content output for early users.',
-    stack: ['Next.js', 'TypeScript', 'OpenAI', 'Stripe', 'PostgreSQL', 'Prisma'],
-    architecture: ['REST API + streaming', 'Role-based access', 'Webhook billing sync', 'Edge-cached responses'],
-    link: 'https://github.com/kasbihari',
-    live: '',
-    accent: 'var(--forest-bright)',
+      'End-to-end finance platform built in Symfony with Chart.js. Handles transaction management, budget categorisation, role-based user/admin system, and rich data visualisation — all wrapped in a clean, premium UI.',
+    outcome: 'Full production deploy with secure auth, real-time reporting, and admin controls.',
+    architecture: ['Symfony 6', 'Twig', 'Doctrine ORM', 'Chart.js', 'MySQL', 'REST API', 'Role-based access control'],
+    stack: ['Symfony', 'PHP', 'Twig', 'Chart.js', 'MySQL', 'Doctrine ORM'],
+    link: 'https://github.com/kasbihari/Budget-Buddy',
+    accent: 'accent-sand',
   },
   {
-    id: 2,
-    index: '02',
-    label: 'Internal Tooling',
-    title: 'Data Pipeline Dashboard',
-    tagline: 'Real-time monitoring system for automated data workflows.',
+    id: '02',
+    category: 'FULL-STACK DATA PLATFORM',
+    title: 'SDG Dashboard',
+    tagline: 'Real-time UN Sustainable Development Goals tracker with AI-powered insights.',
     description:
-      'Engineered an internal platform to monitor, debug, and re-trigger ETL pipelines. Reduced manual intervention by surfacing errors with full context and one-click recovery.',
-    outcome: '80% reduction in manual pipeline debugging time.',
-    stack: ['React', 'Node.js', 'Python', 'PostgreSQL', 'Redis', 'Docker'],
-    architecture: ['Event-driven architecture', 'WebSocket live updates', 'Containerized workers', 'Audit logging'],
-    link: 'https://github.com/kasbihari',
-    live: '',
-    accent: 'var(--sand)',
+      'Comprehensive data visualisation platform built with Next.js and TypeScript. Tracks live SDG KPIs via interactive charts, includes an AI chatbot for contextual insights, user authentication, and CSV export — all backed by MySQL with Prisma ORM.',
+    outcome: 'Complete full-stack system: auth, AI chatbot, live KPI tracking, and export pipeline.',
+    architecture: ['Next.js 14', 'TypeScript', 'Prisma ORM', 'MySQL', 'OpenAI API', 'NextAuth', 'Recharts'],
+    stack: ['Next.js', 'TypeScript', 'Prisma', 'MySQL', 'OpenAI API', 'NextAuth'],
+    link: 'https://github.com/kasbihari/SDG-Dashboard',
+    accent: 'accent-green',
   },
   {
-    id: 3,
-    index: '03',
-    label: 'Developer Tool',
-    title: 'CLI Scaffold Generator',
-    tagline: 'Opinionated project scaffolding tool for full-stack teams.',
+    id: '03',
+    category: 'AI VOICE & MESSAGING BOT',
+    title: 'OutreachBot',
+    tagline: 'Intelligent outbound call & SMS automation driven by CSV/XLS data and AI.',
     description:
-      'Built a CLI that generates production-ready project structures with TypeScript, testing, Docker, and CI/CD pre-configured. Used internally and open-sourced.',
-    outcome: 'Setup time cut from hours to under 2 minutes.',
-    stack: ['Node.js', 'TypeScript', 'Shell', 'GitHub Actions'],
-    architecture: ['Plugin-based template system', 'Interactive prompts', 'Git init + remote setup', 'Auto dependency install'],
+      'Node.js + React platform that reads contact lists from CSV/XLS files and triggers personalised outbound calls and SMS messages via MessageBird. Integrates OpenAI to generate dynamic conversation scripts and handles reporting back on delivery and response rates.',
+    outcome: 'Automated multi-channel outreach pipeline — currently in active development.',
+    architecture: ['Node.js', 'React', 'MessageBird API', 'OpenAI API', 'CSV/XLS parsing', 'REST API'],
+    stack: ['Node.js', 'React', 'MessageBird', 'OpenAI API', 'TypeScript'],
     link: 'https://github.com/kasbihari',
-    live: '',
-    accent: 'var(--muted-light)',
+    accent: 'accent-white',
   },
 ];
 
 export default function Projects() {
-  const [activeProject, setActiveProject] = useState<number | null>(null);
+  const [activeProject, setActiveProject] = useState<string | null>(null);
 
   return (
     <section id="projects" className="section-padding">
@@ -156,7 +164,7 @@ export default function Projects() {
                     fontFamily: 'JetBrains Mono, monospace',
                   }}
                 >
-                  {project.index}
+                  {project.id}
                 </span>
 
                 {/* Main content */}
@@ -172,7 +180,7 @@ export default function Projects() {
                       marginBottom: '0.5rem',
                     }}
                   >
-                    {project.label}
+                    {project.category}
                   </p>
 
                   {/* Title */}

@@ -1,5 +1,5 @@
 ---
-import '../styles/global.css';
+import "../styles/global.css";
 
 export interface Props {
   title?: string;
@@ -7,14 +7,17 @@ export interface Props {
 }
 
 const {
-  title = 'Krishna Bihari — Full-Stack & AI Engineer',
-  description = 'Full-stack engineer building complete products with engineering depth. Specialising in AI integration, React, Node.js, and scalable architecture.',
+  title = "Krishna Bihari — Full-Stack & AI Engineer",
+  description = "Full-stack engineer building complete products with engineering depth. Specialising in AI integration, React, Node.js, and scalable architecture.",
 } = Astro.props;
 
-const canonicalURL = new URL(Astro.url.pathname, Astro.site ?? 'https://kasbihari.github.io');
+const canonicalURL = new URL(
+  Astro.url.pathname,
+  Astro.site ?? "https://kasbihari.github.io",
+);
 ---
 
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -47,49 +50,53 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site ?? 'https://kasbihar
     <!-- Amsterdam Four (self-hosted) -->
     <style>
       @font-face {
-        font-family: 'AmsterdamFour';
-        src: url('/fonts/AmsterdamFour.woff2') format('woff2'),
-             url('/fonts/AmsterdamFour.ttf') format('truetype');
+        font-family: "AmsterdamFour";
+        src: url("/fonts/Amsterdam.ttf") format("truetype");
         font-weight: normal;
         font-style: normal;
         font-display: swap;
       }
 
       :root {
-        --font-display: 'Playfair Display', Georgia, serif;
-        --font-body: 'Mukta', 'Helvetica Neue', Arial, sans-serif;
-        --font-name: 'AmsterdamFour', 'Playfair Display', Georgia, serif;
-        --font-mono: 'JetBrains Mono', 'Fira Code', monospace;
+        --font-display: "Playfair Display", Georgia, serif;
+        --font-body: "Mukta", "Helvetica Neue", Arial, sans-serif;
+        --font-name: "AmsterdamFour", "Playfair Display", Georgia, serif;
+        --font-mono: "JetBrains Mono", "Fira Code", monospace;
       }
     </style>
   </head>
 
   <body>
+    
     <slot />
 
     <!-- Cinematic reveal observer -->
     <script>
-      document.addEventListener('DOMContentLoaded', () => {
+      document.addEventListener("DOMContentLoaded", () => {
         const observer = new IntersectionObserver(
           (entries) => {
             entries.forEach((entry: IntersectionObserverEntry) => {
               if (entry.isIntersecting) {
                 const el = entry.target as HTMLElement;
-                const delay = parseInt(el.dataset.delay ?? '0', 10);
+                const delay = parseInt(el.dataset.delay ?? "0", 10);
                 setTimeout(() => {
-                  el.classList.add('revealed');
-                  el.querySelectorAll<HTMLElement>('.skill-bar-fill').forEach((bar: HTMLElement) => {
-                    bar.style.width = bar.dataset.width ?? '0%';
-                  });
+                  el.classList.add("revealed");
+                  el.querySelectorAll<HTMLElement>(".skill-bar-fill").forEach(
+                    (bar: HTMLElement) => {
+                      bar.style.width = bar.dataset.width ?? "0%";
+                    },
+                  );
                 }, delay);
                 observer.unobserve(el);
               }
             });
           },
-          { threshold: 0.12, rootMargin: '0px 0px -40px 0px' }
+          { threshold: 0.12, rootMargin: "0px 0px -40px 0px" },
         );
 
-        document.querySelectorAll('[data-reveal]').forEach((el) => observer.observe(el));
+        document
+          .querySelectorAll("[data-reveal]")
+          .forEach((el) => observer.observe(el));
       });
     </script>
   </body>

@@ -44,7 +44,7 @@ export default function Hero() {
           }}
         >
           {/* Name — Amsterdam Four */}
-          <span
+          {/* <span
             style={{
               fontFamily: 'var(--font-name)',
               fontSize: 'clamp(1.3rem, 3.5vw, 2rem)',
@@ -54,7 +54,7 @@ export default function Hero() {
             }}
           >
             Krishna Bihari
-          </span>
+          </span> */}
 
           {/* Availability badge */}
           <div
