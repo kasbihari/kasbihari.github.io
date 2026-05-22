@@ -1,248 +1,95 @@
 ---
+import '../styles/global.css';
+
 export interface Props {
   title?: string;
   description?: string;
 }
 
 const {
-  title       = 'Krishna Bihari — Full-Stack & AI Engineer',
+  title = 'Krishna Bihari — Full-Stack & AI Engineer',
   description = 'Full-stack engineer building complete products with engineering depth. Specialising in AI integration, React, Node.js, and scalable architecture.',
 } = Astro.props;
 
 const canonicalURL = new URL(Astro.url.pathname, Astro.site ?? 'https://kasbihari.github.io');
 ---
 
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="theme-color" content="#0a0a0a" />
-
-    <title>{title}</title>
     <meta name="description" content={description} />
+    <meta name="robots" content="index, follow" />
     <link rel="canonical" href={canonicalURL} />
 
     <!-- OG -->
-    <meta property="og:type"        content="website" />
-    <meta property="og:url"         content={canonicalURL} />
-    <meta property="og:title"       content={title} />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonicalURL} />
+    <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
 
     <!-- Twitter -->
-    <meta name="twitter:card"        content="summary_large_image" />
-    <meta name="twitter:title"       content={title} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
 
-    <!-- Fonts -->
+    <title>{title}</title>
+
+    <!-- Google Fonts: Mukta + Playfair Display -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&family=Playfair+Display:ital,wght@0,400;0,500;1,400;1,500&family=JetBrains+Mono:wght@400;500&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Mukta:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500&display=swap"
       rel="stylesheet"
     />
 
-    <!-- Global styles -->
-    <style is:global>
-      @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;1,400;1,500&display=swap');
+    <!-- Amsterdam Four (self-hosted) -->
+    <style>
+      @font-face {
+        font-family: 'AmsterdamFour';
+        src: url('/fonts/AmsterdamFour.woff2') format('woff2'),
+             url('/fonts/AmsterdamFour.ttf') format('truetype');
+        font-weight: normal;
+        font-style: normal;
+        font-display: swap;
+      }
 
       :root {
-        --charcoal-1:    #0a0a0a;
-        --charcoal-2:    #111111;
-        --charcoal-3:    #1a1a1a;
-        --charcoal-4:    #242424;
-        --charcoal-5:    #2e2e2e;
-        --soft-white:    #f0ece4;
-        --off-white:     #d8d2c8;
-        --sand:          #c8b89a;
-        --sand-light:    #d4c5aa;
-        --sand-dark:     #9e8c72;
-        --forest:        #2d4a3e;
-        --forest-mid:    #3a5c4e;
-        --forest-bright: #4a7c6a;
-        --muted:         #5a5a5a;
-        --muted-light:   #8a8a8a;
-        --border-subtle: rgba(255,255,255,0.06);
-        --border-mid:    rgba(255,255,255,0.12);
+        --font-display: 'Playfair Display', Georgia, serif;
+        --font-body: 'Mukta', 'Helvetica Neue', Arial, sans-serif;
+        --font-name: 'AmsterdamFour', 'Playfair Display', Georgia, serif;
+        --font-mono: 'JetBrains Mono', 'Fira Code', monospace;
       }
-
-      *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-      html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; }
-
-      body {
-        background-color: #0a0a0a !important;
-        color: #f0ece4 !important;
-        font-family: 'Inter', 'Helvetica Neue', Arial, sans-serif;
-        min-height: 100vh;
-        overflow-x: hidden;
-      }
-
-      body::before {
-        content: '';
-        position: fixed;
-        inset: 0;
-        z-index: -2;
-        background:
-          radial-gradient(ellipse 80% 60% at 20% 20%, rgba(45,74,62,0.06) 0%, transparent 60%),
-          radial-gradient(ellipse 60% 80% at 80% 80%, rgba(200,184,154,0.03) 0%, transparent 55%),
-          #0a0a0a;
-        pointer-events: none;
-      }
-
-      body::after {
-        content: '';
-        position: fixed;
-        inset: 0;
-        z-index: -1;
-        opacity: 0.025;
-        background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
-        background-size: 180px 180px;
-        pointer-events: none;
-      }
-
-      a { color: inherit; text-decoration: none; }
-      h1,h2,h3,h4,h5,h6 { color: var(--soft-white); font-weight: 500; }
-
-      .container-main {
-        width: 100%;
-        max-width: 1200px;
-        margin: 0 auto;
-        padding: 0 2rem;
-      }
-
-      @media (max-width: 768px) {
-        .container-main { padding: 0 1.25rem; }
-      }
-
-      .full-screen {
-        min-height: 100svh;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        position: relative;
-      }
-
-      .section-padding { padding: 8rem 0; }
-
-      @media (max-width: 768px) {
-        .section-padding { padding: 5rem 0; }
-      }
-
-      .divider {
-        width: 100%;
-        height: 1px;
-        background: var(--border-subtle);
-      }
-
-      .section-label {
-        font-size: 0.72rem;
-        font-weight: 500;
-        letter-spacing: 0.12em;
-        text-transform: uppercase;
-        color: var(--sand);
-        margin-bottom: 1.25rem;
-        display: flex;
-        align-items: center;
-        gap: 0.5rem;
-      }
-
-      .btn-primary {
-        display: inline-flex;
-        align-items: center;
-        gap: 0.5rem;
-        padding: 0.75rem 1.75rem;
-        background: var(--forest-bright);
-        color: var(--soft-white) !important;
-        border: 1px solid transparent;
-        border-radius: 4px;
-        font-size: 0.875rem;
-        font-weight: 500;
-        letter-spacing: 0.02em;
-        cursor: pointer;
-        transition: background 0.3s cubic-bezier(0.16,1,0.3,1), transform 0.2s;
-        text-decoration: none !important;
-      }
-
-      .btn-primary:hover {
-        background: var(--forest-mid);
-        transform: translateY(-1px);
-      }
-
-      .btn-secondary {
-        display: inline-flex;
-        align-items: center;
-        gap: 0.5rem;
-        padding: 0.75rem 1.75rem;
-        background: transparent;
-        color: var(--muted-light) !important;
-        border: 1px solid var(--border-mid);
-        border-radius: 4px;
-        font-size: 0.875rem;
-        font-weight: 400;
-        letter-spacing: 0.02em;
-        cursor: pointer;
-        transition: color 0.3s, border-color 0.3s, transform 0.2s;
-        text-decoration: none !important;
-      }
-
-      .btn-secondary:hover {
-        color: var(--soft-white) !important;
-        transform: translateY(-1px);
-      }
-
-      [data-reveal] {
-        opacity: 0;
-        transform: translateY(28px);
-        transition:
-          opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1),
-          transform 0.9s cubic-bezier(0.16, 1, 0.3, 1);
-      }
-
-      [data-reveal].revealed {
-        opacity: 1;
-        transform: translateY(0);
-      }
-
-      [data-reveal].revealed .skill-bar-fill {
-        width: var(--target-width) !important;
-      }
-
-      ::-webkit-scrollbar       { width: 4px; }
-      ::-webkit-scrollbar-track { background: #0a0a0a; }
-      ::-webkit-scrollbar-thumb { background: var(--charcoal-5); border-radius: 4px; }
-
-      ::selection { background: rgba(200,184,154,0.2); color: var(--soft-white); }
-      input::placeholder, textarea::placeholder { color: var(--muted); }
     </style>
   </head>
 
   <body>
     <slot />
 
+    <!-- Cinematic reveal observer -->
     <script>
-      const observer = new IntersectionObserver(
-        (entries) => {
-          entries.forEach((entry) => {
-            if (entry.isIntersecting) {
-              entry.target.classList.add('revealed');
+      document.addEventListener('DOMContentLoaded', () => {
+        const observer = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry: IntersectionObserverEntry) => {
+              if (entry.isIntersecting) {
+                const el = entry.target as HTMLElement;
+                const delay = parseInt(el.dataset.delay ?? '0', 10);
+                setTimeout(() => {
+                  el.classList.add('revealed');
+                  el.querySelectorAll<HTMLElement>('.skill-bar-fill').forEach((bar: HTMLElement) => {
+                    bar.style.width = bar.dataset.width ?? '0%';
+                  });
+                }, delay);
+                observer.unobserve(el);
+              }
+            });
+          },
+          { threshold: 0.12, rootMargin: '0px 0px -40px 0px' }
+        );
 
-              entry.target.querySelectorAll('.skill-bar-fill').forEach((bar) => {
-                const target =
-                  (bar as HTMLElement).style.getPropertyValue('--target-width') ||
-                  getComputedStyle(bar).getPropertyValue('--target-width');
-                (bar as HTMLElement).style.width = target;
-              });
-            }
-          });
-        },
-        { threshold: 0.15 }
-      );
-
-      document.querySelectorAll('[data-reveal]').forEach((el) => {
-        const delay = (el as HTMLElement).dataset.delay || '0';
-        (el as HTMLElement).style.transitionDelay = `${delay}ms`;
-        observer.observe(el);
+        document.querySelectorAll('[data-reveal]').forEach((el) => observer.observe(el));
       });
     </script>
   </body>
