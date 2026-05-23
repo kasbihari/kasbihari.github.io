@@ -1,5 +1,6 @@
 ---
 import "../styles/global.css";
+import Navbar from "../components/Navbar";
 
 export interface Props {
   title?: string;
@@ -39,7 +40,6 @@ const canonicalURL = new URL(
 
     <title>{title}</title>
 
-    <!-- Google Fonts: Mukta + Playfair Display -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -47,7 +47,6 @@ const canonicalURL = new URL(
       rel="stylesheet"
     />
 
-    <!-- Amsterdam Four (self-hosted) -->
     <style>
       @font-face {
         font-family: "AmsterdamFour";
@@ -56,7 +55,6 @@ const canonicalURL = new URL(
         font-style: normal;
         font-display: swap;
       }
-
       :root {
         --font-display: "Playfair Display", Georgia, serif;
         --font-body: "Mukta", "Helvetica Neue", Arial, sans-serif;
@@ -67,10 +65,11 @@ const canonicalURL = new URL(
   </head>
 
   <body>
-    
+    <!-- Één nav component, geen dubbeling -->
+    <Navbar client:load />
+
     <slot />
 
-    <!-- Cinematic reveal observer -->
     <script>
       document.addEventListener("DOMContentLoaded", () => {
         const observer = new IntersectionObserver(
@@ -80,23 +79,19 @@ const canonicalURL = new URL(
                 const el = entry.target as HTMLElement;
                 const delay = parseInt(el.dataset.delay ?? "0", 10);
                 setTimeout(() => {
+                  el.classList.add("is-visible");
                   el.classList.add("revealed");
                   el.querySelectorAll<HTMLElement>(".skill-bar-fill").forEach(
-                    (bar: HTMLElement) => {
-                      bar.style.width = bar.dataset.width ?? "0%";
-                    },
+                    (bar) => { bar.style.width = bar.dataset.width ?? "0%"; }
                   );
                 }, delay);
                 observer.unobserve(el);
               }
             });
           },
-          { threshold: 0.12, rootMargin: "0px 0px -40px 0px" },
+          { threshold: 0.12, rootMargin: "0px 0px -40px 0px" }
         );
-
-        document
-          .querySelectorAll("[data-reveal]")
-          .forEach((el) => observer.observe(el));
+        document.querySelectorAll("[data-reveal]").forEach((el) => observer.observe(el));
       });
     </script>
   </body>

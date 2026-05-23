@@ -1,5 +1,8 @@
 import { useState } from 'react';
 
+type ProjectStatus = 'done' | 'in-progress';
+type FilterValue = 'all' | ProjectStatus;
+
 type Project = {
   id: string;
   category: string;
@@ -12,6 +15,7 @@ type Project = {
   link: string;
   accent: string;
   live?: string;
+  status: ProjectStatus;
 };
 
 const projects: Project[] = [
@@ -26,7 +30,8 @@ const projects: Project[] = [
     architecture: ['Symfony 6', 'Twig', 'Doctrine ORM', 'Chart.js', 'MySQL', 'REST API', 'Role-based access control'],
     stack: ['Symfony', 'PHP', 'Twig', 'Chart.js', 'MySQL', 'Doctrine ORM'],
     link: 'https://github.com/kasbihari/Budget-Buddy',
-    accent: 'accent-sand',
+    accent: 'var(--sand-light)',
+    status: 'done',
   },
   {
     id: '02',
@@ -39,7 +44,8 @@ const projects: Project[] = [
     architecture: ['Next.js 14', 'TypeScript', 'Prisma ORM', 'MySQL', 'OpenAI API', 'NextAuth', 'Recharts'],
     stack: ['Next.js', 'TypeScript', 'Prisma', 'MySQL', 'OpenAI API', 'NextAuth'],
     link: 'https://github.com/kasbihari/SDG-Dashboard',
-    accent: 'accent-green',
+    accent: 'var(--forest-bright)',
+    status: 'done',
   },
   {
     id: '03',
@@ -48,16 +54,65 @@ const projects: Project[] = [
     tagline: 'Intelligent outbound call & SMS automation driven by CSV/XLS data and AI.',
     description:
       'Node.js + React platform that reads contact lists from CSV/XLS files and triggers personalised outbound calls and SMS messages via MessageBird. Integrates OpenAI to generate dynamic conversation scripts and handles reporting back on delivery and response rates.',
-    outcome: 'Automated multi-channel outreach pipeline — currently in active development.',
+    outcome: 'Automated multi-channel outreach pipeline — active development.',
     architecture: ['Node.js', 'React', 'MessageBird API', 'OpenAI API', 'CSV/XLS parsing', 'REST API'],
     stack: ['Node.js', 'React', 'MessageBird', 'OpenAI API', 'TypeScript'],
     link: 'https://github.com/kasbihari',
-    accent: 'accent-white',
+    accent: 'var(--muted-light)',
+    status: 'in-progress',
   },
 ];
 
+const FILTERS: { label: string; value: FilterValue }[] = [
+  { label: 'All', value: 'all' },
+  { label: 'Shipped', value: 'done' },
+  { label: 'In Progress', value: 'in-progress' },
+];
+
+function StatusBadge({ status }: { status: ProjectStatus }) {
+  const isDone = status === 'done';
+  return (
+    <span
+      style={{
+        display: 'inline-flex',
+        alignItems: 'center',
+        gap: '0.4rem',
+        fontSize: '0.7rem',
+        fontWeight: 500,
+        letterSpacing: '0.08em',
+        textTransform: 'uppercase',
+        padding: '0.25rem 0.65rem',
+        borderRadius: '3px',
+        border: `1px solid ${isDone ? 'rgba(100,200,130,0.3)' : 'rgba(200,160,80,0.3)'}`,
+        color: isDone ? 'var(--forest-bright)' : '#c8a050',
+        background: isDone ? 'rgba(100,200,130,0.07)' : 'rgba(200,160,80,0.07)',
+        flexShrink: 0,
+      }}
+    >
+      <span
+        style={{
+          width: '5px',
+          height: '5px',
+          borderRadius: '50%',
+          background: isDone ? 'var(--forest-bright)' : '#c8a050',
+          boxShadow: isDone
+            ? '0 0 5px var(--forest-bright)'
+            : '0 0 5px #c8a050',
+          animation: isDone ? 'none' : 'pulse 2s ease-in-out infinite',
+        }}
+      />
+      {isDone ? 'Shipped' : 'In Progress'}
+    </span>
+  );
+}
+
 export default function Projects() {
   const [activeProject, setActiveProject] = useState<string | null>(null);
+  const [filter, setFilter] = useState<FilterValue>('all');
+
+  const filtered = filter === 'all'
+    ? projects
+    : projects.filter((p) => p.status === filter);
 
   return (
     <section id="projects" className="section-padding">
@@ -69,18 +124,13 @@ export default function Projects() {
             display: 'flex',
             alignItems: 'flex-end',
             justifyContent: 'space-between',
-            marginBottom: '5rem',
+            marginBottom: '3rem',
             flexWrap: 'wrap',
             gap: '1rem',
           }}
         >
           <div>
-            <p
-              data-reveal
-              className="section-label"
-            >
-              Selected Work
-            </p>
+            <p data-reveal className="section-label">Selected Work</p>
             <h2
               data-reveal
               data-delay="100"
@@ -122,15 +172,90 @@ export default function Projects() {
           </p>
         </div>
 
+        {/* Filter tabs */}
+        <div
+          data-reveal
+          data-delay="150"
+          style={{
+            display: 'flex',
+            gap: '0.5rem',
+            marginBottom: '3rem',
+            flexWrap: 'wrap',
+          }}
+          role="group"
+          aria-label="Filter projects"
+        >
+          {FILTERS.map(({ label, value }) => {
+            const isActive = filter === value;
+            const count =
+              value === 'all'
+                ? projects.length
+                : projects.filter((p) => p.status === value).length;
+
+            return (
+              <button
+                key={value}
+                onClick={() => {
+                  setFilter(value);
+                  setActiveProject(null);
+                }}
+                aria-pressed={isActive}
+                style={{
+                  display: 'inline-flex',
+                  alignItems: 'center',
+                  gap: '0.5rem',
+                  padding: '0.5rem 1.1rem',
+                  fontSize: '0.78rem',
+                  fontWeight: 500,
+                  letterSpacing: '0.06em',
+                  textTransform: 'uppercase',
+                  borderRadius: '4px',
+                  border: `1px solid ${isActive ? 'var(--border-mid)' : 'var(--border-subtle)'}`,
+                  background: isActive ? 'var(--charcoal-2)' : 'transparent',
+                  color: isActive ? 'var(--soft-white)' : 'var(--muted)',
+                  cursor: 'pointer',
+                  transition: 'all 0.25s cubic-bezier(0.16,1,0.3,1)',
+                }}
+                onMouseEnter={(e) => {
+                  if (!isActive) e.currentTarget.style.color = 'var(--muted-light)';
+                }}
+                onMouseLeave={(e) => {
+                  if (!isActive) e.currentTarget.style.color = 'var(--muted)';
+                }}
+              >
+                {label}
+                <span
+                  style={{
+                    fontSize: '0.68rem',
+                    padding: '0.1rem 0.4rem',
+                    borderRadius: '3px',
+                    background: isActive ? 'var(--border-mid)' : 'var(--border-subtle)',
+                    color: isActive ? 'var(--soft-white)' : 'var(--muted)',
+                    fontFamily: 'JetBrains Mono, monospace',
+                    transition: 'all 0.25s',
+                  }}
+                >
+                  {count}
+                </span>
+              </button>
+            );
+          })}
+        </div>
+
         {/* Project list */}
-        <div style={{ display: 'flex', flexDirection: 'column', gap: '0' }}>
-          {projects.map((project, i) => (
+        <div style={{ display: 'flex', flexDirection: 'column' }}>
+          {filtered.length === 0 && (
+            <p style={{ color: 'var(--muted)', fontSize: '0.9rem', padding: '2rem 0' }}>
+              No projects found.
+            </p>
+          )}
+
+          {filtered.map((project, i) => (
             <div
               key={project.id}
               data-reveal
               data-delay={`${i * 80}`}
             >
-              {/* Top divider */}
               <div className="divider" />
 
               <div
@@ -138,21 +263,26 @@ export default function Projects() {
                   setActiveProject(activeProject === project.id ? null : project.id)
                 }
                 style={{
-                  padding: '2.5rem 0',
+                  padding: 'clamp(1.5rem, 3vw, 2.5rem) 0',
                   cursor: 'pointer',
                   display: 'grid',
-                  gridTemplateColumns: '4rem 1fr auto',
-                  gap: '2rem',
+                  gridTemplateColumns: 'clamp(2.5rem, 6vw, 4rem) 1fr auto',
+                  gap: 'clamp(1rem, 3vw, 2rem)',
                   alignItems: 'start',
                   transition: 'opacity 0.3s',
                 }}
-                onMouseEnter={(e) => {
-                  const el = e.currentTarget;
-                  el.style.opacity = '0.85';
+                role="button"
+                aria-expanded={activeProject === project.id}
+                aria-controls={`project-detail-${project.id}`}
+                tabIndex={0}
+                onKeyDown={(e) => {
+                  if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    setActiveProject(activeProject === project.id ? null : project.id);
+                  }
                 }}
-                onMouseLeave={(e) => {
-                  e.currentTarget.style.opacity = '1';
-                }}
+                onMouseEnter={(e) => { e.currentTarget.style.opacity = '0.85'; }}
+                onMouseLeave={(e) => { e.currentTarget.style.opacity = '1'; }}
               >
                 {/* Index */}
                 <span
@@ -169,24 +299,35 @@ export default function Projects() {
 
                 {/* Main content */}
                 <div>
-                  {/* Label */}
-                  <p
+                  {/* Category + Status badge row */}
+                  <div
                     style={{
-                      fontSize: '0.72rem',
-                      fontWeight: 500,
-                      letterSpacing: '0.1em',
-                      textTransform: 'uppercase',
-                      color: project.accent,
+                      display: 'flex',
+                      alignItems: 'center',
+                      flexWrap: 'wrap',
+                      gap: '0.75rem',
                       marginBottom: '0.5rem',
                     }}
                   >
-                    {project.category}
-                  </p>
+                    <p
+                      style={{
+                        fontSize: '0.72rem',
+                        fontWeight: 500,
+                        letterSpacing: '0.1em',
+                        textTransform: 'uppercase',
+                        color: project.accent,
+                        margin: 0,
+                      }}
+                    >
+                      {project.category}
+                    </p>
+                    <StatusBadge status={project.status} />
+                  </div>
 
                   {/* Title */}
                   <h3
                     style={{
-                      fontSize: 'clamp(1.4rem, 3vw, 2.2rem)',
+                      fontSize: 'clamp(1.2rem, 3vw, 2.2rem)',
                       fontWeight: 500,
                       letterSpacing: '-0.02em',
                       color: 'var(--soft-white)',
@@ -210,9 +351,10 @@ export default function Projects() {
 
                   {/* Expanded case study */}
                   <div
+                    id={`project-detail-${project.id}`}
                     style={{
                       overflow: 'hidden',
-                      maxHeight: activeProject === project.id ? '600px' : '0',
+                      maxHeight: activeProject === project.id ? '800px' : '0',
                       transition: 'max-height 0.7s cubic-bezier(0.16,1,0.3,1), opacity 0.5s cubic-bezier(0.16,1,0.3,1)',
                       opacity: activeProject === project.id ? 1 : 0,
                     }}
@@ -221,8 +363,8 @@ export default function Projects() {
                       style={{
                         paddingTop: '2rem',
                         display: 'grid',
-                        gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))',
-                        gap: '2.5rem',
+                        gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))',
+                        gap: '2rem',
                       }}
                     >
                       {/* Description */}
@@ -239,13 +381,7 @@ export default function Projects() {
                         >
                           Overview
                         </p>
-                        <p
-                          style={{
-                            fontSize: '0.9rem',
-                            color: 'var(--muted-light)',
-                            lineHeight: 1.7,
-                          }}
-                        >
+                        <p style={{ fontSize: '0.9rem', color: 'var(--muted-light)', lineHeight: 1.7 }}>
                           {project.description}
                         </p>
                       </div>
@@ -353,7 +489,14 @@ export default function Projects() {
                     </div>
 
                     {/* Links */}
-                    <div style={{ display: 'flex', gap: '1rem', marginTop: '2rem', flexWrap: 'wrap' }}>
+                    <div
+                      style={{
+                        display: 'flex',
+                        gap: '0.75rem',
+                        marginTop: '2rem',
+                        flexWrap: 'wrap',
+                      }}
+                    >
                       {project.link && (
                         <a
                           href={project.link}
@@ -365,7 +508,7 @@ export default function Projects() {
                         >
                           View on GitHub
                           <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
-                            <path d="M2 10L10 2M10 2H4M10 2v6" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                            <path d="M2 10L10 2M10 2H4M10 2v6" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
                           </svg>
                         </a>
                       )}
@@ -380,7 +523,7 @@ export default function Projects() {
                         >
                           Live site
                           <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
-                            <path d="M2 10L10 2M10 2H4M10 2v6" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                            <path d="M2 10L10 2M10 2H4M10 2v6" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
                           </svg>
                         </a>
                       )}
@@ -390,6 +533,7 @@ export default function Projects() {
 
                 {/* Expand indicator */}
                 <div
+                  aria-hidden="true"
                   style={{
                     display: 'flex',
                     alignItems: 'center',
@@ -397,17 +541,17 @@ export default function Projects() {
                     color: 'var(--muted)',
                     transition: 'transform 0.4s cubic-bezier(0.16,1,0.3,1), color 0.3s',
                     transform: activeProject === project.id ? 'rotate(45deg)' : 'rotate(0deg)',
+                    flexShrink: 0,
                   }}
                 >
                   <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
-                    <path d="M10 4v12M4 10h12" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
+                    <path d="M10 4v12M4 10h12" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
                   </svg>
                 </div>
               </div>
             </div>
           ))}
 
-          {/* Bottom divider */}
           <div className="divider" />
         </div>
 
@@ -437,8 +581,15 @@ export default function Projects() {
             GitHub
           </a>
         </p>
-
       </div>
+
+      {/* Pulse animation for in-progress badge dot */}
+      <style>{`
+        @keyframes pulse {
+          0%, 100% { opacity: 1; transform: scale(1); }
+          50% { opacity: 0.5; transform: scale(0.85); }
+        }
+      `}</style>
     </section>
   );
 }

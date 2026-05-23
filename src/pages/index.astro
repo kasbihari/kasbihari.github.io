@@ -1,6 +1,5 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import Navbar from '../components/Navbar';
 import Hero from '../components/sections/Hero';
 import About from '../components/sections/About';
 import Projects from '../components/sections/Projects';
@@ -8,35 +7,22 @@ import Skills from '../components/sections/Skills';
 import Contact from '../components/sections/Contact';
 import Footer from '../components/Footer';
 ---
-
 <Layout>
-  <Navbar client:load />
-
-  <!-- Each section fills the screen, cinematic scroll between them -->
+  <!-- Navbar zit alleen in Layout.astro, niet hier dupliceren -->
   <main>
-    <!-- Hero: full screen -->
     <div class="full-screen">
       <Hero client:load />
     </div>
-
-    <!-- About: scroll reading (self-manages height) + detail block -->
     <About client:load />
-
-    <!-- Projects: full screen feel with section-padding -->
     <div class="full-screen" style="height: auto; min-height: 100svh;">
       <Projects client:load />
     </div>
-
-    <!-- Skills: full screen feel -->
     <div class="full-screen" style="height: auto; min-height: 100svh;">
       <Skills client:load />
     </div>
-
-    <!-- Contact: full screen feel -->
     <div class="full-screen" style="height: auto; min-height: 100svh;">
       <Contact client:load />
     </div>
   </main>
-
   <Footer />
 </Layout>

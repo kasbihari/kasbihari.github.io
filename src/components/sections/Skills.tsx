@@ -1,70 +1,170 @@
-const skillGroups = [
+import { useEffect, useRef, useState } from 'react';
+
+type Skill = { name: string; icon: string };
+type Category = { label: string; accent: string; skills: Skill[] };
+
+const categories: Category[] = [
   {
-    category: 'Frontend',
+    label: 'Frontend',
+    accent: 'var(--sand-light)',
     skills: [
-      { name: 'React / Next.js',     level: 92 },
-      { name: 'TypeScript',          level: 88 },
-      { name: 'Tailwind CSS',        level: 90 },
-      { name: 'Astro',               level: 80 },
-      { name: 'Framer Motion',       level: 75 },
+      { name: 'React', icon: '⚛' },
+      { name: 'Next.js', icon: '▲' },
+      { name: 'TypeScript', icon: 'TS' },
+      { name: 'Astro', icon: '🚀' },
+      { name: 'Tailwind CSS', icon: '💨' },
+      { name: 'Framer Motion', icon: '✦' },
     ],
   },
   {
-    category: 'Backend',
+    label: 'Backend',
+    accent: 'var(--forest-bright)',
     skills: [
-      { name: 'Node.js / Express',   level: 88 },
-      { name: 'Python / FastAPI',    level: 80 },
-      { name: 'PostgreSQL',          level: 82 },
-      { name: 'Redis',               level: 72 },
-      { name: 'REST + GraphQL',      level: 85 },
+      { name: 'Node.js', icon: '⬡' },
+      { name: 'Symfony', icon: 'SF' },
+      { name: 'PHP', icon: 'PHP' },
+      { name: 'REST APIs', icon: '⇄' },
+      { name: 'Prisma ORM', icon: '◈' },
+      { name: 'Doctrine ORM', icon: 'ORM' },
     ],
   },
   {
-    category: 'AI & Data',
+    label: 'Database & Cloud',
+    accent: '#a78bfa',
     skills: [
-      { name: 'OpenAI API',          level: 85 },
-      { name: 'LangChain',           level: 72 },
-      { name: 'Vector DBs',          level: 68 },
-      { name: 'Data pipelines',      level: 76 },
-      { name: 'Prompt engineering',  level: 82 },
+      { name: 'MySQL', icon: '🐬' },
+      { name: 'PostgreSQL', icon: '🐘' },
+      { name: 'MongoDB', icon: '🍃' },
+      { name: 'Supabase', icon: '⚡' },
+      { name: 'Vercel', icon: '▲' },
+      { name: 'GitHub Actions', icon: '⚙' },
     ],
   },
   {
-    category: 'Infrastructure',
+    label: 'Tooling & Methods',
+    accent: '#f9a8d4',
     skills: [
-      { name: 'Docker',              level: 80 },
-      { name: 'GitHub Actions',      level: 85 },
-      { name: 'Vercel / Netlify',    level: 88 },
-      { name: 'Linux / Shell',       level: 75 },
-      { name: 'Prisma / Drizzle',    level: 78 },
+      { name: 'Git / GitHub', icon: '◉' },
+      { name: 'Docker', icon: '🐳' },
+      { name: 'Figma', icon: '✦' },
+      { name: 'Agile / Scrum', icon: '↻' },
+      { name: 'Accessibility', icon: '♿' },
+      { name: 'Web Vitals', icon: '📊' },
     ],
   },
 ];
 
-const tools = [
-  'VS Code', 'Figma', 'Postman', 'Linear', 'Notion',
-  'Git', 'Turborepo', 'pnpm', 'Zod', 'tRPC',
-  'Stripe', 'Resend', 'Supabase', 'PlanetScale', 'Cloudflare',
-];
+function CategoryCard({ cat, delay }: { cat: Category; delay: number }) {
+  const ref = useRef<HTMLDivElement>(null);
+  const [visible, setVisible] = useState(false);
 
-const approaches = [
-  {
-    title: 'Architecture first',
-    body: 'I design the data model and system boundaries before writing a single line of application code.',
-  },
-  {
-    title: 'Typed end-to-end',
-    body: 'TypeScript from database schema to UI component. No implicit any, no runtime surprises.',
-  },
-  {
-    title: 'Ship, then improve',
-    body: 'Working software beats perfect software. I get to production fast, then iterate with data.',
-  },
-  {
-    title: 'DX as a feature',
-    body: 'Good tooling, clear naming, and sensible defaults make every codebase easier to hand off.',
-  },
-];
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    const obs = new IntersectionObserver(
+      ([entry]) => { if (entry.isIntersecting) { setVisible(true); obs.disconnect(); } },
+      { threshold: 0.15 }
+    );
+    obs.observe(el);
+    return () => obs.disconnect();
+  }, []);
+
+  return (
+    <div
+      ref={ref}
+      style={{
+        padding: 'clamp(1.5rem, 3vw, 2rem)',
+        border: '1px solid var(--border-subtle)',
+        borderRadius: '6px',
+        background: 'var(--charcoal-2)',
+        opacity: visible ? 1 : 0,
+        transform: visible ? 'translateY(0)' : 'translateY(24px)',
+        transition: `opacity 0.6s ease ${delay}ms, transform 0.6s cubic-bezier(0.16,1,0.3,1) ${delay}ms`,
+        position: 'relative',
+        overflow: 'hidden',
+      }}
+    >
+      {/* Accent top border */}
+      <div
+        style={{
+          position: 'absolute',
+          top: 0,
+          left: 0,
+          right: 0,
+          height: '2px',
+          background: `linear-gradient(90deg, ${cat.accent}, transparent)`,
+        }}
+      />
+
+      {/* Category label */}
+      <p
+        style={{
+          fontSize: '0.7rem',
+          fontWeight: 600,
+          letterSpacing: '0.12em',
+          textTransform: 'uppercase',
+          color: cat.accent,
+          marginBottom: '1.25rem',
+        }}
+      >
+        {cat.label}
+      </p>
+
+      {/* Skills grid */}
+      <div
+        style={{
+          display: 'grid',
+          gridTemplateColumns: 'repeat(2, 1fr)',
+          gap: '0.6rem',
+        }}
+      >
+        {cat.skills.map((skill, i) => (
+          <div
+            key={skill.name}
+            style={{
+              display: 'flex',
+              alignItems: 'center',
+              gap: '0.6rem',
+              padding: '0.5rem 0.75rem',
+              borderRadius: '4px',
+              border: '1px solid var(--border-subtle)',
+              background: 'transparent',
+              transition: 'border-color 0.25s, background 0.25s',
+              opacity: visible ? 1 : 0,
+              transform: visible ? 'translateY(0)' : 'translateY(12px)',
+              transitionDelay: `${delay + 80 + i * 40}ms`,
+            }}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.borderColor = 'var(--border-mid)';
+              e.currentTarget.style.background = 'rgba(255,255,255,0.03)';
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.borderColor = 'var(--border-subtle)';
+              e.currentTarget.style.background = 'transparent';
+            }}
+          >
+            <span
+              style={{
+                fontSize: '0.72rem',
+                width: '22px',
+                textAlign: 'center',
+                flexShrink: 0,
+                color: cat.accent,
+                fontFamily: 'JetBrains Mono, monospace',
+                fontWeight: 600,
+              }}
+            >
+              {skill.icon}
+            </span>
+            <span style={{ fontSize: '0.8rem', color: 'var(--muted-light)' }}>
+              {skill.name}
+            </span>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
 
 export default function Skills() {
   return (
@@ -72,10 +172,8 @@ export default function Skills() {
       <div className="container-main">
 
         {/* Header */}
-        <div style={{ marginBottom: '5rem' }}>
-          <p data-reveal className="section-label">
-            Capabilities
-          </p>
+        <div style={{ marginBottom: '4rem' }}>
+          <p data-reveal className="section-label">Expertise</p>
           <h2
             data-reveal
             data-delay="100"
@@ -85,10 +183,10 @@ export default function Skills() {
               letterSpacing: '-0.025em',
               color: 'var(--soft-white)',
               lineHeight: 1.05,
-              maxWidth: '480px',
+              maxWidth: '560px',
             }}
           >
-            What I bring{' '}
+            Tools I reach for{' '}
             <span
               style={{
                 fontFamily: 'Playfair Display, Georgia, serif',
@@ -97,236 +195,61 @@ export default function Skills() {
                 color: 'var(--sand-light)',
               }}
             >
-              to the table.
+              every day.
             </span>
           </h2>
+          <p
+            data-reveal
+            data-delay="200"
+            style={{
+              marginTop: '1.25rem',
+              fontSize: '0.9rem',
+              color: 'var(--muted)',
+              lineHeight: 1.75,
+              maxWidth: '400px',
+            }}
+          >
+            Focused on the full stack — from pixel-perfect interfaces to scalable server architecture.
+          </p>
         </div>
 
-        {/* Skill bars grid */}
+        {/* Grid of category cards */}
         <div
           style={{
             display: 'grid',
             gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))',
-            gap: '3.5rem',
-            marginBottom: '5rem',
+            gap: '1.25rem',
           }}
         >
-          {skillGroups.map((group, gi) => (
-            <div
-              key={group.category}
-              data-reveal
-              data-delay={`${gi * 80}`}
-            >
-              {/* Category label */}
-              <p
-                style={{
-                  fontSize: '0.72rem',
-                  fontWeight: 500,
-                  letterSpacing: '0.12em',
-                  textTransform: 'uppercase',
-                  color: 'var(--sand)',
-                  marginBottom: '1.75rem',
-                  display: 'flex',
-                  alignItems: 'center',
-                  gap: '0.5rem',
-                }}
-              >
-                <span
-                  style={{
-                    display: 'block',
-                    width: '1rem',
-                    height: '1px',
-                    background: 'var(--sand)',
-                    opacity: 0.5,
-                  }}
-                />
-                {group.category}
-              </p>
-
-              {/* Skills */}
-              <div style={{ display: 'flex', flexDirection: 'column', gap: '1.25rem' }}>
-                {group.skills.map((skill) => (
-                  <div key={skill.name}>
-                    <div
-                      style={{
-                        display: 'flex',
-                        justifyContent: 'space-between',
-                        alignItems: 'baseline',
-                        marginBottom: '0.5rem',
-                      }}
-                    >
-                      <span
-                        style={{
-                          fontSize: '0.875rem',
-                          color: 'var(--muted-light)',
-                          letterSpacing: '0.01em',
-                        }}
-                      >
-                        {skill.name}
-                      </span>
-                      <span
-                        style={{
-                          fontSize: '0.7rem',
-                          color: 'var(--muted)',
-                          fontFamily: 'JetBrains Mono, monospace',
-                          letterSpacing: '0.04em',
-                        }}
-                      >
-                        {skill.level}%
-                      </span>
-                    </div>
-
-                    {/* Track */}
-                    <div
-                      style={{
-                        height: '2px',
-                        background: 'var(--border-subtle)',
-                        borderRadius: '2px',
-                        overflow: 'hidden',
-                      }}
-                    >
-                      {/* Fill — CSS animation on scroll via data-reveal parent */}
-                      <div
-                        className="skill-bar-fill"
-                        style={
-                          {
-                            height: '100%',
-                            background: 'linear-gradient(to right, var(--sand-dark), var(--sand))',
-                            borderRadius: '2px',
-                            width: '0%',
-                            transition: 'width 1.2s cubic-bezier(0.16,1,0.3,1)',
-                            '--target-width': `${skill.level}%`,
-                          } as React.CSSProperties
-                        }
-                      />
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
+          {categories.map((cat, i) => (
+            <CategoryCard key={cat.label} cat={cat} delay={i * 100} />
           ))}
         </div>
 
-        <div className="divider" />
-
-        {/* Tools row */}
-        <div style={{ padding: '3.5rem 0' }}>
+        {/* Bottom quote */}
+        <div
+          data-reveal
+          style={{
+            marginTop: '4rem',
+            padding: '1.5rem 2rem',
+            border: '1px solid var(--border-subtle)',
+            borderLeft: '3px solid var(--sand)',
+            borderRadius: '0 4px 4px 0',
+            maxWidth: '600px',
+          }}
+        >
           <p
-            data-reveal
             style={{
-              fontSize: '0.72rem',
-              fontWeight: 500,
-              letterSpacing: '0.12em',
-              textTransform: 'uppercase',
-              color: 'var(--muted)',
-              marginBottom: '1.75rem',
+              fontSize: '0.95rem',
+              fontStyle: 'italic',
+              color: 'var(--muted-light)',
+              lineHeight: 1.75,
+              fontFamily: 'Playfair Display, Georgia, serif',
             }}
           >
-            Tools & ecosystem
+            "I pick the right tool for the job — not the trendiest one."
           </p>
-
-          <div
-            data-reveal
-            data-delay="100"
-            style={{ display: 'flex', flexWrap: 'wrap', gap: '0.6rem' }}
-          >
-            {tools.map((tool) => (
-              <span
-                key={tool}
-                style={{
-                  fontSize: '0.78rem',
-                  padding: '0.4rem 0.9rem',
-                  border: '1px solid var(--border-subtle)',
-                  borderRadius: '3px',
-                  color: 'var(--muted)',
-                  fontFamily: 'JetBrains Mono, monospace',
-                  letterSpacing: '0.02em',
-                  transition: 'color 0.3s, border-color 0.3s',
-                  cursor: 'default',
-                }}
-                onMouseEnter={(e) => {
-                  e.currentTarget.style.color = 'var(--muted-light)';
-                  e.currentTarget.style.borderColor = 'var(--border-mid)';
-                }}
-                onMouseLeave={(e) => {
-                  e.currentTarget.style.color = 'var(--muted)';
-                  e.currentTarget.style.borderColor = 'var(--border-subtle)';
-                }}
-              >
-                {tool}
-              </span>
-            ))}
-          </div>
         </div>
-
-        <div className="divider" />
-
-        {/* Engineering approach */}
-        <div style={{ paddingTop: '3.5rem' }}>
-          <p
-            data-reveal
-            style={{
-              fontSize: '0.72rem',
-              fontWeight: 500,
-              letterSpacing: '0.12em',
-              textTransform: 'uppercase',
-              color: 'var(--muted)',
-              marginBottom: '2.5rem',
-            }}
-          >
-            Engineering approach
-          </p>
-
-          <div
-            style={{
-              display: 'grid',
-              gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))',
-              gap: '2rem',
-            }}
-          >
-            {approaches.map((item, i) => (
-              <div
-                key={item.title}
-                data-reveal
-                data-delay={`${i * 80}`}
-                style={{
-                  padding: '1.75rem',
-                  border: '1px solid var(--border-subtle)',
-                  borderRadius: '6px',
-                  transition: 'border-color 0.3s',
-                }}
-                onMouseEnter={(e) => {
-                  e.currentTarget.style.borderColor = 'var(--border-mid)';
-                }}
-                onMouseLeave={(e) => {
-                  e.currentTarget.style.borderColor = 'var(--border-subtle)';
-                }}
-              >
-                <p
-                  style={{
-                    fontSize: '0.95rem',
-                    fontWeight: 500,
-                    color: 'var(--soft-white)',
-                    marginBottom: '0.6rem',
-                    letterSpacing: '-0.01em',
-                  }}
-                >
-                  {item.title}
-                </p>
-                <p
-                  style={{
-                    fontSize: '0.85rem',
-                    color: 'var(--muted)',
-                    lineHeight: 1.7,
-                  }}
-                >
-                  {item.body}
-                </p>
-              </div>
-            ))}
-          </div>
-        </div>
-
       </div>
     </section>
   );

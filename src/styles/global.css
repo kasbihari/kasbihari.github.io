@@ -17,6 +17,7 @@
   --forest: #2d4a3e;
   --forest-mid: #3a5c4e;
   --forest-bright: #4a7c6a;
+  --forest-green: #4a7c6a;
   --muted: #5a5a5a;
   --muted-light: #8a8a8a;
   --border-subtle: rgba(255, 255, 255, 0.06);
@@ -84,7 +85,8 @@ h1, h2, h3, h4, h5, h6 {
   line-height: 1.2;
 }
 
-p, li, span, label, input, textarea, button {
+/* span weggehaald hier — interfereert met hamburger layout spans */
+p, li, label, input, textarea, button {
   font-family: var(--font-body);
 }
 
@@ -114,15 +116,11 @@ a {
 }
 
 @media (max-width: 1024px) {
-  .container-main {
-    padding: 0 1.5rem;
-  }
+  .container-main { padding: 0 1.5rem; }
 }
 
 @media (max-width: 640px) {
-  .container-main {
-    padding: 0 1.25rem;
-  }
+  .container-main { padding: 0 1.25rem; }
 }
 
 /* ── Full-screen sections ── */
@@ -139,15 +137,11 @@ a {
 }
 
 @media (max-width: 1024px) {
-  .section-padding {
-    padding: 6rem 0;
-  }
+  .section-padding { padding: 6rem 0; }
 }
 
 @media (max-width: 640px) {
-  .section-padding {
-    padding: 4.5rem 0;
-  }
+  .section-padding { padding: 4.5rem 0; }
 }
 
 /* ── Divider ── */
@@ -223,16 +217,24 @@ a {
 /* ── Cinematic reveal ── */
 [data-reveal] {
   opacity: 0;
-  transform: translateY(28px);
+  transform: translateY(20px);
   transition:
-    opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1),
-    transform 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+    opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
+[data-reveal].is-visible,
 [data-reveal].revealed {
   opacity: 1;
   transform: translateY(0);
 }
+
+[data-reveal][data-delay="100"] { transition-delay: 100ms; }
+[data-reveal][data-delay="150"] { transition-delay: 150ms; }
+[data-reveal][data-delay="200"] { transition-delay: 200ms; }
+[data-reveal][data-delay="300"] { transition-delay: 300ms; }
+[data-reveal][data-delay="400"] { transition-delay: 400ms; }
+[data-reveal][data-delay="500"] { transition-delay: 500ms; }
 
 /* ── Skill bars ── */
 .skill-bar-fill {
@@ -244,9 +246,19 @@ a {
 }
 
 /* ── Scrollbar ── */
-::-webkit-scrollbar { width: 4px; }
-::-webkit-scrollbar-track { background: var(--charcoal-1); }
-::-webkit-scrollbar-thumb { background: var(--charcoal-5); border-radius: 4px; }
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb {
+  background: var(--border-mid, #3a3a3a);
+  border-radius: 100px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--sand-dark, #8a7a5a);
+}
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--border-mid, #3a3a3a) transparent;
+}
 
 /* ── Selection ── */
 ::selection {
