@@ -58,15 +58,10 @@ export default function Navbar() {
     return () => window.removeEventListener('resize', onResize);
   }, [closeMenu]);
 
-  // Name is only ever visible when the menu is open.
-  // In the hero (menu closed) it's parked at -3rem above the viewport — invisible.
-  // Past the hero it's also invisible (opacity 0, pointerEvents none).
-  // This prevents any flash when scrolling back up through the hero boundary.
   const nameVisible = menuOpen;
 
-  const nameTop = menuOpen
-    ? '20vh'             // slides down into view when menu opens
-    : '-3rem';           // always parked above viewport when menu is closed
+  // FIX: omhoog van 20vh naar 12vh zodat naam ruim boven de lijn valt
+  const nameTop = menuOpen ? '12vh' : '-3rem';
 
   const nameTransitionDelay = '0s';
 
@@ -76,20 +71,23 @@ export default function Navbar() {
       <div
         aria-hidden="true"
         style={{
-          position: 'fixed',
-          top: 0, left: 0,
-          height: '2px',
-          width: `${progress}%`,
+          position:   'fixed',
+          top:        0,
+          left:       0,
+          height:     '2px',
+          width:      `${progress}%`,
           background: 'linear-gradient(90deg, var(--sand-dark), var(--sand-light))',
-          zIndex: 1001,
-          opacity: pastHero ? 1 : 0,
+          zIndex:     1001,
+          opacity:    pastHero ? 1 : 0,
           transition: 'width 0.08s linear, opacity 0.4s ease',
         }}
       />
 
       {/* ── Floating name ── */}
+      {/* FIX: href altijd '#', onClick voorkomt navigatie als menu open is */}
       <a
-        href={menuOpen ? undefined : '#'}
+        href="#"
+        onClick={(e) => { if (menuOpen) e.preventDefault(); }}
         style={{
           position:       'fixed',
           zIndex:         200,
@@ -97,7 +95,8 @@ export default function Navbar() {
           top:            nameTop,
           transform:      'translate(-50%, -50%)',
           fontFamily:     'AmsterdamFour, serif',
-          fontSize:       menuOpen ? '2.8rem' : '1.75rem',
+          // FIX: clamp zodat naam niet te groot wordt op smalle schermen
+          fontSize:       menuOpen ? 'clamp(1.8rem, 8vw, 2.8rem)' : '1.75rem',
           color:          menuOpen ? 'var(--sand)' : 'var(--soft-white)',
           textDecoration: 'none',
           letterSpacing:  '0.02em',
@@ -234,7 +233,7 @@ export default function Navbar() {
             e.currentTarget.style.transform = 'scale(1)';
           }}
         >
-          Let's talk
+          Let&apos;s talk
         </a>
       </nav>
 
@@ -242,7 +241,9 @@ export default function Navbar() {
       <div
         style={{
           position:       'fixed',
-          top: 0, left: 0, right: 0,
+          top:            0,
+          left:           0,
+          right:          0,
           zIndex:         100,
           height:         `${NAV_H}px`,
           display:        'flex',
@@ -287,9 +288,9 @@ export default function Navbar() {
 
         <div
           style={{
-            display:      'flex',
-            alignItems:   'center',
-            gap:          '1rem',
+            display:       'flex',
+            alignItems:    'center',
+            gap:           '1rem',
             pointerEvents: pastHero ? 'none' : 'auto',
           }}
         >
@@ -352,7 +353,7 @@ export default function Navbar() {
               el.style.transform  = 'translateY(0)';
             }}
           >
-            Let's talk
+            Let&apos;s talk
           </a>
         </div>
       </div>
@@ -379,7 +380,7 @@ export default function Navbar() {
         }}
       >
         <span style={{ position: 'relative', display: 'block', width: '20px', height: '12px' }}>
-          {/* Top bar: slides to centre AND rotates simultaneously */}
+          {/* Top bar */}
           <span style={{
             display:         'block',
             position:        'absolute',
@@ -393,7 +394,7 @@ export default function Navbar() {
             transform:       menuOpen ? 'rotate(45deg)' : 'rotate(0deg)',
             transition:      'top 0.35s cubic-bezier(0.4,0,0.2,1), transform 0.35s cubic-bezier(0.4,0,0.2,1)',
           }} />
-          {/* Middle bar: shrinks left → right, then fades */}
+          {/* Middle bar */}
           <span style={{
             display:      'block',
             position:     'absolute',
@@ -408,7 +409,7 @@ export default function Navbar() {
               ? 'width 0.2s cubic-bezier(0.4,0,0.2,1), opacity 0.15s ease'
               : 'width 0.22s cubic-bezier(0.4,0,0.2,1) 0.2s, opacity 0.2s ease 0.2s',
           }} />
-          {/* Bottom bar: slides to centre AND rotates simultaneously */}
+          {/* Bottom bar */}
           <span style={{
             display:         'block',
             position:        'absolute',
@@ -437,18 +438,20 @@ export default function Navbar() {
           flexDirection:  'column',
           alignItems:     'center',
           justifyContent: 'center',
-          paddingTop:     '6rem',
+          // FIX: meer paddingTop zodat content ruimte heeft onder de naam op 12vh
+          paddingTop:     '10rem',
           opacity:        menuOpen ? 1 : 0,
           pointerEvents:  menuOpen ? 'auto' : 'none',
           transition:     'opacity 0.4s ease',
         }}
       >
         <div
+          aria-hidden="true"
           style={{
             width:        '40px',
             height:       '1px',
             background:   'rgba(212,183,141,0.3)',
-            marginBottom: '3.5rem',
+            marginBottom: '2.5rem',
             opacity:      menuOpen ? 1 : 0,
             transition:   'opacity 0.5s ease 0.2s',
           }}
@@ -521,16 +524,16 @@ export default function Navbar() {
             el.style.boxShadow  = 'none';
           }}
         >
-          Let's talk
+          Let&apos;s talk
         </a>
 
         <div
           style={{
-            display:   'flex',
-            gap:       '2.5rem',
-            opacity:   menuOpen ? 1 : 0,
-            transform: menuOpen ? 'translateY(0)' : 'translateY(20px)',
-            transition:'opacity 0.45s ease 0.63s, transform 0.45s ease 0.63s',
+            display:    'flex',
+            gap:        '2.5rem',
+            opacity:    menuOpen ? 1 : 0,
+            transform:  menuOpen ? 'translateY(0)' : 'translateY(20px)',
+            transition: 'opacity 0.45s ease 0.63s, transform 0.45s ease 0.63s',
           }}
         >
           {[
