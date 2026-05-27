@@ -50,7 +50,7 @@ export default function Footer() {
         <div style={{ display: 'flex', gap: '2rem', alignItems: 'center' }}>
           {[
             { label: 'GitHub',   href: 'https://github.com/kasbihari'          },
-            { label: 'LinkedIn', href: 'https://linkedin.com/in/krishnabihari'  },
+            { label: 'LinkedIn', href: 'https://www.linkedin.com/in/krishna-b-098124339/'  },
             { label: 'CV',       href: '/CV-Krishna.pdf'                        },
           ].map((link) => (
             <a

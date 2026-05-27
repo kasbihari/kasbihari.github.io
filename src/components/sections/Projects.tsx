@@ -16,6 +16,7 @@ type Project = {
   accent: string;
   live?: string;
   status: ProjectStatus;
+  images: string[];
 };
 
 const projects: Project[] = [
@@ -32,6 +33,11 @@ const projects: Project[] = [
     link: 'https://github.com/kasbihari/Budget-Buddy',
     accent: 'var(--sand-light)',
     status: 'done',
+    images: [
+      '/projects/budgetbuddy-1.png',
+      '/projects/budgetbuddy-2.png',
+      '/projects/budgetbuddy-3.png',
+    ],
   },
   {
     id: '02',
@@ -46,6 +52,11 @@ const projects: Project[] = [
     link: 'https://github.com/kasbihari/SDG-Dashboard',
     accent: 'var(--forest-bright)',
     status: 'done',
+    images: [
+      '/projects/sdg-1.png',
+      '/projects/sdg-2.png',
+      '/projects/sdg-3.png',
+    ],
   },
   {
     id: '03',
@@ -60,6 +71,11 @@ const projects: Project[] = [
     link: 'https://github.com/kasbihari',
     accent: 'var(--muted-light)',
     status: 'in-progress',
+    images: [
+      '/projects/outreach-1.png',
+      '/projects/outreach-2.png',
+      '/projects/outreach-3.png',
+    ],
   },
 ];
 
@@ -71,6 +87,7 @@ const FILTERS: { label: string; value: FilterValue }[] = [
 
 function StatusBadge({ status }: { status: ProjectStatus }) {
   const isDone = status === 'done';
+
   return (
     <span
       style={{
@@ -86,7 +103,6 @@ function StatusBadge({ status }: { status: ProjectStatus }) {
         border: `1px solid ${isDone ? 'rgba(100,200,130,0.25)' : 'rgba(200,160,80,0.25)'}`,
         color: isDone ? 'var(--forest-bright)' : '#c8a050',
         background: isDone ? 'rgba(100,200,130,0.06)' : 'rgba(200,160,80,0.06)',
-        flexShrink: 0,
       }}
     >
       <span
@@ -95,7 +111,6 @@ function StatusBadge({ status }: { status: ProjectStatus }) {
           height: '4px',
           borderRadius: '50%',
           background: isDone ? 'var(--forest-bright)' : '#c8a050',
-          animation: isDone ? 'none' : 'statusPulse 2s ease-in-out infinite',
         }}
       />
       {isDone ? 'Shipped' : 'In Progress'}
@@ -107,40 +122,49 @@ export default function Projects() {
   const [activeProject, setActiveProject] = useState<string | null>(null);
   const [filter, setFilter] = useState<FilterValue>('all');
 
-  const filtered = filter === 'all'
-    ? projects
-    : projects.filter((p) => p.status === filter);
+  const [slideIndexes, setSlideIndexes] = useState<Record<string, number>>({});
 
-  const counts = {
-    all: projects.length,
-    done: projects.filter((p) => p.status === 'done').length,
-    'in-progress': projects.filter((p) => p.status === 'in-progress').length,
+  const filtered =
+    filter === 'all'
+      ? projects
+      : projects.filter((p) => p.status === filter);
+
+  const nextSlide = (projectId: string, total: number) => {
+    setSlideIndexes((prev) => ({
+      ...prev,
+      [projectId]: ((prev[projectId] || 0) + 1) % total,
+    }));
+  };
+
+  const prevSlide = (projectId: string, total: number) => {
+    setSlideIndexes((prev) => ({
+      ...prev,
+      [projectId]:
+        ((prev[projectId] || 0) - 1 + total) % total,
+    }));
   };
 
   return (
     <section id="projects" className="section-padding">
       <div className="container-main">
 
-        {/* Header row */}
+        {/* Header */}
         <div
           style={{
+            marginBottom: '3rem',
             display: 'flex',
-            alignItems: 'flex-end',
             justifyContent: 'space-between',
-            marginBottom: '3.5rem',
             flexWrap: 'wrap',
-            gap: '1.5rem',
+            gap: '1rem',
           }}
         >
           <div>
-            <p data-reveal className="section-label">Selected Work</p>
+            <p className="section-label">Selected Work</p>
+
             <h2
-              data-reveal
-              data-delay="100"
               style={{
                 fontSize: 'clamp(2rem, 4vw, 3.5rem)',
                 fontWeight: 500,
-                letterSpacing: '-0.025em',
                 color: 'var(--soft-white)',
                 lineHeight: 1.05,
               }}
@@ -148,9 +172,8 @@ export default function Projects() {
               Products I've{' '}
               <span
                 style={{
-                  fontFamily: 'Playfair Display, Georgia, serif',
+                  fontFamily: 'Playfair Display, serif',
                   fontStyle: 'italic',
-                  fontWeight: 400,
                   color: 'var(--sand-light)',
                 }}
               >
@@ -159,160 +182,114 @@ export default function Projects() {
             </h2>
           </div>
 
-          {/* Filter pills — right-aligned on desktop */}
+          {/* Filters */}
           <div
-            data-reveal
-            data-delay="150"
             style={{
               display: 'flex',
-              gap: '0.35rem',
+              gap: '0.5rem',
               alignItems: 'center',
-              flexShrink: 0,
+              flexWrap: 'wrap',
             }}
-            role="group"
-            aria-label="Filter projects"
           >
             {FILTERS.map(({ label, value }) => {
-              const isActive = filter === value;
+              const active = filter === value;
+
               return (
                 <button
                   key={value}
-                  onClick={() => { setFilter(value); setActiveProject(null); }}
-                  aria-pressed={isActive}
-                  style={{
-                    display: 'inline-flex',
-                    alignItems: 'center',
-                    gap: '0.4rem',
-                    padding: '0.4rem 0.9rem',
-                    fontSize: '0.76rem',
-                    fontWeight: 500,
-                    letterSpacing: '0.05em',
-                    textTransform: 'uppercase',
-                    borderRadius: '100px',
-                    border: `1px solid ${isActive ? 'rgba(255,255,255,0.18)' : 'rgba(255,255,255,0.07)'}`,
-                    background: isActive ? 'rgba(255,255,255,0.08)' : 'transparent',
-                    color: isActive ? 'var(--soft-white)' : 'var(--muted)',
-                    cursor: 'pointer',
-                    transition: 'all 0.22s cubic-bezier(0.16,1,0.3,1)',
-                    whiteSpace: 'nowrap',
+                  onClick={() => {
+                    setFilter(value);
+                    setActiveProject(null);
                   }}
-                  onMouseEnter={(e) => { if (!isActive) e.currentTarget.style.color = 'var(--muted-light)'; }}
-                  onMouseLeave={(e) => { if (!isActive) e.currentTarget.style.color = 'var(--muted)'; }}
+                  style={{
+                    padding: '0.45rem 1rem',
+                    borderRadius: '999px',
+                    border: active
+                      ? '1px solid rgba(255,255,255,0.16)'
+                      : '1px solid rgba(255,255,255,0.06)',
+                    background: active
+                      ? 'rgba(255,255,255,0.08)'
+                      : 'transparent',
+                    color: active
+                      ? 'var(--soft-white)'
+                      : 'var(--muted)',
+                    cursor: 'pointer',
+                    fontSize: '0.75rem',
+                    textTransform: 'uppercase',
+                    letterSpacing: '0.05em',
+                  }}
                 >
                   {label}
-                  <span
-                    style={{
-                      fontSize: '0.66rem',
-                      fontFamily: 'JetBrains Mono, monospace',
-                      padding: '0.05rem 0.35rem',
-                      borderRadius: '100px',
-                      background: isActive ? 'rgba(255,255,255,0.12)' : 'rgba(255,255,255,0.05)',
-                      color: isActive ? 'var(--soft-white)' : 'var(--muted)',
-                      transition: 'all 0.22s',
-                      lineHeight: 1.6,
-                    }}
-                  >
-                    {counts[value]}
-                  </span>
                 </button>
               );
             })}
           </div>
         </div>
 
-        {/* Project list */}
+        {/* Projects */}
         <div style={{ display: 'flex', flexDirection: 'column' }}>
-          {filtered.length === 0 && (
-            <p style={{ color: 'var(--muted)', fontSize: '0.9rem', padding: '2rem 0' }}>
-              No projects found.
-            </p>
-          )}
-
-          {filtered.map((project, i) => {
+          {filtered.map((project) => {
             const isOpen = activeProject === project.id;
+
+            const currentSlide = slideIndexes[project.id] || 0;
+
             return (
               <div key={project.id}>
                 <div
                   style={{
-                    width: '100%',
                     height: '1px',
                     background: 'rgba(255,255,255,0.06)',
                   }}
                 />
 
                 <div
-                  onClick={() => setActiveProject(isOpen ? null : project.id)}
+                  onClick={() =>
+                    setActiveProject(
+                      isOpen ? null : project.id
+                    )
+                  }
                   style={{
-                    padding: 'clamp(1.25rem, 2.5vw, 2rem) 0',
+                    padding: '2rem 0',
                     cursor: 'pointer',
                     display: 'grid',
-                    gridTemplateColumns: 'clamp(2.5rem, 5vw, 3.5rem) 1fr auto',
-                    gap: 'clamp(1rem, 2.5vw, 2rem)',
-                    alignItems: 'start',
-                  }}
-                  role="button"
-                  aria-expanded={isOpen}
-                  aria-controls={`project-detail-${project.id}`}
-                  tabIndex={0}
-                  onKeyDown={(e) => {
-                    if (e.key === 'Enter' || e.key === ' ') {
-                      e.preventDefault();
-                      setActiveProject(isOpen ? null : project.id);
-                    }
+                    gridTemplateColumns: '1fr auto',
+                    gap: '1rem',
                   }}
                 >
-                  {/* Index number */}
-                  <span
-                    style={{
-                      fontSize: '0.72rem',
-                      color: 'var(--muted)',
-                      letterSpacing: '0.08em',
-                      paddingTop: '0.2rem',
-                      fontFamily: 'JetBrains Mono, monospace',
-                      transition: 'color 0.25s',
-                    }}
-                  >
-                    {project.id}
-                  </span>
-
-                  {/* Main content */}
                   <div>
-                    {/* Top row: category label + status */}
+
+                    {/* Top */}
                     <div
                       style={{
                         display: 'flex',
                         alignItems: 'center',
+                        gap: '0.7rem',
                         flexWrap: 'wrap',
-                        gap: '0.6rem',
-                        marginBottom: '0.45rem',
+                        marginBottom: '0.5rem',
                       }}
                     >
                       <p
                         style={{
                           fontSize: '0.7rem',
-                          fontWeight: 500,
-                          letterSpacing: '0.1em',
                           textTransform: 'uppercase',
+                          letterSpacing: '0.1em',
                           color: project.accent,
                           margin: 0,
-                          opacity: 0.85,
                         }}
                       >
                         {project.category}
                       </p>
+
                       <StatusBadge status={project.status} />
                     </div>
 
                     {/* Title */}
                     <h3
                       style={{
-                        fontSize: 'clamp(1.15rem, 2.8vw, 2rem)',
-                        fontWeight: 500,
-                        letterSpacing: '-0.02em',
+                        fontSize: 'clamp(1.4rem, 3vw, 2.2rem)',
                         color: 'var(--soft-white)',
                         marginBottom: '0.4rem',
                         lineHeight: 1.1,
-                        transition: 'color 0.25s',
                       }}
                     >
                       {project.title}
@@ -321,229 +298,241 @@ export default function Projects() {
                     {/* Tagline */}
                     <p
                       style={{
-                        fontSize: '0.875rem',
                         color: 'var(--muted-light)',
-                        lineHeight: 1.6,
-                        maxWidth: '520px',
+                        maxWidth: '620px',
+                        lineHeight: 1.7,
                       }}
                     >
                       {project.tagline}
                     </p>
 
-                    {/* Stack pills — always visible, subtle */}
+                    {/* Expanded */}
                     <div
-                      style={{
-                        display: 'flex',
-                        flexWrap: 'wrap',
-                        gap: '0.35rem',
-                        marginTop: '0.85rem',
-                      }}
-                    >
-                      {project.stack.slice(0, 4).map((tech) => (
-                        <span
-                          key={tech}
-                          style={{
-                            fontSize: '0.7rem',
-                            padding: '0.15rem 0.55rem',
-                            border: '1px solid rgba(255,255,255,0.08)',
-                            borderRadius: '3px',
-                            color: 'var(--muted)',
-                            fontFamily: 'JetBrains Mono, monospace',
-                            letterSpacing: '0.02em',
-                            background: 'rgba(255,255,255,0.02)',
-                          }}
-                        >
-                          {tech}
-                        </span>
-                      ))}
-                      {project.stack.length > 4 && (
-                        <span
-                          style={{
-                            fontSize: '0.7rem',
-                            padding: '0.15rem 0.55rem',
-                            color: 'var(--muted)',
-                            fontFamily: 'JetBrains Mono, monospace',
-                          }}
-                        >
-                          +{project.stack.length - 4}
-                        </span>
-                      )}
-                    </div>
-
-                    {/* Expanded detail */}
-                    <div
-                      id={`project-detail-${project.id}`}
                       style={{
                         overflow: 'hidden',
-                        maxHeight: isOpen ? '900px' : '0',
+                        maxHeight: isOpen ? '3000px' : '0',
                         opacity: isOpen ? 1 : 0,
-                        transition: 'max-height 0.65s cubic-bezier(0.16,1,0.3,1), opacity 0.45s cubic-bezier(0.16,1,0.3,1)',
+                        transition:
+                          'all 0.6s cubic-bezier(0.16,1,0.3,1)',
                       }}
                     >
-                      <div
-                        style={{
-                          paddingTop: '2rem',
-                          display: 'grid',
-                          gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))',
-                          gap: '2rem',
-                        }}
-                      >
-                        {/* Description */}
-                        <div>
-                          <p style={{ fontSize: '0.68rem', fontWeight: 500, letterSpacing: '0.1em', textTransform: 'uppercase', color: 'var(--muted)', marginBottom: '0.65rem' }}>
-                            Overview
-                          </p>
-                          <p style={{ fontSize: '0.875rem', color: 'var(--muted-light)', lineHeight: 1.75 }}>
-                            {project.description}
-                          </p>
-                        </div>
+                      <div style={{ paddingTop: '2rem' }}>
 
-                        {/* Outcome */}
-                        <div>
-                          <p style={{ fontSize: '0.68rem', fontWeight: 500, letterSpacing: '0.1em', textTransform: 'uppercase', color: 'var(--muted)', marginBottom: '0.65rem' }}>
-                            Outcome
-                          </p>
-                          <p style={{ fontSize: '1rem', fontWeight: 500, color: project.accent, lineHeight: 1.5 }}>
-                            {project.outcome}
-                          </p>
-                        </div>
+                        {/* SLIDESHOW */}
+                        <div
+                          style={{
+                            position: 'relative',
+                            width: '100%',
+                            borderRadius: '18px',
+                            overflow: 'hidden',
+                            border: '1px solid rgba(255,255,255,0.08)',
+                            background: 'rgba(255,255,255,0.03)',
+                            marginBottom: '2rem',
+                          }}
+                          onClick={(e) => e.stopPropagation()}
+                        >
+                          <img
+                            src={project.images[currentSlide]}
+                            alt={project.title}
+                            style={{
+                              width: '100%',
+                              height: '520px',
+                              objectFit: 'cover',
+                              display: 'block',
+                            }}
+                          />
 
-                        {/* Architecture */}
-                        <div>
-                          <p style={{ fontSize: '0.68rem', fontWeight: 500, letterSpacing: '0.1em', textTransform: 'uppercase', color: 'var(--muted)', marginBottom: '0.65rem' }}>
-                            Architecture
-                          </p>
-                          <div style={{ display: 'flex', flexDirection: 'column', gap: '0.35rem' }}>
-                            {project.architecture.map((a) => (
-                              <div key={a} style={{ display: 'flex', alignItems: 'center', gap: '0.6rem', fontSize: '0.84rem', color: 'var(--muted-light)' }}>
-                                <span style={{ width: '3px', height: '3px', borderRadius: '50%', background: 'rgba(255,255,255,0.2)', flexShrink: 0 }} />
-                                {a}
-                              </div>
-                            ))}
-                          </div>
-                        </div>
+                          {/* Prev */}
+                          <button
+                            onClick={() =>
+                              prevSlide(
+                                project.id,
+                                project.images.length
+                              )
+                            }
+                            style={{
+                              position: 'absolute',
+                              top: '50%',
+                              left: '1rem',
+                              transform: 'translateY(-50%)',
+                              width: '42px',
+                              height: '42px',
+                              borderRadius: '50%',
+                              border: '1px solid rgba(255,255,255,0.1)',
+                              background: 'rgba(0,0,0,0.45)',
+                              color: 'white',
+                              cursor: 'pointer',
+                              backdropFilter: 'blur(8px)',
+                              fontSize: '1rem',
+                            }}
+                          >
+                            ←
+                          </button>
 
-                        {/* Full stack */}
-                        <div>
-                          <p style={{ fontSize: '0.68rem', fontWeight: 500, letterSpacing: '0.1em', textTransform: 'uppercase', color: 'var(--muted)', marginBottom: '0.65rem' }}>
-                            Full Stack
-                          </p>
-                          <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.4rem' }}>
-                            {project.stack.map((tech) => (
-                              <span
-                                key={tech}
+                          {/* Next */}
+                          <button
+                            onClick={() =>
+                              nextSlide(
+                                project.id,
+                                project.images.length
+                              )
+                            }
+                            style={{
+                              position: 'absolute',
+                              top: '50%',
+                              right: '1rem',
+                              transform: 'translateY(-50%)',
+                              width: '42px',
+                              height: '42px',
+                              borderRadius: '50%',
+                              border: '1px solid rgba(255,255,255,0.1)',
+                              background: 'rgba(0,0,0,0.45)',
+                              color: 'white',
+                              cursor: 'pointer',
+                              backdropFilter: 'blur(8px)',
+                              fontSize: '1rem',
+                            }}
+                          >
+                            →
+                          </button>
+
+                          {/* Dots */}
+                          <div
+                            style={{
+                              position: 'absolute',
+                              bottom: '1rem',
+                              left: '50%',
+                              transform: 'translateX(-50%)',
+                              display: 'flex',
+                              gap: '0.5rem',
+                            }}
+                          >
+                            {project.images.map((_, index) => (
+                              <button
+                                key={index}
+                                onClick={() =>
+                                  setSlideIndexes((prev) => ({
+                                    ...prev,
+                                    [project.id]: index,
+                                  }))
+                                }
                                 style={{
-                                  fontSize: '0.73rem',
-                                  padding: '0.25rem 0.65rem',
-                                  border: '1px solid rgba(255,255,255,0.1)',
-                                  borderRadius: '3px',
-                                  color: 'var(--muted-light)',
-                                  fontFamily: 'JetBrains Mono, monospace',
-                                  letterSpacing: '0.02em',
+                                  width: '8px',
+                                  height: '8px',
+                                  borderRadius: '50%',
+                                  border: 'none',
+                                  cursor: 'pointer',
+                                  background:
+                                    currentSlide === index
+                                      ? 'white'
+                                      : 'rgba(255,255,255,0.4)',
                                 }}
-                              >
-                                {tech}
-                              </span>
+                              />
                             ))}
                           </div>
                         </div>
-                      </div>
 
-                      {/* CTA links */}
-                      <div style={{ display: 'flex', gap: '0.65rem', marginTop: '2rem', flexWrap: 'wrap' }}>
-                        {project.link && (
+                        {/* Description */}
+                        <p
+                          style={{
+                            color: 'var(--muted-light)',
+                            lineHeight: 1.8,
+                            marginBottom: '1.5rem',
+                          }}
+                        >
+                          {project.description}
+                        </p>
+
+                        {/* Stack */}
+                        <div
+                          style={{
+                            display: 'flex',
+                            flexWrap: 'wrap',
+                            gap: '0.5rem',
+                            marginBottom: '2rem',
+                          }}
+                        >
+                          {project.stack.map((tech) => (
+                            <span
+                              key={tech}
+                              style={{
+                                padding: '0.3rem 0.7rem',
+                                border: '1px solid rgba(255,255,255,0.08)',
+                                borderRadius: '5px',
+                                fontSize: '0.75rem',
+                                color: 'var(--muted-light)',
+                                fontFamily: 'JetBrains Mono, monospace',
+                              }}
+                            >
+                              {tech}
+                            </span>
+                          ))}
+                        </div>
+
+                        {/* Buttons */}
+                        <div
+                          style={{
+                            display: 'flex',
+                            gap: '0.8rem',
+                            flexWrap: 'wrap',
+                          }}
+                        >
                           <a
                             href={project.link}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="btn-secondary"
-                            style={{ fontSize: '0.78rem', padding: '0.45rem 1.1rem' }}
                             onClick={(e) => e.stopPropagation()}
+                            className="btn-secondary"
                           >
                             GitHub
-                            <svg width="11" height="11" viewBox="0 0 12 12" fill="none" style={{ marginLeft: '0.3rem' }}>
-                              <path d="M2 10L10 2M10 2H4M10 2v6" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-                            </svg>
                           </a>
-                        )}
-                        {project.live && (
-                          <a
-                            href={project.live}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="btn-primary"
-                            style={{ fontSize: '0.78rem', padding: '0.45rem 1.1rem' }}
-                            onClick={(e) => e.stopPropagation()}
-                          >
-                            Live site
-                            <svg width="11" height="11" viewBox="0 0 12 12" fill="none" style={{ marginLeft: '0.3rem' }}>
-                              <path d="M2 10L10 2M10 2H4M10 2v6" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-                            </svg>
-                          </a>
-                        )}
+
+                          {project.live && (
+                            <a
+                              href={project.live}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              onClick={(e) => e.stopPropagation()}
+                              className="btn-primary"
+                            >
+                              Live Site
+                            </a>
+                          )}
+                        </div>
                       </div>
                     </div>
                   </div>
 
-                  {/* Expand/collapse indicator */}
+                  {/* Plus Icon */}
                   <div
-                    aria-hidden="true"
                     style={{
-                      paddingTop: '0.35rem',
-                      color: isOpen ? 'var(--muted-light)' : 'var(--muted)',
-                      transition: 'transform 0.38s cubic-bezier(0.16,1,0.3,1), color 0.25s',
-                      transform: isOpen ? 'rotate(45deg)' : 'rotate(0deg)',
-                      flexShrink: 0,
+                      transform: isOpen
+                        ? 'rotate(45deg)'
+                        : 'rotate(0deg)',
+                      transition: '0.3s',
+                      color: 'var(--muted)',
                     }}
                   >
-                    <svg width="18" height="18" viewBox="0 0 20 20" fill="none">
-                      <path d="M10 4v12M4 10h12" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
+                    <svg
+                      width="20"
+                      height="20"
+                      viewBox="0 0 20 20"
+                      fill="none"
+                    >
+                      <path
+                        d="M10 4v12M4 10h12"
+                        stroke="currentColor"
+                        strokeWidth="1.5"
+                        strokeLinecap="round"
+                      />
                     </svg>
                   </div>
                 </div>
               </div>
             );
           })}
-
-          <div style={{ width: '100%', height: '1px', background: 'rgba(255,255,255,0.06)' }} />
         </div>
-
-        {/* Footer */}
-        <p
-          data-reveal
-          style={{
-            marginTop: '3rem',
-            fontSize: '0.8rem',
-            color: 'var(--muted)',
-            textAlign: 'center',
-            letterSpacing: '0.04em',
-          }}
-        >
-          More on{' '}
-          <a
-            href="https://github.com/kasbihari"
-            target="_blank"
-            rel="noopener noreferrer"
-            style={{
-              color: 'var(--sand)',
-              borderBottom: '1px solid var(--sand-dark)',
-              paddingBottom: '1px',
-              transition: 'opacity 0.2s',
-            }}
-            onMouseEnter={(e) => (e.currentTarget.style.opacity = '0.7')}
-            onMouseLeave={(e) => (e.currentTarget.style.opacity = '1')}
-          >
-            GitHub
-          </a>
-        </p>
       </div>
-
-      <style>{`
-        @keyframes statusPulse {
-          0%, 100% { opacity: 1; transform: scale(1); }
-          50% { opacity: 0.4; transform: scale(0.8); }
-        }
-      `}</style>
     </section>
   );
 }
