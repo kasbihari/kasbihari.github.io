@@ -7,7 +7,7 @@ const chapters = [
     label: 'Origin',
     lines: [
       "I grew up obsessed with video games and anime.",
-      "Not just playing them — studying them.",
+      "Not just consuming them — dissecting them.",
       "Asking: how does this work? Who built this? How?",
       "That question never left me.",
     ],
@@ -16,10 +16,10 @@ const chapters = [
     id: 'spark',
     label: 'The Spark',
     lines: [
-      "My first line of HTML changed everything.",
+      "My first line of code changed everything.",
       "I could build things people actually used.",
-      "Real apps. Real products. Not homework.",
-      "I was seventeen and I already knew this was it.",
+      "Real apps. Real products. Real impact.",
+      "I was seventeen and I already knew this was my path.",
     ],
   },
   {
@@ -28,18 +28,18 @@ const chapters = [
     lines: [
       "I didn't learn by watching tutorials.",
       "I learned by shipping. Breaking. Fixing. Shipping again.",
-      "Full-stack: from database schema to the pixel on screen.",
-      "I care about both ends equally.",
+      "Full-stack to AI pipelines — I care about the whole system.",
+      "Not just writing code, but engineering solutions.",
     ],
   },
   {
     id: 'now',
     label: 'Now',
     lines: [
-      "I build complete systems, smart tools, AI-driven ventures.",
-      "Freelancing. Studying HBO-ICT. Always building.",
+      "I build web apps, AI automations, and SaaS products.",
+      "Freelancing. Studying. Always building something new.",
       "Chess taught me strategy. Martial arts taught me discipline.",
-      "I bring both to every project I touch.",
+      "I bring both to every problem I solve.",
     ],
   },
 ];
@@ -47,21 +47,24 @@ const chapters = [
 const timelineItems = [
   {
     year: '2024 — now',
-    title: 'Full-Stack Developer',
+    title: 'Full-Stack & AI Developer',
     place: 'Freelance / Independent',
-    description: 'Building client products, internal tools, and AI-powered systems. React, Node.js, and beyond.',
+    description:
+      'Building client products, AI-powered automation systems, and internal tools. Working with Twilio, ElevenLabs, OpenAI APIs, and modern full-stack frameworks.',
   },
   {
-    year: '2023',
-    title: 'HBO-ICT Student',
-    place: 'Software Engineering',
-    description: 'Full-stack development, databases, software architecture, and agile delivery.',
+    year: '2023 — now',
+    title: 'Software Development Student',
+    place: 'ROC Mondriaan · The Hague, NL',
+    description:
+      'Studying software development with a focus on full-stack engineering, databases, and software architecture. Planning to continue with Applied Data Science & AI at The Hague University.',
   },
   {
     year: '2022',
-    title: 'First Production Apps',
+    title: 'First Production Projects',
     place: 'Self-directed',
-    description: 'Shipped real-world applications. Learned by building, iterating, and deploying — not by watching.',
+    description:
+      'Shipped real-world applications independently. Learned by building, iterating, and deploying — not by watching. Developed a strong foundation across the full stack.',
   },
 ];
 
@@ -433,23 +436,25 @@ export default function About() {
                 color: 'var(--muted-light)', lineHeight: 1.8, marginBottom: '1.5rem',
                 fontSize: '0.95rem',
               }}>
-                I specialize in full-stack systems where design, engineering, and product
-                thinking meet. I care about both ends equally — schema to screen.
+                I build complete systems — from backend architecture and AI integrations
+                to the interfaces people actually use. I care about outcomes, not just
+                clean code. Every project I take on has a clear business goal behind it.
               </p>
 
               <p data-reveal data-delay="150" style={{
                 color: 'var(--muted)', lineHeight: 1.8, fontSize: '0.9rem',
               }}>
-                Currently exploring AI tooling and developer-facing products.
-                Available for freelance work and serious long-term collaborations.
+                Currently building AI automation products and taking on freelance projects.
+                Open to long-term collaborations with founders and businesses who want to
+                move fast and build things that last.
               </p>
 
               {/* Traits */}
               <div data-reveal data-delay="200" style={{ marginTop: '2.5rem', display: 'flex', flexDirection: 'column', gap: '0' }}>
                 {[
-                  { label: 'Strategy',   sub: 'Chess · Systems thinking · Long-term design' },
-                  { label: 'Discipline', sub: 'Martial arts · Consistent output · No excuses' },
-                  { label: 'Craft',      sub: 'Detail-first · Clean code · Strong visuals' },
+                  { label: 'Strategy',   sub: 'Chess · Systems thinking · Long-term architecture' },
+                  { label: 'Discipline', sub: 'Martial arts · Consistent output · No shortcuts' },
+                  { label: 'Craft',      sub: 'Detail-first · Clean systems · Purposeful design' },
                   { label: 'Momentum',   sub: 'Ship fast · Learn faster · Iterate always' },
                 ].map((t, i) => (
                   <div

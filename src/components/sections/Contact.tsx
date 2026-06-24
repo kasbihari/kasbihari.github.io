@@ -13,7 +13,7 @@ const contactLinks = [
   },
   {
     label: 'Email',
-    value: 'kas.bihari@gmail.com', 
+    value: 'kas.bihari@gmail.com',
     href: 'mailto:kas.bihari@gmail.com',
   },
 ];
@@ -84,11 +84,13 @@ export default function Contact() {
               fontSize: '0.95rem',
               color: 'var(--muted)',
               lineHeight: 1.75,
-              maxWidth: '420px',
+              maxWidth: '460px',
             }}
           >
-            Open to freelance projects, long-term collaborations, and interesting
-            engineering challenges. Response within 24 hours.
+            Open to freelance projects, AI automation work, SaaS collaborations, and
+            interesting engineering challenges. Whether you need a web application built,
+            a business process automated, or an AI system integrated — let's talk.
+            Response within 24 hours.
           </p>
         </div>
 
@@ -316,7 +318,7 @@ export default function Contact() {
                     name="message"
                     required
                     rows={5}
-                    placeholder="Tell me about your project..."
+                    placeholder="Tell me about your project, what you're trying to automate, or what you need built..."
                     style={{ ...inputStyle, resize: 'vertical', minHeight: '120px' }}
                     onFocus={(e) => (e.currentTarget.style.borderColor = 'var(--border-mid)')}
                     onBlur={(e) => (e.currentTarget.style.borderColor = 'var(--border-subtle)')}
@@ -392,7 +394,7 @@ export default function Contact() {
                 </button>
 
                 <p style={{ fontSize: '0.75rem', color: 'var(--muted)', textAlign: 'center' }}>
-                  No spam. Your data is only used to respond to you.
+                  No spam. Your details are only used to respond to your message.
                 </p>
               </form>
             )}

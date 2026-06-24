@@ -2,9 +2,9 @@ import { useEffect, useRef, useState } from 'react';
 
 const ROLES = [
   'Full-Stack Developer',
-  'UI/UX Thinker',
-  'Performance Obsessed',
-  'Shipping Products',
+  'AI Automation Engineer',
+  'SaaS Builder',
+  'Future AI Founder',
 ];
 
 export default function Hero() {
@@ -150,9 +150,9 @@ export default function Hero() {
               color: 'var(--sand-light)',
             }}
           >
-            Building things
+            Engineering software
           </span>{' '}
-          that matter.
+          that creates value.
         </h1>
 
         {/* Typewriter role */}
@@ -202,8 +202,9 @@ export default function Hero() {
             marginBottom: '3.5rem',
           }}
         >
-          Senior full-stack developer crafting performant web applications
-          with a strong eye for design and user experience.
+          Full-stack developer and AI engineer from the Netherlands — building
+          web applications, AI-powered automations, and SaaS products that solve
+          real business problems.
         </p>
 
         {/* CTA buttons */}
@@ -235,9 +236,9 @@ export default function Hero() {
           }}
         >
           {[
-            { value: '3+', label: 'Years experience' },
+            { value: '3+', label: 'Years building software' },
             { value: '10+', label: 'Projects shipped' },
-            { value: '5+', label: 'Tech stacks' },
+            { value: '5+', label: 'AI & tech stacks' },
           ].map((stat) => (
             <div key={stat.label}>
               <p

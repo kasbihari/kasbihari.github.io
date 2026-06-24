@@ -29,8 +29,20 @@ const categories: Category[] = [
     ],
   },
   {
-    label: 'Database & Cloud',
+    label: 'AI & Automation',
     accent: '#a78bfa',
+    skills: [
+      { name: 'OpenAI API', icon: '◎' },
+      { name: 'ElevenLabs', icon: '🎙' },
+      { name: 'Twilio', icon: '📞' },
+      { name: 'LangChain', icon: '🔗' },
+      { name: 'Webhook Flows', icon: '⇌' },
+      { name: 'Prompt Engineering', icon: 'PE' },
+    ],
+  },
+  {
+    label: 'Database & Cloud',
+    accent: '#f9a8d4',
     skills: [
       { name: 'MySQL', icon: '🐬' },
       { name: 'PostgreSQL', icon: '🐘' },
@@ -38,18 +50,6 @@ const categories: Category[] = [
       { name: 'Supabase', icon: '⚡' },
       { name: 'Vercel', icon: '▲' },
       { name: 'GitHub Actions', icon: '⚙' },
-    ],
-  },
-  {
-    label: 'Tooling & Methods',
-    accent: '#f9a8d4',
-    skills: [
-      { name: 'Git / GitHub', icon: '◉' },
-      { name: 'Docker', icon: '🐳' },
-      { name: 'Figma', icon: '✦' },
-      { name: 'Agile / Scrum', icon: '↻' },
-      { name: 'Accessibility', icon: '♿' },
-      { name: 'Web Vitals', icon: '📊' },
     ],
   },
 ];
@@ -186,7 +186,7 @@ export default function Skills() {
               maxWidth: '560px',
             }}
           >
-            Tools I reach for{' '}
+            Tools I build{' '}
             <span
               style={{
                 fontFamily: 'Playfair Display, Georgia, serif',
@@ -195,7 +195,7 @@ export default function Skills() {
                 color: 'var(--sand-light)',
               }}
             >
-              every day.
+              real things with.
             </span>
           </h2>
           <p
@@ -206,10 +206,10 @@ export default function Skills() {
               fontSize: '0.9rem',
               color: 'var(--muted)',
               lineHeight: 1.75,
-              maxWidth: '400px',
+              maxWidth: '440px',
             }}
           >
-            Focused on the full stack — from pixel-perfect interfaces to scalable server architecture.
+            From polished front-end interfaces to backend systems and AI-powered automation pipelines — I work across the full stack.
           </p>
         </div>
 
@@ -247,7 +247,7 @@ export default function Skills() {
               fontFamily: 'Playfair Display, Georgia, serif',
             }}
           >
-            "I pick the right tool for the job — not the trendiest one."
+            "I don't chase every new framework. I pick the right tool, understand it deeply, and use it to ship things that work."
           </p>
         </div>
       </div>
