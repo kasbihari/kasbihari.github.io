@@ -9,7 +9,7 @@ const contactLinks = [
   {
     label: 'LinkedIn',
     value: 'linkedin.com/in/krishnabihari',
-    href: 'https://www.linkedin.com/in/krishna-b-098124339/',
+    href: 'https://www.linkedin.com/in/krishna-bihari/',
   },
   {
     label: 'Email',
