@@ -538,7 +538,7 @@ export default function Navbar() {
         >
           {[
             { label: 'GitHub',   href: 'https://github.com/kasbihari'          },
-            { label: 'LinkedIn', href: 'https://linkedin.com/in/krishnabihari' },
+            { label: 'LinkedIn', href: 'https://linkedin.com/in/krishna-bihari' },
           ].map((s) => (
             <a
               key={s.label}

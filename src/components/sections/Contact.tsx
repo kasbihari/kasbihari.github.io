@@ -8,7 +8,7 @@ const contactLinks = [
   },
   {
     label: 'LinkedIn',
-    value: 'linkedin.com/in/krishnabihari',
+    value: 'linkedin.com/in/krishna-bihari',
     href: 'https://www.linkedin.com/in/krishna-bihari/',
   },
   {
